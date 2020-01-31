@@ -98,6 +98,44 @@ describe("Pharmacy", () => {
         ).toEqual([new Drug("Magic Pill", 0, 10)]);
       });
     });
+
+    describe("Fervex cases", () => {
+      it("should decrease expiresIn by 1 but benefit should increase by 1", () => {
+        expect(
+          new Pharmacy([new Drug("Fervex", 20, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Fervex", 19, 6)]);
+      });
+
+      it("should decrease expiresIn by 1 but benefit should increase by 2 if there's 10 days or less left", () => {
+        expect(
+          new Pharmacy([new Drug("Fervex", 10, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Fervex", 9, 7)]);
+      });
+
+      it("should decrease expiresIn by 1 but benefit should increase by 3 if there's 5 days or less left", () => {
+        expect(
+          new Pharmacy([new Drug("Fervex", 5, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Fervex", 4, 8)]);
+      });
+
+      it("should decrease expiresIn by 1 but benefit should increase by 3 if there's 5 days or less left, case with one day left", () => {
+        expect(
+          new Pharmacy([new Drug("Fervex", 1, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Fervex", 0, 8)]);
+      });
+
+      it("should set benefit to 0 if the drug is expired", () => {
+        expect(
+          new Pharmacy([new Drug("Fervex", 0, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Fervex", -1, 0)]);
+      });
+
+      it("should set benefit to 0 if the drug is expired, case where the drug is alredy expired", () => {
+        expect(
+          new Pharmacy([new Drug("Fervex", -10, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Fervex", -11, 0)]);
+      });
+    });
   });
 
   describe("General rules", () => {
