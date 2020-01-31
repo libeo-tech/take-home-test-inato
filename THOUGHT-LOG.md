@@ -42,3 +42,5 @@ Tentative startegy :
 
 In practice this seems to work : 
   => "Fixed all Herbal Tea tests in two seconds, CONFIG is turning out to be a good idea"
+
+- Finished the refacto and I just ran "yarn start" + "git status" and "output.txt" hasn't changed
