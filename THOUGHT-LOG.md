@@ -38,3 +38,7 @@ Tentative startegy :
     - we define a base case, that applies to each drub by default
     - UNLESS that drug is a specific drug, in which case we will:
       - use a specific function to know how to update the benefit of a drug :)
+
+
+In practice this seems to work : 
+  => "Fixed all Herbal Tea tests in two seconds, CONFIG is turning out to be a good idea"

@@ -14,6 +14,7 @@ const DRUGS_CONFIG = {
         benefit: Math.max(benefit - 2, 0)
       };
   },
+
   // HERBAL TEA CASE
   "Herbal Tea": (expiresIn, benefit) => {
     // Herbal Tea" actually increases in Benefit the older it gets.
@@ -28,7 +29,13 @@ const DRUGS_CONFIG = {
         expiresIn: expiresIn - 1,
         benefit: Math.min(benefit + 2, 50)
       };
-  }
+  },
+
+  // MAGIC PILL CASE
+  "Magic Pill": (expiresIn, benefit) => ({
+    expiresIn,
+    benefit
+  })
 };
 
 export class Drug {
