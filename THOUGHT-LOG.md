@@ -44,3 +44,16 @@ In practice this seems to work :
   => "Fixed all Herbal Tea tests in two seconds, CONFIG is turning out to be a good idea"
 
 - Finished the refacto and I just ran "yarn start" + "git status" and "output.txt" hasn't changed
+
+
+#### step three, later possible improvements
+
+  - we already have good enough Tests and ESlint, which is very nice !
+  - next I would add types, with either Flow or Typescript
+
+  - I would make the Drug class throw an error if it's initialized with a drug
+  that has a benefit that is either negative or higher than 50
+
+  - I would turn index.js into a proper test instead of having to run "yarn start" then "git satus" to see whether the file has changed or not
+
+  - Conceptually, I feel like "updateBenefitValue" should be a method of Drug and not Pharmacy, but this is open to discussion. And to be honest, I would rather write code without classes because I find it much easier to test and maintain (of course we still have Classes at CallDesk and I'm not really dogmatic with my opinions)
