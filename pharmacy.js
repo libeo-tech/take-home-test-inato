@@ -63,6 +63,22 @@ const DRUGS_CONFIG = {
         expiresIn: expiresIn - 1,
         benefit: 0
       };
+  },
+
+  // DAFALGAN CASE
+  Dafalgan: (expiresIn, benefit) => {
+    // "Dafalgan" degrades in Benefit twice as fast as normal drugs.
+    if (expiresIn > 0)
+      return {
+        expiresIn: expiresIn - 1,
+        benefit: Math.max(benefit - 2, 0)
+      };
+    // Second main case, we depreciate benefit by two before expiration
+    if (expiresIn <= 0)
+      return {
+        expiresIn: expiresIn - 1,
+        benefit: Math.max(benefit - 4, 0)
+      };
   }
 };
 

@@ -137,8 +137,7 @@ describe("Pharmacy", () => {
       });
     });
 
-    describe.skip("Dafalgan cases", () => {
-      // TODO these tests should pass
+    describe("Dafalgan cases", () => {
       it("should decrease expiresIn by 1 but benefit should decrease by 2, twice as fast as regular drugs", () => {
         expect(
           new Pharmacy([new Drug("Dafalgan", 20, 5)]).updateBenefitValue()
