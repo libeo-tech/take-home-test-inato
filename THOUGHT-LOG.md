@@ -17,3 +17,5 @@ Tentative startegy :
 #### step one, writing the test:
   - okay so it seems that expiresIn can be negative
   - pretty easy and pleasant so far
+
+  PS: I've been running "yarn start" + "git status" to check that I haven't broken the index.js test so far => if output.txt is still the same it means the "test" is still passing

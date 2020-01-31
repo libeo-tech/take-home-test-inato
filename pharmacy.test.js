@@ -10,7 +10,7 @@ describe("Pharmacy", () => {
     });
   });
 
-  describe("Regular drug base cases", () => {
+  describe("Regular Drugs", () => {
     it("should decrease expiresIn and benefit by 1 each", () => {
       expect(
         new Pharmacy([
@@ -52,29 +52,51 @@ describe("Pharmacy", () => {
     });
   });
 
-  describe("Herbal Teas cases", () => {
-    it("should decrease expiresIn by 1 but benefit should increase by 1", () => {
-      expect(
-        new Pharmacy([new Drug("Herbal Tea", 5, 5)]).updateBenefitValue()
-      ).toEqual([new Drug("Herbal Tea", 4, 6)]);
+  describe("Special Drugs", () => {
+    describe("Herbal Teas cases", () => {
+      it("should decrease expiresIn by 1 but benefit should increase by 1", () => {
+        expect(
+          new Pharmacy([new Drug("Herbal Tea", 5, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Herbal Tea", 4, 6)]);
+      });
+
+      it("should decrease expiresIn by 1 but benefit should increase by 1, one day left", () => {
+        expect(
+          new Pharmacy([new Drug("Herbal Tea", 1, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Herbal Tea", 0, 6)]);
+      });
+
+      it("should decrease expiresIn by 1 but benefit should increase by 2 after expiration", () => {
+        expect(
+          new Pharmacy([new Drug("Herbal Tea", 0, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Herbal Tea", -1, 7)]);
+      });
+
+      it("should decrease expiresIn by 1 but benefit should increase by 2 after expiration - its been 84 years", () => {
+        expect(
+          new Pharmacy([new Drug("Herbal Tea", -30681, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Herbal Tea", -30682, 7)]);
+      });
     });
 
-    it("should decrease expiresIn by 1 but benefit should increase by 1, one day left", () => {
-      expect(
-        new Pharmacy([new Drug("Herbal Tea", 1, 5)]).updateBenefitValue()
-      ).toEqual([new Drug("Herbal Tea", 0, 6)]);
-    });
+    describe("Magic Pill cases", () => {
+      it("should never expire nor decrease in Benefit", () => {
+        expect(
+          new Pharmacy([new Drug("Magic Pill", 5, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Magic Pill", 5, 5)]);
+      });
 
-    it("should decrease expiresIn by 1 but benefit should increase by 2 after expiration", () => {
-      expect(
-        new Pharmacy([new Drug("Herbal Tea", 0, 5)]).updateBenefitValue()
-      ).toEqual([new Drug("Herbal Tea", -1, 7)]);
-    });
+      it("should never expire nor decrease in Benefit", () => {
+        expect(
+          new Pharmacy([new Drug("Magic Pill", 10, 10)]).updateBenefitValue()
+        ).toEqual([new Drug("Magic Pill", 10, 10)]);
+      });
 
-    it("should decrease expiresIn by 1 but benefit should increase by 2 after expiration - its been 84 years", () => {
-      expect(
-        new Pharmacy([new Drug("Herbal Tea", -30681, 5)]).updateBenefitValue()
-      ).toEqual([new Drug("Herbal Tea", -30682, 7)]);
+      it("should never expire nor decrease in Benefit", () => {
+        expect(
+          new Pharmacy([new Drug("Magic Pill", 0, 10)]).updateBenefitValue()
+        ).toEqual([new Drug("Magic Pill", 0, 10)]);
+      });
     });
   });
 
@@ -90,10 +112,12 @@ describe("Pharmacy", () => {
       // TODO this test passes, make it fail if you have time
       const drugs = [
         new Drug("Herbal Tea", 10, 55),
+        new Drug("Magic Pill", 10, 55),
         new Drug("Regular Drug", 10, 55)
       ];
       expect(new Pharmacy(drugs).updateBenefitValue()).toEqual([
         new Drug("Herbal Tea", 9, 55),
+        new Drug("Magic Pill", 10, 55),
         new Drug("Regular Drug", 9, 54)
       ]);
     });
