@@ -136,6 +136,27 @@ describe("Pharmacy", () => {
         ).toEqual([new Drug("Fervex", -11, 0)]);
       });
     });
+
+    describe.skip("Dafalgan cases", () => {
+      // TODO these tests should pass
+      it("should decrease expiresIn by 1 but benefit should decrease by 2, twice as fast as regular drugs", () => {
+        expect(
+          new Pharmacy([new Drug("Dafalgan", 20, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Dafalgan", 19, 3)]);
+      });
+
+      it("should decrease the benefit of a drug twice as fast (by 2 * 2) after its expiration", () => {
+        expect(
+          new Pharmacy([new Drug("Dafalgan", 0, 5)]).updateBenefitValue()
+        ).toEqual([new Drug("Dafalgan", -1, 1)]);
+      });
+
+      it("should stop decreasing benefit after it's reached 0", () => {
+        expect(
+          new Pharmacy([new Drug("Dafalgan", -10, 2)]).updateBenefitValue()
+        ).toEqual([new Drug("Dafalgan", -11, 0)]);
+      });
+    });
   });
 
   describe("General rules", () => {
