@@ -10,7 +10,7 @@ describe("Pharmacy", () => {
     });
   });
 
-  describe("Base case, with a Regular drug", () => {
+  describe("Regular drug base cases", () => {
     it("should decrease expiresIn and benefit by 1 each", () => {
       expect(
         new Pharmacy([
@@ -65,16 +65,37 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("Herbal Tea", 0, 6)]);
     });
 
-    it("should decrease expiresIn by 1 but benefit should increase by 2 - after expiration", () => {
+    it("should decrease expiresIn by 1 but benefit should increase by 2 after expiration", () => {
       expect(
         new Pharmacy([new Drug("Herbal Tea", 0, 5)]).updateBenefitValue()
       ).toEqual([new Drug("Herbal Tea", -1, 7)]);
     });
 
-    it("should decrease expiresIn by 1 but benefit should increase by 2 - its been 84 years", () => {
+    it("should decrease expiresIn by 1 but benefit should increase by 2 after expiration - its been 84 years", () => {
       expect(
         new Pharmacy([new Drug("Herbal Tea", -30681, 5)]).updateBenefitValue()
       ).toEqual([new Drug("Herbal Tea", -30682, 7)]);
+    });
+  });
+
+  describe("General rules", () => {
+    it("The Benefit of an item is never more than 50", () => {
+      const drugs = [new Drug("Herbal Tea", 10, 50)];
+      expect(new Pharmacy(drugs).updateBenefitValue()).toEqual([
+        new Drug("Herbal Tea", 9, 50)
+      ]);
+    });
+
+    it.skip("FIXE ME ?? - Should not fail silently if drug has a benefit higher than 50", () => {
+      // TODO this test passes, make it fail if you have time
+      const drugs = [
+        new Drug("Herbal Tea", 10, 55),
+        new Drug("Regular Drug", 10, 55)
+      ];
+      expect(new Pharmacy(drugs).updateBenefitValue()).toEqual([
+        new Drug("Herbal Tea", 9, 55),
+        new Drug("Regular Drug", 9, 54)
+      ]);
     });
   });
 });
