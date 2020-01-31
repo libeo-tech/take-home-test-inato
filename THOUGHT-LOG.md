@@ -19,3 +19,22 @@ Tentative startegy :
   - pretty easy and pleasant so far
 
   PS: I've been running "yarn start" + "git status" to check that I haven't broken the index.js test so far => if output.txt is still the same it means the "test" is still passing
+
+#### step two, refacto:
+  - Constat:
+    - `pharmacy.js` is basically unreadable, you have to read through 20 IFs to see what happens for a given drug.
+    - with `pharmacy.js` you cannot immediately know the "rules of engagement/rules that govern the behavior" of a given drug: you are forced to read through the whole code, reason about it, and then deduce it yourself.
+
+  => This code is not scalable, will become a "usine à gaz" real soon
+
+
+  - How do we make it easier ?
+    - If I want to add, remove, or change a drug => I only have to see the very few lines that describe this drug's behavior, not read through 40 lines of code.
+    - Ideally I wouldn't eve see any code, and just modify a javascript object
+
+  => why ? this would make our code much more scalable and understandable by humans
+
+  - How do we make that ?
+    - we define a base case, that applies to each drub by default
+    - UNLESS that drug is a specific drug, in which case we will:
+      - use a specific function to know how to update the benefit of a drug :)
