@@ -51,4 +51,30 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("Im not a special drug", -11, 0)]);
     });
   });
+
+  describe("Herbal Teas cases", () => {
+    it("should decrease expiresIn by 1 but benefit should increase by 1", () => {
+      expect(
+        new Pharmacy([new Drug("Herbal Tea", 5, 5)]).updateBenefitValue()
+      ).toEqual([new Drug("Herbal Tea", 4, 6)]);
+    });
+
+    it("should decrease expiresIn by 1 but benefit should increase by 1, one day left", () => {
+      expect(
+        new Pharmacy([new Drug("Herbal Tea", 1, 5)]).updateBenefitValue()
+      ).toEqual([new Drug("Herbal Tea", 0, 6)]);
+    });
+
+    it("should decrease expiresIn by 1 but benefit should increase by 2 - after expiration", () => {
+      expect(
+        new Pharmacy([new Drug("Herbal Tea", 0, 5)]).updateBenefitValue()
+      ).toEqual([new Drug("Herbal Tea", -1, 7)]);
+    });
+
+    it("should decrease expiresIn by 1 but benefit should increase by 2 - its been 84 years", () => {
+      expect(
+        new Pharmacy([new Drug("Herbal Tea", -30681, 5)]).updateBenefitValue()
+      ).toEqual([new Drug("Herbal Tea", -30682, 7)]);
+    });
+  });
 });
