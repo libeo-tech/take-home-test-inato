@@ -1,4 +1,5 @@
 const DRUGS_CONFIG = {
+  // DEFAULT CASE
   default_: (expiresIn, benefit) => {
     // First main case, we depreciate benefit by one before expiration
     if (expiresIn > 0)
@@ -6,12 +7,26 @@ const DRUGS_CONFIG = {
         expiresIn: expiresIn - 1,
         benefit: Math.max(benefit - 1, 0)
       };
-
     // Second main case, we depreciate benefit by two before expiration
     if (expiresIn <= 0)
       return {
         expiresIn: expiresIn - 1,
         benefit: Math.max(benefit - 2, 0)
+      };
+  },
+  // HERBAL TEA CASE
+  "Herbal Tea": (expiresIn, benefit) => {
+    // Herbal Tea" actually increases in Benefit the older it gets.
+    if (expiresIn > 0)
+      return {
+        expiresIn: expiresIn - 1,
+        benefit: Math.min(benefit + 1, 50)
+      };
+    // Benefit increases twice as fast after the expiration date.
+    if (expiresIn <= 0)
+      return {
+        expiresIn: expiresIn - 1,
+        benefit: Math.min(benefit + 2, 50)
       };
   }
 };
