@@ -4,14 +4,22 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+  static get BENEFIT_MAX_VALUE() { return 50 };
+  static get BENEFIT_MIN_VALUE() { return 0 };
+
   decrementExpiresIn() {
     this.expiresIn -= 1;
   }
-  incrementBenefit() {
-
+  decrementBenefit(value = 1) {
+    this.benefit -= value;
+    if (this.benefit < Drug.BENEFIT_MIN_VALUE)
+      this.benefit = Drug.BENEFIT_MIN_VALUE
   }
-  decrementBenefit() {
-
+  incrementBenefit(value = 1) {
+    this.benefit += value;
+    if (this.benefit > Drug.BENEFIT_MAX_VALUE)
+      this.benefit = Drug.BENEFIT_MAX_VALUE
   }
 }
 
