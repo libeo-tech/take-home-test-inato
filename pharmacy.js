@@ -19,8 +19,30 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+  updateFervex(drug) {
+
+  }
+  updateHerbalTea(drug) {
+
+  }
+  updateDafalgan(drug) {
+
+  }
+  updateOthers(drug) {
+
+  }
   updateBenefitValue() {
     this.drugs.forEach(drug => {
+      switch (drug.name) {
+        case "Fervex":
+          break ;
+        case "Herbal Tea":
+          break ;
+        case "Dafalgan":
+          break ;
+        default:
+      }
+      drug.decrementExpiresIn();
     });
     return this.drugs;
   }
