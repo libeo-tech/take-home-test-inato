@@ -11,11 +11,13 @@ export class Drug {
   decrementExpiresIn() {
     this.expiresIn -= 1;
   }
+
   decrementBenefit(value = 1) {
     this.benefit -= value;
     if (this.benefit < Drug.BENEFIT_MIN_VALUE)
       this.benefit = Drug.BENEFIT_MIN_VALUE
   }
+
   incrementBenefit(value = 1) {
     this.benefit += value;
     if (this.benefit > Drug.BENEFIT_MAX_VALUE)
@@ -29,12 +31,12 @@ export class Pharmacy {
   }
 
   updateFervex(drug) {
-    if (drug.expiresIn <= 10)
-      drug.incrementBenefit(2);
+    if (drug.expiresIn <= 0)
+      drug.benefit = 0;
     else if (drug.expiresIn <= 5)
       drug.incrementBenefit(3);
-    else if (drug.expiresIn <= 0)
-      drug.benefit = 0;
+    else if (drug.expiresIn <= 10)
+      drug.incrementBenefit(2);
   }
 
   updateHerbalTea(drug) {
@@ -48,6 +50,7 @@ export class Pharmacy {
   updateOthers(drug) {
     drug.decrementBenefit(drug.expiresIn <= 0 ? 2 : 1);
   }
+
   updateBenefitValue() {
     this.drugs.filter(drug => drug.name != "Magic Pill").forEach(drug => {
       switch (drug.name) {
@@ -65,6 +68,7 @@ export class Pharmacy {
       }
       drug.decrementExpiresIn();
     });
+
     return this.drugs;
   }
 }
