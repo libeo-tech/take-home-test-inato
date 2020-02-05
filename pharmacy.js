@@ -27,28 +27,41 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+
   updateFervex(drug) {
-
+    if (drug.expiresIn <= 10)
+      drug.incrementBenefit(2);
+    else if (drug.expiresIn <= 5)
+      drug.incrementBenefit(3);
+    else if (drug.expiresIn <= 0)
+      drug.benefit = 0;
   }
+
   updateHerbalTea(drug) {
-
+    drug.incrementBenefit(drug.expiresIn <= 0 ? 2 : 1);
   }
+
   updateDafalgan(drug) {
-
+    drug.decrementBenefit(2);
   }
-  updateOthers(drug) {
 
+  updateOthers(drug) {
+    drug.decrementBenefit(drug.expiresIn <= 0 ? 2 : 1);
   }
   updateBenefitValue() {
-    this.drugs.forEach(drug => {
+    this.drugs.filter(drug => drug.name != "Magic Pill").forEach(drug => {
       switch (drug.name) {
         case "Fervex":
+          this.updateFervex(drug);
           break ;
         case "Herbal Tea":
+          this.updateHerbalTea(drug);
           break ;
         case "Dafalgan":
+          this.updateDafalgan(drug);
           break ;
         default:
+          this.updateOthers(drug);
       }
       drug.decrementExpiresIn();
     });
