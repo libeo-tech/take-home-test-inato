@@ -1,4 +1,11 @@
 const drugEffects = {
+  Dafalgan: {
+    benefitIncrements: {
+      regular: -2,
+      expired: -4
+    },
+    expirationDecrease: -1
+  },
   Fervex: {
     benefitIncrementsByDays: [
       // Ensures benefit drops to 0 (flattened to 0 afterwards anyway)
