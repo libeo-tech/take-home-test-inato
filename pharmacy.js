@@ -24,10 +24,25 @@ export class Drug {
   update(benefitValue) {
     const drugEffects = this.getDrugEffects();
     const expirationStatus = this.getExpirationStatus();
-    this.benefit = this.benefit + drugEffects.benefitIncrements[expirationStatus];
+    let processed = false
+
+    if("benefitIncrementsByDays" in drugEffects) {
+      // update benefit according to days left before expiration
+      drugEffects.benefitIncrementsByDays.forEach(incrementByDays => {
+        if(this.expiresIn <= incrementByDays.days && processed === false) {
+          processed = true;
+          this.benefit = this.benefit + incrementByDays.increment;
+        }
+      })
+    }
+
+    if(!processed) {
+      this.benefit += drugEffects.benefitIncrements[expirationStatus];
+    }
+
     this.updateBenefitLimits();
 
-    this.expiresIn -= 1;
+    this.expiresIn += drugEffects.expirationDecrease;
   }
 }
 
