@@ -28,6 +28,10 @@ describe("Pharmacy", () => {
     "should start the benefit at 0": {
       actual: new Drug("test", 2, 0),
       expected: new Drug("test", 1, 0)
+    },
+    "should degrade twice as fast after the expiration date": {
+      actual: new Drug("test", -2, 10),
+      expected: new Drug("test", -3, 8)
     }
   };
 
