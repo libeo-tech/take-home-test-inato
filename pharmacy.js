@@ -1,8 +1,8 @@
 export class Drug {
-  constructor(name, expiresIn, benefit) {
+  constructor(name, expiresIn, benefit = 0) {
     this.name = name;
     this.expiresIn = expiresIn;
-    this.benefit = benefit > 0 ? benefit : 0;
+    this.benefit = benefit < 0 ? 0 : benefit > 50 ? 50 : benefit;
   }
 }
 
