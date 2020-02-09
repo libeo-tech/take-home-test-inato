@@ -21,7 +21,7 @@ describe("Drug", () => {
 
 describe("Pharmacy", () => {
   const testCases = {
-    "should decrease the benefit and expiresIn": {
+    "should decrease benefit and expiresIn": {
       actual: new Drug("test", 2, 3),
       expected: new Drug("test", 1, 2)
     },
@@ -29,21 +29,37 @@ describe("Pharmacy", () => {
       actual: new Drug("test", 2, 0),
       expected: new Drug("test", 1, 0)
     },
-    "should degrade twice as fast after the expiration date": {
+    "should decrease benefit by 2 after the expiration date": {
       actual: new Drug("test", -2, 10),
       expected: new Drug("test", -3, 8)
     },
-    "should upgrade benefit for 'Herbal Tea'": {
+    "should increase benefit by 1 for 'Herbal Tea'": {
       actual: new Drug("Herbal Tea", 2, 10),
       expected: new Drug("Herbal Tea", 1, 11)
     },
-    "should upgrade benefit for 'Herbal Tea' twice as fast after the expiration date": {
+    "should increase benefit by 2 for 'Herbal Tea' after the expiration date": {
       actual: new Drug("Herbal Tea", -2, 10),
       expected: new Drug("Herbal Tea", -3, 12)
     },
-    "should not change benefit for 'Magic Pill'": {
+    "should neither change benefit nor expiration for 'Magic Pill'": {
       actual: new Drug("Magic Pill", 2, 10),
       expected: new Drug("Magic Pill", 2, 10)
+    },
+    "should increase benefit by 1 for 'Fervex'": {
+      actual: new Drug("Fervex", 11, 10),
+      expected: new Drug("Fervex", 10, 11)
+    },
+    "should increase benefit by 2 for 'Fervex'": {
+      actual: new Drug("Fervex", 10, 10),
+      expected: new Drug("Fervex", 9, 12)
+    },
+    "should increase benefit by 3 for 'Fervex'": {
+      actual: new Drug("Fervex", 5, 10),
+      expected: new Drug("Fervex", 4, 13)
+    },
+    "should drop benefit to 0 for 'Fervex'": {
+      actual: new Drug("Fervex", 0, 10),
+      expected: new Drug("Fervex", -1, 0)
     }
   };
 
