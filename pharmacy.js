@@ -4,7 +4,7 @@ const BENEFIT_STEP = 1;
 
 const rules = {
   basic(drug) {
-    if (drug.expiresIn < 0) {
+    if (drug.expiresIn <= 0) {
       drug.benefit = drug.benefit - 2 * BENEFIT_STEP;
     } else {
       drug.benefit = drug.benefit - BENEFIT_STEP;
@@ -14,7 +14,7 @@ const rules = {
     return drug;
   },
   [`Herbal Tea`](drug) {
-    if (drug.expiresIn < 0) {
+    if (drug.expiresIn <= 0) {
       drug.benefit = drug.benefit + 2 * BENEFIT_STEP;
     } else {
       drug.benefit = drug.benefit + BENEFIT_STEP;
