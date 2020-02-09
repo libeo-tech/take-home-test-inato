@@ -33,13 +33,17 @@ describe("Pharmacy", () => {
       actual: new Drug("test", -2, 10),
       expected: new Drug("test", -3, 8)
     },
-    "should upgrade benefit for Herbal Tea": {
+    "should upgrade benefit for 'Herbal Tea'": {
       actual: new Drug("Herbal Tea", 2, 10),
       expected: new Drug("Herbal Tea", 1, 11)
     },
-    "should upgrade benefit for Herbal Tea twice as fast after the expiration date": {
+    "should upgrade benefit for 'Herbal Tea' twice as fast after the expiration date": {
       actual: new Drug("Herbal Tea", -2, 10),
       expected: new Drug("Herbal Tea", -3, 12)
+    },
+    "should not change benefit for 'Magic Pill'": {
+      actual: new Drug("Magic Pill", 2, 10),
+      expected: new Drug("Magic Pill", 2, 10)
     }
   };
 
