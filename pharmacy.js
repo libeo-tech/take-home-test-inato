@@ -39,6 +39,12 @@ const rules = {
 
     drug.expiresIn = drug.expiresIn - 1;
     return drug;
+  },
+  [`Dafalgan`](drug) {
+    drug.benefit = drug.benefit - 2 * BENEFIT_STEP;
+
+    drug.expiresIn = drug.expiresIn - 1;
+    return drug;
   }
 };
 

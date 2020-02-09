@@ -60,6 +60,10 @@ describe("Pharmacy", () => {
     "should drop benefit to 0 for 'Fervex'": {
       actual: new Drug("Fervex", 0, 10),
       expected: new Drug("Fervex", -1, 0)
+    },
+    "should decrease benefit by 2 for Dafalgan": {
+      actual: new Drug("Dafalgan", 2, 3),
+      expected: new Drug("Dafalgan", 1, 1)
     }
   };
 
