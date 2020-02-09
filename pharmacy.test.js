@@ -32,6 +32,14 @@ describe("Pharmacy", () => {
     "should degrade twice as fast after the expiration date": {
       actual: new Drug("test", -2, 10),
       expected: new Drug("test", -3, 8)
+    },
+    "should upgrade benefit for Herbal Tea": {
+      actual: new Drug("Herbal Tea", 2, 10),
+      expected: new Drug("Herbal Tea", 1, 11)
+    },
+    "should upgrade benefit for Herbal Tea twice as fast after the expiration date": {
+      actual: new Drug("Herbal Tea", -2, 10),
+      expected: new Drug("Herbal Tea", -3, 12)
     }
   };
 
