@@ -1,9 +1,12 @@
 import { herbalTeaBenefitBehavior } from "./herbal_tea";
 import { magicPillBenefitBehavior } from "./magic_pill";
+import { fervexBenefitBehavior } from "./fervex";
+
 
 const drugsBenefitBehaviors = {
   "Herbal Tea": herbalTeaBenefitBehavior,
-  "Magic Pill": magicPillBenefitBehavior
+  "Magic Pill": magicPillBenefitBehavior,
+  "Fervex": fervexBenefitBehavior
 };
 
 function defaultBehavior() {
