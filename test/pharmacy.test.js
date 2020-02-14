@@ -37,4 +37,10 @@ describe("Pharmacy", () => {
       [new Drug("Herbal Tea", -1, 50)]
     );
   });
+
+  it("should not do anything for Magic Pill", () => {
+    expect(new Pharmacy([new Drug("Magic Pill", 0, 50)]).updateAllBenefitValues()).toEqual(
+      [new Drug("Magic Pill", 0, 50)]
+    );
+  });
 });
