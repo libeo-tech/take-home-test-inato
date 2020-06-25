@@ -66,4 +66,10 @@ describe("Pharmacy", () => {
       new Pharmacy([new Drug("Dafalgan", 10, 15)]).updateBenefitValue()
     ).toEqual([new Drug("Dafalgan", 9, 13)]);
   });
+
+  it("should not negative in benefit Dafalgan", () => {
+    expect(
+      new Pharmacy([new Drug("Dafalgan", 0, 0)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", -1, 0)]);
+  });
 });
