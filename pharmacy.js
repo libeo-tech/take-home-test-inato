@@ -29,8 +29,7 @@ export class Drug {
         break;
     }
     this.expiresIn -= 1;
-    this.benefit = this.benefit > 0 ? this.benefit : 0;
-    this.benefit = this.benefit < 51 ? this.benefit : 50;
+    this.benefit = Math.min(50, Math.max(0, this.benefit));
   }
 }
 
