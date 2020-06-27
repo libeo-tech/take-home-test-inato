@@ -50,7 +50,7 @@ export class Pharmacy {
 
 function updateFervexBenefit(drug) {
   if (drug.expiresIn <= 0) return 0;
-  if (drug.expiresIn <= 5) return drug.benefit - 3;
+  if (drug.expiresIn <= 5) return drug.benefit + 3;
   if (drug.expiresIn <= 10) return drug.benefit + 2;
-  return drug.benefit + 2;
+  return drug.benefit + 1;
 }
