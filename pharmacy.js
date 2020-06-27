@@ -12,10 +12,11 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     this.drugs.forEach((drug) => {
-      drug.expiresIn = drug.expiresIn - 1
 
       // "Magic Pill" never expires nor decreases in Benefit.
       if (drug.name === 'Magic Pill') return
+
+      drug.expiresIn = drug.expiresIn - 1
 
       // I use switch for a better reading experience
       // more than an optimized solution
