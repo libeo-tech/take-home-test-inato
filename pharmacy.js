@@ -24,6 +24,10 @@ export class Pharmacy {
           drug.benefit =
             drug.benefit <= drug.expiresIn ? drug.benefit + 2 : drug.benefit + 1
           break
+        case 'Dafalgan':
+          drug.benefit =
+            drug.benefit <= drug.expiresIn ? drug.benefit - 4 : drug.benefit - 2
+          break
         case 'Fervex':
           drug.benefit = updateFervexBenefit(drug)
           break
