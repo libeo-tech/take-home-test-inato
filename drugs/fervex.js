@@ -23,6 +23,6 @@ export class FervexDrug extends Drug {
   }
 
   applyExpiredEffect() {
-    this.benefit = this.benefit - this.benefit;
+    this.benefit = 0;
   }
 }

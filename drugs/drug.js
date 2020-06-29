@@ -24,6 +24,8 @@ export class Drug {
   }
 
   applyExpiredEffect() {
-    this.benefit = this.benefit - 1;
+    if (this.benefit > 0) {
+      this.benefit = this.benefit - 1;
+    }
   }
 }
