@@ -40,6 +40,9 @@ export class Pharmacy {
           else if (drug.expiresIn <= 10)
             drug.updateBenefit(2);
           break;
+        case "Dafalgan":
+          drug.updateBenefit(drug.isExpired() ? -4 : -2);
+          break;
         default:
           drug.updateBenefit(drug.isExpired() ? -2 : -1);
       }

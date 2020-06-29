@@ -36,6 +36,16 @@ describe("Pharmacy", () => {
       [new Drug("Magic Pill", 15, 40)]
     );
   });
+  it("handles Dafalgan", () => {
+      expect(new Pharmacy([new Drug("Dafalgan", 10, 20)]).updateBenefitValue()).toEqual(
+          [new Drug("Dafalgan", 9, 18)]
+      );
+  });
+  it("handles expired Dafalgan", () => {
+      expect(new Pharmacy([new Drug("Dafalgan", -2, 20)]).updateBenefitValue()).toEqual(
+          [new Drug("Dafalgan", -3, 16)]
+      );
+  });
   it("handles random drugs", () => {
     expect(new Pharmacy([new Drug("Doliprane", 2, 3)]).updateBenefitValue()).toEqual(
       [new Drug("Doliprane", 1, 2)]
