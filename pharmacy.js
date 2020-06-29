@@ -27,55 +27,24 @@ export class Pharmacy {
     this.drugs = drugs;
   }
   updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (!this.drugs[i].isExpired() > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].updateBenefit(-1);
-          }
-        }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].updateBenefit(1);
-          if (this.drugs[i].name == "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].updateBenefit(1);
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].updateBenefit(1);
-              }
-            }
-          }
-        }
+    this.drugs.filter(drug => drug.name !== "Magic Pill").map(drug => {
+      switch (drug.name) {
+        case "Herbal Tea":
+          drug.updateBenefit(drug.isExpired() ? 2 : 1);
+          break;
+        case "Fervex":
+          if (drug.isExpired())
+            drug.benefit = 0;
+          else if (drug.expiresIn <= 5)
+            drug.updateBenefit(3);
+          else if (drug.expiresIn <= 10)
+            drug.updateBenefit(2);
+          break;
+        default:
+          drug.updateBenefit(drug.isExpired() ? -2 : -1);
       }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].updateExpiresIn();
-      }
-      if (this.drugs[i].isExpired()) {
-        if (this.drugs[i].name != "Herbal Tea") {
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].updateBenefit(-1);
-              }
-            }
-          } else {
-            this.drugs[i].benefit = 0;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].updateBenefit(1);
-          }
-        }
-      }
-    }
-
+      drug.updateExpiresIn();
+    });
     return this.drugs;
   }
 }
