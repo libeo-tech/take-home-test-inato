@@ -4,6 +4,7 @@ import {Drug} from "./drugs/drug";
 import {HerbalTeaDrug} from "./drugs/herbal-tea";
 import {MagicPillDrug} from "./drugs/magic-pill";
 import {FervexDrug} from "./drugs/fervex";
+import {DafalganDrug} from "./drugs/dafalgan-drug";
 
 const test = "test";
 
@@ -82,14 +83,14 @@ describe("Pharmacy", () => {
 
     describe(Dafalgan, () => {
         it("should degrade Dafalgan benefit twice as fast before expired", () => {
-            expect(new Pharmacy([new Drug(Dafalgan, 1, 2)]).updateBenefitValue()).toEqual(
-              [new Drug(test, 0, 0)]
+            expect(new Pharmacy([new DafalganDrug(1, 2)]).updateBenefitValue()).toEqual(
+              [new DafalganDrug(0, 0)]
             );
         });
 
         it("should degrade Dafalgan benefit twice as fast once expired", () => {
-            expect(new Pharmacy([new Drug(Dafalgan, -1, 2)]).updateBenefitValue()).toEqual(
-              [new Drug(test, -2, 0)]
+            expect(new Pharmacy([new DafalganDrug( -1, 2)]).updateBenefitValue()).toEqual(
+              [new DafalganDrug(-2, 0)]
             );
         });
     });
