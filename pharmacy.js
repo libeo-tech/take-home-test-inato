@@ -7,7 +7,9 @@ export class Drug {
 }
 
 function decreaseBenefit(drug, amount = 1) {
-  if (drug.benefit > 0) drug.benefit -= amount;
+  drug.benefit -= amount;
+
+  if (drug.benefit < 0) drug.benefit = 0;
 
   return drug.benefit;
 }
