@@ -33,6 +33,9 @@ export class Pharmacy {
       switch (drug.name) {
         case "Magic Pill":
           continue;
+        case "Dafalgan":
+          decreaseBenefit(drug, drug.expiresIn <= 0 ? 4 : 2);
+          break;
         case "Herbal Tea":
           increaseBenefit(drug, drug.expiresIn <= 0 ? 2 : 1);
           break;
