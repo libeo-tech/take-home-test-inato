@@ -27,36 +27,30 @@ export class Pharmacy {
   updateBenefitValue() {
     for (let i = 0; i < this.drugs.length; i++) {
       let drug = this.drugs[i];
+      let amount = 1;
+
       if (drug.name === "Magic Pill") {
         continue;
       }
 
-      if (drug.name != "Herbal Tea" && drug.name != "Fervex") {
+      if (!["Herbal Tea", "Fervex"].includes(drug.name)) {
         decreaseBenefit(drug);
       } else {
-        let amount = 0;
-        if (drug.name == "Fervex" && drug.expiresIn < 11) {
-          if (drug.expiresIn < 6) {
-            amount = 3;
-          } else {
-            amount = 2;
-          }
-        } else {
-          amount = 1;
+        if (drug.name === "Fervex" && drug.expiresIn < 11) {
+          amount = drug.expiresIn < 6 ? 3 : 2;
         }
         increaseBenefit(drug, amount);
       }
 
       drug.expiresIn--;
+
       if (drug.expiresIn < 0) {
-        if (drug.name != "Herbal Tea") {
-          if (drug.name != "Fervex") {
-            decreaseBenefit(drug);
-          } else {
-            drug.benefit = 0;
-          }
-        } else {
+        if (drug.name === "Fervex") {
+          drug.benefit = 0;
+        } else if (drug.name === "Herbal Tea") {
           increaseBenefit(drug);
+        } else {
+          decreaseBenefit(drug);
         }
       }
     }
