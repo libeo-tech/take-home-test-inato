@@ -27,6 +27,8 @@ export class Pharmacy {
         }
       } else if (drug.name == "Herbal Tea") {
         drug.benefit = Math.min(50, drug.benefit + 1);
+      } else if (drug.name == "Dafalgan") {
+        drug.benefit = Math.max(0, drug.benefit - 2);
       } else {
         drug.benefit = Math.max(0, drug.benefit - 1);
       }
