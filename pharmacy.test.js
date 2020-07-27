@@ -61,11 +61,15 @@ describe("Pharmacy", () => {
     ).toEqual([new Drug("Fervex", -1, 0)]);
   });
 
-  it("should never have more than 50 benefit.", () => {
+  it("should never have more than 50 benefit", () => {
     expect(
       new Pharmacy([new Drug("Fervex", 5, 49)]).updateBenefitValue()
     ).toEqual([new Drug("Fervex", 4, 50)]);
   });
 
-
+  it("should Dafalgan's benefit degrades twice as fast as normal drugs", () => {
+    expect(
+      new Pharmacy([new Drug("Dafalgan", 5, 14)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", 4, 12)]);
+  });
 });
