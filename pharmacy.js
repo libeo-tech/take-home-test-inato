@@ -13,12 +13,10 @@ export class Pharmacy {
 
   updateDolipraneBenefitValue(drug) {
     drug.benefit = drug.expiresIn === 0 ? drug.benefit -= 2 : drug.benefit -= 1;
-    // -1 default, twice as fast once expiration -2
   }
 
   updateHerbalTeaBenefitValue(drug) {
     drug.benefit = drug.expiresIn === 0 ? drug.benefit += 2 : drug.benefit += 1;
-    // +1 default, twice as fast on expiration +2
   }
 
   updateFervexBenefitValue(drug) {
@@ -35,12 +33,10 @@ export class Pharmacy {
     } else if (drug.expiresIn <= 5) {
       drug.benefit = drug.benefit += 3;
     }
-    // +1 default, +2 if 10- days, +3 if 5- days, 0 after expiration
   }
 
   updateDafalganBenefitValue(drug) {
     drug.benefit = drug.expiresIn === 0 ? drug.benefit -= 4 : drug.benefit -= 2;
-    // -2 default, twice as fast on expiration -4
   }
 
 
