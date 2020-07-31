@@ -60,7 +60,7 @@ export class Pharmacy {
           this.updateDafalganBenefitValue(drug);
           break;
         default:
-          drug.benefit = drug.benefit -= 1;
+          drug.benefit = drug.expiresIn === 0 ? drug.benefit -= 2 : drug.benefit -= 1;
           break;
       }
 
