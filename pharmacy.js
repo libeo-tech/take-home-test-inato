@@ -63,6 +63,9 @@ export class Pharmacy {
         case 'Dafalgan':
           this.updateDafalganBenefitValue(drug);
           break;
+        default:
+          drug.benefit = drug.benefit -= 1;
+          break;
       }
 
       if (drug.benefit < 0) {
