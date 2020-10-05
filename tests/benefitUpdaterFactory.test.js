@@ -7,18 +7,18 @@ import { MagicPillBenefitUpdater } from '../src/benefitUpdater/MagicPillBenefitU
 
 describe("benfit Updater Factory", () => {
   it("should be instance of BenefitUpdater", () => {
-    expect(new BenefitUpdaterFactory().createBenefitUpdater("Doliprane")).toBeInstanceOf(BenefitUpdater)
+    expect(new BenefitUpdaterFactory().getBenefitUpdater("Doliprane")).toBeInstanceOf(BenefitUpdater)
   })
 
   it("should be instance of FervexBenefitUpdater", () => {
-    expect(new BenefitUpdaterFactory().createBenefitUpdater("Fervex")).toBeInstanceOf(FervexBenefitUpdater)
+    expect(new BenefitUpdaterFactory().getBenefitUpdater("Fervex")).toBeInstanceOf(FervexBenefitUpdater)
   })
 
   it("should be instance of HerbalTeaBenefitUpdate", () => {
-    expect(new BenefitUpdaterFactory().createBenefitUpdater("Herbal Tea")).toBeInstanceOf(HerbalTeaBenefitUpdate)
+    expect(new BenefitUpdaterFactory().getBenefitUpdater("Herbal Tea")).toBeInstanceOf(HerbalTeaBenefitUpdate)
   })
 
   it("should be instance of MagicPillBenefitUpdater", () => {
-    expect(new BenefitUpdaterFactory().createBenefitUpdater("Magic Pill")).toBeInstanceOf(MagicPillBenefitUpdater)
+    expect(new BenefitUpdaterFactory().getBenefitUpdater("Magic Pill")).toBeInstanceOf(MagicPillBenefitUpdater)
   })
 });

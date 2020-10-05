@@ -8,7 +8,7 @@ export class BenefitUpdaterFactory {
     this.instances = new Map([["Basic", new BenefitUpdater()]]);
   }
 
-  createBenefitUpdater(type){
+  getBenefitUpdater(type){
 
     if(type === "Herbal Tea"){
       if(!this.instances.has("Herbal Tea"))
