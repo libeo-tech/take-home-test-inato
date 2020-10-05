@@ -1,17 +1,15 @@
-import { BenefitUpdater } from "../../src/benefitUpdater/BenefitUpdater";
+import { MagicPillBenefitUpdater } from "../../src/benefitUpdater/MagicPillBenefitUpdater";
 
 describe("Magic Pill benfit Updater", () => {
   it("should'nt change the benefit", () => {
-    expect(new BenefitUpdater().updateBenefitValue(2, 3)).toHaveProperty(
-      "benefit",
-      2
-    );
+    expect(
+      new MagicPillBenefitUpdater().updateBenefitValue(2, 3)
+    ).toHaveProperty("benefit", 2);
   });
 
   it("shouldn't change the expiresIn", () => {
-    expect(new BenefitUpdater().updateBenefitValue(2, 3)).toHaveProperty(
-      "expiresIn",
-      3
-    );
+    expect(
+      new MagicPillBenefitUpdater().updateBenefitValue(2, 3)
+    ).toHaveProperty("expiresIn", 3);
   });
 });
