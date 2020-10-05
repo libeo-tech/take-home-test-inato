@@ -1,4 +1,4 @@
-export const Constants = {
-  MIN_BENEFIT_VALUE: 0,
-  MAX_BENEFIT_VALUE: 50
-};
+const MIN_BENEFIT_VALUE = 0;
+const MAX_BENEFIT_VALUE = 50;
+
+export { MIN_BENEFIT_VALUE, MAX_BENEFIT_VALUE };
