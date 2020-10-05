@@ -1,4 +1,4 @@
-import { BenefitUpdater } from "./benefitUpdater/BenefitUpdater";
+import { BenefitUpdater } from "./BenefitUpdater";
 
 export class MagicPillBenefitUpdater extends BenefitUpdater {
   updateBenefitValue(benefit, expiresIn) {
