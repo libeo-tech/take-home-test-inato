@@ -1,4 +1,4 @@
-import { HerbalTeaBenefitUpdate } from "../../src/benefitUpdater/HerbalTeaBenefitUdater";
+import { HerbalTeaBenefitUpdate } from "../../src/benefitUpdater/HerbalTeaBenefitUpdater";
 import { MAX_BENEFIT_VALUE } from "../../src/Constants";
 
 describe("Herbal benefit Updater", () => {
