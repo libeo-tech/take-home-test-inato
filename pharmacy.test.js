@@ -4,7 +4,7 @@ import { BenefitUpdaterFactory } from './src/BenefitUpdaterFactory';
 describe("drug benefit value updater", () => {
   it("should decrease the benefit and expiresIn", () => {
     const drug = new Drug("test", 2, 3);
-    const benefitUpdater = new BenefitUpdaterFactory().createBenefitUpdater("test");
+    const benefitUpdater = new BenefitUpdaterFactory().getBenefitUpdater("test");
     drug.updateBenefitValue(benefitUpdater);
 
     expect(drug.benefit).toEqual(2);
