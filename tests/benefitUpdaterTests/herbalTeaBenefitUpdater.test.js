@@ -8,7 +8,7 @@ describe("Herbal benefit Updater", () => {
     ).toHaveProperty("benefit", 3);
   });
 
-  it("should increase the expiresIn", () => {
+  it("should decrease the expiresIn", () => {
     expect(
       new HerbalTeaBenefitUpdate().updateBenefitValue(2, 3)
     ).toHaveProperty("expiresIn", 2);
@@ -22,7 +22,7 @@ describe("benfit Updater after expiration", () => {
     ).toHaveProperty("benefit", 4);
   });
 
-  it("should increase the expiresIn", () => {
+  it("should decrease the expiresIn", () => {
     expect(
       new HerbalTeaBenefitUpdate().updateBenefitValue(2, 0)
     ).toHaveProperty("expiresIn", -1);
