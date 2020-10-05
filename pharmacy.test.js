@@ -30,4 +30,12 @@ describe("Pharmacy", () => {
       new Pharmacy([new Drug("Magic Pill", 15, 40)]).updateBenefitValue()
     ).toEqual([new Drug("Magic Pill", 15, 40)]);
   });
+  it("should decrease the benefit and expiresIn for Dalfalgan ", () => {
+    expect(
+      new Pharmacy([new Drug("Dafalgan", 15, 40)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", 14, 38)]);
+    expect(
+      new Pharmacy([new Drug("Dafalgan", -5, 10)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", -6, 6)]);
+  });
 });
