@@ -1,4 +1,5 @@
 import { HerbalTeaBenefitUpdate } from "../../src/benefitUpdater/HerbalTeaBenefitUdater";
+import { MAX_BENEFIT_VALUE } from "../../src/Constants";
 
 describe("Herbal benefit Updater", () => {
   it("should increase the benefit", () => {
@@ -31,7 +32,7 @@ describe("benfit Updater after expiration", () => {
 describe("benfit Updater after maximum", () => {
   it("shouldn't increase the benefit", () => {
     expect(
-      new HerbalTeaBenefitUpdate().updateBenefitValue(50, 10)
-    ).toHaveProperty("benefit", 50);
+      new HerbalTeaBenefitUpdate().updateBenefitValue(MAX_BENEFIT_VALUE, 10)
+    ).toHaveProperty("benefit", MAX_BENEFIT_VALUE);
   });
 });
