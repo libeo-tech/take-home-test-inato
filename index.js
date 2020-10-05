@@ -1,7 +1,6 @@
 import { Drug, Pharmacy } from "./pharmacy";
 
 import fs from "fs";
-import { MagicPillBenefitUpdater } from "./src/benefitUpdater/MagicPillBenefitUpdater";
 
 const drugs = [
   new Drug("Doliprane", 20, 30),
@@ -16,10 +15,6 @@ const log = [];
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
   log.push(JSON.stringify(trial.updateBenefitValue()));
 }
-
-const update = new MagicPillBenefitUpdater().updateBenefitValue(10, 10);
-
-console.log(update);
 
 /* eslint-disable no-console */
 fs.writeFile("output.txt", log, (err) => {
