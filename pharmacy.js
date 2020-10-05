@@ -1,4 +1,3 @@
-import { BenefitUpdater } from './src/benefitUpdater/BenefitUpdater';
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
@@ -6,14 +5,17 @@ export class Drug {
     this.benefit = benefit;
   }
 
-  updateBenefitValue(BenefitUpdater){
-    console.log("update it's benefit");
+  updateBenefitValue(benefitUpdater){
+    const {benefit, expiresIn} = benefitUpdater.updateBenefitValue(this.benefit, this.expiresIn);
+    this.benefit = benefit;
+    this.expiresIn = expiresIn;
   }
 }
 
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
+    this.benefitUpdaterFactory = 
   }
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
