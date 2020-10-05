@@ -1,4 +1,5 @@
 import { BenefitUpdater } from "../../src/benefitUpdater/BenefitUpdater";
+import { MIN_BENEFIT_VALUE } from "../../src/Constants";
 
 describe("benfitUpdater", () => {
   it("should decrease the benefit", () => {
@@ -34,9 +35,8 @@ describe("benfit Updater after expiration", () => {
 
 describe("benfit Updater with benefit at 0", () => {
   it("shouldn't decrease the benefit", () => {
-    expect(new BenefitUpdater().updateBenefitValue(0, 3)).toHaveProperty(
-      "benefit",
-      0
-    );
+    expect(
+      new BenefitUpdater().updateBenefitValue(MIN_BENEFIT_VALUE, 3)
+    ).toHaveProperty("benefit", MIN_BENEFIT_VALUE);
   });
 });
