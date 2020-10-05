@@ -1,6 +1,6 @@
 import { MagicPillBenefitUpdater } from "../../src/benefitUpdater/MagicPillBenefitUpdater";
 
-describe("Magic Pill benfit Updater", () => {
+describe("Magic Pill benefit Updater", () => {
   it("should'nt change the benefit", () => {
     expect(
       new MagicPillBenefitUpdater().updateBenefitValue(2, 3)

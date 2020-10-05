@@ -15,7 +15,7 @@ describe("Herbal benefit Updater", () => {
   });
 });
 
-describe("benfit Updater after expiration", () => {
+describe("benefit Updater after expiration", () => {
   it("should increase the benefit", () => {
     expect(
       new HerbalTeaBenefitUpdate().updateBenefitValue(2, 0)
@@ -29,7 +29,7 @@ describe("benfit Updater after expiration", () => {
   });
 });
 
-describe("benfit Updater after maximum", () => {
+describe("benefit Updater after maximum", () => {
   it("shouldn't increase the benefit", () => {
     expect(
       new HerbalTeaBenefitUpdate().updateBenefitValue(MAX_BENEFIT_VALUE, 10)

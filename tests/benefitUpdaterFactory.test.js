@@ -5,7 +5,7 @@ import { HerbalTeaBenefitUpdate } from '../src/benefitUpdater/HerbalTeaBenefitUp
 import { MagicPillBenefitUpdater } from '../src/benefitUpdater/MagicPillBenefitUpdater';
 
 
-describe("benfit Updater Factory", () => {
+describe("benefit Updater Factory", () => {
   it("should be instance of BenefitUpdater", () => {
     expect(new BenefitUpdaterFactory().getBenefitUpdater("Doliprane")).toBeInstanceOf(BenefitUpdater)
   })
