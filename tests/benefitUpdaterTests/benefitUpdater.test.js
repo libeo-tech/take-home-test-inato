@@ -7,6 +7,7 @@ describe("benfitUpdater", () => {
       1
     );
   });
+
   it("should decrease the expiresIn", () => {
     expect(new BenefitUpdater().updateBenefitValue(2, 3)).toHaveProperty(
       "expiresIn",
@@ -22,10 +23,20 @@ describe("benfit Updater after expiration", () => {
       0
     );
   });
+
   it("should decrease the expiresIn", () => {
     expect(new BenefitUpdater().updateBenefitValue(2, 0)).toHaveProperty(
       "expiresIn",
       -1
+    );
+  });
+});
+
+describe("benfit Updater with benefit at 0", () => {
+  it("shouldn't decrease the benefit", () => {
+    expect(new BenefitUpdater().updateBenefitValue(0, 3)).toHaveProperty(
+      "benefit",
+      0
     );
   });
 });
