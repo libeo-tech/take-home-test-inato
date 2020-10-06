@@ -2,6 +2,7 @@ import { BenefitUpdater } from './benefitUpdater/BenefitUpdater';
 import { HerbalTeaBenefitUpdate } from './benefitUpdater/HerbalTeaBenefitUpdater';
 import { FervexBenefitUpdater } from './benefitUpdater/FervexBenefitUpdater';
 import { MagicPillBenefitUpdater } from './benefitUpdater/MagicPillBenefitUpdater';
+import { DafalganBenefitUpdater } from './benefitUpdater/DafalganBenefitUpdater';
 
 export class BenefitUpdaterFactory {
   constructor(){
@@ -26,6 +27,12 @@ export class BenefitUpdaterFactory {
       if(!this.instances.has("Magic Pill"))
         this.instances.set("Magic Pill", new MagicPillBenefitUpdater());
       return this.instances.get("Magic Pill");
+    }
+
+    if(type === "Dafalgan"){
+      if(!this.instances.has("Dafalgan"))
+        this.instances.set("Dafalgan", new DafalganBenefitUpdater());
+      return this.instances.get("Dafalgan");
     }
 
     if(!this.instances.has("Basic"))
