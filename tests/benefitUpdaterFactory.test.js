@@ -3,9 +3,10 @@ import { BenefitUpdater } from '../src/benefitUpdater/BenefitUpdater';
 import { FervexBenefitUpdater } from '../src/benefitUpdater/FervexBenefitUpdater';
 import { HerbalTeaBenefitUpdate } from '../src/benefitUpdater/HerbalTeaBenefitUpdater';
 import { MagicPillBenefitUpdater } from '../src/benefitUpdater/MagicPillBenefitUpdater';
+import { DafalganBenefitUpdater } from '../src/benefitUpdater/DafalganBenefitUpdater';
 
 
-describe("benfit Updater Factory", () => {
+describe("benefit Updater Factory", () => {
   it("should be instance of BenefitUpdater", () => {
     expect(new BenefitUpdaterFactory().getBenefitUpdater("Doliprane")).toBeInstanceOf(BenefitUpdater)
   })
@@ -20,5 +21,9 @@ describe("benfit Updater Factory", () => {
 
   it("should be instance of MagicPillBenefitUpdater", () => {
     expect(new BenefitUpdaterFactory().getBenefitUpdater("Magic Pill")).toBeInstanceOf(MagicPillBenefitUpdater)
+  })
+
+  it("should be instance of DafalganBenefitUpdater", () => {
+    expect(new BenefitUpdaterFactory().getBenefitUpdater("Dafalgan")).toBeInstanceOf(DafalganBenefitUpdater)
   })
 });
