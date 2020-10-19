@@ -12,6 +12,8 @@ export class Drug {
         return new HerbalTeaBenefitCalculator();
       case "Fervex":
         return new FervexBenefitCalculator();
+      case "Dafalgan":
+        return new DafalganBenefitCalculator();
       default:
         return new DefaultBenefitCalculator();
     }
@@ -52,6 +54,13 @@ class HerbalTeaBenefitCalculator extends DefaultBenefitCalculator {
   constructor() {
     super();
     this.benefitStep = 1;
+  }
+}
+
+class DafalganBenefitCalculator extends DefaultBenefitCalculator {
+  constructor() {
+    super();
+    this.benefitStep = -2;
   }
 }
 
