@@ -30,11 +30,13 @@ class DefaultBenefitCalculator {
   updateBenefitValue(drug) {
     if (drug.expiresIn < 0) this.benefitStep = this.benefitStep * 2;
 
-    if (this.benefitStep + drug.benefit > this.maxBenefitValue)
-      drug.benefit = this.maxBenefitValue;
-    else if (this.benefitStep + drug.benefit < this.minBenefitValue)
-      drug.benefit = this.minBenefitValue;
-    else drug.benefit = drug.benefit + this.benefitStep;
+    let newDrugBenefit = this.benefitStep + drug.benefit;
+    drug.benefit =
+      newDrugBenefit > this.maxBenefitValue
+        ? this.maxBenefitValue
+        : newDrugBenefit < this.minBenefitValue
+        ? this.minBenefitValue
+        : newDrugBenefit;
   }
 }
 
