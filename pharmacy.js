@@ -5,6 +5,14 @@ export class Drug {
     this.benefit = benefit;
   }
 
+  decreaseExpiration() {
+    this.expiresIn--;
+  }
+
+  isExpired() {
+    return this.expiresIn < 0;
+  }
+
   increaseBenefit() {
     if (this.benefit < 50) {
       this.benefit++;
@@ -17,15 +25,11 @@ export class Drug {
     }
   }
 
-  increaseBenefitBy(increment) {
-    this.benefit = this.benefit + increment;
-    if (this.benefit > 50) {
-      this.benefit = 50;
+  decreaseBenefitBy(value) {
+    this.benefit = this.benefit - value;
+    if (this.benefit < 0) {
+      this.benefit = 0;
     }
-  }
-
-  decreaseExpiration() {
-    this.expiresIn--;
   }
 }
 
@@ -38,9 +42,9 @@ export class Pharmacy {
     this.drugs.forEach(drug => {
       switch (drug.name) {
         case "Herbal Tea":
-          drug.increaseBenefit();
           drug.decreaseExpiration();
-          if (drug.expiresIn < 0) {
+          drug.increaseBenefit();
+          if (drug.isExpired()) {
             drug.increaseBenefit();
           }
           break;
@@ -48,7 +52,7 @@ export class Pharmacy {
           break;
         case "Fervex":
           drug.decreaseExpiration();
-          if (drug.expiresIn < 0) {
+          if (drug.isExpired()) {
             drug.benefit = 0;
             break;
           }
@@ -60,10 +64,17 @@ export class Pharmacy {
             drug.increaseBenefit();
           }
           break;
-        default:
-          drug.decreaseBenefit();
+        case "Dafalgan":
           drug.decreaseExpiration();
-          if (drug.expiresIn < 0) {
+          drug.decreaseBenefitBy(2);
+          if (drug.isExpired()) {
+            drug.decreaseBenefitBy(2);
+          }
+          break;
+        default:
+          drug.decreaseExpiration();
+          drug.decreaseBenefit();
+          if (drug.isExpired()) {
             drug.decreaseBenefit();
           }
       }

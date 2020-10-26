@@ -1,21 +1,24 @@
 import { Drug, Pharmacy } from "./pharmacy";
 
 describe("Pharmacy", () => {
-  it("should decrease the benefit and expiresIn", () => {
-    expect(new Pharmacy([new Drug("test", 2, 3)]).updateBenefitValue()).toEqual(
-      [new Drug("test", 1, 2)]
-    );
+  describe("Normal Drug case", () => {
+    it("should decrease the benefit and expiresIn", () => {
+      expect(
+        new Pharmacy([new Drug("test", 2, 3)]).updateBenefitValue()
+      ).toEqual([new Drug("test", 1, 2)]);
+    });
+    it("should decrease the benefit twice as fast when expired", () => {
+      expect(
+        new Pharmacy([new Drug("test", 0, 3)]).updateBenefitValue()
+      ).toEqual([new Drug("test", -1, 1)]);
+    });
+    it("should the benefit never be negative", () => {
+      expect(
+        new Pharmacy([new Drug("test", 2, 0)]).updateBenefitValue()
+      ).toEqual([new Drug("test", 1, 0)]);
+    });
   });
-  it("should decrease the benefit twice as fast when expired", () => {
-    expect(new Pharmacy([new Drug("test", 0, 3)]).updateBenefitValue()).toEqual(
-      [new Drug("test", -1, 1)]
-    );
-  });
-  it("should the benefit never be negative", () => {
-    expect(new Pharmacy([new Drug("test", 2, 0)]).updateBenefitValue()).toEqual(
-      [new Drug("test", 1, 0)]
-    );
-  });
+
   describe("Herbal Tea case", () => {
     it("should the 'Herbal Tea' benefit increase", () => {
       expect(
@@ -33,6 +36,7 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("Herbal Tea", 1, 50)]);
     });
   });
+
   describe("Magic Pill case", () => {
     it("should 'Magic Pill' never expires nor decreases in Benefit", () => {
       expect(
@@ -40,6 +44,7 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("Magic Pill", 2, 3)]);
     });
   });
+
   describe("Fervex case", () => {
     it("should the 'Fervex' benefit increases by 1 when expires in more than 10 days", () => {
       expect(
@@ -69,6 +74,19 @@ describe("Pharmacy", () => {
       expect(
         new Pharmacy([new Drug("Fervex", 2, 50)]).updateBenefitValue()
       ).toEqual([new Drug("Fervex", 1, 50)]);
+    });
+  });
+
+  describe("Dafalgan case", () => {
+    it("should Dafalgan decreases by 2 when not expired", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 2, 5)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", 1, 3)]);
+    });
+    it("should Dafalgan decreases by 4 when expired", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 0, 5)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", -1, 1)]);
     });
   });
 });
