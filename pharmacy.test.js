@@ -34,19 +34,19 @@ describe('Pharmacy', () => {
     ).toEqual([new Drug('Herbal Tea', 1, 50)]);
   });
 
-  it('should add benefits to herbal tea and fervex by 2 where they expire in 10 days to 5 days', () => {
+  it('should add benefits to herbal tea and fervex by 2 where they expire in 10 days to more than 5 days', () => {
     expect(
       new Pharmacy([new Drug('Fervex', 10, 8)]).updateBenefitValue()
     ).toEqual([new Drug('Fervex', 9, 10)]);
     expect(
-      new Pharmacy([new Drug('Fervex', 5, 8)]).updateBenefitValue()
-    ).toEqual([new Drug('Fervex', 4, 11)]);
+      new Pharmacy([new Drug('Fervex', 5, 10)]).updateBenefitValue()
+    ).toEqual([new Drug('Fervex', 4, 13)]);
     expect(
       new Pharmacy([new Drug('Herbal Tea', 10, 8)]).updateBenefitValue()
     ).toEqual([new Drug('Herbal Tea', 9, 10)]);
     expect(
-      new Pharmacy([new Drug('Herbal Tea', 5, 8)]).updateBenefitValue()
-    ).toEqual([new Drug('Herbal Tea', 4, 11)]);
+      new Pharmacy([new Drug('Herbal Tea', 5, 10)]).updateBenefitValue()
+    ).toEqual([new Drug('Herbal Tea', 4, 13)]);
   });
 
   it('should add benefits to herbal tea and fervex by 3 where they expire in 5 days to expiry date', () => {
