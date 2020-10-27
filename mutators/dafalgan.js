@@ -5,7 +5,6 @@ const dafalganUpdate = drug => {
   if (drug.expiresIn <= 0 && drug.benefit >= 4) {
     drug.benefit -= 4
   }
-  drug.expiresIn -= 1
 
   return drug
 }

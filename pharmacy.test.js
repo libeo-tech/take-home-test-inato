@@ -64,15 +64,6 @@ describe('Pharmacy', () => {
     ).toEqual([new Drug('Herbal Tea', 0, 11)]);
   });
 
-  it('should kill benefits of herbal tea and fervex at expiry date', () => {
-    expect(
-      new Pharmacy([new Drug('Fervex', 0, 8)]).updateBenefitValue()
-    ).toEqual([new Drug('Fervex', -1, 0)]);
-    expect(
-      new Pharmacy([new Drug('Herbal Tea', 0, 8)]).updateBenefitValue()
-    ).toEqual([new Drug('Herbal Tea', -1, 0)]);
-  });
-
   it('should degrade dafalgan twice as fast both before and after expiration date', () => {
     expect(
       new Pharmacy([new Drug('Dafalgan', 10, 8)]).updateBenefitValue()
@@ -81,4 +72,17 @@ describe('Pharmacy', () => {
       new Pharmacy([new Drug('Dafalgan', 0, 8)]).updateBenefitValue()
     ).toEqual([new Drug('Dafalgan', -1, 4)]);
   });
+  
+  it('Fervex should lose benefits at expiry date', () => {
+    expect(
+      new Pharmacy([new Drug('Fervex', 0, 8)]).updateBenefitValue()
+    ).toEqual([new Drug('Fervex', -1, 0)])
+  })
+
+  it('Herbal tea should doubles benefits after expiry date', () => {
+    expect(
+      new Pharmacy([new Drug('Herbal Tea', 0, 8)]).updateBenefitValue()
+    ).toEqual([new Drug('Herbal Tea', -1, 10)])
+  })
 });
+
