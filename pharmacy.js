@@ -4,6 +4,6 @@ export default class Pharmacy {
   }
   updateDrugs() {
     this.drugs.forEach((drug) => drug.updateDrugValues());
-    return this.drug;
+    return this.drugs;
   }
 }
