@@ -5,6 +5,7 @@
   "author": "inato",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "engines": {
     "yarn": ">=1.7.0",
     "node": ">=12.x"
