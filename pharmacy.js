@@ -8,7 +8,9 @@ export class Drug {
   updateDrug(degradationFactor = -1) {
     const degradationRate = this.expiresIn > 0 ? 1 : 2;
 
-    if (degradationFactor < 0) {
+    if (degradationFactor === 0) {
+      this.benefit = 0;
+    } else if (degradationFactor < 0) {
       this.benefit = Math.max(
         this.benefit + degradationFactor * degradationRate,
         0
@@ -31,6 +33,18 @@ export class Pharmacy {
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       switch (this.drugs[i].name) {
+        case "Fervex": {
+          let degradationFactor = -1;
+          if (this.drugs[i].expiresIn <= 0) {
+            degradationFactor = 0;
+          } else if (this.drugs[i].expiresIn <= 4) {
+            degradationFactor = 3;
+          } else if (this.drugs[i].expiresIn <= 10) {
+            degradationFactor = 2;
+          }
+          this.drugs[i].updateDrug(degradationFactor);
+          break;
+        }
         case "Herbal Tea":
           this.drugs[i].updateDrug(1);
           break;
