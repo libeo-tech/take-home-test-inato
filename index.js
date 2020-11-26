@@ -4,9 +4,18 @@ import fs from "fs";
 
 const drugs = [
   new Drug("Doliprane", 20, 30),
-  new Drug("Herbal Tea", 10, 5),
-  new Drug("Fervex", 5, 40),
-  new Drug("Magic Pill", 15, 40, { expirable: false }),
+  new Drug("Herbal Tea", 10, 5, {
+    benefit: { 50: "+1", 0: "+2" },
+    expirable: true
+  }),
+  new Drug("Fervex", 5, 40, {
+    benefit: { 10: "+2", 5: "+3", 0: "*0", default: "+1" },
+    expirable: true
+  }),
+  new Drug("Magic Pill", 15, 40, {
+    benefit: { default: "+0" },
+    expirable: false
+  })
 ];
 const trial = new Pharmacy(drugs);
 
