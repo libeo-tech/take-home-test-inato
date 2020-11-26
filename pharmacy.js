@@ -1,8 +1,9 @@
 export class Drug {
-  constructor(name, expiresIn, benefit) {
+  constructor(name, expiresIn, benefit, behavior = { expirable: true }) {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
+    this.behavior = behavior;
   }
 }
 
@@ -38,9 +39,8 @@ export class Pharmacy {
           }
         }
       }
-      if (drug.name != "Magic Pill") {
-        drug.expiresIn = drug.expiresIn - 1;
-      }
+      if (drug.behavior.expirable) drug.expiresIn = drug.expiresIn - 1;
+
       if (drug.expiresIn < 0) {
         if (drug.name != "Herbal Tea") {
           if (drug.name != "Fervex") {

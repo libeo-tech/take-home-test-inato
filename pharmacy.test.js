@@ -69,7 +69,9 @@ describe("Dafalgan", () => {
 describe("Magic Pill", () => {
   it("should decrease the benefit twice as fast as normal drugs", () => {
     expect(
-      new Pharmacy([new Drug("Magic Pill", 1, 1)]).updateBenefitValue()
-    ).toEqual([new Drug("Magic Pill", 1, 1)]);
+      new Pharmacy([
+        new Drug("Magic Pill", 1, 1, { expirable: false }),
+      ]).updateBenefitValue()
+    ).toEqual([new Drug("Magic Pill", 1, 1, { expirable: false })]);
   });
 });
