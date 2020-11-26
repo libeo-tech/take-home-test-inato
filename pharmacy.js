@@ -18,7 +18,12 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
-      this.drugs[i].updateDrug();
+      switch (this.drugs[i].name) {
+        case "Magic Pill":
+          break;
+        default:
+          this.drugs[i].updateDrug();
+      }
     }
 
     return this.drugs;
