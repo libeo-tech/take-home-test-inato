@@ -33,11 +33,14 @@ export class Pharmacy {
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       switch (this.drugs[i].name) {
+        case "Dafalgan":
+          this.drugs[i].updateDrug(-2);
+          break;
         case "Fervex": {
-          let degradationFactor = -1;
+          let degradationFactor = 1;
           if (this.drugs[i].expiresIn <= 0) {
             degradationFactor = 0;
-          } else if (this.drugs[i].expiresIn <= 4) {
+          } else if (this.drugs[i].expiresIn <= 5) {
             degradationFactor = 3;
           } else if (this.drugs[i].expiresIn <= 10) {
             degradationFactor = 2;
