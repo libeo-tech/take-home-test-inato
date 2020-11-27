@@ -16,6 +16,8 @@ export class Pharmacy {
       const expiresIn = this.drugs[i].expiresIn;
       const name = this.drugs[i].name;
 
+      // security for the case where we are asked to create a drug
+      // with more than 50 in benefit -> benefit is never more than 50.
       benefit = benefit > 50 ? 50 : benefit;
 
       switch (name) {
@@ -24,7 +26,6 @@ export class Pharmacy {
             benefit += expiresIn > 0 ? 1 : 2;
           }
           expiresIn -= 1;
-          benefit = benefit > 50 ? 50 : benefit;
           break;
         case "Magic Pill":
           break;
@@ -38,7 +39,6 @@ export class Pharmacy {
           } else {
             benefit = 0;
           }
-          benefit = benefit > 50 ? 50 : benefit;
           expiresIn -= 1;
           break;
         case "Dafalgan":
@@ -56,6 +56,10 @@ export class Pharmacy {
           expiresIn -= 1;
           break;
       }
+      // security for the case where we have the fervex/herbal Tea                                                   // with :
+      // {expiresIn: 3, benefit: 49} -> {expiresIn: 2, benefit: 52}
+      // which is not possible so we reinitialize the benefit to 50.
+      benefit = benefit > 50 ? 50 : benefit;
       this.drugs[i].benefit = benefit;
       this.drugs[i].expiresIn = expiresIn;
     }
