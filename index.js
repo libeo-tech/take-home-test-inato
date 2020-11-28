@@ -3,6 +3,7 @@ import { Drug, Pharmacy } from "./pharmacy";
 import fs from "fs";
 
 const drugs = [
+  new Drug("Dafalgan", 10, 30),
   new Drug("Doliprane", 20, 30),
   new Drug("Herbal Tea", 10, 5),
   new Drug("Fervex", 5, 40),
