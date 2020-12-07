@@ -18,7 +18,7 @@ export class Pharmacy {
       ) {
         if (this.drugs[i].benefit > 0) {
           if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
+            this.drugs[i].benefit = this.drugs[i].benefit - (this.drugs[i].name != "Dafalgan" ? 1 : 2);
           }
         }
       } else {
