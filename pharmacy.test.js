@@ -29,23 +29,51 @@ describe("Pharmacy", () => {
     });
   });
 
-  describe("when the given drug is Herbal Tea", () => {
+  describe("when the given drug is Herbal Tea or Fervex", () => {
     it("should increase the benefit and decrese expireIn", () => {
       expect(
-        new Pharmacy([new Drug("Herbal Tea", 15, 40)]).updateBenefitValue()
-      ).toEqual([new Drug("Herbal Tea", 14, 41)]);
+        new Pharmacy([
+          new Drug("Herbal Tea", 15, 40),
+          new Drug("Fervex", 13, 35)
+        ]).updateBenefitValue()
+      ).toEqual([new Drug("Herbal Tea", 14, 41), new Drug("Fervex", 12, 36)]);
     });
 
     it("should not increase the benefit past 50", () => {
       expect(
-        new Pharmacy([new Drug("Herbal Tea", 15, 50)]).updateBenefitValue()
-      ).toEqual([new Drug("Herbal Tea", 14, 50)]);
+        new Pharmacy([
+          new Drug("Herbal Tea", 15, 50),
+          new Drug("Fervex", 13, 50)
+        ]).updateBenefitValue()
+      ).toEqual([new Drug("Herbal Tea", 14, 50), new Drug("Fervex", 12, 50)]);
     });
 
-    it("should increase benefit twice as fast once expriration date is passed", () => {
-      expect(
-        new Pharmacy([new Drug("Herbal Tea", -1, 40)]).updateBenefitValue()
-      ).toEqual([new Drug("Herbal Tea", -2, 42)]);
+    describe("when the given drug is Herbal Tea", () => {
+      it("should increase benefit twice as fast once expriration date is passed", () => {
+        expect(
+          new Pharmacy([new Drug("Herbal Tea", -1, 40)]).updateBenefitValue()
+        ).toEqual([new Drug("Herbal Tea", -2, 42)]);
+      });
+    });
+
+    describe("when the given drug is Fervex", () => {
+      it("should increase the benefit by 2 when expiration date <= 10 days", () => {
+        expect(
+          new Pharmacy([new Drug("Fervex", 10, 40)]).updateBenefitValue()
+        ).toEqual([new Drug("Fervex", 9, 42)]);
+      });
+
+      it("should increase the benefit by 3 when expiration date <= 5 days", () => {
+        expect(
+          new Pharmacy([new Drug("Fervex", 5, 40)]).updateBenefitValue()
+        ).toEqual([new Drug("Fervex", 4, 43)]);
+      });
+
+      it("should set benefit to 0 once expriration date is passed", () => {
+        expect(
+          new Pharmacy([new Drug("Fervex", 0, 40)]).updateBenefitValue()
+        ).toEqual([new Drug("Fervex", -1, 0)]);
+      });
     });
   });
 });
