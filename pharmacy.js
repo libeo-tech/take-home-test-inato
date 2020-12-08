@@ -37,6 +37,14 @@ export class Pharmacy {
           break;
         case "Magic Pill":
           break;
+        case "Dafalgan":
+          if (this.drugs[i].benefit > 0) {
+            this.drugs[i].benefit = this.drugs[i].benefit - 1;
+            if (this.drugs[i].benefit > 0) {
+              this.drugs[i].benefit = this.drugs[i].benefit - 1;
+            }
+          }
+          break;
         default:
           if (this.drugs[i].benefit > 0) {
             this.drugs[i].benefit = this.drugs[i].benefit - 1;
@@ -58,6 +66,14 @@ export class Pharmacy {
             }
             break;
           case "Magic Pill":
+            break;
+          case "Dafalgan":
+            if (this.drugs[i].benefit > 0) {
+              this.drugs[i].benefit = this.drugs[i].benefit - 1;
+              if (this.drugs[i].benefit > 0) {
+                this.drugs[i].benefit = this.drugs[i].benefit - 1;
+              }
+            }
             break;
           default:
             if (this.drugs[i].benefit > 0) {
