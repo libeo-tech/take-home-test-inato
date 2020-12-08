@@ -19,6 +19,12 @@ describe("Pharmacy", () => {
         new Pharmacy([new Drug("Fervex", 2, 50)]).updateBenefitValue()
       ).toEqual([new Drug("Fervex", 1, 50)]);
     });
+
+    it("benefit decrease twice as fast once expriration date is passed", () => {
+      expect(
+        new Pharmacy([new Drug("test", -1, 42)]).updateBenefitValue()
+      ).toEqual([new Drug("test", -2, 40)]);
+    });
   });
 
   describe("when the given drug is Magic Pill", () => {
