@@ -18,15 +18,13 @@ export class Pharmacy {
         case "Fervex":
           if (this.drugs[i].benefit < 50) {
             this.drugs[i].benefit = this.drugs[i].benefit + 1;
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
+
+            if (this.drugs[i].expiresIn < 11 && this.drugs[i].benefit < 50) {
+              this.drugs[i].benefit = this.drugs[i].benefit + 1;
             }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
+
+            if (this.drugs[i].expiresIn < 6 && this.drugs[i].benefit < 50) {
+              this.drugs[i].benefit = this.drugs[i].benefit + 1;
             }
           }
           break;
@@ -40,6 +38,7 @@ export class Pharmacy {
         case "Dafalgan":
           if (this.drugs[i].benefit > 0) {
             this.drugs[i].benefit = this.drugs[i].benefit - 1;
+
             if (this.drugs[i].benefit > 0) {
               this.drugs[i].benefit = this.drugs[i].benefit - 1;
             }
@@ -70,6 +69,7 @@ export class Pharmacy {
           case "Dafalgan":
             if (this.drugs[i].benefit > 0) {
               this.drugs[i].benefit = this.drugs[i].benefit - 1;
+
               if (this.drugs[i].benefit > 0) {
                 this.drugs[i].benefit = this.drugs[i].benefit - 1;
               }
