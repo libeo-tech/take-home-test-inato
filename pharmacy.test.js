@@ -30,7 +30,7 @@ describe("Pharmacy", () => {
   });
 
   describe("when the given drug is Herbal Tea or Fervex", () => {
-    it("should increase the benefit and decrese expireIn", () => {
+    it("should increase the benefit and decrease expireIn", () => {
       expect(
         new Pharmacy([
           new Drug("Herbal Tea", 15, 40),
