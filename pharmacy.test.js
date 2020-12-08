@@ -6,4 +6,12 @@ describe("Pharmacy", () => {
       [new Drug("test", 1, 2)]
     );
   });
+  
+  describe("when the given drug is Magic Pill", () => {
+    it("should not decrease the benefit and expireIn", () => {
+      expect(new Pharmacy([new Drug("Magic Pill", 15, 40)]).updateBenefitValue()).toEqual(
+        [new Drug("Magic Pill", 15, 40)]
+      );
+    })
+  })
 });
