@@ -39,6 +39,11 @@ export class Pharmacy {
             }
           }
           break;
+        case "Dafalgan":
+          if (this.drugs[i].benefit > 0) {
+            this.drugs[i].benefit = this.drugs[i].benefit - 2;
+          }
+          break;
         default:
           if (this.drugs[i].benefit > 0) {
             this.drugs[i].expiresIn < 0
