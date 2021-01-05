@@ -25,7 +25,7 @@ export class Pharmacy {
             }
             //"Dafalgan" degrades in Benefit twice as fast as normal drugs.
             if (this.drugs[i].name == "Dafalgan") {
-              this.drugs[i].benefit = this.drugs[i].benefit - ((this.drugs[i].benefit)/2)
+              this.drugs[i].benefit = this.drugs[i].benefit - 2;
             }
           }
         }
@@ -36,13 +36,20 @@ export class Pharmacy {
           if (this.drugs[i].name == "Herbal Tea") {
             this.drugs[i].benefit = this.drugs[i].benefit + 1;
           }
-          //"Fervex" increases Benefit. Benefit increases by 2 within 10 days or less and by 3 within 5 days or less
+          //"Fervex" increases Benefit.
           if (this.drugs[i].name == "Fervex") {
+            if (this.drugs[i].expiresIn > 10) {
+              if (this.drugs[i].benefit < 50) {
+                this.drugs[i].benefit = this.drugs[i].benefit + 1;
+              }
+            }
+            //Benefit increases by 2 within 10 days or less
             if (this.drugs[i].expiresIn < 11) {
               if (this.drugs[i].benefit < 50) {
                 this.drugs[i].benefit = this.drugs[i].benefit + 2;
               }
             }
+            //Benefit increase by 3 within 5 days or less
             if (this.drugs[i].expiresIn < 6) {
               if (this.drugs[i].benefit < 50) {
                 this.drugs[i].benefit = this.drugs[i].benefit + 3;
@@ -56,6 +63,8 @@ export class Pharmacy {
       if (this.drugs[i].name != "Magic Pill") {
         this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
       }
+
+      //Once the expiration date has passed, Benefit degrades twice as fast.
       if (this.drugs[i].expiresIn < 0) {
         if (this.drugs[i].name != "Herbal Tea") {
           if (this.drugs[i].name != "Fervex") {
@@ -64,11 +73,11 @@ export class Pharmacy {
               if (this.drugs[i].name != "Magic Pill") {
                 //Doliprane
                 if (this.drugs[i].name == "Doliprane") {
-                  this.drugs[i].benefit = this.drugs[i].benefit - 1;
+                  this.drugs[i].benefit = this.drugs[i].benefit - 2;
                 }
                 //"Dafalgan" degrades in Benefit twice as fast as normal drugs.
                 if (this.drugs[i].name == "Dafalgan") {
-                  this.drugs[i].benefit = this.drugs[i].benefit - ((this.drugs[i].benefit)/2)
+                  this.drugs[i].benefit = this.drugs[i].benefit - 4;
                 }
               }
             }
