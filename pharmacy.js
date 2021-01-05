@@ -18,45 +18,50 @@ export class Drug {
     );
   }
 
-  update() {
-    const {
-      increaseValue,
-      increaseOptions,
-      dropsToZeroAfterExpiration,
-      neverExpire
-    } = this.options;
+  updateExpiration() {
+    const { neverExpire } = this.options;
     if (!neverExpire) {
       this.expiresIn--;
     }
-    if (this.expiresIn >= 0) {
-      this.benefit += increaseValue;
-      for (const {
-        increaseBy = 0,
-        whenExpireIsLessThan = +Infinity,
-        increaseWhenExpireIsMoreThan = -Infinity
-      } of increaseOptions) {
-        if (
-          increaseWhenExpireIsMoreThan < this.expiresIn &&
-          this.expiresIn < whenExpireIsLessThan
-        ) {
-          this.benefit += increaseBy - increaseValue;
-          break;
-        }
-      }
-    } else {
-      if (dropsToZeroAfterExpiration) {
-        this.benefit = 0;
-        return;
-      } else {
-        this.benefit += increaseValue * 2;
+  }
+
+  updateBenefitBeforeExpiration() {
+    const { increaseValue, increaseOptions } = this.options;
+    this.benefit += increaseValue;
+    for (const {
+      increaseBy = 0,
+      whenExpireIsLessThan = +Infinity,
+      increaseWhenExpireIsMoreThan = -Infinity
+    } of increaseOptions) {
+      if (
+        increaseWhenExpireIsMoreThan < this.expiresIn &&
+        this.expiresIn < whenExpireIsLessThan
+      ) {
+        this.benefit += increaseBy - increaseValue;
+        break;
       }
     }
-    if (this.benefit > 50) {
-      this.benefit = 50;
-    }
-    if (this.benefit < 0) {
+  }
+
+  updateBenefitAfterExpiration() {
+    const { increaseValue, dropsToZeroAfterExpiration } = this.options;
+    if (dropsToZeroAfterExpiration) {
       this.benefit = 0;
+      return;
+    } else {
+      this.benefit += increaseValue * 2;
     }
+  }
+
+  update() {
+    this.updateExpiration();
+    if (this.expiresIn >= 0) {
+      this.updateBenefitBeforeExpiration();
+    } else {
+      this.updateBenefitAfterExpiration();
+    }
+    if (this.benefit > 50) this.benefit = 50;
+    if (this.benefit < 0) this.benefit = 0;
   }
 }
 

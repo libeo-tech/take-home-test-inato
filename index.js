@@ -19,7 +19,7 @@ const drugs = [
     neverExpire: true,
     increaseValue: 0
   }),
-  new Drug("Dafalgan", 40, 80, {
+  new Drug("Dafalgan", 30, 50, {
     increaseValue: -2
   })
 ];
