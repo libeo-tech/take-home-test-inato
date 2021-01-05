@@ -12,7 +12,7 @@ const drugs = [
     dropsToZeroAfterExpiration: true,
     increaseOptions: [
       { whenExpireIsLessThan: 10, increaseBy: 2 },
-      { whenExpireIsLessThan: 5, increaseBy: 3 },
+      { whenExpireIsLessThan: 5, increaseBy: 3 }
     ]
   }),
   new Drug("Magic Pill", 15, 40, {
@@ -20,15 +20,23 @@ const drugs = [
     increaseValue: 0
   }),
   new Drug("Dafalgan", 40, 80, {
-    increaseValue: -2,
-  }),
+    increaseValue: -2
+  })
 ];
 const trial = new Pharmacy(drugs);
 
 const log = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(trial.updateBenefitValue().map((drug) => ({name: drug.name ,expiresIn: drug.expiresIn, benefit: drug.benefit}))));
+  log.push(
+    JSON.stringify(
+      trial.updateBenefitValue().map(drug => ({
+        name: drug.name,
+        expiresIn: drug.expiresIn,
+        benefit: drug.benefit
+      }))
+    )
+  );
 }
 
 /* eslint-disable no-console */
