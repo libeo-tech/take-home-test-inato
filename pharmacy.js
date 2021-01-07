@@ -45,6 +45,7 @@ export class Pharmacy {
       if (!["Herbal Tea", "Fervex"].includes(name)) {
         if (benefit > 0) {
           benefit--;
+          if (name === "Dafalgan") benefit--;
         }
       } else {
         benefit = increaseBenefit(benefit, expiresIn, name);
