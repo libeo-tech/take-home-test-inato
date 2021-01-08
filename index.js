@@ -4,24 +4,10 @@ import fs from "fs";
 
 const drugs = [
   new Drug("Doliprane", 20, 30),
-  new Drug("Herbal Tea", 10, 5, {
-    increaseValue: 1
-  }),
-  new Drug("Fervex", 5, 40, {
-    increaseValue: 1,
-    dropsToZeroAfterExpiration: true,
-    increaseOptions: [
-      { whenExpireIsLessThan: 10, increaseBy: 2 },
-      { whenExpireIsLessThan: 5, increaseBy: 3 }
-    ]
-  }),
-  new Drug("Magic Pill", 15, 40, {
-    neverExpire: true,
-    increaseValue: 0
-  }),
-  new Drug("Dafalgan", 30, 50, {
-    increaseValue: -2
-  })
+  new Drug("Herbal Tea", 10, 5),
+  new Drug("Fervex", 5, 40),
+  new Drug("Magic Pill", 15, 40),
+  new Drug("Dafalgan", 30, 50)
 ];
 const trial = new Pharmacy(drugs);
 

@@ -7,12 +7,38 @@ const DEFAULT_OPTIONS = {
   dropsToZeroAfterExpiration: false
 };
 
+const DRUGS_DEFAULT_OPTIONS = {
+  ["Doliprane"]: {},
+  ["Herbal Tea"]: { increaseValue: 1 },
+  ["Fervex"]: {
+    increaseValue: 1,
+    dropsToZeroAfterExpiration: true,
+    increaseOptions: [
+      { whenExpireIsLessThan: 10, increaseBy: 2 },
+      { whenExpireIsLessThan: 5, increaseBy: 3 }
+    ]
+  },
+  ["Magic Pill"]: {
+    neverExpire: true,
+    increaseValue: 0
+  },
+  ["Dafalgan"]: {
+    increaseValue: NORMAL_DRUG_INCREASE_VALUE * 2
+  }
+};
+
 export class Drug {
   constructor(name, expiresIn, benefit, options) {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
-    this.options = { ...DEFAULT_OPTIONS, ...options };
+    if (options) {
+      this.options = { ...DEFAULT_OPTIONS, ...options };
+    } else if (DRUGS_DEFAULT_OPTIONS[name]) {
+      this.options = { ...DEFAULT_OPTIONS, ...DRUGS_DEFAULT_OPTIONS[name] };
+    } else {
+      this.options = DEFAULT_OPTIONS;
+    }
     this.options.increaseOptions.sort(
       (a, b) => a.whenExpireIsLessThan - b.whenExpireIsLessThan
     );
