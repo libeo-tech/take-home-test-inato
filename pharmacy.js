@@ -17,7 +17,11 @@ const BENEFIT_SPECIFICS_RULES = {
     { expiresIn: 10, variation: 2 },
     { expiresIn: 50, variation: 1 },
   ],
-  "Magic Pill": []
+  "Magic Pill": [],
+  "Dafalgan": [
+    { expiresIn: 0, variation: -4 },
+    { expiresIn: 50, variation: -2 },
+  ]
 }
 
 export class Drug {
