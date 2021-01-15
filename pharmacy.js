@@ -1,28 +1,9 @@
-const BENEFIT_MAX = 50;
-const BENEFIT_MIN = 0;
-
-const DEFAULT_BENEFIT_RULES = [
-  { expiresIn: 0, variation: -2 },
-  { expiresIn: 50, variation: -1 },
-];
-
-const BENEFIT_SPECIFICS_RULES = {
-  "Herbal Tea": [
-    { expiresIn: 0, variation: 2 },
-    { expiresIn: 50, variation: 1 }
-  ],
-  "Fervex": [
-    { expiresIn: 0, value: 0 },
-    { expiresIn: 5, variation: 3 },
-    { expiresIn: 10, variation: 2 },
-    { expiresIn: 50, variation: 1 },
-  ],
-  "Magic Pill": [],
-  "Dafalgan": [
-    { expiresIn: 0, variation: -4 },
-    { expiresIn: 50, variation: -2 },
-  ]
-}
+import {
+  BENEFIT_MAX,
+  BENEFIT_MIN,
+  BENEFIT_SPECIFICS_RULES,
+  DEFAULT_BENEFIT_RULES
+} from "./constants";
 
 export class Drug {
   constructor(name, expiresIn, benefit) {
