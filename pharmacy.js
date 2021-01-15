@@ -1,7 +1,8 @@
 const drugNames = {
   HERBAL_TEA: "Herbal Tea",
   MAGIC_PILL: "Magic Pill",
-  FERVEX: "Fervex"
+  FERVEX: "Fervex",
+  DAFALGAN: "Dafalgan"
 };
 
 export const drugEffects = {
@@ -39,6 +40,10 @@ const availableDrugs = {
         coefficient: 3
       }
     ]
+  },
+  [drugNames.DAFALGAN]: {
+    coefficient: 2,
+    afterExpirationCoefficient: 4
   }
 };
 

@@ -238,4 +238,31 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("Fervex", 2, 50)]);
     });
   });
+  describe("Dafalgan", () => {
+    it("should not decrease benefit when already at zero", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 12, 0)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", 11, 0)]);
+    });
+    it("should not decrease benefit below zero", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 12, 1)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", 11, 0)]);
+    });
+    it("should decrease benefit for a valid date", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 12, 6)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", 11, 4)]);
+    });
+    it("should decrease benefit by two for the last date", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 0, 8)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", -1, 4)]);
+    });
+    it("should decrease benefit by two for an epirated date", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", -4, 7)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", -5, 3)]);
+    });
+  });
 });
