@@ -1,5 +1,5 @@
 import { Pharmacy } from "./pharmacy";
-import { Drug } from "./drug";
+import { Drug } from "../drug/drug";
 
 describe("Pharmacy updateBenefitValue", () => {
 
