@@ -49,4 +49,10 @@ describe("Pharmacy updateBenefitValue", () => {
       [new Drug("Fervex", -1, 0)]
     );
   });
+
+  it("should not increase the benefit after 50 and should decrease expiresIn for herbal tea and fervex", () => {
+    expect(new Pharmacy([new Drug("Herbal Tea", 30, 50), new Drug("Fervex", 30, 50)]).updateBenefitValue()).toEqual(
+      [new Drug("Herbal Tea", 29, 50), new Drug("Fervex", 29, 50)]
+    );
+  });
 });
