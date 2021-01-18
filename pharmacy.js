@@ -23,6 +23,10 @@ export class Pharmacy {
 
 const normalDrug = drug => {
   updatedDrug = drug;
+  // By default, we assume that benefit is between 0 and 50 so it is not necessary
+  // if (updatedDrug.benefit > 50) {
+  //   updatedDrug.benefit = 50;
+  // }
   if (updatedDrug.benefit > 0) {
     updatedDrug.benefit -= 1;
   }
@@ -61,6 +65,18 @@ const fervex = drug => {
   }
   if (updatedDrug.benefit > 50) {
     updatedDrug.benefit = 50;
+  }
+  updatedDrug.expiresIn -= 1;
+  return updatedDrug;
+}
+
+const dafalgan = drug => {
+  updatedDrug = drug;
+  if (updatedDrug.benefit > 0) {
+    updatedDrug.benefit -= 2;
+  }
+  if (updatedDrug.benefit < 0) {
+    updatedDrug.benefit = 0;
   }
   updatedDrug.expiresIn -= 1;
   return updatedDrug;
