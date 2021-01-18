@@ -1,3 +1,26 @@
+const  HERBAL_TEA = "Herbal Tea";
+const  FERVEX = "Fervex";
+const  MAGIC_PILL = "Magic Pill";
+
+/**
+ * @description build Drug instance using factory based on name
+ */
+export class DrugFactory {
+  constructor() {
+   
+  }
+  
+  static getInstance(name, expiresIn, benefit){
+    switch(name){
+      case FERVEX: return new Fervex(expiresIn, benefit);
+      case MAGIC_PILL: return new MagicPill(expiresIn, benefit);
+      case HERBAL_TEA: return new HerbalTea(expiresIn, benefit);
+      default: return new Drug(name, expiresIn, benefit);
+    }
+    
+  }
+}
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
@@ -5,6 +28,26 @@ export class Drug {
     this.benefit = benefit;
   }
 }
+
+export class Fervex extends Drug{
+  constructor( expiresIn, benefit) {
+    super(FERVEX, expiresIn, benefit);
+  }
+}
+
+export class MagicPill extends Drug {
+  constructor( expiresIn, benefit) {
+    super(MAGIC_PILL, expiresIn, benefit);
+  }
+}
+
+export class HerbalTea extends Drug {
+  constructor( expiresIn, benefit) {
+    super(HERBAL_TEA, expiresIn, benefit);
+  }
+}
+
+
 
 export class Pharmacy {
   constructor(drugs = []) {
