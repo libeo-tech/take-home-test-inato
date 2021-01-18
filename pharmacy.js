@@ -29,3 +29,18 @@ const normalDrug = drug => {
   updatedDrug.expiresIn -= 1;
   return updatedDrug;
 }
+
+const herbalTea = drug => {
+  updatedDrug = drug;
+  if (updatedDrug.expiresIn <= 0) {
+    updatedDrug.benefit += 2;
+  }
+  else {
+    updatedDrug.benefit += 1;
+  }
+  if (updatedDrug.benefit > 50) {
+    updatedDrug.benefit = 50;
+  }
+  updatedDrug.expiresIn -= 1;
+  return updatedDrug;
+}
