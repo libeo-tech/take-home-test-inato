@@ -34,6 +34,10 @@ export class Drug {
       throw new Error("args 'expiresIn' and 'benefit' must be integer");
     }
 
+    if (benefit > 50) {
+      throw new Error("benefit can't exceed 50");
+    }
+
     this.name = name;
     this.expiresIn = Math.floor(expiresIn);
     this.benefit = Math.floor(benefit);
