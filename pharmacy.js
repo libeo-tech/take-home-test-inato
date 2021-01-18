@@ -14,6 +14,20 @@ export class Pharmacy {
   }
 
   updateBenefitValue() {
+    this.drugs.forEach(drug => {
+      if (drug.name === "Herbal Tea") {
+        Object.assign(drug, herbalTea(drug))
+      }
+      else if (drug.name === "Fervex") {
+        Object.assign(drug, fervex(drug))
+      }
+      else if (drug.name === "Dafalgan") {
+        Object.assign(drug, dafalgan(drug))
+      }
+      else if (drug.name !== "Magic Pill") {
+        Object.assign(drug, normalDrug(drug))
+      }
+    });
     return this.drugs;
   }
 }
