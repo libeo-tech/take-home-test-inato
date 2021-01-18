@@ -55,4 +55,10 @@ describe("Pharmacy updateBenefitValue", () => {
       [new Drug("Herbal Tea", 29, 50), new Drug("Fervex", 29, 50)]
     );
   });
+
+  it("should decrease the benefit twice faster and decrease expiresIn for dafalgan", () => {
+    expect(new Pharmacy([new Drug("Dafalgan", 2, 3)]).updateBenefitValue()).toEqual(
+      [new Drug("test", 0, 2)]
+    );
+  });
 });
