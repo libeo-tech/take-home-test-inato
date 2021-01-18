@@ -61,4 +61,12 @@ describe("Pharmacy updateBenefitValue", () => {
       [new Drug("test", 0, 2)]
     );
   });
+
+  it("should not decrease the benefit below 0 and should decrease expiresIn for all drugs", () => {
+    expect(new Pharmacy([new Drug("test", 2, 0), new Drug("Magic Pill", 30, 0), 
+    new Drug("Herbal Tea", 30, 0), new Drug("Fervex", 30, 0), new Drug("Dafalgan", 30, 0)])
+    .updateBenefitValue()).toEqual([new Drug("test", 1, 0), new Drug("Magic Pill", 29, 0), 
+    new Drug("Herbal Tea", 29, 0), new Drug("Fervex", 29, 0), new Drug("Dafalgan", 29, 0)]
+    );
+  });
 });
