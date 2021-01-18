@@ -22,7 +22,8 @@ export class Pharmacy {
 /* Private functions */
 
 const normalDrug = drug => {
-  updatedDrug = drug;
+  let updatedDrug = {...drug}
+  updatedDrug = new Drug(updatedDrug.name, updatedDrug.expiresIn, updatedDrug.benefit)
   // By default, we assume that benefit is between 0 and 50 so it is not necessary
   // if (updatedDrug.benefit > 50) {
   //   updatedDrug.benefit = 50;
@@ -35,7 +36,8 @@ const normalDrug = drug => {
 }
 
 const herbalTea = drug => {
-  updatedDrug = drug;
+  let updatedDrug = {...drug}
+  updatedDrug = new Drug(updatedDrug.name, updatedDrug.expiresIn, updatedDrug.benefit)
   if (updatedDrug.expiresIn <= 0) {
     updatedDrug.benefit += 2;
   }
@@ -50,7 +52,8 @@ const herbalTea = drug => {
 }
 
 const fervex = drug => {
-  updatedDrug = drug;
+  let updatedDrug = {...drug}
+  updatedDrug = new Drug(updatedDrug.name, updatedDrug.expiresIn, updatedDrug.benefit)
   if (updatedDrug.expiresIn <= 0) {
     updatedDrug.benefit = 0;
   }
@@ -71,7 +74,8 @@ const fervex = drug => {
 }
 
 const dafalgan = drug => {
-  updatedDrug = drug;
+  let updatedDrug = {...drug}
+  updatedDrug = new Drug(updatedDrug.name, updatedDrug.expiresIn, updatedDrug.benefit)
   if (updatedDrug.benefit > 0) {
     updatedDrug.benefit -= 2;
   }
