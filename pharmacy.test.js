@@ -21,8 +21,32 @@ describe("Pharmacy updateBenefitValue", () => {
   });
 
   it("should increase the benefit twice faster and decrease expiresIn for expired herbal tea", () => {
-    expect(new Pharmacy([new Drug("Herbal Tea", 30, 44)]).updateBenefitValue()).toEqual(
-      [new Drug("Herbal Tea", 29, 46)]
+    expect(new Pharmacy([new Drug("Herbal Tea", 0, 44)]).updateBenefitValue()).toEqual(
+      [new Drug("Herbal Tea", -1, 46)]
+    );
+  });
+  
+  it("should increase the benefit and decrease expiresIn for normal fervex", () => {
+    expect(new Pharmacy([new Drug("Fervex", 30, 44)]).updateBenefitValue()).toEqual(
+      [new Drug("Fervex", 29, 45)]
+    );
+  });
+
+  it("should increase the benefit twice faster and decrease expiresIn for fervex which will expires in 10 days", () => {
+    expect(new Pharmacy([new Drug("Fervex", 10, 44)]).updateBenefitValue()).toEqual(
+      [new Drug("Fervex", 9, 46)]
+    );
+  });
+
+  it("should increase the benefit three times faster and decrease expiresIn for fervex which will expires in 5 days", () => {
+    expect(new Pharmacy([new Drug("Fervex", 5, 44)]).updateBenefitValue()).toEqual(
+      [new Drug("Fervex", 4, 47)]
+    );
+  });
+
+  it("should nullify benefit and decrease expiresIn for expired fervex", () => {
+    expect(new Pharmacy([new Drug("Fervex", 0, 44)]).updateBenefitValue()).toEqual(
+      [new Drug("Fervex", -1, 0)]
     );
   });
 });
