@@ -57,34 +57,7 @@ describe("Herbal Tea drugs cases", () => {
 /**
  *
  */
-describe("Herbal Tea drugs cases", () => {
-  it("should increase the benefit and decrease expiresIn", () => {
-    expect(
-      DrugFactory.getInstance("Herbal Tea", 9, 6).updateBenefitValue()
-    ).toEqual(DrugFactory.getInstance("Herbal Tea", 8, 7));
-  });
-
-  it("should increase the benefit with 2 units and decrease expiresIn", () => {
-    expect(
-      DrugFactory.getInstance("Herbal Tea", 0, 15).updateBenefitValue()
-    ).toEqual(DrugFactory.getInstance("Herbal Tea", -1, 17));
-  });
-
-  it("should stop incresing benefit to 50 and decrease expiresIn", () => {
-    expect(
-      DrugFactory.getInstance("Herbal Tea", 0, 49).updateBenefitValue()
-    ).toEqual(DrugFactory.getInstance("Herbal Tea", -1, 50));
-
-    expect(
-      DrugFactory.getInstance("Herbal Tea", -1, 50).updateBenefitValue()
-    ).toEqual(DrugFactory.getInstance("Herbal Tea", -2, 50));
-  });
-});
-
-/**
- *
- */
-describe("Herbal Tea drugs cases", () => {
+describe("Fervex drugs cases", () => {
   it("should increase the benefit and decrease expiresIn", () => {
     expect(
       DrugFactory.getInstance("Fervex", 12, 6).updateBenefitValue()
@@ -124,5 +97,50 @@ describe("Magic Pill drugs cases", () => {
     expect(
       DrugFactory.getInstance("Magic Pill", 1, 49).updateBenefitValue()
     ).toEqual(DrugFactory.getInstance("Magic Pill", 1, 49));
+  });
+});
+
+/**
+ *
+ */
+describe("Test error cases", () => {
+  it("should throw Error because all args are not provided", () => {
+    expect(() => {
+      DrugFactory.getInstance();
+    }).toThrow(
+      new Error("Must provide all 'name' , 'expiresIn' , 'benefit' arguments")
+    );
+
+    expect(() => {
+      DrugFactory.getInstance("Fervex");
+    }).toThrow(
+      new Error("Must provide all 'name' , 'expiresIn' , 'benefit' arguments")
+    );
+
+    expect(() => {
+      DrugFactory.getInstance("Magic Pill", 1);
+    }).toThrow(
+      new Error("Must provide all 'name' , 'expiresIn' , 'benefit' arguments")
+    );
+  });
+
+  it("should throw Error because expiresIn or benefit is not int", () => {
+    expect(() => {
+      DrugFactory.getInstance("Magic Pill", "1", 0);
+    }).toThrow(new Error("args 'expiresIn' and 'benefit' must be integer"));
+
+    expect(() => {
+      DrugFactory.getInstance("Fervex", 1, "0");
+    }).toThrow(new Error("args 'expiresIn' and 'benefit' must be integer"));
+
+    expect(() => {
+      DrugFactory.getInstance("Herbal Tea", "1", "0");
+    }).toThrow(new Error("args 'expiresIn' and 'benefit' must be integer"));
+  });
+
+  it("should throw Error because  benefit exceed 50 unit is not int", () => {
+    expect(() => {
+      DrugFactory.getInstance("test", 1, 51);
+    }).toThrow(new Error("benefit can't exceed 50"));
   });
 });
