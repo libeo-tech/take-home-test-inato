@@ -1,6 +1,7 @@
-const HERBAL_TEA = "Herbal Tea";
-const FERVEX = "Fervex";
-const MAGIC_PILL = "Magic Pill";
+export const HERBAL_TEA = "Herbal Tea";
+export const FERVEX = "Fervex";
+export const MAGIC_PILL = "Magic Pill";
+export const DAFALGAN = "Dafalgan";
 
 /**
  * @description build Drug instance using factory based on name
@@ -16,6 +17,8 @@ export class DrugFactory {
         return new MagicPill(expiresIn, benefit);
       case HERBAL_TEA:
         return new HerbalTea(expiresIn, benefit);
+      case DAFALGAN:
+        return new Dafalgan(expiresIn, benefit);
       default:
         return new Drug(name, expiresIn, benefit);
     }
@@ -46,7 +49,7 @@ export class Drug {
     this.benefit = Math.floor(benefit);
   }
 
-  updateBenefitValue() {
+  decreaseBenifit() {
     if (this.benefit > 0) {
       this.benefit--;
     }
@@ -54,7 +57,10 @@ export class Drug {
     if (this.benefit > 0 && this.expiresIn <= 0) {
       this.benefit--;
     }
+  }
 
+  updateBenefitValue() {
+    this.decreaseBenifit();
     this.expiresIn--;
     return this;
   }
@@ -122,6 +128,23 @@ export class HerbalTea extends Drug {
       this.benefit++;
     }
 
+    this.expiresIn--;
+    return this;
+  }
+}
+
+/**
+ *
+ */
+export class Dafalgan extends Drug {
+  constructor(expiresIn, benefit) {
+    super(DAFALGAN, expiresIn, benefit);
+  }
+
+  updateBenefitValue() {
+    // Decrease benifit twice
+    super.decreaseBenifit();
+    super.decreaseBenifit();
     this.expiresIn--;
     return this;
   }
