@@ -22,9 +22,12 @@ export class DrugFactory {
   }
 }
 
+/**
+ *
+ */
 export class Drug {
   constructor(name, expiresIn, benefit) {
-    if (!name && !expiresIn && !benefit) {
+    if (!name || expiresIn == undefined || benefit == undefined) {
       throw new Error(
         "Must provide all 'name' , 'expiresIn' , 'benefit' arguments"
       );
@@ -57,6 +60,9 @@ export class Drug {
   }
 }
 
+/**
+ *
+ */
 export class Fervex extends Drug {
   constructor(expiresIn, benefit) {
     super(FERVEX, expiresIn, benefit);
@@ -86,6 +92,9 @@ export class Fervex extends Drug {
   }
 }
 
+/**
+ *
+ */
 export class MagicPill extends Drug {
   constructor(expiresIn, benefit) {
     super(MAGIC_PILL, expiresIn, benefit);
@@ -96,6 +105,9 @@ export class MagicPill extends Drug {
   }
 }
 
+/**
+ *
+ */
 export class HerbalTea extends Drug {
   constructor(expiresIn, benefit) {
     super(HERBAL_TEA, expiresIn, benefit);
