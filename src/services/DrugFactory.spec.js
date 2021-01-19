@@ -1,7 +1,9 @@
+import Dafalgan, { DAFALGAN } from "./Dafalgan";
+import Drug from "./Drug";
 import DrugFactory from "./DrugFactory";
-import { FERVEX } from "./Fervex";
-import { HERBAL_TEA } from "./HerbalTea";
-import { MAGIC_PILL } from "./MagicPill";
+import Fervex, { FERVEX } from "./Fervex";
+import HerbalTea, { HERBAL_TEA } from "./HerbalTea";
+import MagicPill, { MAGIC_PILL } from "./MagicPill";
 
 /**
  *
@@ -45,5 +47,21 @@ describe("Test error cases", () => {
     expect(() => {
       DrugFactory.getInstance("test", 1, 51);
     }).toThrow(new Error("benefit can't exceed 50"));
+  });
+});
+
+/**
+ *
+ */
+describe("Test Factory getInstance", () => {
+  it("should return diffrente instance type depending in drug name", () => {
+    const testInput = [
+      DrugFactory.getInstance(FERVEX, 1, 2) instanceof Fervex,
+      DrugFactory.getInstance(MAGIC_PILL, 1, 2) instanceof MagicPill,
+      DrugFactory.getInstance(HERBAL_TEA, 1, 2) instanceof HerbalTea,
+      DrugFactory.getInstance(DAFALGAN, 1, 2) instanceof Dafalgan,
+      DrugFactory.getInstance("test", 1, 2) instanceof Drug
+    ];
+    expect(!!testInput.find(e => e == false)).toBe(false);
   });
 });
