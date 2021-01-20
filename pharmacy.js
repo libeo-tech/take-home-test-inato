@@ -1,4 +1,4 @@
-import drugNames from "./drugNames";
+import drugNames from "./statics/drugNames";
 
 export class Pharmacy {
   constructor(drugs = []) {

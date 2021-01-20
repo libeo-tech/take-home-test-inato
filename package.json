@@ -1,32 +1,32 @@
 {
-  "name": "take-home-test",
-  "version": "1.0.0",
-  "repository": "git@github.com:inato/take-home-test.git",
-  "author": "inato",
-  "license": "MIT",
-  "private": true,
-  "engines": {
-    "yarn": ">=1.7.0",
-    "node": "=12.x"
-  },
-  "scripts": {
-    "lint": "eslint .",
-    "test": "jest",
-    "start": "babel-node index.js"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.1.0",
-    "@babel/core": "^7.1.0",
-    "@babel/node": "^7.0.0",
-    "@babel/preset-env": "^7.1.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^9.0.0",
-    "babel-jest": "^23.6.0",
-    "eslint": "^5.6.0",
-    "eslint-config-prettier": "^3.1.0",
-    "eslint-plugin-prettier": "^2.6.2",
-    "jest": "24.8.0",
-    "prettier": "^1.14.3",
-    "regenerator-runtime": "^0.12.1"
-  }
+    "name": "take-home-test",
+    "version": "1.0.0",
+    "repository": "git@github.com:inato/take-home-test.git",
+    "author": "inato",
+    "license": "MIT",
+    "private": true,
+    "engines": {
+        "yarn": ">=1.7.0",
+        "node": "=12.x"
+    },
+    "scripts": {
+        "lint": "eslint .",
+        "test": "jest --watch",
+        "start": "babel-node index.js"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.1.0",
+        "@babel/core": "^7.1.0",
+        "@babel/node": "^7.0.0",
+        "@babel/preset-env": "^7.1.0",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-eslint": "^9.0.0",
+        "babel-jest": "^23.6.0",
+        "eslint": "^5.6.0",
+        "eslint-config-prettier": "^3.1.0",
+        "eslint-plugin-prettier": "^2.6.2",
+        "jest": "24.8.0",
+        "prettier": "^1.14.3",
+        "regenerator-runtime": "^0.12.1"
+    }
 }
