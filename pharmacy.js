@@ -14,7 +14,6 @@ export class Pharmacy {
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       var drugName = this.drugs[i].name;
-      var drugExpiresIn = this.drugs[i].expiresIn;
 
       switch (drugName) {
         case "Magic Pill":
@@ -23,6 +22,7 @@ export class Pharmacy {
         case "Herbal Tea":
           this.updateItemBenefitValue(i, drugName);
 
+          // Treating the case of befinit getting higher than 50
           if (this.drugs[i].benefit >= 50) {
             this.drugs[i].benefit = 50;
             break;
@@ -32,18 +32,7 @@ export class Pharmacy {
         case "Fervex":
           this.updateItemBenefitValue(i, drugName);
 
-          // if (drugExpiresIn > 10) {
-          //   this.drugs[i].benefit += 1;
-          // } else if (drugExpiresIn <= 10 && drugExpiresIn > 5) {
-          //   this.drugs[i].benefit += 2;
-          // } else if (drugExpiresIn <= 5 && drugExpiresIn > 0) {
-          //   this.drugs[i].benefit += 3;
-          // } else if (drugExpiresIn <= 0) {
-          //   this.drugs[i].benefit = 0;
-          // }
-
-          // this.drugs[i].expiresIn -= 1;
-
+          // Treating the case of befinit getting higher than 50
           if (this.drugs[i].benefit >= 50) {
             this.drugs[i].benefit = 50;
             break;
@@ -53,18 +42,8 @@ export class Pharmacy {
         case "Dafalgan":
           this.updateItemBenefitValue(i, drugName);
 
-          // if (drugExpiresIn > 0) {
-          //   this.drugs[i].benefit -= 2;
-          // } else {
-          //   this.drugs[i].benefit -= 4;
-          // }
-
-          // this.drugs[i].expiresIn -= 1;
-
-          if (this.drugs[i].benefit >= 50) {
-            this.drugs[i].benefit = 50;
-            break;
-          } else if (this.drugs[i].benefit <= 0) {
+          // Treating the case of befinit getting lower than 0
+          if (this.drugs[i].benefit <= 0) {
             this.drugs[i].benefit = 0;
             break;
           }
@@ -74,18 +53,8 @@ export class Pharmacy {
         default:
           this.updateItemBenefitValue(i, drugName);
 
-          // if (drugExpiresIn > 0) {
-          //   this.drugs[i].benefit -= 1;
-          // } else {
-          //   this.drugs[i].benefit -= 2;
-          // }
-
-          // this.drugs[i].expiresIn -= 1;
-
-          if (this.drugs[i].benefit >= 50) {
-            this.drugs[i].benefit = 50;
-            break;
-          } else if (this.drugs[i].benefit <= 0) {
+          // Treating the case of befinit getting lower than 0
+          if (this.drugs[i].benefit <= 0) {
             this.drugs[i].benefit = 0;
             break;
           }
@@ -94,6 +63,7 @@ export class Pharmacy {
 
     return this.drugs;
   }
+
   updateItemBenefitValue(i, drugName) {
     switch (drugName) {
       case "Fervex":

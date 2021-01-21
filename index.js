@@ -15,7 +15,6 @@ const log = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
   log.push(JSON.stringify(trial.updateBenefitValue()));
-  // log.push(trial.updateBenefitValue());
 }
 
 console.log(log);
