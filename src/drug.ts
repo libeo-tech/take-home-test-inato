@@ -12,6 +12,21 @@ export class Drug {
     this.benefit = benefit
   }
 
+  updateValues(): void {
+    this.updateExpirationValue()
+    this.updateBenefitValue()
+  }
+
+  updateExpirationValue(): void {
+    this.expiresIn--
+  }
+
+  updateBenefitValue(): void {
+    this.expiresIn <= 0
+      ? this.decreaseBenefitValue(2)
+      : this.decreaseBenefitValue()
+  }
+
   increaseBenefitValue(increase = 1): void {
     const increasedBenefit = this.benefit + increase
     this.benefit =
