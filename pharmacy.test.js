@@ -81,5 +81,9 @@ describe("Dafalgan specific rules", () => {
     expect(
       new Pharmacy([new Drug(drugNames.DAFALGAN, 12, 9)]).updateBenefitValue()
     ).toEqual([new Drug(drugNames.DAFALGAN, 11, 7)]);
+
+    expect(
+      new Pharmacy([new Drug(drugNames.DAFALGAN, 0, 9)]).updateBenefitValue()
+    ).toEqual([new Drug(drugNames.DAFALGAN, -1, 5)]);
   });
 });
