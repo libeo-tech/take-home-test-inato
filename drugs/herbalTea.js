@@ -8,7 +8,7 @@ export default class HerbalTea extends Drug {
 
   updateBenefitValue() {
     this.decreaseExpiresIn();
-    if (this.expiresIn <= 0) return this.increaseBenefitValue(2);
+    if (this.expiresIn < 0) return this.increaseBenefitValue(2);
     return this.increaseBenefitValue(1);
   }
 }
