@@ -1,3 +1,4 @@
+import Dafalgan from "./drugs/dafalgan";
 import Doliprane from "./drugs/doliprane";
 import Fervex from "./drugs/fervex";
 import HerbalTea from "./drugs/herbalTea";
@@ -26,6 +27,11 @@ export class Pharmacy {
           ).updateBenefitValue();
         case drugNames.DOLIPRANE:
           return new Doliprane(
+            drug.expiresIn,
+            drug.benefit
+          ).updateBenefitValue();
+        case drugNames.DAFALGAN:
+          return new Dafalgan(
             drug.expiresIn,
             drug.benefit
           ).updateBenefitValue();
