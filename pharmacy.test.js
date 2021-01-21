@@ -75,3 +75,11 @@ describe("Fervex specific rules", () => {
     ).toEqual([new Drug(drugNames.FERVEX, -1, 0)]);
   });
 });
+
+describe("Dafalgan specific rules", () => {
+  it("should double decrease in benefit", () => {
+    expect(
+      new Pharmacy([new Drug(drugNames.DAFALGAN, 12, 9)]).updateBenefitValue()
+    ).toEqual([new Drug(drugNames.DAFALGAN, 11, 7)]);
+  });
+});
