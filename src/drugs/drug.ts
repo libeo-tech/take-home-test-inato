@@ -5,16 +5,25 @@ export class Drug {
   name: string
   expiresIn: number
   benefit: number
+  expires: boolean
 
-  constructor(name: string, expiresIn: number, benefit: number) {
+  constructor(
+    name: string,
+    expiresIn: number,
+    benefit: number,
+    expires = true
+  ) {
     this.name = name
     this.expiresIn = expiresIn
     this.benefit = benefit
+    this.expires = expires
   }
 
   updateValues(): void {
-    this.updateExpirationValue()
-    this.updateBenefitValue()
+    if (this.expires) {
+      this.updateExpirationValue()
+      this.updateBenefitValue()
+    }
   }
 
   updateExpirationValue(): void {

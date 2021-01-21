@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 
-import { Drug } from './drug'
+import { Drug } from './drugs/drug'
 import { Pharmacy } from './pharmacy'
 
 const drugs: Drug[] = [

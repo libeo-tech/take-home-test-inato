@@ -1,4 +1,4 @@
-import { Drug } from './drug'
+import { Drug } from './drugs/drug'
 
 export class Pharmacy {
   drugs: Drug[]
