@@ -92,3 +92,11 @@ export class Pharmacy {
 // Dafalgan
 // Si benefit == 50 expiresIn-- et break
 // Si benefit == 0 expiresIn-- et break
+// Si expiresIn >= 0 alors benefit -=2
+// Si expiresIn < 0 alors benefit -=4
+
+// Autres cas
+// Si benefit == 50 expiresIn-- et break
+// Si benefit == 0 expiresIn-- et break
+// Si expiresIn >= 0 alors benefit -=1
+// Si expiresIn < 0 alors benefit -=2
