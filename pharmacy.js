@@ -10,60 +10,53 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
-  updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name !== "Herbal Tea" &&
-        this.drugs[i].name !== "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name !== "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
-          }
-        }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name === "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.drugs[i].name !== "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) {
-        if (this.drugs[i].name !== "Herbal Tea") {
-          if (this.drugs[i].name !== "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name === "Dafalgan") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 2;
-              }
-              if (this.drugs[i].name !== "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-            }
-          } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          }
-        }
-      }
-    }
 
+  decreaseBenefit(drug) {
+    if (drug.expiresIn < 0) drug.benefit--;
+    drug.benefit--;
+    if (drug.benefit < 0) drug.benefit = 0;
+  }
+
+  updateHerbalTea(drug) {
+    if (drug.expiresIn < 0) drug.benefit++;
+    drug.benefit++;
+    if (drug.benefit > 50) drug.benefit = 50;
+  }
+
+  updateFervex(drug) {
+    drug.benefit++;
+    if (drug.expiresIn <= 10) drug.benefit++;
+    if (drug.expiresIn <= 5) drug.benefit++;
+    if (drug.benefit > 50) drug.benefit = 50;
+    if (drug.expiresIn < 0) drug.benefit = 0;
+  }
+
+  updateBenefitValue() {
+    this.drugs.map(drug => {
+      drug.expiresIn--;
+      switch (drug.name) {
+        case "Herbal Tea":
+          // "Herbal Tea" actually increases in Benefit the older it gets. Benefit increases twice as fast after the expiration date.
+          this.updateHerbalTea(drug);
+          break;
+        case "Magic Pill":
+          // "Magic Pill" never expires nor decreases in Benefit.
+          drug.expiresIn++;
+          break;
+        case "Fervex":
+          // "Fervex", like Herbal Tea, increases in Benefit as its expiration date approaches. Benefit increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Benefit drops to 0 after the expiration date.
+          this.updateFervex(drug);
+          break;
+        case "Dafalgan":
+          // "Dafalgan" degrades in Benefit twice as fast as normal drugs
+          this.decreaseBenefit(drug);
+          this.decreaseBenefit(drug);
+          break;
+        default:
+          this.decreaseBenefit(drug);
+          break;
+      }
+    });
     return this.drugs;
   }
 }
