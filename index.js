@@ -9,7 +9,7 @@ const drugs = [
   new Drug(drugNames.HERBAL_TEA, 10, 5),
   new Drug(drugNames.FERVEX, 5, 40),
   new Drug(drugNames.MAGIC_PILL, 15, 40),
-  new Drug(drugNames.DAFALGAN, 10, 20),
+  new Drug(drugNames.DAFALGAN, 10, 20)
 ];
 const trial = new Pharmacy(drugs);
 
@@ -20,7 +20,7 @@ for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
 }
 
 /* eslint-disable no-console */
-fs.writeFile("output.txt", log, (err) => {
+fs.writeFile("output.txt", log, err => {
   if (err) {
     console.log("error");
   } else {

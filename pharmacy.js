@@ -18,13 +18,13 @@ export default class Pharmacy {
         [drugNames.DOLIPRANE]: Doliprane,
         [drugNames.FERVEX]: Fervex,
         [drugNames.HERBAL_TEA]: HerbalTea,
-        [drugNames.MAGIC_PILL]: MagicPill,
+        [drugNames.MAGIC_PILL]: MagicPill
       }[drug.name](drug.expiresIn, drug.benefit);
     return new Drug(drug.name, drug.expiresIn, drug.benefit);
   }
 
   updateBenefitValue() {
-    this.drugs = this.drugs.map((drug) => {
+    this.drugs = this.drugs.map(drug => {
       return this.instantiateDrug(drug).updateBenefitValue();
     });
     return this.drugs;
