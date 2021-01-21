@@ -106,4 +106,57 @@ describe('Drug', () => {
       expect(positivedrug.benefit).toEqual(32)
     })
   })
+
+  describe('unefficient expired Drug', () => {
+    it('should drop the benefit to 0', () => {
+      const drug = new Drug('test', 0, 30, { unefficientExpired: true })
+      drug.updateBenefitValue()
+      expect(drug.benefit).toEqual(0)
+    })
+  })
+
+  describe('drugs which moves as expired date approaches', () => {
+    it('should decrease the benefit by 3', () => {
+      const drug = new Drug('test', 4, 30, {
+        benefitsPerDate: [
+          {
+            limitDate: 6,
+            benefitValue: 3,
+          },
+        ],
+      })
+      drug.updateBenefitValue()
+      expect(drug.benefit).toEqual(27)
+    })
+
+    it('should decrease the benefit normally', () => {
+      const drug = new Drug('test', 15, 30, {
+        benefitsPerDate: [
+          {
+            limitDate: 6,
+            benefitValue: 3,
+          },
+        ],
+      })
+      drug.updateBenefitValue()
+      expect(drug.benefit).toEqual(29)
+    })
+
+    it('should decrease the benefit by 2', () => {
+      const drug = new Drug('test', 4, 30, {
+        benefitsPerDate: [
+          {
+            limitDate: 5,
+            benefitValue: 2,
+          },
+          {
+            limitDate: 6,
+            benefitValue: 3,
+          },
+        ],
+      })
+      drug.updateBenefitValue()
+      expect(drug.benefit).toEqual(28)
+    })
+  })
 })

@@ -4,6 +4,11 @@ export const MIN_BENEFIT = 0
 export interface DrugOptions {
   neverExpires?: boolean
   positive?: boolean
+  unefficientExpired?: boolean
+  benefitsPerDate?: {
+    limitDate: number
+    benefitValue: number
+  }[]
 }
 
 export class Drug {
@@ -26,6 +31,7 @@ export class Drug {
 
   updateValues(): void {
     if (!this.options || !this.options.neverExpires) {
+      // drug which expires
       this.updateExpirationValue()
       this.updateBenefitValue()
     }
@@ -36,12 +42,49 @@ export class Drug {
   }
 
   updateBenefitValue(): void {
-    const value = this.expiresIn <= 0 ? 2 : 1
-    if (!this.options || !this.options.positive) {
-      this.decreaseBenefitValue(value)
-    } else {
-      this.increaseBenefitValue(value)
+    if (!this.unefficientExpired()) {
+      const value = this.getBenefitValue()
+      if (this.options && this.options.positive) {
+        // positive drug
+        this.increaseBenefitValue(value)
+      } else {
+        // normal drug
+        this.decreaseBenefitValue(value)
+      }
     }
+  }
+
+  unefficientExpired(): boolean {
+    if (this.expiresIn < 0 && this.options && this.options.unefficientExpired) {
+      this.benefit = 0
+      return true
+    }
+    return false
+  }
+
+  getBenefitValue(): number {
+    let value = 1
+
+    if (this.expiresIn < 0) {
+      // twice as fast
+      value = 2
+    }
+
+    if (this.options && this.options.benefitsPerDate) {
+      let minLimit
+      // find the smallest limit which expiresIn is inferior to and get the value
+      for (const benefitPerDate of this.options.benefitsPerDate) {
+        const { limitDate, benefitValue } = benefitPerDate
+        if (this.expiresIn <= limitDate) {
+          if (minLimit === undefined || limitDate < minLimit) {
+            minLimit = limitDate
+            value = benefitValue
+          }
+        }
+      }
+    }
+
+    return value
   }
 
   increaseBenefitValue(increase = 1): void {
