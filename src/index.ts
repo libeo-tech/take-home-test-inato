@@ -21,7 +21,7 @@ const drugs: Drug[] = [
     ],
   }),
   new Drug('Magic Pill', 15, 40, { neverExpires: true }),
-  // new Drug('Dafalgan', 13, 43),
+  new Drug('Dafalgan', 13, 43), // should give the same output if this line is commented
 ]
 
 const trial = new Pharmacy(drugs)
