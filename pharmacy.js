@@ -5,7 +5,7 @@ import HerbalTea from "./drugs/herbalTea";
 import MagicPill from "./drugs/magicPill";
 import drugNames from "./statics/drugNames";
 
-export class Pharmacy {
+export default class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }

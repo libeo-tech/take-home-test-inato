@@ -1,5 +1,5 @@
-import { Pharmacy } from "./pharmacy";
-import { Drug } from "./drug";
+import Pharmacy from "./pharmacy";
+import Drug from "./drug";
 import drugNames from "./statics/drugNames";
 
 describe("General pharmacy rules", () => {
