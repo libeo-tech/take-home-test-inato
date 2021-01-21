@@ -3,6 +3,7 @@ import Doliprane from "./drugs/doliprane";
 import Fervex from "./drugs/fervex";
 import HerbalTea from "./drugs/herbalTea";
 import MagicPill from "./drugs/magicPill";
+import Drug from "./drug";
 import drugNames from "./statics/drugNames";
 
 export default class Pharmacy {
@@ -10,34 +11,21 @@ export default class Pharmacy {
     this.drugs = drugs;
   }
 
+  instantiateDrug(drug) {
+    if (Object.values(drugNames).includes(drug.name))
+      return new {
+        [drugNames.DAFALGAN]: Dafalgan,
+        [drugNames.DOLIPRANE]: Doliprane,
+        [drugNames.FERVEX]: Fervex,
+        [drugNames.HERBAL_TEA]: HerbalTea,
+        [drugNames.MAGIC_PILL]: MagicPill,
+      }[drug.name](drug.expiresIn, drug.benefit);
+    return new Drug(drug.name, drug.expiresIn, drug.benefit);
+  }
+
   updateBenefitValue() {
     this.drugs = this.drugs.map((drug) => {
-      switch (drug.name) {
-        case drugNames.HERBAL_TEA:
-          return new HerbalTea(
-            drug.expiresIn,
-            drug.benefit
-          ).updateBenefitValue();
-        case drugNames.FERVEX:
-          return new Fervex(drug.expiresIn, drug.benefit).updateBenefitValue();
-        case drugNames.MAGIC_PILL:
-          return new MagicPill(
-            drug.expiresIn,
-            drug.benefit
-          ).updateBenefitValue();
-        case drugNames.DOLIPRANE:
-          return new Doliprane(
-            drug.expiresIn,
-            drug.benefit
-          ).updateBenefitValue();
-        case drugNames.DAFALGAN:
-          return new Dafalgan(
-            drug.expiresIn,
-            drug.benefit
-          ).updateBenefitValue();
-        default:
-          return drug.updateBenefitValue();
-      }
+      return this.instantiateDrug(drug).updateBenefitValue();
     });
     return this.drugs;
   }
