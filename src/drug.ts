@@ -1,26 +1,31 @@
 export const MAX_BENEFIT = 50
 export const MIN_BENEFIT = 0
 
+export interface DrugOptions {
+  neverExpires?: boolean
+  positive?: boolean
+}
+
 export class Drug {
   name: string
   expiresIn: number
   benefit: number
-  expires: boolean
+  options?: DrugOptions
 
   constructor(
     name: string,
     expiresIn: number,
     benefit: number,
-    expires = true
+    options?: DrugOptions
   ) {
     this.name = name
     this.expiresIn = expiresIn
     this.benefit = benefit
-    this.expires = expires
+    this.options = options
   }
 
   updateValues(): void {
-    if (this.expires) {
+    if (!this.options || !this.options.neverExpires) {
       this.updateExpirationValue()
       this.updateBenefitValue()
     }
@@ -31,9 +36,12 @@ export class Drug {
   }
 
   updateBenefitValue(): void {
-    this.expiresIn <= 0
-      ? this.decreaseBenefitValue(2)
-      : this.decreaseBenefitValue()
+    const value = this.expiresIn <= 0 ? 2 : 1
+    if (!this.options || !this.options.positive) {
+      this.decreaseBenefitValue(value)
+    } else {
+      this.increaseBenefitValue(value)
+    }
   }
 
   increaseBenefitValue(increase = 1): void {

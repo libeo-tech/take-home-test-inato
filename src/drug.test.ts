@@ -86,10 +86,24 @@ describe('Drug', () => {
 
   describe('non expired drugs', () => {
     it('should not decrease the expiration nor the benefit', () => {
-      const drug = new Drug('test', 4, 30, false)
+      const drug = new Drug('test', 4, 30, { neverExpires: true })
       drug.updateValues()
       expect(drug.expiresIn).toEqual(4)
       expect(drug.benefit).toEqual(30)
+    })
+  })
+
+  describe('positive Drug', () => {
+    it('should increase the benefit normally', () => {
+      const positivedrug = new Drug('test', 3, 30, { positive: true })
+      positivedrug.updateBenefitValue()
+      expect(positivedrug.benefit).toEqual(31)
+    })
+
+    it('should increase the benefit twice as fast', () => {
+      const positivedrug = new Drug('test', 0, 30, { positive: true })
+      positivedrug.updateBenefitValue()
+      expect(positivedrug.benefit).toEqual(32)
     })
   })
 })
