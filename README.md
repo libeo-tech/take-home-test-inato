@@ -42,6 +42,8 @@ Please commit as frequently as possible to make the review easier.
 To make sure that you will not break anything in the existing code, we added a log of the simulation in the _output.txt_ file. Make sure that your code is able to generate the same file. You can generate a new file by running one of the following commands:
 
 ```sh
+yarn install
+yarn build
 yarn start
 ```
 

@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    // type checking
+    "strict": true,
+    "moduleResolution": "node",
+    "target": "ES2020",
+    "skipLibCheck": true,
+    "allowUnreachableCode": false,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    // generation
+    "module": "commonjs",
+    "importHelpers": true,
+    "removeComments": true,
+    "declaration": true,
+    "sourceMap": true
+  },
+  "exclude": ["node_modules", "dist"]
+}
