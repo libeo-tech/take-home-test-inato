@@ -6,59 +6,58 @@ export class Drug {
   }
 }
 
+const increaseBenefit = (drug, multiplier) => {
+
+  drug.benefit += 1*multiplier
+  if(drug.benefit > 50) drug.benefit = 50
+
+  return drug.benefit
+}
+
+const decreaseBenefit = (drug, multiplier) => {
+  drug.benefit -= 1*multiplier
+  if(drug.benefit < 0) drug.benefit = 0
+
+  return drug.benefit
+  }
+
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
   updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
-          }
-        }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name == "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
-        }
+    for (let i = 0; i < this.drugs.length; i++) {
+      
+      const drug = this.drugs[i] 
+
+      switch(drug.name){
+
+        case("Herbal Tea"):
+          increaseBenefit(drug, drug.expiresIn <= 0 ? 2 : 1)
+          break
+        
+        case("Magic Pill"):
+          continue
+
+        case("Fervex"):
+          if(drug.expiresIn > 10) {increaseBenefit(drug, 1)}
+          else if(drug.expiresIn > 5 && drug.expiresIn <= 10) {increaseBenefit(drug, 2)}
+          else if(drug.expiresIn > 0 && drug.expiresIn <= 5) {increaseBenefit(drug, 3)}
+          else if(drug.expiresIn <= 0) {drug.benefit = 0}
+          break
+
+        case('Dafalgan'):
+          decreaseBenefit(drug, drug.expiresIn <= 0 ? 4 : 2)
+          break
+
+        default:
+          decreaseBenefit(drug, drug.expiresIn <= 0 ? 2 : 1)
+          break
+          
       }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) {
-        if (this.drugs[i].name != "Herbal Tea") {
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-            }
-          } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          }
-        }
-      }
+
+      drug.expiresIn--
+
     }
 
     return this.drugs;
