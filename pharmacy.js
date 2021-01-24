@@ -16,7 +16,9 @@ export class Pharmacy {
       if (this.drugs[i].name !== "Magic Pill") {
         this.drugs[i].expiresIn--;
 
-        if (this.drugs[i].name === "Herbal Tea") {
+        if (this.drugs[i].name === "Doliprane") {
+          this.drugs[i].benefit -= 2;
+        } else if (this.drugs[i].name === "Herbal Tea") {
           this.drugs[i].benefit++;
         } else if (
           this.drugs[i].name === "Fervex" &&
