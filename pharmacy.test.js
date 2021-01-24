@@ -82,4 +82,40 @@ describe("Pharmacy", () => {
       ]
     );
   });
+  it("should decrease expiresIn by 1 and benefit twice as much", () => {
+    expect(new Pharmacy([
+      new Drug("Dafalgan", 5, 10)
+    ]).updateBenefitValue()).toEqual(
+      [
+        new Drug("Dafalgan", 4, 8)
+      ]
+    );
+  });
+  it("should decrease expiresIn by 1 and benefit twice as much", () => {
+    expect(new Pharmacy([
+      new Drug("Dafalgan", -2, 10)
+    ]).updateBenefitValue()).toEqual(
+      [
+        new Drug("Dafalgan", -3, 6)
+      ]
+    );
+  });
+  it("benefit should not go above 50", () => {
+    expect(new Pharmacy([
+      new Drug("Fervex", 3, 49)
+    ]).updateBenefitValue()).toEqual(
+      [
+        new Drug("Fervex", 2, 50)
+      ]
+    );
+  });
+  it("benefit should not go below 0", () => {
+    expect(new Pharmacy([
+      new Drug("Dafalgan", -4, 1)
+    ]).updateBenefitValue()).toEqual(
+      [
+        new Drug("Dafalgan", -5, 0)
+      ]
+    );
+  });
 });

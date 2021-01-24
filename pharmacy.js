@@ -17,8 +17,6 @@ export class Pharmacy {
             drug.benefit += 1;
           else
             drug.benefit += 2;
-          if (drug.benefit > 50)
-            drug.benefit = 50;
           return drug;
         }
       },
@@ -40,11 +38,19 @@ export class Pharmacy {
               drug.benefit += 2;
             else
               drug.benefit += 1;
-            if (drug.benefit > 50)
-              drug.benefit = 50;
           }
           else
             drug.benefit = 0;
+          return drug;
+        }
+      },
+      {
+        name: "Dafalgan",
+        func: function(drug) {
+          if (drug.expiresIn > 0)
+            drug.benefit -= 2;
+          else
+            drug.benefit -= 4;
           return drug;
         }
       }
@@ -64,9 +70,11 @@ export class Pharmacy {
           this.drugs[i].benefit -= 1;
         else
           this.drugs[i].benefit -= 2;
-        if (this.drugs[i].benefit < 0)
-          this.drugs[i].benefit = 0;
       }
+      if (this.drugs[i].benefit > 50)
+        this.drugs[i].benefit = 50;
+      if (this.drugs[i].benefit < 0)
+        this.drugs[i].benefit = 0;
     }
     return this.drugs;
   }
