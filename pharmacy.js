@@ -50,6 +50,13 @@ export class Pharmacy {
                     this.drugs[i].increaseBenefit(1);
                 }
             }
+            //Dafalgan
+            else if (this.drugs[i].name == "Dafalgan") {
+                this.drugs[i].decreaseBenefit(2);
+                if (this.drugs[i].expiresIn < 0) {
+                    this.drugs[i].decreaseBenefit(4);
+                }
+            }
 
             // Other drugs and different from Magic Pill
             else if (this.drugs[i].name != "Magic Pill") {
