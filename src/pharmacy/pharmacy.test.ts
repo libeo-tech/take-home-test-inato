@@ -1,9 +1,9 @@
 import { Pharmacy } from './pharmacy';
 import { Drug } from '../drugs/Drug';
-import {Doliprane} from "../drugs/Doliprane/Doliprane";
-import {HerbalTea} from "../drugs/HerbalTea/HerbalTea";
-import {Fervex} from "../drugs/Fervex/Fervex";
-import {MagicPill} from "../drugs/MagicPill/MagicPill";
+import { Doliprane } from '../drugs/Doliprane/Doliprane';
+import { HerbalTea } from '../drugs/HerbalTea/HerbalTea';
+import { Fervex } from '../drugs/Fervex/Fervex';
+import { MagicPill } from '../drugs/MagicPill/MagicPill';
 
 describe('Pharmacy', () => {
   it('should decrease the benefit and expiresIn', () => {

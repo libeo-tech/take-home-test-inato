@@ -1,13 +1,13 @@
 import * as fs from 'fs';
 import { Pharmacy } from './pharmacy/pharmacy';
-import {Dafalgan, Doliprane, Fervex, HerbalTea, MagicPill} from "./drugs";
+import { Dafalgan, Doliprane, Fervex, HerbalTea, MagicPill } from './drugs';
 
 const drugs = [
   new Doliprane(),
   new Dafalgan(),
-    new HerbalTea(),
-    new Fervex(),
-    new MagicPill(),
+  new HerbalTea(),
+  new Fervex(),
+  new MagicPill(),
 ];
 const trial = new Pharmacy(drugs);
 
