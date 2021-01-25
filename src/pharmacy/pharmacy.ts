@@ -1,4 +1,4 @@
-import { Drug } from '../../dist/pharmacy/pharmacy';
+import { Drug } from '../drugs';
 
 export class Pharmacy {
   drugs: Drug[];
@@ -6,6 +6,9 @@ export class Pharmacy {
     this.drugs = drugs;
   }
   updateBenefitValue(): Drug[] {
+    // for (const drug of this.drugs) {
+    //   drug.updateBenefit();
+    // }
     for (let i = 0; i < this.drugs.length; i++) {
       if (
         this.drugs[i].name != 'Herbal Tea' &&
