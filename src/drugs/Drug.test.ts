@@ -32,4 +32,20 @@ describe('Drug', () => {
     expect(generic.benefit).toEqual(0);
     expect(generic.expiresIn).toEqual(-3);
   });
+
+  it('decrease benefit never go below 0', () => {
+    const drug = new Drug('generic', 1, 2);
+    drug.decreaseBenefit();
+    expect(drug.benefit).toEqual(1);
+    drug.decreaseBenefit(10);
+    expect(drug.benefit).toEqual(0);
+  });
+
+  it('increase benefit up to 50', () => {
+    const drug = new Drug('generic', 10, 20);
+    drug.increaseBenefit();
+    expect(drug.benefit).toEqual(21);
+    drug.increaseBenefit(1000000);
+    expect(drug.benefit).toEqual(50);
+  });
 });
