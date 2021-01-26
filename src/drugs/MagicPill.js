@@ -3,8 +3,8 @@ import { CommonDrug } from "../CommonDrug";
 export const MAGIC_PILL = "Magic Pill";
 
 export class MagicPill extends CommonDrug {
-  constructor(benefit) {
-    super(MAGIC_PILL, Infinity, benefit);
+  constructor(expiresIn, benefit) {
+    super(MAGIC_PILL, expiresIn, benefit);
   }
 
   /**
@@ -15,4 +15,10 @@ export class MagicPill extends CommonDrug {
   _benefitDiff() {
     return 0;
   }
+
+  /**
+   * "Magic Pill" never expires nor decreases in Benefit.
+   * @private
+   */
+  _updateExpiry() {}
 }

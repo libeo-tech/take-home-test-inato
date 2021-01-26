@@ -18,7 +18,8 @@ export class Drug {
   constructor(name, expiresIn, benefit) {
     if (name === HERBAL_TEA) this.wrapped = new HerbalTea(expiresIn, benefit);
     else if (name === FERVEX) this.wrapped = new Fervex(expiresIn, benefit);
-    else if (name === MAGIC_PILL) this.wrapped = new MagicPill(benefit);
+    else if (name === MAGIC_PILL)
+      this.wrapped = new MagicPill(expiresIn, benefit);
     else this.wrapped = new CommonDrug(name, expiresIn, benefit);
   }
 

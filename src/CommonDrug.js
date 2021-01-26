@@ -22,6 +22,10 @@ export class CommonDrug {
    */
   dailyUpdate() {
     this.benefit = this._normalizeBenefit(this.benefit + this._benefitDiff());
+    this._updateExpiry();
+  }
+
+  _updateExpiry() {
     this.expiresIn = this.expiresIn - 1;
   }
 
