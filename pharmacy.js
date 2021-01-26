@@ -6,6 +6,7 @@ export class Drug {
   }
 }
 
+const DAFALGAN = "Dafalgan";
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
@@ -17,8 +18,15 @@ export class Pharmacy {
         this.drugs[i].name != "Fervex"
       ) {
         if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
+          if (
+            this.drugs[i].name != "Magic Pill" &&
+            this.drugs[i].name != DAFALGAN
+          ) {
             this.drugs[i].benefit = this.drugs[i].benefit - 1;
+          }
+
+          if (this.drugs[i].name === DAFALGAN) {
+            this.drugs[i].benefit = this.drugs[i].benefit - 2;
           }
         }
       } else {
@@ -45,8 +53,15 @@ export class Pharmacy {
         if (this.drugs[i].name != "Herbal Tea") {
           if (this.drugs[i].name != "Fervex") {
             if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
+              if (
+                this.drugs[i].name != "Magic Pill" &&
+                this.drugs[i].name != DAFALGAN
+              ) {
                 this.drugs[i].benefit = this.drugs[i].benefit - 1;
+              }
+
+              if (this.drugs[i].name === DAFALGAN) {
+                this.drugs[i].benefit = this.drugs[i].benefit - 2;
               }
             }
           } else {

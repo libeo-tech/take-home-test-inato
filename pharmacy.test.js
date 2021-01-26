@@ -75,13 +75,16 @@ describe("Pharmacy", () => {
     });
   });
 
-  // TODO: activate after implementing Dafalgan business rule
-  describe.skip("When it is Dafalgan", () => {
+  describe("When it is Dafalgan", () => {
     describe("When expiration has passed", () => {
       it("Should degrade benefit twice as fast as normal drugs", () => {
         expect(
+          new Pharmacy([new Drug("Dafalgan", 5, 12)]).updateBenefitValue()
+        ).toEqual([new Drug("Dafalgan", 4, 10)]);
+
+        expect(
           new Pharmacy([new Drug("Dafalgan", -1, 12)]).updateBenefitValue()
-        ).toEqual([new Drug("Dafalgan", -2, 10)]);
+        ).toEqual([new Drug("Dafalgan", -2, 8)]);
       });
     });
   });
