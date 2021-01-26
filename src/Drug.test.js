@@ -1,4 +1,4 @@
-import { Drug } from "../pharmacy";
+import { Drug } from "./Drug";
 
 describe("Drug", () => {
   it("has an expiresIn value which denotes the number of days we have until the item expires", () => {
