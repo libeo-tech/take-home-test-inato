@@ -4,7 +4,7 @@ import { Dafalgan, Doliprane, Fervex, HerbalTea, MagicPill } from './drugs';
 
 const drugs = [
   new Doliprane(),
-  new Dafalgan(),
+  // new Dafalgan(),
   new HerbalTea(),
   new Fervex(),
   new MagicPill(),
