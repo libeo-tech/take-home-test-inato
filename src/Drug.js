@@ -2,6 +2,7 @@ import { CommonDrug } from "./CommonDrug";
 import { HERBAL_TEA, HerbalTea } from "./drugs/HerbalTea";
 import { MAGIC_PILL, MagicPill } from "./drugs/MagicPill";
 import { FERVEX, Fervex } from "./drugs/Fervex";
+import { Dafalgan, DAFALGAN } from "./drugs/Dafalgan";
 
 /**
  * This is here for legacy / compatibility reasons
@@ -20,6 +21,7 @@ export class Drug {
     else if (name === FERVEX) this.wrapped = new Fervex(expiresIn, benefit);
     else if (name === MAGIC_PILL)
       this.wrapped = new MagicPill(expiresIn, benefit);
+    else if (name === DAFALGAN) this.wrapped = new Dafalgan(expiresIn, benefit);
     else this.wrapped = new CommonDrug(name, expiresIn, benefit);
   }
 
