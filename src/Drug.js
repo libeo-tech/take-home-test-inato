@@ -50,4 +50,8 @@ export class Drug {
   dailyUpdate() {
     this.wrapped.dailyUpdate();
   }
+
+  toJSON() {
+    return this.wrapped;
+  }
 }
