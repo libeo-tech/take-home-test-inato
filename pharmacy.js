@@ -149,9 +149,8 @@ export class Pharmacy {
     this.drugs = drugs;
   }
   updateBenefitValue() {
-    for (let i = 0; i < this.drugs.length; i++) {
-      this.drugs[i].dailyUpdate();
-    }
+    this.drugs.forEach(drug => drug.dailyUpdate());
+
     return this.drugs;
   }
 }
