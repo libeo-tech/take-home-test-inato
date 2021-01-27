@@ -89,4 +89,25 @@ describe("Pharmacy", () => {
       });
     });
   });
+
+  // TODO: validate these business rules with PM
+  describe("When expiresIn equals 0", () => {
+    it("Should apply expiration business rule", () => {
+      expect(
+        new Pharmacy([new Drug("test", 0, 10)]).updateBenefitValue()
+      ).toEqual([new Drug("test", -1, 8)]);
+
+      expect(
+        new Pharmacy([new Drug(DRUGS.DAFALGAN, 0, 12)]).updateBenefitValue()
+      ).toEqual([new Drug(DRUGS.DAFALGAN, -1, 8)]);
+
+      expect(
+        new Pharmacy([new Drug(DRUGS.FERVEX, 0, 12)]).updateBenefitValue()
+      ).toEqual([new Drug(DRUGS.FERVEX, -1, 0)]);
+
+      expect(
+        new Pharmacy([new Drug(DRUGS.HERBAL_TEA, 0, 10)]).updateBenefitValue()
+      ).toEqual([new Drug(DRUGS.HERBAL_TEA, -1, 12)]);
+    });
+  });
 });
