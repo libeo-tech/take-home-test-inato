@@ -1,10 +1,13 @@
-const MAGIC_PILL = "Magic Pill";
-const HERBAL_TEA = "Herbal Tea";
-const FERVEX = "Fervex";
-const DOLIPRANE = "Doliprane";
-const DAFALGAN = "Dafalgan";
-const MIN_BENEFIT = 0;
-const MAX_BENEFIT = 50;
+import {
+  MAGIC_PILL,
+  HERBAL_TEA,
+  FERVEX,
+  DOLIPRANE,
+  DAFALGAN,
+  DEFAULT,
+  MIN_BENEFIT,
+  MAX_BENEFIT,
+} from "./constants";
 
 export class Drug {
   constructor(name, expiresIn, benefit) {
@@ -19,8 +22,12 @@ export class Pharmacy {
     this.drugs = drugs;
   }
   calculateBenefit({ name, benefit, expiresIn }) {
+    if (![HERBAL_TEA, FERVEX, DAFALGAN].includes(name)) {
+      name = DEFAULT;
+    }
+
     return {
-      [DOLIPRANE]: () => {
+      [DEFAULT]: () => {
         if (expiresIn < 0) {
           benefit -= 2;
         } else {
@@ -67,11 +74,7 @@ export class Pharmacy {
 
     const { name, expiresIn } = drug;
 
-    return {
-      name,
-      expiresIn: expiresIn - 1,
-      benefit: this.calculateBenefit(drug),
-    };
+    return new Drug(name, expiresIn - 1, this.calculateBenefit(drug));
   }
 
   updateBenefitValue() {
