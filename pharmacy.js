@@ -43,20 +43,12 @@ export class Drug {
         updateExpirationValue();
         break;
       default:
-        // benefit decrease for normal drugs
         if (this.benefit > 0) {
-          this.benefit = this.benefit - 1;
+          const step = expired ? 2 : 1;
+          const newBenefit = this.benefit - step;
+          this.benefit = Math.max(newBenefit, 0);
         }
-
-        // expiresIn update
-        this.expiresIn = this.expiresIn - 1;
-
-        if (this.expiresIn < 0) {
-          // benefit decrease for normal drugs after expiration
-          if (this.benefit > 0) {
-            this.benefit = this.benefit - 1;
-          }
-        }
+        updateExpirationValue();
     }
   }
 }
