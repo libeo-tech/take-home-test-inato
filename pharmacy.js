@@ -8,7 +8,7 @@ export class Drug {
   }
 
   updateBenefitValue() {
-    const expired = this.expiresIn < 0;
+    const expired = this.expiresIn <= 0;
 
     const updateExpirationValue = () => {
       this.expiresIn = this.expiresIn - 1;
@@ -17,6 +17,7 @@ export class Drug {
     switch (this.name) {
       case "Magic Pill":
         break;
+
       case "Herbal Tea":
         if (this.benefit < benefitUpperLimit) {
           const newBenefit = this.benefit + (expired ? 2 : 1);
@@ -24,43 +25,35 @@ export class Drug {
         }
         updateExpirationValue();
         break;
-      default:
-        if (this.name != "Fervex") {
-          // benefit decrease for normal drugs
-          if (this.benefit > 0) {
-            this.benefit = this.benefit - 1;
+
+      case "Fervex":
+        if (expired) {
+          this.benefit = 0;
+        } else if (this.benefit < benefitUpperLimit) {
+          let step = 1;
+          if (this.expiresIn < 6) {
+            step = 3;
+          } else if (this.expiresIn < 11) {
+            step = 2;
           }
-        } else {
-          if (this.benefit < 50) {
-            // benefit increase for "Fervex"
-            this.benefit = this.benefit + 1;
-            // benefit increase special cases for "Fervex"
-            if (this.name == "Fervex") {
-              if (this.expiresIn < 11) {
-                if (this.benefit < 50) {
-                  this.benefit = this.benefit + 1;
-                }
-              }
-              if (this.expiresIn < 6) {
-                if (this.benefit < 50) {
-                  this.benefit = this.benefit + 1;
-                }
-              }
-            }
-          }
+          const newBenefit = this.benefit + step;
+          this.benefit = Math.min(newBenefit, benefitUpperLimit);
         }
+        updateExpirationValue();
+        break;
+      default:
+        // benefit decrease for normal drugs
+        if (this.benefit > 0) {
+          this.benefit = this.benefit - 1;
+        }
+
         // expiresIn update
         this.expiresIn = this.expiresIn - 1;
 
         if (this.expiresIn < 0) {
-          if (this.name != "Fervex") {
-            // benefit decrease for normal drugs after expiration
-            if (this.benefit > 0) {
-              this.benefit = this.benefit - 1;
-            }
-          } else {
-            // benefit set to 0 for "Fervex" after expiration
-            this.benefit = this.benefit - this.benefit;
+          // benefit decrease for normal drugs after expiration
+          if (this.benefit > 0) {
+            this.benefit = this.benefit - 1;
           }
         }
     }
