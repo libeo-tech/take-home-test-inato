@@ -10,8 +10,13 @@ export class Drug {
   updateBenefitValue() {
     const expired = this.expiresIn <= 0;
 
-    const updateExpirationValue = () => {
+    const updateExpiration = () => {
       this.expiresIn = this.expiresIn - 1;
+    };
+
+    const updateBenefit = step => {
+      const newBenefit = this.benefit + step;
+      this.benefit = Math.max(Math.min(newBenefit, benefitUpperLimit), 0);
     };
 
     switch (this.name) {
@@ -21,10 +26,9 @@ export class Drug {
       case "Herbal Tea":
         if (this.benefit < benefitUpperLimit) {
           let step = expired ? 2 : 1;
-          const newBenefit = this.benefit + step;
-          this.benefit = Math.min(newBenefit, benefitUpperLimit);
+          updateBenefit(step);
         }
-        updateExpirationValue();
+        updateExpiration();
         break;
 
       case "Fervex":
@@ -37,28 +41,25 @@ export class Drug {
           } else if (this.expiresIn < 11) {
             step = 2;
           }
-          const newBenefit = this.benefit + step;
-          this.benefit = Math.min(newBenefit, benefitUpperLimit);
+          updateBenefit(step);
         }
-        updateExpirationValue();
+        updateExpiration();
         break;
 
       case "Dafalgan":
         if (this.benefit > 0) {
-          const step = expired ? 4 : 2;
-          const newBenefit = this.benefit - step;
-          this.benefit = Math.max(newBenefit, 0);
+          const step = expired ? -4 : -2;
+          updateBenefit(step);
         }
-        updateExpirationValue();
+        updateExpiration();
         break;
 
       default:
         if (this.benefit > 0) {
-          const step = expired ? 2 : 1;
-          const newBenefit = this.benefit - step;
-          this.benefit = Math.max(newBenefit, 0);
+          const step = expired ? -2 : -1;
+          updateBenefit(step);
         }
-        updateExpirationValue();
+        updateExpiration();
     }
   }
 }
