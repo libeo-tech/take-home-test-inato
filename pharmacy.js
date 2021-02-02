@@ -20,7 +20,8 @@ export class Drug {
 
       case "Herbal Tea":
         if (this.benefit < benefitUpperLimit) {
-          const newBenefit = this.benefit + (expired ? 2 : 1);
+          let step = expired ? 2 : 1;
+          const newBenefit = this.benefit + step;
           this.benefit = Math.min(newBenefit, benefitUpperLimit);
         }
         updateExpirationValue();
