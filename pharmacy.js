@@ -42,6 +42,16 @@ export class Drug {
         }
         updateExpirationValue();
         break;
+
+      case "Dafalgan":
+        if (this.benefit > 0) {
+          const step = expired ? 4 : 2;
+          const newBenefit = this.benefit - step;
+          this.benefit = Math.max(newBenefit, 0);
+        }
+        updateExpirationValue();
+        break;
+
       default:
         if (this.benefit > 0) {
           const step = expired ? 2 : 1;
