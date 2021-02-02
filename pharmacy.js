@@ -1,3 +1,5 @@
+const benefitUpperLimit = 50;
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
@@ -6,18 +8,31 @@ export class Drug {
   }
 
   updateBenefitValue() {
+    const expired = this.expiresIn < 0;
+
+    const updateExpirationValue = () => {
+      this.expiresIn = this.expiresIn - 1;
+    };
+
     switch (this.name) {
       case "Magic Pill":
         break;
+      case "Herbal Tea":
+        if (this.benefit < benefitUpperLimit) {
+          const newBenefit = this.benefit + (expired ? 2 : 1);
+          this.benefit = Math.min(newBenefit, benefitUpperLimit);
+        }
+        updateExpirationValue();
+        break;
       default:
-        if (this.name != "Herbal Tea" && this.name != "Fervex") {
+        if (this.name != "Fervex") {
           // benefit decrease for normal drugs
           if (this.benefit > 0) {
             this.benefit = this.benefit - 1;
           }
         } else {
           if (this.benefit < 50) {
-            // benefit increase for "Herbal Tea" and "Fervex"
+            // benefit increase for "Fervex"
             this.benefit = this.benefit + 1;
             // benefit increase special cases for "Fervex"
             if (this.name == "Fervex") {
@@ -38,21 +53,14 @@ export class Drug {
         this.expiresIn = this.expiresIn - 1;
 
         if (this.expiresIn < 0) {
-          if (this.name != "Herbal Tea") {
-            if (this.name != "Fervex") {
-              // benefit decrease for normal drugs after expiration
-              if (this.benefit > 0) {
-                this.benefit = this.benefit - 1;
-              }
-            } else {
-              // benefit set to 0 for "Fervex" after expiration
-              this.benefit = this.benefit - this.benefit;
+          if (this.name != "Fervex") {
+            // benefit decrease for normal drugs after expiration
+            if (this.benefit > 0) {
+              this.benefit = this.benefit - 1;
             }
           } else {
-            // benefit increase for "Herbal Tea" after expiration
-            if (this.benefit < 50) {
-              this.benefit = this.benefit + 1;
-            }
+            // benefit set to 0 for "Fervex" after expiration
+            this.benefit = this.benefit - this.benefit;
           }
         }
     }
