@@ -160,4 +160,42 @@ describe("Pharmacy", () => {
       });
     });
   });
+
+  describe("Dafalgan", () => {
+    describe("current expiresIn is positive", () => {
+      it("should decrease benefit by 2 and expiresIn by 1", () => {
+        expect(
+          new Pharmacy([new Drug("Dafalgan", 2, 3)]).updateBenefitValue()
+        ).toEqual([new Drug("Dafalgan", 1, 1)]);
+      });
+
+      it("should not decrease benefit below 0", () => {
+        expect(
+          new Pharmacy([new Drug("Dafalgan", 2, 1)]).updateBenefitValue()
+        ).toEqual([new Drug("Dafalgan", 1, 0)]);
+      });
+    });
+
+    describe("current expiresIn is 0", () => {
+      it("should decrease benefit by 4 and expiresIn by 1", () => {
+        expect(
+          new Pharmacy([new Drug("Dafalgan", 0, 10)]).updateBenefitValue()
+        ).toEqual([new Drug("Dafalgan", -1, 6)]);
+      });
+    });
+
+    describe("current expiresIn is negative", () => {
+      it("should decrease benefit by 4 and expiresIn by 1", () => {
+        expect(
+          new Pharmacy([new Drug("Dafalgan", -1, 4)]).updateBenefitValue()
+        ).toEqual([new Drug("Dafalgan", -2, 0)]);
+      });
+
+      it("should not decrease benefit below 0", () => {
+        expect(
+          new Pharmacy([new Drug("Dafalgan", -2, 3)]).updateBenefitValue()
+        ).toEqual([new Drug("Dafalgan", -3, 0)]);
+      });
+    });
+  });
 });
