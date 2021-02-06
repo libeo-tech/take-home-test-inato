@@ -6,6 +6,15 @@ export class Drug {
   }
 }
 
+/**
+ * An object describing for each type of drug, which behavior it has
+ * Properties are:
+ *  - minBenefit/maxBenefit: the minimum and maximum value for the drug benefit
+ *  - nextBenefit: a function that returns for a given drug the next benefit value it should get after 1 iteration
+ *  The value of nextBenefit will then be capped from minBenefit and maxBenefit value
+ *  - nextExpiry: a function that returns for a given drug the next expiresIn value it should get after 1 iteration
+ * For each property, if key is not present for the given drug, it will fallback to "_default" propetry
+ */
 const drugBehaviors = {
   "_default": {
     "minBenefit": (_drug) => 0,
