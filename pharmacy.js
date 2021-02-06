@@ -31,6 +31,9 @@ const drugBehaviors = {
       else
         return drug.benefit + 1;
     }
+  },
+  "Dafalgan": {
+    "nextBenefit": (drug) => (drug.expiresIn > 0) ? drug.benefit - 2 : drug.benefit - 4,
   }
 }
 
