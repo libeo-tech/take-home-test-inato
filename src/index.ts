@@ -4,10 +4,10 @@ import { Drug } from './drug'
 import { Pharmacy } from './pharmacy'
 
 const drugs: Array<Drug> = [
-  { name: 'Doliprane', expiresIn: 20, benefit: 30 },
-  { name: 'Herbal Tea', expiresIn: 10, benefit: 5 },
-  { name: 'Fervex', expiresIn: 5, benefit: 40 },
-  { name: 'Magic Pill', expiresIn: 15, benefit: 40 },
+  Drug.Create('Doliprane', 20, 30),
+  Drug.Create('Herbal Tea', 10, 5),
+  Drug.Create('Fervex', 5, 40),
+  Drug.Create('Magic Pill', 15, 40),
 ]
 
 const trial = new Pharmacy(drugs)

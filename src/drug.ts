@@ -8,6 +8,12 @@ export namespace Drug {
   const MAX_BENEFIT = 50
   const MIN_BENEFIT = 0
 
+  export function Create(name: string, expiresIn: number, benefit: number): Drug {
+    return {
+      name, expiresIn, benefit
+    }
+  }
+
   function capBenefit(benefit: number): number {
     return Math.min(Math.max(benefit, MIN_BENEFIT), MAX_BENEFIT)
   }
@@ -38,6 +44,10 @@ export namespace Drug {
           return benefit + 2
         else
           return benefit + 1
+      case 'Dafalgan':
+        return expiresIn > 0
+          ? benefit - 2
+          : benefit - 4
       default:
         return expiresIn > 0
           ? benefit - 1
