@@ -1,0 +1,18 @@
+{
+  "plugins": [
+    "prettier"
+  ],
+  "extends": [
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "rules": {
+    "import/extensions": 0,
+    "lines-between-class-members": 0,
+    "unicorn/prevent-abbreviations": "off"
+  }
+}
