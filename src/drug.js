@@ -1,4 +1,7 @@
+export const DRUG_MAXIMUM_BENEFIT = 50;
+
 export class Drug {
+
   constructor(name, expiresIn, benefit) {
     this.name = name;
     this.expiresIn = expiresIn;
@@ -7,6 +10,19 @@ export class Drug {
 
   decreaseExpiration() {
     this.expiresIn--;
+  }
+
+  increaseBenefit() {
+    if (this.benefit < DRUG_MAXIMUM_BENEFIT)
+      this.benefit++;
+  }
+
+  decreaseBenefit() {
+    this.benefit--;
+  }
+
+  benefitCanItBeDecreased() {
+    return this.benefit > 0;
   }
 }
 
