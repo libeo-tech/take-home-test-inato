@@ -26,7 +26,7 @@ describe("Pharmacy", () => {
 
   describe('Herbal Tea', () => {
 
-    it('should increases in benefit the older it gets. ', () => {
+    it('should increases in benefit the older it gets', () => {
       expect(new Pharmacy([new Drug("Herbal Tea", 2, 0)]).updateBenefitValue()).toEqual(
         [new Drug("Herbal Tea", 1, 1)]
       );
@@ -55,6 +55,35 @@ describe("Pharmacy", () => {
     })
 
   })
+
+  describe('Fervex', () => {
+
+    it('should increases in benefit the older it gets', () => {
+      expect(new Pharmacy([new Drug("Fervex", 11, 0)]).updateBenefitValue()).toEqual(
+        [new Drug("Fervex", 10, 1)]
+      );
+    })
+
+    it('should increases benefit by 2 when there are 10 days or less', () => {
+      expect(new Pharmacy([new Drug("Fervex", 10, 0)]).updateBenefitValue()).toEqual(
+        [new Drug("Fervex", 9, 2)]
+      );
+    })
+
+    it('should increases benefit by 3 when there are 5 days or less', () => {
+      expect(new Pharmacy([new Drug("Fervex", 5, 0)]).updateBenefitValue()).toEqual(
+        [new Drug("Fervex", 4, 3)]
+      );
+    })
+
+    it('should drops benefit to 0 after the expiration date', () => {
+      expect(new Pharmacy([new Drug("Fervex", 0, 10)]).updateBenefitValue()).toEqual(
+        [new Drug("Fervex", -1, 0)]
+      );
+    })
+
+  })
+
 
 
 });
