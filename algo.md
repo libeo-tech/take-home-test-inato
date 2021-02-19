@@ -19,8 +19,10 @@ Drugs have 3 characteristics : _new Drug (name, expiresIn, benefit)_
 
 ### Specifics
 
-- **"Herbal Tea"** actually increases in Benefit the older it gets. Benefit increases twice as fast after the expiration date.
 - **"Magic Pill"** never expires nor decreases in Benefit
+- **"Herbal Tea"**
+  - Benefit increases the older it gets
+  - Benefit increases twice as fast after the expiration date.
 - **"Fervex"**, like Herbal Tea, increases in Benefit as its expiration date approaches
   - Benefit increases by 2 when there are 10 days or less
   - Benefit increasesby 3 when there are 5 days or less but

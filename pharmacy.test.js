@@ -1,27 +1,21 @@
 import { Drug, Pharmacy } from './pharmacy';
 
-xdescribe('Pharmacy general rules', () => {
-  it('should decrease the benefit and expiresIn', () => {
+describe('Pharmacy general rules', () => {
+  it('should decrease Benefit and expiresIn', () => {
     expect(new Pharmacy([new Drug('test', 2, 3)]).updateBenefitValue()).toEqual([
       new Drug('test', 1, 2)
     ]);
   });
 
-  it('shoudl decrease twice as fast when expiresIn < 0', () => {
+  it('should decrease Benefit twice as fast when expiresIn < 0', () => {
     expect(new Pharmacy([new Drug('test', -1, 3)]).updateBenefitValue()).toEqual([
       new Drug('test', -2, 1)
     ]);
   });
 
-  it('should never have a Drug with negative value', () => {
+  it('should never have a Benefit < 0', () => {
     expect(new Pharmacy([new Drug('test', 2, 0)]).updateBenefitValue()).toEqual([
       new Drug('test', 1, 0)
-    ]);
-  });
-
-  it('should never have a Benefit > 50', () => {
-    expect(new Pharmacy([new Drug('Herbal Tea', 2, 50)]).updateBenefitValue()).toEqual([
-      new Drug('Herbal Tea', 1, 50)
     ]);
   });
 });
@@ -36,6 +30,12 @@ xdescribe('Pharmacy of specifif products', () => {
   it('"Herbal Tea" should increase the Benefit by 1 the older it gets', () => {
     expect(new Pharmacy([new Drug('Herbal Tea', 2, 3)]).updateBenefitValue()).toEqual([
       new Drug('Herbal Tea', 1, 4)
+    ]);
+  });
+
+  it('"Herbal Tea"should never have a Benefit > 50', () => {
+    expect(new Pharmacy([new Drug('Herbal Tea', 2, 50)]).updateBenefitValue()).toEqual([
+      new Drug('Herbal Tea', 1, 50)
     ]);
   });
 
