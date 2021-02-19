@@ -48,6 +48,13 @@ export class Drug {
         }
         this.expiresIn--;
         break;
+      case DrugName.DAFALGAN:
+        if (this.expiresIn <= 0) {
+          this.benefit -= 2;
+        }
+        this.benefit -= 2;
+        this.expiresIn--;
+        break;
       default:
         if (this.expiresIn <= 0) {
           this.benefit--;

@@ -90,4 +90,16 @@ describe("Pharmacy", () => {
       expect(drug.benefit).toEqual(0);
     });
   });
+  describe(DrugName.DAFALGAN, () => {
+    it("should decrease the benefit by 2 when expiration date has not passed", () => {
+      const drug = new Drug(DrugName.DAFALGAN, 11, 10);
+      new Pharmacy([drug]).updateBenefitValue();
+      expect(drug.benefit).toEqual(8);
+    });
+    it("should decrease the benefit by 4 when expiration date has passed", () => {
+      const drug = new Drug(DrugName.DAFALGAN, 0, 10);
+      new Pharmacy([drug]).updateBenefitValue();
+      expect(drug.benefit).toEqual(6);
+    });
+  });
 });
