@@ -62,4 +62,24 @@ describe('Pharmacy of specifif products', () => {
       new Drug('Fervex', -1, 0)
     ]);
   });
+
+  describe('New product', () => {
+    it('"Dafalgan" should decrease the benefit twice as fast as normal drugs', () => {
+      expect(new Pharmacy([new Drug('Dafalgan', 2, 3)]).updateBenefitValue()).toEqual([
+        new Drug('test', 1, 1)
+      ]);
+    });
+
+    it('"Dafalgan" should decrease the benefit 4 times when expired ', () => {
+      expect(new Pharmacy([new Drug('Dafalgan', -1, 10)]).updateBenefitValue()).toEqual([
+        new Drug('test', -2, 6)
+      ]);
+    });
+
+    it('"Dafalgan" should decrease the benefit 4 times when expired and never be negative', () => {
+      expect(new Pharmacy([new Drug('Dafalgan', -1, 3)]).updateBenefitValue()).toEqual([
+        new Drug('test', -2, 0)
+      ]);
+    });
+  });
 });
