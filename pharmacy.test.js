@@ -39,25 +39,25 @@ describe('Pharmacy of specifif products', () => {
     ]);
   });
 
-  xit('"Fervex" should increase the Benefit by 1 the older it gets: expire > 10 days', () => {
+  it('"Fervex" should increase the Benefit by 1 the older it gets: expire > 10 days', () => {
     expect(new Pharmacy([new Drug('Fervex', 11, 3)]).updateBenefitValue()).toEqual([
       new Drug('Fervex', 10, 4)
     ]);
   });
 
-  xit('"Fervex" should increase the Benefit by 2 the older it gets: 5 < expire <= 10 days', () => {
+  it('"Fervex" should increase the Benefit by 2 the older it gets: 5 < expire <= 10 days', () => {
     expect(new Pharmacy([new Drug('Fervex', 10, 3)]).updateBenefitValue()).toEqual([
       new Drug('Fervex', 9, 5)
     ]);
   });
 
-  xit('"Fervex" should increase the Benefit by 3 the older it gets: expire <= 5 days', () => {
+  it('"Fervex" should increase the Benefit by 3 the older it gets: expire <= 5 days', () => {
     expect(new Pharmacy([new Drug('Fervex', 5, 3)]).updateBenefitValue()).toEqual([
       new Drug('Fervex', 4, 6)
     ]);
   });
 
-  xit('"Fervex" should loose all Benefit if it expires', () => {
+  it('"Fervex" should loose all Benefit if it expires', () => {
     expect(new Pharmacy([new Drug('Fervex', 0, 5)]).updateBenefitValue()).toEqual([
       new Drug('Fervex', -1, 0)
     ]);

@@ -11,12 +11,19 @@ export class Drug {
 
   processBenefit(valueChange) {
     let newBenefit;
+
     switch (this.name) {
       case 'Magic Pill':
         newBenefit = this.benefit;
         break;
       case 'Herbal Tea':
         newBenefit = this.benefit + 1;
+        break;
+      case 'Fervex':
+        if (this.expiresIn > 10) newBenefit = this.benefit + 1;
+        else if (this.expiresIn > 5 && this.expiresIn <= 10) newBenefit = this.benefit + 2;
+        else if (this.expiresIn > 0 && this.expiresIn <= 5) newBenefit = this.benefit + 3;
+        else if (this.expiresIn <= 0) newBenefit = 0;
         break;
       default:
         newBenefit =
@@ -34,8 +41,8 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     for (const drug of this.drugs) {
-      drug.nextDay();
       drug.processBenefit(-1);
+      drug.nextDay();
     }
 
     return this.drugs;
