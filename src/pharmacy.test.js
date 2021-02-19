@@ -3,6 +3,7 @@ import {Drug} from "./drug";
 import {HerbalTea} from "./herbal-tea";
 import {MagicPill} from "./magic-pill";
 import {Fervex} from "./fervex";
+import {Dafalgan} from "./dafalgan";
 
 describe("Pharmacy", () => {
 
@@ -83,6 +84,16 @@ describe("Pharmacy", () => {
     it('should drops benefit to 0 after the expiration date', () => {
       expect(new Pharmacy([new Fervex(0, 10)]).updateBenefitValue()).toEqual(
         [new Fervex(-1, 0)]
+      );
+    })
+
+  })
+
+  describe("Dafalgan", () => {
+
+    it('should never expires nor decreases in benefit', () => {
+      expect(new Pharmacy([new Dafalgan(1, 10)]).updateBenefitValue()).toEqual(
+        [new Dafalgan(0, 8)]
       );
     })
 
