@@ -9,7 +9,7 @@ export class Drug {
     this.expiresIn = this.name === 'Magic Pill' ? this.expiresIn : --this.expiresIn;
   }
 
-  processBenefit(valueChange) {
+  processBenefit(valueChange = -1) {
     let newBenefit;
 
     switch (this.name) {
@@ -25,13 +25,19 @@ export class Drug {
         else if (this.expiresIn > 0 && this.expiresIn <= 5) newBenefit = this.benefit + 3;
         else if (this.expiresIn <= 0) newBenefit = 0;
         break;
+      case 'Dafalgan':
+        newBenefit =
+          this.expiresIn > 0 ? this.benefit + 2 * valueChange : this.benefit + 4 * valueChange;
+        break;
       default:
         newBenefit =
           this.expiresIn > 0 ? this.benefit + valueChange : this.benefit + 2 * valueChange;
         break;
     }
 
-    this.benefit = newBenefit < 0 || newBenefit > 50 ? this.benefit : newBenefit;
+    if (newBenefit > 50) this.benefit = 50;
+    else if (newBenefit < 0) this.benefit = 0;
+    else this.benefit = newBenefit;
   }
 }
 
@@ -41,7 +47,7 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     for (const drug of this.drugs) {
-      drug.processBenefit(-1);
+      drug.processBenefit();
       drug.nextDay();
     }
 

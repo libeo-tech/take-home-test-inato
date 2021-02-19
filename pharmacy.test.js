@@ -13,6 +13,12 @@ describe('Pharmacy general rules', () => {
     ]);
   });
 
+  it('should decrease Benefit twice as fast when expiresIn < 0 and minimum Benefice to 0', () => {
+    expect(new Pharmacy([new Drug('test', -1, 1)]).updateBenefitValue()).toEqual([
+      new Drug('test', -2, 0)
+    ]);
+  });
+
   it('should never have a Benefit < 0', () => {
     expect(new Pharmacy([new Drug('test', 2, 0)]).updateBenefitValue()).toEqual([
       new Drug('test', 1, 0)
@@ -64,21 +70,21 @@ describe('Pharmacy of specifif products', () => {
   });
 
   describe('New product', () => {
-    xit('"Dafalgan" should decrease the benefit twice as fast as normal drugs', () => {
+    it('"Dafalgan" should decrease the benefit twice as fast as normal drugs', () => {
       expect(new Pharmacy([new Drug('Dafalgan', 2, 3)]).updateBenefitValue()).toEqual([
-        new Drug('test', 1, 1)
+        new Drug('Dafalgan', 1, 1)
       ]);
     });
 
-    xit('"Dafalgan" should decrease the benefit 4 times when expired ', () => {
+    it('"Dafalgan" should decrease the benefit 4 times when expired ', () => {
       expect(new Pharmacy([new Drug('Dafalgan', -1, 10)]).updateBenefitValue()).toEqual([
-        new Drug('test', -2, 6)
+        new Drug('Dafalgan', -2, 6)
       ]);
     });
 
-    xit('"Dafalgan" should decrease the benefit 4 times when expired and never be negative', () => {
+    it('"Dafalgan" should decrease the benefit 4 times when expired and never be negative', () => {
       expect(new Pharmacy([new Drug('Dafalgan', -1, 3)]).updateBenefitValue()).toEqual([
-        new Drug('test', -2, 0)
+        new Drug('Dafalgan', -2, 0)
       ]);
     });
   });
