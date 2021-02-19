@@ -13,9 +13,9 @@ Drugs have 3 characteristics : _new Drug (name, expiresIn, benefit)_
 ### General
 
 - At the end of each day our system lowers both values for every drug
-- Once the expiration date has passed, Benefit degrades twice as fast.
 - The Benefit of an item is never more than 50
 - The Benefit of an item is never negative
+- Once the expiration date has passed, Benefit degrades twice as fast.
 
 ### Specifics
 
