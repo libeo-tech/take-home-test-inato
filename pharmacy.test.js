@@ -20,63 +20,63 @@ describe('Pharmacy general rules', () => {
   });
 });
 
-xdescribe('Pharmacy of specifif products', () => {
+describe('Pharmacy of specifif products', () => {
   it('"Magic Pill" should never expires nor decreases in Benefit', () => {
     expect(new Pharmacy([new Drug('Magic Pill', 2, 3)]).updateBenefitValue()).toEqual([
       new Drug('Magic Pill', 2, 3)
     ]);
   });
 
-  it('"Herbal Tea" should increase the Benefit by 1 the older it gets', () => {
+  xit('"Herbal Tea" should increase the Benefit by 1 the older it gets', () => {
     expect(new Pharmacy([new Drug('Herbal Tea', 2, 3)]).updateBenefitValue()).toEqual([
       new Drug('Herbal Tea', 1, 4)
     ]);
   });
 
-  it('"Herbal Tea"should never have a Benefit > 50', () => {
+  xit('"Herbal Tea"should never have a Benefit > 50', () => {
     expect(new Pharmacy([new Drug('Herbal Tea', 2, 50)]).updateBenefitValue()).toEqual([
       new Drug('Herbal Tea', 1, 50)
     ]);
   });
 
-  it('"Fervex" should increase the Benefit by 1 the older it gets: expire > 10 days', () => {
+  xit('"Fervex" should increase the Benefit by 1 the older it gets: expire > 10 days', () => {
     expect(new Pharmacy([new Drug('Fervex', 11, 3)]).updateBenefitValue()).toEqual([
       new Drug('Fervex', 10, 4)
     ]);
   });
 
-  it('"Fervex" should increase the Benefit by 2 the older it gets: 5 < expire <= 10 days', () => {
+  xit('"Fervex" should increase the Benefit by 2 the older it gets: 5 < expire <= 10 days', () => {
     expect(new Pharmacy([new Drug('Fervex', 10, 3)]).updateBenefitValue()).toEqual([
       new Drug('Fervex', 9, 5)
     ]);
   });
 
-  it('"Fervex" should increase the Benefit by 3 the older it gets: expire <= 5 days', () => {
+  xit('"Fervex" should increase the Benefit by 3 the older it gets: expire <= 5 days', () => {
     expect(new Pharmacy([new Drug('Fervex', 5, 3)]).updateBenefitValue()).toEqual([
       new Drug('Fervex', 4, 6)
     ]);
   });
 
-  it('"Fervex" should loose all Benefit if it expires', () => {
+  xit('"Fervex" should loose all Benefit if it expires', () => {
     expect(new Pharmacy([new Drug('Fervex', 0, 5)]).updateBenefitValue()).toEqual([
       new Drug('Fervex', -1, 0)
     ]);
   });
 
   describe('New product', () => {
-    it('"Dafalgan" should decrease the benefit twice as fast as normal drugs', () => {
+    xit('"Dafalgan" should decrease the benefit twice as fast as normal drugs', () => {
       expect(new Pharmacy([new Drug('Dafalgan', 2, 3)]).updateBenefitValue()).toEqual([
         new Drug('test', 1, 1)
       ]);
     });
 
-    it('"Dafalgan" should decrease the benefit 4 times when expired ', () => {
+    xit('"Dafalgan" should decrease the benefit 4 times when expired ', () => {
       expect(new Pharmacy([new Drug('Dafalgan', -1, 10)]).updateBenefitValue()).toEqual([
         new Drug('test', -2, 6)
       ]);
     });
 
-    it('"Dafalgan" should decrease the benefit 4 times when expired and never be negative', () => {
+    xit('"Dafalgan" should decrease the benefit 4 times when expired and never be negative', () => {
       expect(new Pharmacy([new Drug('Dafalgan', -1, 3)]).updateBenefitValue()).toEqual([
         new Drug('test', -2, 0)
       ]);
