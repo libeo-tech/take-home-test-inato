@@ -39,6 +39,12 @@ describe('Pharmacy of specifif products', () => {
     ]);
   });
 
+  it('"Herbal Tea" should increase the Benefit twice as fast after expiration date', () => {
+    expect(new Pharmacy([new Drug('Herbal Tea', -1, 3)]).updateBenefitValue()).toEqual([
+      new Drug('Herbal Tea', -2, 5)
+    ]);
+  });
+
   it('"Herbal Tea"should never have a Benefit > 50', () => {
     expect(new Pharmacy([new Drug('Herbal Tea', 2, 50)]).updateBenefitValue()).toEqual([
       new Drug('Herbal Tea', 1, 50)

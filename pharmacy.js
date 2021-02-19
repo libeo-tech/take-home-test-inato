@@ -17,7 +17,8 @@ export class Drug {
         newBenefit = this.benefit;
         break;
       case 'Herbal Tea':
-        newBenefit = this.benefit + 1;
+        if (this.expiresIn <= 0) newBenefit = this.benefit + 2;
+        else newBenefit = this.benefit + 1;
         break;
       case 'Fervex':
         if (this.expiresIn > 10) newBenefit = this.benefit + 1;
