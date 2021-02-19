@@ -27,13 +27,13 @@ describe('Pharmacy of specifif products', () => {
     ]);
   });
 
-  xit('"Herbal Tea" should increase the Benefit by 1 the older it gets', () => {
+  it('"Herbal Tea" should increase the Benefit by 1 the older it gets', () => {
     expect(new Pharmacy([new Drug('Herbal Tea', 2, 3)]).updateBenefitValue()).toEqual([
       new Drug('Herbal Tea', 1, 4)
     ]);
   });
 
-  xit('"Herbal Tea"should never have a Benefit > 50', () => {
+  it('"Herbal Tea"should never have a Benefit > 50', () => {
     expect(new Pharmacy([new Drug('Herbal Tea', 2, 50)]).updateBenefitValue()).toEqual([
       new Drug('Herbal Tea', 1, 50)
     ]);

@@ -13,14 +13,18 @@ export class Drug {
     let newBenefit;
     switch (this.name) {
       case 'Magic Pill':
-        this.benefit = this.benefit;
+        newBenefit = this.benefit;
+        break;
+      case 'Herbal Tea':
+        newBenefit = this.benefit + 1;
         break;
       default:
         newBenefit =
           this.expiresIn > 0 ? this.benefit + valueChange : this.benefit + 2 * valueChange;
-        this.benefit = newBenefit > 50 || newBenefit < 0 ? this.benefit : newBenefit;
         break;
     }
+
+    this.benefit = newBenefit < 0 || newBenefit > 50 ? this.benefit : newBenefit;
   }
 }
 
