@@ -26,42 +26,28 @@ export class Drug {
   nextDay() {
     switch (this.name) {
       case DrugName.MAGIC_PILL:
-        break;
+        return;
       case DrugName.HERBAL_TEA:
-        if (this.expiresIn <= 0) {
-          this.benefit++;
-        }
-        this.benefit++;
-        this.expiresIn--;
+        this.benefit += this.expiresIn > 0 ? 1 : 2;
         break;
       case DrugName.FERVEX:
         if (this.expiresIn <= 0) {
           this.benefit = 0;
+        } else if (this.expiresIn < 6) {
+          this.benefit += 3;
+        } else if (this.expiresIn < 11) {
+          this.benefit += 2;
         } else {
-          if (this.expiresIn < 11) {
-            this.benefit++;
-          }
-          if (this.expiresIn < 6) {
-            this.benefit++;
-          }
           this.benefit++;
         }
-        this.expiresIn--;
         break;
       case DrugName.DAFALGAN:
-        if (this.expiresIn <= 0) {
-          this.benefit -= 2;
-        }
-        this.benefit -= 2;
-        this.expiresIn--;
+        this.benefit -= this.expiresIn > 0 ? 2 : 4;
         break;
       default:
-        if (this.expiresIn <= 0) {
-          this.benefit--;
-        }
-        this.benefit--;
-        this.expiresIn--;
+        this.benefit -= this.expiresIn > 0 ? 1 : 2;
         break;
     }
+    this.expiresIn--;
   }
 }
