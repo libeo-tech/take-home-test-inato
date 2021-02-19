@@ -18,16 +18,15 @@ export class Drug {
   }
 
   decreaseBenefit() {
-    this.benefit--;
+    if (this.benefit > 0) {
+      this.benefit--;
+      if (this.expiresIn <= 0 && this.benefit > 0) {
+        this.benefit--;
+      }
+    }
   }
 
   benefitCanItBeDecreased() {
-    return this.benefit > 0;
+    return true;
   }
 }
-
-export const DRUGS = {
-  HERBAL_TEA: 'Herbal Tea',
-  FERVEX: "Fervex",
-  MAGIC_PILL: "Magic Pill"
-};

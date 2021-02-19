@@ -9,6 +9,12 @@ export class MagicPill extends Drug {
   decreaseExpiration() {
   }
 
+  decreaseBenefit() {
+  }
+
+  increaseBenefit() {
+  }
+
   benefitCanItBeDecreased() {
     return false;
   }

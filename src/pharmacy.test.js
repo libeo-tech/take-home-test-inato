@@ -15,8 +15,8 @@ describe("Pharmacy", () => {
     });
 
     it("should decrease the benefit twice as fast after expiration date", () => {
-      expect(new Pharmacy([new Drug("test", 0, 3)]).updateBenefitValue()).toEqual(
-        [new Drug("test", -1, 1)]
+      expect(new Pharmacy([new Drug("test", -1, 3)]).updateBenefitValue()).toEqual(
+        [new Drug("test", -2, 1)]
       );
     });
 
@@ -37,8 +37,8 @@ describe("Pharmacy", () => {
     })
 
     it('should increases benefit twice as fast after expiration date ', () => {
-      expect(new Pharmacy([new HerbalTea(0, 0)]).updateBenefitValue()).toEqual(
-        [new HerbalTea(-1, 2)]
+      expect(new Pharmacy([new HerbalTea(-1, 0)]).updateBenefitValue()).toEqual(
+        [new HerbalTea(-2, 2)]
       );
     })
 
