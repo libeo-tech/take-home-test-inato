@@ -6,7 +6,7 @@ export class Drug {
   }
 }
 
-// I assumed benefit can equal 50 and 0 since it wasnt clear to me
+// I assumed benefit can equal 50 and 0 since it wasnt clear to me in instructions
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs
@@ -16,9 +16,8 @@ export class Pharmacy {
   // there should be something to check for that normally
   updateBenefitValue() {
     for (let { name, expiresIn, benefit } of drugs) {
-      // drogues dont benef descend avec le temps
+      // drugs where benefit decreases with time
       if (name != 'Herbal Tea' && name != 'Fervex') {
-        // tant que benef n est pas tombé nul
         if (benefit > 0) {
           if (name != 'Magic Pill') {
             benefit = benefit - 1
@@ -27,10 +26,11 @@ export class Pharmacy {
         // handling Dafalgan case making sure we respect not falling under 0
         if (name === 'Dafalgan' && benefit >= 2) {
           benefit = benefit - 2
+        } else if (name === 'Dafalgan' && benefit < 2) {
+          benefit = 0
         }
       } else {
-        // pour drogues dont benef augmente avec le temps
-        // si benef inferieur a 50
+        // drugs where benefit increases with time
         if (benefit < 50) {
           // INCREMENTING BENEFIT DRUGS REWRITE
           // added expiresIn = 0 case for fervex
@@ -39,16 +39,20 @@ export class Pharmacy {
           // added herbal tea process for post expiry
           // added common +1 incrementation for fervex and herbal tea
           if (name === 'Fervex') {
-            if (expiresIn < 0) {
+            if (expiresIn <= 0) {
               benefit = 0
             } else if (expiresIn < 11) {
               if (benefit <= 48) {
                 benefit = benefit + 2
+              } else if (benefit === 49) {
+                benefit = 50
               }
             }
             if (expiresIn < 6) {
               if (benefit <= 47) {
                 benefit = benefit + 3
+              } else if (benefit > 47) {
+                benefit = 50
               }
             }
           } else if (name === 'Herbal Tea' && expiresIn < 0) {
@@ -92,18 +96,3 @@ export class Pharmacy {
     return this.drugs
   }
 }
-
-// old fervex below
-// manque une triple egalite ci dessous ?
-// if (name == 'Fervex') {
-//   if (expiresIn < 11) {
-//     if (benefit < 50) {
-//       benefit = benefit + 1
-//     }
-//   }
-//   if (expiresIn < 6) {
-//     if (benefit < 50) {
-//       benefit = benefit + 1
-//     }
-//   }
-// }
