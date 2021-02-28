@@ -1,33 +1,33 @@
 module.exports = {
-  roots: ["<rootDir>/tests"],
-  preset: "ts-jest",
-  testEnvironment: "node",
+  roots: ['<rootDir>/tests'],
+  preset: 'ts-jest',
+  testEnvironment: 'node',
   collectCoverage: true,
-  coverageDirectory: "coverage",
-  testPathIgnorePatterns: ["/node_modules/"],
+  coverageDirectory: 'coverage',
+  transform: {
+    'node_modules/variables/.+\\.(j|t)sx?$': 'ts-jest',
+  },
+  transformIgnorePatterns: ['node_modules/(?!variables/.*)'],
   verbose: true,
   reporters: [
-    "default",
+    'default',
     [
-      "jest-junit",
+      'jest-junit',
       {
-        outputName: "junit-TEST.xml"
-      }
-    ]
+        outputName: 'junit-TEST.xml',
+      },
+    ],
   ],
   coverageThreshold: {
     global: {
       statements: 50,
       branches: 100,
       functions: 100,
-      lines: 100
-    }
+      lines: 100,
+    },
   },
   testMatch: [
-    "**/__tests__/**/*.+(ts|tsx|js)",
-    "**/?(*.)+(spec|test).+(ts|tsx|js)"
+    '**/tests/**/*.tests.+(ts|tsx|js)',
+    '**/?(*.)+(spec|test).+(ts|tsx|js)',
   ],
-  transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest"
-  }
 };

@@ -10,8 +10,8 @@ export class Pharmacy {
   updateBenefitValue() {
     this.drugs.forEach((drug: Drug) => {
       return {
-        ...drug.toString(),
-        expireIn: !drug.isMagicPills() ? drug.expiresIn - 1 : drug.expiresIn,
+        ...drug,
+        expiresIn: drug.processExpiresIn(),
         benefit: drug.processBenefit(),
       };
     });
