@@ -2,13 +2,13 @@ import {MIN_BENEFIT, MAX_BENEFIT, DRUGS_NAME} from './Constant'
 
 export default class Drug {
     private _name: string;
-    private _expireIn: number;
+    private _expiresIn: number;
     private _benefit: number;
 
 
-    constructor(name: string, expireIn: number, benefit: number) {
+    constructor(name: string, expiresIn: number, benefit: number) {
         this._name = name;
-        this._expireIn = expireIn;
+        this._expiresIn = expiresIn;
         this._benefit = benefit;
     }
 
@@ -20,12 +20,12 @@ export default class Drug {
         this._name = name;
     }
 
-    get expireIn(): number {
-        return this._expireIn;
+    get expiresIn(): number {
+        return this._expiresIn;
     }
 
-    set expireIn(expireIn: number) {
-        this._expireIn = expireIn;
+    set expiresIn(expiresIn: number) {
+        this._expiresIn = expiresIn;
     }
 
     get benefit(): number {
@@ -34,6 +34,14 @@ export default class Drug {
 
     set benefit(benefit: number) {
         this._benefit = benefit;
+    }
+
+    toString() {
+        return {
+            name: this.name,
+            expiresIn: this.expiresIn,
+            benefit: this.benefit,
+        };
     }
 
 
@@ -63,26 +71,26 @@ export default class Drug {
             case DRUGS_NAME.MAGIG_PILL:
                 return this.benefit // "Magic Pill" never expires nor decreases in Benefit
             case DRUGS_NAME.FERVEX:
-                if (this.expireIn <= 0)
+                if (this.expiresIn <= 0)
                     return 0
-                else if (this.expireIn <= 5)
+                else if (this.expiresIn <= 5)
                     return this.updateBenefit(3);
-                else if (this.expireIn <= 10)
+                else if (this.expiresIn <= 10)
                     return this.updateBenefit(2);
                 else
                     return this.updateBenefit(1);
             case DRUGS_NAME.HERBAL_TEA:
-                return this.expireIn > 0
+                return this.expiresIn > 0
                     ? this.updateBenefit(1)
                     : this.updateBenefit(2);
             case DRUGS_NAME.DAFALGAN:
                 // "Dafalgan" degrades in Benefit twice as fast as normal drugs
-                return this.expireIn > 0
+                return this.expiresIn > 0
                     ? this.updateBenefit(-2)
                     : this.updateBenefit(-4)
             default:
                 // Once the expiration date has passed, Benefit degrades twice as fast.
-                return this.expireIn > 0
+                return this.expiresIn > 0
                     ? this.updateBenefit(-1)
                     : this.updateBenefit(-2);
         }
