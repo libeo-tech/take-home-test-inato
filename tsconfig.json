@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-     "outDir": "dist",
+    "outDir": "dist",
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -19,7 +19,8 @@
     "useDefineForClassFields": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
+    "allowJs": true,
     "baseUrl": "src"
   },
-  "exclude": []
+  "exclude": ["node_modules", "dist"]
 }
