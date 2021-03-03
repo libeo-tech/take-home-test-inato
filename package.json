@@ -12,6 +12,7 @@
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint . --ext .ts",
+    "pretest": "npm run build",
     "test": "jest",
     "build": "tsc -p src/tsconfig.build.json",
     "build:watch": "tsc -w -p src/tsconfig.build.json",
