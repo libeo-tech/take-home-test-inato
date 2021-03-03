@@ -46,7 +46,7 @@ describe("Pharmacy", () => {
   });
 
 
-  it("Fervex increases in benefit only as its expiration date approaches", () => {
+  it("Fervex increases in benefit", () => {
     const updatedDrug = new Pharmacy([new Drug("Fervex", 12, 1)]).updateBenefitValue()[0];
     expect(updatedDrug.expiresIn).toEqual(11);
     expect(updatedDrug.benefit).toEqual(2);
