@@ -1,17 +1,12 @@
 export class Drug {
-  constructor(name, expiresIn, benefit) {
-    this.name = name;
-    this.expiresIn = expiresIn;
-    this.benefit = benefit;
-  }
+  constructor(public name: string, public expiresIn: number, public benefit: number) { }
 }
 
 export class Pharmacy {
-  constructor(drugs = []) {
-    this.drugs = drugs;
-  }
-  updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
+  constructor(public drugs: Drug[] = []) { }
+
+  public updateBenefitValue(): Drug[] {
+    for (let i = 0; i < this.drugs.length; i++) {
       if (
         this.drugs[i].name != "Herbal Tea" &&
         this.drugs[i].name != "Fervex"
