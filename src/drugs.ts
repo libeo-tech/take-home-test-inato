@@ -1,3 +1,4 @@
+import { DafalganDefinition } from "./drugs-definitions/dafalgan.definition";
 import { FervexDefinition } from "./drugs-definitions/fervex.definition";
 import { HerbalTeaDefinition } from "./drugs-definitions/herbal-tea.definition";
 import { MagicPillDefinition } from "./drugs-definitions/magic-pill.definition";
@@ -53,7 +54,8 @@ export type PrettifiedDrug = Pick<Drug, 'name' | 'expiresIn' | 'benefit'>;
 export enum RegisteredDrugName {
     HERBAL_TEA = "Herbal Tea",
     FERVEX = "Fervex",
-    MAGIC_PILL = "Magic Pill"
+    MAGIC_PILL = "Magic Pill",
+    DAFALGAN = "Dafalgan"
 }
 
 export type DrugDefinition = (drug: Drug) => ({
@@ -63,5 +65,6 @@ export type DrugDefinition = (drug: Drug) => ({
 export const DrugsDefinitionsMapping: Record<RegisteredDrugName, DrugDefinition> = {
     [RegisteredDrugName.HERBAL_TEA]: HerbalTeaDefinition,
     [RegisteredDrugName.FERVEX]: FervexDefinition,
-    [RegisteredDrugName.MAGIC_PILL]: MagicPillDefinition
+    [RegisteredDrugName.MAGIC_PILL]: MagicPillDefinition,
+    [RegisteredDrugName.DAFALGAN]: DafalganDefinition
 }
