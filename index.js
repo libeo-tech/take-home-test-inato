@@ -1,3 +1,3 @@
-import { run } from "./run";
+import { run } from "./src/run";
 
 run();

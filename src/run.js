@@ -17,7 +17,7 @@ function run(outputName) {
     log.push(JSON.stringify(trial.updateBenefitValue()));
   }
   /* eslint-disable no-console */
-  fs.writeFileSync(outputName, log.join(","), (err) => {
+  fs.writeFileSync(`./outputs/${outputName}`, log.join(","), (err) => {
     if (err) {
       console.log("error");
     } else {
