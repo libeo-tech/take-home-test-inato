@@ -1,4 +1,4 @@
-const DRUG_NAMES = { HERBAL_TEA: "Herbal Tea" };
+const DRUG_NAMES = { HERBAL_TEA: "Herbal Tea", MAGIC_PILL: "Magic Pill" };
 class DrugBehavior {
   updateValues(name, benefit, expiresIn) {
     if (name != "Herbal Tea" && name != "Fervex") {
@@ -67,11 +67,18 @@ class HerbalTeaBehavior extends DrugBehavior {
   }
 }
 
+class MagicPillBehavior extends DrugBehavior {
+  updateValues(name, benefit, expiresIn) {
+    return { benefit, expiresIn: expiresIn };
+  }
+}
+
 function createDrugBehavior(drugName) {
   switch (drugName) {
     case DRUG_NAMES.HERBAL_TEA:
       return new HerbalTeaBehavior();
-
+    case DRUG_NAMES.MAGIC_PILL:
+      return new MagicPillBehavior();
     default:
       return new DrugBehavior();
   }
