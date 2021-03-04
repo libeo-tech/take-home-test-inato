@@ -106,22 +106,3 @@ export class Drug {
     this.expiresIn = expiresIn;
   }
 }
-
-export class Pharmacy {
-  constructor(drugs = []) {
-    this.drugs = drugs;
-  }
-
-  updateBenefitValue() {
-    this.drugs.forEach((drug) => drug.elapseDay());
-    return this.drugs;
-  }
-
-  toOutput() {
-    return this.drugs.map(({ name, expiresIn, benefit }) => ({
-      name,
-      expiresIn,
-      benefit,
-    }));
-  }
-}
