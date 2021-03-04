@@ -1,3 +1,4 @@
+const DRUG_NAMES = { HERBAL_TEA: "Herbal Tea" };
 class DrugBehavior {
   updateValues(name, benefit, expiresIn) {
     if (name != "Herbal Tea" && name != "Fervex") {
@@ -45,14 +46,42 @@ class DrugBehavior {
     }
     return { benefit, expiresIn };
   }
+
+  updateBenefit(current, toAdd) {
+    let newValue = current + toAdd;
+    if (newValue > 50) {
+      return 50;
+    }
+    if (newValue < 0) {
+      return 0;
+    }
+    return newValue;
+  }
 }
 
+class HerbalTeaBehavior extends DrugBehavior {
+  updateValues(name, benefit, expiresIn) {
+    const benefitIncrement = expiresIn <= 0 ? 2 : 1;
+    const updatedBenefit = this.updateBenefit(benefit, benefitIncrement);
+    return { benefit: updatedBenefit, expiresIn: expiresIn - 1 };
+  }
+}
+
+function createDrugBehavior(drugName) {
+  switch (drugName) {
+    case DRUG_NAMES.HERBAL_TEA:
+      return new HerbalTeaBehavior();
+
+    default:
+      return new DrugBehavior();
+  }
+}
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
-    this.behavior = new DrugBehavior();
+    this.behavior = createDrugBehavior(name);
   }
 
   elapseDay() {
