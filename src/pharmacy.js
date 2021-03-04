@@ -1,70 +1,39 @@
-const DRUG_NAMES = {
+export const DRUG_NAMES = {
   HERBAL_TEA: "Herbal Tea",
   MAGIC_PILL: "Magic Pill",
   FERVEX: "Fervex",
+  DAFALGAN: "Dafalgan",
 };
+
+export const MAX_BENEFIT = 50;
+export const MIN_BENEFIT = 0;
+export const BASE_DECREMENT_VALUE = 1;
+
 class DrugBehavior {
-  updateValues(name, benefit, expiresIn) {
-    if (name != "Herbal Tea" && name != "Fervex") {
-      if (benefit > 0) {
-        if (name != "Magic Pill") {
-          benefit = benefit - 1;
-        }
-      }
-    } else {
-      if (benefit < 50) {
-        benefit = benefit + 1;
-        if (name == "Fervex") {
-          if (expiresIn < 11) {
-            if (benefit < 50) {
-              benefit = benefit + 1;
-            }
-          }
-          if (expiresIn < 6) {
-            if (benefit < 50) {
-              benefit = benefit + 1;
-            }
-          }
-        }
-      }
-    }
-    if (name != "Magic Pill") {
-      expiresIn = expiresIn - 1;
-    }
-    if (expiresIn < 0) {
-      if (name != "Herbal Tea") {
-        if (name != "Fervex") {
-          if (benefit > 0) {
-            if (name != "Magic Pill") {
-              benefit = benefit - 1;
-            }
-          }
-        } else {
-          benefit = benefit - benefit;
-        }
-      } else {
-        if (benefit < 50) {
-          benefit = benefit + 1;
-        }
-      }
-    }
-    return { benefit, expiresIn };
+  updateValues(benefit, expiresIn) {
+    const benefitIncrement = this.getBenefitIncrement(expiresIn);
+    const updatedBenefit = this.updateBenefit(benefit, benefitIncrement);
+    return { benefit: updatedBenefit, expiresIn: expiresIn - 1 };
+  }
+
+  getBenefitIncrement(expiresIn) {
+    return expiresIn > 0 ? -BASE_DECREMENT_VALUE : -2 * BASE_DECREMENT_VALUE;
   }
 
   updateBenefit(current, toAdd) {
     let newValue = current + toAdd;
-    if (newValue > 50) {
-      return 50;
+    if (newValue > MAX_BENEFIT) {
+      return MAX_BENEFIT;
     }
-    if (newValue < 0) {
-      return 0;
+    if (newValue < MIN_BENEFIT) {
+      return MIN_BENEFIT;
     }
     return newValue;
   }
 }
 
 class HerbalTeaBehavior extends DrugBehavior {
-  updateValues(name, benefit, expiresIn) {
+  updateValues(benefit, expiresIn) {
     const benefitIncrement = expiresIn <= 0 ? 2 : 1;
     const updatedBenefit = this.updateBenefit(benefit, benefitIncrement);
     return { benefit: updatedBenefit, expiresIn: expiresIn - 1 };
@@ -72,13 +41,13 @@ class HerbalTeaBehavior extends DrugBehavior {
 }
 
 class MagicPillBehavior extends DrugBehavior {
-  updateValues(name, benefit, expiresIn) {
+  updateValues(benefit, expiresIn) {
     return { benefit, expiresIn: expiresIn };
   }
 }
 
 class FervexBehavior extends DrugBehavior {
-  updateValues(name, benefit, expiresIn) {
+  updateValues(benefit, expiresIn) {
     const benefitIncrement = this.getBenefitIncrement(expiresIn, benefit);
     const updatedBenefit = this.updateBenefit(benefit, benefitIncrement);
 
@@ -100,6 +69,15 @@ class FervexBehavior extends DrugBehavior {
   }
 }
 
+class DafalganBehavior extends DrugBehavior {
+  updateValues(benefit, expiresIn) {
+    const benefitIncrement = this.getBenefitIncrement(expiresIn) * 2;
+    const updatedBenefit = this.updateBenefit(benefit, benefitIncrement);
+
+    return { benefit: updatedBenefit, expiresIn: expiresIn - 1 };
+  }
+}
+
 function createDrugBehavior(drugName) {
   switch (drugName) {
     case DRUG_NAMES.HERBAL_TEA:
@@ -108,10 +86,13 @@ function createDrugBehavior(drugName) {
       return new MagicPillBehavior();
     case DRUG_NAMES.FERVEX:
       return new FervexBehavior();
+    case DRUG_NAMES.DAFALGAN:
+      return new DafalganBehavior();
     default:
       return new DrugBehavior();
   }
 }
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
@@ -122,7 +103,6 @@ export class Drug {
 
   elapseDay() {
     const { benefit, expiresIn } = this.behavior.updateValues(
-      this.name,
       this.benefit,
       this.expiresIn
     );

@@ -94,4 +94,16 @@ describe("Drug", () => {
       expect(drugs[0].benefit).toEqual(0);
     });
   });
+
+  describe("Dafalgan", () => {
+    const drugs = [new Drug("Dafalgan", 20, 20)];
+    const trial = new Pharmacy(drugs);
+
+    for (let elapsedDays = 0; elapsedDays < 5; elapsedDays++) {
+      trial.updateBenefitValue();
+    }
+    it("Degrades in Benefit twice as fast as normal drugs", () => {
+      expect(drugs[0].benefit).toEqual(10);
+    });
+  });
 });
