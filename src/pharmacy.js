@@ -1,4 +1,8 @@
-const DRUG_NAMES = { HERBAL_TEA: "Herbal Tea", MAGIC_PILL: "Magic Pill" };
+const DRUG_NAMES = {
+  HERBAL_TEA: "Herbal Tea",
+  MAGIC_PILL: "Magic Pill",
+  FERVEX: "Fervex",
+};
 class DrugBehavior {
   updateValues(name, benefit, expiresIn) {
     if (name != "Herbal Tea" && name != "Fervex") {
@@ -73,12 +77,37 @@ class MagicPillBehavior extends DrugBehavior {
   }
 }
 
+class FervexBehavior extends DrugBehavior {
+  updateValues(name, benefit, expiresIn) {
+    const benefitIncrement = this.getBenefitIncrement(expiresIn, benefit);
+    const updatedBenefit = this.updateBenefit(benefit, benefitIncrement);
+
+    return { benefit: updatedBenefit, expiresIn: expiresIn - 1 };
+  }
+
+  getBenefitIncrement(expiresIn, benefit) {
+    if (expiresIn > 10) {
+      return 1;
+    }
+    if (expiresIn > 5) {
+      return 2;
+    }
+    if (expiresIn > 0) {
+      return 3;
+    }
+
+    return -benefit;
+  }
+}
+
 function createDrugBehavior(drugName) {
   switch (drugName) {
     case DRUG_NAMES.HERBAL_TEA:
       return new HerbalTeaBehavior();
     case DRUG_NAMES.MAGIC_PILL:
       return new MagicPillBehavior();
+    case DRUG_NAMES.FERVEX:
+      return new FervexBehavior();
     default:
       return new DrugBehavior();
   }
