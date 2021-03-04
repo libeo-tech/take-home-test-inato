@@ -14,7 +14,8 @@ function run(outputName) {
   const log = [];
 
   for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-    log.push(JSON.stringify(trial.updateBenefitValue()));
+    trial.updateBenefitValue();
+    log.push(JSON.stringify(trial.toOutput()));
   }
   /* eslint-disable no-console */
   fs.writeFileSync(`./outputs/${outputName}`, log.join(","), (err) => {
