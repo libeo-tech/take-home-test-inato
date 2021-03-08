@@ -7,6 +7,22 @@ export class Fervex extends Drug {
   }
 
   updateBenefit() {
-    this.benefit < 50 ? (this.benefit += 1) : null;
+    if (this.expiresIn > 0) {
+      if (this.expiresIn < 11 && this.expiresIn > 5) {
+        this.benefit += 2;
+      } else if (this.expiresIn < 6) {
+        this.benefit += 3;
+      } else {
+        this.benefit += 1;
+      }
+    } else {
+      this.dropToZero();
+    }
+    if (this.benefit > 50) this.benefit = 50;
+    this.updateExpireIn();
+  }
+
+  dropToZero() {
+    this.benefit = 0;
   }
 }

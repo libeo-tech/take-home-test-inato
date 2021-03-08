@@ -6,10 +6,10 @@ export class Dafalgan extends Drug {
   }
 
   updateBenefit() {
-    this.benefit > 1
-      ? (this.benefit -= 2)
-      : this.benefit > 0
-      ? (this.benefit -= 1)
+    this.benefit > 0
+      ? (this.benefit -= 1 * (this.expiresIn > 0 ? 2 : 4))
       : null;
+    if (Math.sign(this.benefit) < 0) this.benefit = 0;
+    this.updateExpireIn();
   }
 }
