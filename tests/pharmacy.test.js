@@ -3,7 +3,8 @@ import {
   Drug,
   ImperishableDrug,
   ProgressiveDrug,
-  HerbalTea
+  HerbalTea,
+  Dafalgan
 } from "../src/drug";
 
 describe("Pharmacy", () => {
@@ -61,5 +62,12 @@ describe("Pharmacy", () => {
     expect(
       new Pharmacy([new ProgressiveDrug("Fervex", 0, 2)]).updateBenefitValue()
     ).toEqual([new ProgressiveDrug("Fervex", -1, 0)]);
+  });
+
+  it("should decrease the benefit of Dafalgan twice as fast", () => {
+    const pharmacy = new Pharmacy([new Dafalgan(2, 8)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new Dafalgan(1, 6)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new Dafalgan(0, 4)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new Dafalgan(-1, 0)]);
   });
 });
