@@ -1,25 +1,26 @@
 import { Drug } from "../pharmacy";
 
 export class Fervex extends Drug {
-  constructor(name, expiresIn, benefit, benefitVariation) {
+  constructor(name, expiresIn, benefit) {
     super(name, expiresIn, benefit);
-    this.benefitVariation = benefitVariation;
+  }
+
+  getBenefitFactor() {
+    let benefitFactor = super.getBenefitFactor();
+    if (this.expiresIn > 5 && this.expiresIn < 11) {
+      return benefitFactor * 2;
+    } else if (this.expiresIn < 6) {
+      return benefitFactor * 3;
+    } else {
+      return benefitFactor;
+    }
   }
 
   updateBenefit() {
-    if (this.expiresIn > 0) {
-      if (this.expiresIn < 11 && this.expiresIn > 5) {
-        this.benefit += 2;
-      } else if (this.expiresIn < 6) {
-        this.benefit += 3;
-      } else {
-        this.benefit += 1;
-      }
-    } else {
-      this.dropToZero();
-    }
+    this.expiresIn > 0
+      ? (this.benefit += this.getBenefitFactor())
+      : this.dropToZero();
     if (this.benefit > 50) this.benefit = 50;
-    this.updateExpireIn();
   }
 
   dropToZero() {
