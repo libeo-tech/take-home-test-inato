@@ -4,6 +4,14 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+  updateExpireIn() {
+    this.expiresIn -= 1;
+  }
+
+  updateBenefit() {
+    this.benefit > 0 ? (this.benefit -= 1) : null;
+  }
 }
 
 export class Pharmacy {
@@ -21,7 +29,7 @@ export class Pharmacy {
             if (this.drugs[i].name == "Dafalgan" && this.drugs[i].benefit > 1) {
               this.drugs[i].benefit = this.drugs[i].benefit - 2;
             } else {
-              this.drugs[i].benefit = this.drugs[i].benefit - 1;
+              this.drugs[i].updateBenefit();
             }
           }
         }
@@ -43,7 +51,7 @@ export class Pharmacy {
         }
       }
       if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
+        this.drugs[i].updateExpireIn();
       }
       if (this.drugs[i].expiresIn < 0) {
         if (this.drugs[i].name != "Herbal Tea") {
@@ -56,7 +64,7 @@ export class Pharmacy {
                 ) {
                   this.drugs[i].benefit = this.drugs[i].benefit - 2;
                 } else {
-                  this.drugs[i].benefit = this.drugs[i].benefit - 1;
+                  this.drugs[i].updateBenefit();
                 }
               }
             }
