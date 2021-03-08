@@ -57,7 +57,7 @@ export class Pharmacy {
           }
         } else {
           if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
+            this.drugs[i].updateBenefit();
           }
         }
       }
