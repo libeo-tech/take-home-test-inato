@@ -31,3 +31,11 @@ describe("Dafalgan benefit already to zero", () => {
     ).toEqual([new Drug("Dafalgan", -2, 0)]);
   });
 });
+
+describe("Dafalgan is expired and the benefit still positive", () => {
+  it("should decrease by 4 the benefit and by 1 the expiresIn", () => {
+    expect(
+      new Pharmacy([new Drug("Dafalgan", -2, 4)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", -3, 0)]);
+  });
+});
