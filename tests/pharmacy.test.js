@@ -6,5 +6,9 @@ describe("Pharmacy", () => {
     expect(new Pharmacy([new Drug("test", 2, 3)]).updateBenefitValue()).toEqual(
       [new Drug("test", 1, 2)]
     );
+
+    expect(new Pharmacy([new Drug("test", 0, 3)]).updateBenefitValue()).toEqual(
+      [new Drug("test", -1, 1)]
+    );
   });
 });
