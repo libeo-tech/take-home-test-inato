@@ -1,13 +1,13 @@
 import { Pharmacy } from "./pharmacy";
-import { Drug } from "./drug";
+import { AgingDrug, Drug, ImperishableDrug, ProgressiveDrug } from "./drug";
 
 import fs from "fs";
 
 const drugs = [
   new Drug("Doliprane", 20, 30),
-  new Drug("Herbal Tea", 10, 5),
-  new Drug("Fervex", 5, 40),
-  new Drug("Magic Pill", 15, 40)
+  new AgingDrug("Herbal Tea", 10, 5),
+  new ProgressiveDrug("Fervex", 5, 40),
+  new ImperishableDrug("Magic Pill", 15, 40)
 ];
 const trial = new Pharmacy(drugs);
 
@@ -18,7 +18,7 @@ for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
 }
 
 /* eslint-disable no-console */
-fs.writeFile("output.txt", log, err => {
+fs.writeFile("output.txt", log.toString(), err => {
   if (err) {
     console.log("error");
   } else {
