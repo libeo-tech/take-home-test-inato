@@ -1,9 +1,9 @@
 import { Pharmacy } from "../src/pharmacy";
 import {
-  AgingDrug,
   Drug,
   ImperishableDrug,
-  ProgressiveDrug
+  ProgressiveDrug,
+  HerbalTea
 } from "../src/drug";
 
 describe("Pharmacy", () => {
@@ -22,22 +22,16 @@ describe("Pharmacy", () => {
   });
 
   it("should increase the benefit and decrease expiresIn of Herbal Tea", () => {
-    const pharmacy = new Pharmacy([new AgingDrug("Herbal Tea", 2, 3)]);
-    expect(pharmacy.updateBenefitValue()).toEqual([
-      new AgingDrug("Herbal Tea", 1, 4)
-    ]);
-    expect(pharmacy.updateBenefitValue()).toEqual([
-      new AgingDrug("Herbal Tea", 0, 5)
-    ]);
-    expect(pharmacy.updateBenefitValue()).toEqual([
-      new AgingDrug("Herbal Tea", -1, 7)
-    ]);
+    const pharmacy = new Pharmacy([new HerbalTea(2, 3)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new HerbalTea(1, 4)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new HerbalTea(0, 5)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new HerbalTea(-1, 7)]);
   });
 
   it("should keep benefit below 50", () => {
-    expect(
-      new Pharmacy([new AgingDrug("Herbal Tea", 2, 50)]).updateBenefitValue()
-    ).toEqual([new AgingDrug("Herbal Tea", 1, 50)]);
+    expect(new Pharmacy([new HerbalTea(2, 50)]).updateBenefitValue()).toEqual([
+      new HerbalTea(1, 50)
+    ]);
   });
 
   it("should not change the benefit and expiresIn of Magic Pill", () => {
