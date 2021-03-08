@@ -44,9 +44,7 @@ export class Pharmacy {
           }
         }
       }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].updateExpireIn();
-      }
+      this.drugs[i].updateExpireIn();
       if (this.drugs[i].expiresIn < 0) {
         if (this.drugs[i].name != "Herbal Tea") {
           if (this.drugs[i].name != "Fervex") {
