@@ -1,12 +1,4 @@
-import { Drug, Pharmacy } from "./pharmacy";
-
-describe("Pharmacy", () => {
-  it("should decrease the benefit and expiresIn", () => {
-    expect(
-      new Pharmacy([new Drug("test", 2, 3)]).updateBenefitValue()
-    ).toEqual([new Drug("test", 1, 2)]);
-  });
-});
+import { Drug, Pharmacy } from "../pharmacy";
 
 describe("Dafalgan not expired", () => {
   it("should decrease by 2 the benefit and by 1 the expiresIn", () => {
@@ -32,10 +24,18 @@ describe("Dafalgan benefit already to zero", () => {
   });
 });
 
-describe("Dafalgan is expired and the benefit still positive", () => {
+describe("Dafalgan is expired and the benefit > 4", () => {
   it("should decrease by 4 the benefit and by 1 the expiresIn", () => {
     expect(
       new Pharmacy([new Drug("Dafalgan", -2, 4)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", -3, 0)]);
+  });
+});
+
+describe("Dafalgan is expired and the benefit < 4", () => {
+  it("should drop to 0 the benefit and by 1 the expiresIn", () => {
+    expect(
+      new Pharmacy([new Drug("Dafalgan", -2, 2)]).updateBenefitValue()
     ).toEqual([new Drug("Dafalgan", -3, 0)]);
   });
 });
