@@ -29,16 +29,16 @@ export class Pharmacy {
         }
       } else {
         if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
+          this.drugs[i].updateBenefit();
           if (this.drugs[i].name == "Fervex") {
             if (this.drugs[i].expiresIn < 11) {
               if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
+                this.drugs[i].updateBenefit();
               }
             }
             if (this.drugs[i].expiresIn < 6) {
               if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
+                this.drugs[i].updateBenefit();
               }
             }
           }
