@@ -1,0 +1,1 @@
+export { Drug } from "./base";
