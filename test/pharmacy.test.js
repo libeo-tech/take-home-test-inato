@@ -58,4 +58,18 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("Magic Pill", 1, 30)]);
     });
   });
+
+  describe("Herbal Tea behaviour", () => {
+    it("should increase in benefit by one when not yet expired", () => {
+      expect(
+        new Pharmacy([new Drug("Herbal Tea", 1, 30)]).updateBenefitValue()
+      ).toEqual([new Drug("Herbal Tea", 0, 31)]);
+    });
+
+    it("should increase in benefit by two when expired", () => {
+      expect(
+        new Pharmacy([new Drug("Herbal Tea", -1, 30)]).updateBenefitValue()
+      ).toEqual([new Drug("Herbal Tea", -2, 32)]);
+    });
+  });
 });
