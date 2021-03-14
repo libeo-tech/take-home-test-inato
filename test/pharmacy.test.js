@@ -72,4 +72,30 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("Herbal Tea", -2, 32)]);
     });
   });
+
+  describe("Fervex behaviour", () => {
+    it("should increase in benefit by one when expiration date is in more than 10 days", () => {
+      expect(
+        new Pharmacy([new Drug("Fervex", 18, 30)]).updateBenefitValue()
+      ).toEqual([new Drug("Fervex", 17, 31)]);
+    });
+
+    it("should increase in benefit by two when expiration date is 10 days or less", () => {
+      expect(
+        new Pharmacy([new Drug("Fervex", 9, 30)]).updateBenefitValue()
+      ).toEqual([new Drug("Fervex", 8, 32)]);
+    });
+
+    it("should increase in benefit by three when expiration date is 5 days or less", () => {
+      expect(
+        new Pharmacy([new Drug("Fervex", 3, 30)]).updateBenefitValue()
+      ).toEqual([new Drug("Fervex", 2, 33)]);
+    });
+
+    it("should drop benefit to 0 when expires", () => {
+      expect(
+        new Pharmacy([new Drug("Fervex", 0, 30)]).updateBenefitValue()
+      ).toEqual([new Drug("Fervex", -1, 0)]);
+    });
+  });
 });
