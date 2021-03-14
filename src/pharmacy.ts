@@ -1,5 +1,9 @@
+import { Drug } from "./drug";
+
 export class Pharmacy {
-  constructor(drugs = []) {
+  drugs: Drug[];
+
+  constructor(drugs: Drug[] = []) {
     this.drugs = drugs;
   }
   updateBenefitValue() {

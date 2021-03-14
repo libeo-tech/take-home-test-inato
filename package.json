@@ -12,13 +12,16 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
-    "start": "babel-node src/index.js"
+    "start": "ts-node src/index.ts"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.34",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^23.6.0",
@@ -27,6 +30,7 @@
     "eslint-plugin-prettier": "^2.6.2",
     "jest": "24.8.0",
     "prettier": "^1.14.3",
-    "regenerator-runtime": "^0.12.1"
+    "regenerator-runtime": "^0.12.1",
+    "source-map-loader": "^2.0.1"
   }
 }

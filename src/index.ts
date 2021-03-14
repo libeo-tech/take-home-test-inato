@@ -1,7 +1,7 @@
 import { Pharmacy } from "./pharmacy";
 import { Drug } from "./drug";
 
-import fs from "fs";
+import { writeFile } from "fs";
 
 const drugs = [
   new Drug("Doliprane", 20, 30),
@@ -18,7 +18,7 @@ for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
 }
 
 /* eslint-disable no-console */
-fs.writeFile("output.txt", log, err => {
+writeFile("output.txt", log.toString(), err => {
   if (err) {
     console.log("error");
   } else {
