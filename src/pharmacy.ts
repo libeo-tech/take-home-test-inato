@@ -7,24 +7,28 @@ export class Pharmacy {
   drugs: Drug[];
 
   constructor(drugs: Drug[] = []) {
-    this.drugs = drugs;
+    this.drugs = this.castDrugs(drugs);
   }
-  updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      switch (this.drugs[i].name) {
+
+  castDrugs(drugs: Drug[]): Drug[] {
+    return drugs.map(currentDrug => {
+      switch (currentDrug.name) {
         case "Magic Pill":
-          Object.setPrototypeOf(this.drugs[i], MagicPill.prototype);
+          Object.setPrototypeOf(currentDrug, MagicPill.prototype);
           break;
         case "Herbal Tea":
-          Object.setPrototypeOf(this.drugs[i], HerbalTea.prototype);
+          Object.setPrototypeOf(currentDrug, HerbalTea.prototype);
           break;
         case "Fervex":
-          Object.setPrototypeOf(this.drugs[i], Fervex.prototype);
+          Object.setPrototypeOf(currentDrug, Fervex.prototype);
           break;
       }
-      this.drugs[i].updateBenefitValue();
-    }
+      return currentDrug;
+    });
+  }
 
+  updateBenefitValue() {
+    this.drugs.map(currentDrug => currentDrug.updateBenefitValue());
     return this.drugs;
   }
 }
