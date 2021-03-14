@@ -1,5 +1,5 @@
 import { Pharmacy } from "../src/pharmacy";
-import { Drug } from "../src/drug";
+import { Drug } from "../src/drugs/drug";
 
 describe("Pharmacy", () => {
   describe("ExpiresIn behaviour check", () => {

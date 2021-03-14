@@ -1,8 +1,8 @@
-import { Drug } from "./drug";
-import { MagicPill } from "./MagicPill";
-import { HerbalTea } from "./HerbalTea";
-import { Fervex } from "./Fervex";
-import { Dafalgan } from "./Dafalgan";
+import { Drug } from "./drugs/drug";
+import { MagicPill } from "./drugs/MagicPill";
+import { HerbalTea } from "./drugs/HerbalTea";
+import { Fervex } from "./drugs/Fervex";
+import { Dafalgan } from "./drugs/Dafalgan";
 
 export class Pharmacy {
   drugs: Drug[];
