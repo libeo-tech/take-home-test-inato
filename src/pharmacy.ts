@@ -1,4 +1,5 @@
 import { Drug } from "./drug";
+import { MagicPill } from "./MagicPill";
 
 export class Pharmacy {
   drugs: Drug[];
@@ -8,6 +9,11 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
+      if (this.drugs[i].name == "Magic Pill") {
+        Object.setPrototypeOf(this.drugs[i], MagicPill.prototype);
+        this.drugs[i].updateBenefitValue();
+        continue;
+      }
       if (
         this.drugs[i].name != "Herbal Tea" &&
         this.drugs[i].name != "Fervex"
