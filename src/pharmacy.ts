@@ -2,6 +2,7 @@ import { Drug } from "./drug";
 import { MagicPill } from "./MagicPill";
 import { HerbalTea } from "./HerbalTea";
 import { Fervex } from "./Fervex";
+import { Dafalgan } from "./Dafalgan";
 
 export class Pharmacy {
   drugs: Drug[];
@@ -21,6 +22,9 @@ export class Pharmacy {
           break;
         case "Fervex":
           Object.setPrototypeOf(currentDrug, Fervex.prototype);
+          break;
+        case "Dafalgan":
+          Object.setPrototypeOf(currentDrug, Dafalgan.prototype);
           break;
       }
       return currentDrug;
