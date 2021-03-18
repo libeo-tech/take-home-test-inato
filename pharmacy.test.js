@@ -29,9 +29,21 @@ describe("Pharmacy", () => {
     );
   });
 
-  it("should increase benefit", () => {
+  it("should increase benefit by 3", () => {
     expect(new Pharmacy([new Drug("Fervex", 5, 40)]).updateBenefitValue()).toEqual(
       [new Drug("Fervex", 4, 43)]
+    );
+  });
+
+  it("should increase benefit by 2", () => {
+    expect(new Pharmacy([new Drug("Fervex", 10, 40)]).updateBenefitValue()).toEqual(
+      [new Drug("Fervex", 9, 42)]
+    );
+  });
+
+  it("should decrease benefit", () => {
+    expect(new Pharmacy([new Drug("Fervex", 12, 40)]).updateBenefitValue()).toEqual(
+      [new Drug("Fervex", 11, 39)]
     );
   });
 
