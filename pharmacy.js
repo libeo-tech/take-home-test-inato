@@ -19,7 +19,7 @@ export class Pharmacy {
   }
 
   /**
-   * 
+   * herbalTeaGetOlder
    * @param {*} drug 
    * @returns 
    */
@@ -32,7 +32,7 @@ export class Pharmacy {
   }
 
   /**
-   * 
+   * magicalPillDoMagic
    * @param {*} drug 
    * @returns 
    */
@@ -42,7 +42,7 @@ export class Pharmacy {
   }
 
   /**
-   * 
+   * fervexGetOlder
    * @param {*} drug 
    * @returns 
    */
@@ -58,7 +58,7 @@ export class Pharmacy {
   }
 
   /**
-   * 
+   * genericGetOlder
    * @param {*} drug 
    * @returns 
    */
@@ -71,7 +71,7 @@ export class Pharmacy {
   }
 
   /**
-   * 
+   * dafalganExpireFaster
    * @param {*} drug 
    * @returns 
    */
@@ -84,7 +84,7 @@ export class Pharmacy {
   }
 
   /**
-   * 
+   * updateBenefitValue
    * @returns 
    */
   updateBenefitValue() {
