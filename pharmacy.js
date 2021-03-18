@@ -20,8 +20,10 @@ export class Pharmacy {
 
   /**
    * herbalTeaGetOlder
+   * increases in Benefit the older it gets. 
+   * Benefit increases twice as fast after the expiration date
    * @param {*} drug 
-   * @returns 
+   * @returns drug
    */
   herbalTeaGetOlder(drug) {
     drug = this.generic(drug);
@@ -33,8 +35,9 @@ export class Pharmacy {
 
   /**
    * magicalPillDoMagic
+   * "Magic Pill" never expires nor decreases in Benefit.
    * @param {*} drug 
-   * @returns 
+   * @returns drug
    */
   magicalPillDoMagic(drug) {
     //do nothing :D
@@ -43,8 +46,12 @@ export class Pharmacy {
 
   /**
    * fervexGetOlder
+   * ncreases in Benefit as its expiration date approaches. 
+   * Benefit increases by 2 when <= 10 days 
+   *  by 3 when <= 5 days
+   * Benefit drops to 0 after the expiration date
    * @param {*} drug 
-   * @returns 
+   * @returns drug
    */
   fervexGetOlder(drug) {
     drug = this.generic(drug);
@@ -59,6 +66,7 @@ export class Pharmacy {
 
   /**
    * genericGetOlder
+   * At the end of each day our system lowers both values for every drug
    * @param {*} drug 
    * @returns 
    */
@@ -72,8 +80,9 @@ export class Pharmacy {
 
   /**
    * dafalganExpireFaster
+   * "Dafalgan" degrades in Benefit twice as fast as normal drugs.
    * @param {*} drug 
-   * @returns 
+   * @returns drug
    */
   dafalganExpireFaster(drug) {
     drug = this.generic(drug);
@@ -85,7 +94,8 @@ export class Pharmacy {
 
   /**
    * updateBenefitValue
-   * @returns 
+   * Select the action to do for each drugs type
+   * @returns drug[]
    */
   updateBenefitValue() {
     this.drugs = this.drugs.map((drug) => {
