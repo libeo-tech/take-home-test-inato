@@ -9,57 +9,69 @@ export class Drug {
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
-  }
-  updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
-          }
-        }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name == "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) {
-        if (this.drugs[i].name != "Herbal Tea") {
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-            }
-          } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          }
-        }
-      }
+    this.specialDrugsName = {
+      "Doliprane": this.dolipraneExpireFaster,
+      "Herbal Tea": this.herbalTeaGetOlder,
+      "Fervex": this.fervexGetOlder,
+      "Magic Pill": this.magicalPillDoMagic,
+      "generic": this.genericGetOlder
     }
+  }
+
+  herbalTeaGetOlder(drug) {
+    drug.benefit = drug.benefit + 2;
+    if (drug.expiresIn < 0)
+      drug.benefit = drug.benefit + 1;
+    return this.generic(drug);
+  }
+
+  magicalPillDoMagic(drug) {
+    //do nothing :D
+    return drug;
+  }
+
+  fervexGetOlder(drug) {
+    if (drug.expiresIn <= 10 && drug.expiresIn > 5)
+      drug.benefit = drug.benefit + 3;
+    if (drug.expiresIn <= 5)
+      drug.benefit = drug.benefit + 4;
+    if (drug.expiresIn < 0)
+      drug.benefit = 0;
+    return this.generic(drug);;
+  }
+
+  genericGetOlder(drug) {
+    drug.benefit = drug.benefit - 1;
+    drug.expiresIn = drug.expiresIn - 1;
+    if (drug.expiresIn < 0)
+      drug.expiresIn = drug.benefit - 1;
+    return drug;
+  }
+
+  // dolipraneExpireFaster(drug) {
+  //   drug.benefit = drug.benefit - 1;
+  //   if (drug.expiresIn < 0)
+  //     drug.expiresIn = drug.benefit - 1;
+  //   return this.generic(drug);
+  // }
+
+  updateBenefitValue() {
+    this.drugs = this.drugs.map((drug) => {
+      if (this.specialDrugsName.hasOwnProperty(drug.name)) {
+        drug = this.specialDrugsName[drug.name](drug);
+      }
+      else {
+        drug = this.genericGetOlder(drug);
+      }
+
+      if (drug.benefit < 0) {
+        drug.benefit = 0;
+      }
+      if (drug.benefit > 50) {
+        drug.benefit = 50;
+      }
+      return drug;
+    })
 
     return this.drugs;
   }
