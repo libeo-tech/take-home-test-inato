@@ -27,7 +27,7 @@ export class Pharmacy {
     drug = this.generic(drug);
     drug.benefit = drug.benefit + 2;
     if (drug.expiresIn < 0)
-      drug.benefit = drug.benefit + 1;
+      drug.benefit = drug.benefit + 2;
     return drug;
   }
 

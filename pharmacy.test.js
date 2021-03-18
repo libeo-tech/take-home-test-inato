@@ -23,6 +23,12 @@ describe("Pharmacy", () => {
     );
   });
 
+  it("should increase benefit twice", () => {
+    expect(new Pharmacy([new Drug("Herbal Tea", 0, 5)]).updateBenefitValue()).toEqual(
+      [new Drug("Herbal Tea", -1, 7)]
+    );
+  });
+
   it("should increase benefit", () => {
     expect(new Pharmacy([new Drug("Fervex", 5, 40)]).updateBenefitValue()).toEqual(
       [new Drug("Fervex", 4, 43)]
