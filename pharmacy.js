@@ -11,14 +11,16 @@ export class Pharmacy {
     this.drugs = drugs;
   }
   updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
+    //Do a switch statement, default being the regular
+    for (var i = 0; i < this.drugs.length; i++) { //goes through all the drugs list
       if (
         this.drugs[i].name != "Herbal Tea" &&
         this.drugs[i].name != "Fervex"
       ) {
-        if (this.drugs[i].benefit > 0) {
+        // eslint-disable-next-line prettier/prettier
+        if (this.drugs[i].benefit > 0) { //Magic pill never expires nor decreases in Benefit
           if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
+            this.drugs[i].benefit = this.drugs[i].benefit - 1; // name a const decreaseDaily for benefit loss so that you can change this value easier
           }
         }
       } else {
@@ -46,7 +48,7 @@ export class Pharmacy {
           if (this.drugs[i].name != "Fervex") {
             if (this.drugs[i].benefit > 0) {
               if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
+                this.drugs[i].benefit = this.drugs[i].benefit - 1; //should degrade twice as fast (-2 * decreaseDaily instead of -1 * decreaseDaily)
               }
             }
           } else {
