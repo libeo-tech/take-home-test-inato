@@ -73,6 +73,8 @@ export class Pharmacy {
             this.herbalTeaUpdate(drug);
             break;
           case "Fervex":
+            this.fervexUpdate(drug);
+            break;
           case "Dafalgan":
           default:
             this.normalUpdate(drug);
@@ -92,6 +94,21 @@ export class Pharmacy {
       drug.benefit += 2;
     else
       drug.benefit += 1;
+
+    if (drug.benefit > 50)
+      drug.benefit = 50;
+  }
+
+  fervexUpdate(drug) {
+    if (drug.expiresIn < 0)
+      drug.benefit = 0
+    else if (drug.expiresIn <= 5)
+      drug.benefit += 3;
+    else if (drug.expiresIn <= 10)
+      drug.benefit += 2;
+    else
+      drug.benefit += 1;
+
     if (drug.benefit > 50)
       drug.benefit = 50;
   }
