@@ -14,7 +14,7 @@ export class Pharmacy {
     //Do a switch statement, default being the regular
     const dailyBenefitIncrease = 1;
     for (var i = 0; i < this.drugs.length; i++) { //goes through all the drugs list
-      this.drugs[i].expiresIn--;
+      this.drugs[i].expiresIn--; // if it doesn't exist, the expiry date doesn't change
       switch (this.drugs[i].name) {
         case "Herbal Tea":
           if (this.drugs[i].expiresIn >= 0) {
@@ -42,6 +42,16 @@ export class Pharmacy {
           break;
         case "Magic Pill":
           this.drugs[i].expiresIn++;
+          break;
+        case "Dafalgan":
+          if (this.drugs[i].expiresIn >= 0) {
+            this.drugs[i].benefit -= 2 * dailyBenefitIncrease;
+          } else {
+            this.drugs[i].benefit -= 4 * dailyBenefitIncrease;
+          }
+          if (this.drugs[i].benefit < 0) {
+            this.drugs[i].benefit = 0;
+          }
           break;
         default:
           if (this.drugs[i].expiresIn >= 0) {
