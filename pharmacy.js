@@ -63,4 +63,25 @@ export class Pharmacy {
 
     return this.drugs;
   }
+
+  updateBenefitValue2() {
+    for (let drug of this.drugs) {
+      if (drug.name != "Magic Pill") {
+        drug.expiresIn -= 1;
+        switch (drug.name) {
+          case "Herbal Tea":
+          case "Fervex":
+          case "Dafalgan":
+          default:
+            this.normalUpdate(drug);
+        }
+      }
+    }
+    return this.drugs;
+  }
+
+  normalUpdate(drug) {
+    if (drug.benefit > 0 && drug.benefit < 50)
+      drug.benefit -= 1;
+  }
 }
