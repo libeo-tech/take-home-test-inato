@@ -70,6 +70,8 @@ export class Pharmacy {
         drug.expiresIn -= 1;
         switch (drug.name) {
           case "Herbal Tea":
+            this.herbalTeaUpdate(drug);
+            break;
           case "Fervex":
           case "Dafalgan":
           default:
@@ -83,5 +85,14 @@ export class Pharmacy {
   normalUpdate(drug) {
     if (drug.benefit > 0 && drug.benefit < 50)
       drug.benefit -= 1;
+  }
+
+  herbalTeaUpdate(drug) {
+    if (drug.expiresIn < 0)
+      drug.benefit += 2;
+    else
+      drug.benefit += 1;
+    if (drug.benefit > 50)
+      drug.benefit = 50;
   }
 }
