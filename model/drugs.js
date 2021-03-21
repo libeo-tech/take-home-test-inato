@@ -9,6 +9,7 @@ export class Drug {
     return this.expiresIn - 1;
   }
 
+  // This method should be overridden to implement specific drug benefit behaviour
   getBenefitDiff() {
     return this.expiresIn < 0 ? -2 : -1;
   }
