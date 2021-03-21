@@ -7,3 +7,15 @@ describe("Pharmacy", () => {
     );
   });
 });
+
+// Adding more tests
+
+// For Dafalgan
+
+// For Magic Pill
+
+// For Fervex
+
+// For Herbal Tea
+
+// For 'default' drugs like Doliprane
