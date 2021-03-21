@@ -1,5 +1,5 @@
-import Pharmacy from "./pharmacy";
-import drugFactory from "./drugs";
+import Pharmacy from "./model/pharmacy";
+import drugFactory from "./model/drugs";
 
 import fs from "fs";
 

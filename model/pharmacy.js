@@ -4,7 +4,7 @@ export default class Pharmacy {
   }
   updateBenefitValue() {
     for (const drug of this.drugs) {
-      drug.updateBenefit()
+      drug.updateBenefit();
     }
     return this.drugs;
   }
