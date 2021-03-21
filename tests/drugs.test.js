@@ -1,4 +1,4 @@
-import { Defalgan, Drug, Fervex, HerbalTea, MagicPill } from "../model/drugs";
+import drugFactory, { Defalgan, Drug, Fervex, HerbalTea, MagicPill } from "../model/drugs";
 
 describe("Drug", () => {
   it("should decrease in Benefit and expiresIn", () => {
@@ -46,8 +46,30 @@ describe("Fervex", () => {
 });
 
 describe("Defalgan", () => {
-    it("degrades in Benefit twice as fast as normal drugs.", () => {
-      expect(new Defalgan("Defalgan", 12, 10).updateBenefit()).toEqual(new Defalgan("Defalgan", 11, 8));
-    });
+  it("degrades in Benefit twice as fast as normal drugs.", () => {
+    expect(new Defalgan("Defalgan", 12, 10).updateBenefit()).toEqual(new Defalgan("Defalgan", 11, 8));
   });
-  
+});
+
+
+describe("The drug factory", () => {
+  it("instantiates a Herbal Tea when the name of the drug is 'Herbal Tea'", () => {
+    expect(new drugFactory("Herbal Tea", 12, 10)).toBeInstanceOf(HerbalTea);
+  });
+
+  it("instantiates a Magic Pill when the name of the drug is 'Magic Pill'", () => {
+    expect(new drugFactory("Magic Pill", 12, 10)).toBeInstanceOf(MagicPill);
+  });
+
+  it("instantiates a Fervex when the name of the drug is 'Fervex'", () => {
+    expect(new drugFactory("Fervex", 12, 10)).toBeInstanceOf(Fervex);
+  });
+
+  it("instantiates a Defalgan Tea when the name of the drug is 'Defalgan'", () => {
+    expect(new drugFactory("Defalgan", 12, 10)).toBeInstanceOf(Defalgan);
+  });
+
+  it("instantiates a normal Drug for other names", () => {
+    expect(new drugFactory("Doliprane", 12, 10).constructor.name).toEqual("Drug");
+  });
+})
