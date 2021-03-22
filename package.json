@@ -12,6 +12,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
+    "test:coverage": "yarn test --coverage",
     "start": "babel-node index.js"
   },
   "devDependencies": {

@@ -20,8 +20,8 @@ describe("Pharmacy", () => {
 
     describe("And the expiration date has passed", () => {
       it("Benefit should degrades twice as fast", () => {
-        const drug = buildDrug(DRUG_NAME, 1, 4);
-        const benefit = getBenefitsAfterDays(drug, 2);
+        const drug = buildDrug(DRUG_NAME, 1, 6);
+        const benefit = getBenefitsAfterDays(drug, 3);
         expect(benefit).toBe(1);
       });
 
@@ -111,6 +111,12 @@ describe("Pharmacy", () => {
           const benefit = getBenefitsAfterDays(drug, 1);
           expect(benefit).toBe(14);
         });
+
+        it("Benefit should never be greater that 50", () => {
+          const drug = buildDrug(DRUG_NAME, 10, 49);
+          const benefit = getBenefitsAfterDays(drug, 1);
+          expect(benefit).toBe(50);
+        });
       });
 
       describe("And expiration date is lower or equal than 5 days and greater than 0 days", () => {
@@ -118,6 +124,12 @@ describe("Pharmacy", () => {
           const drug = buildDrug(DRUG_NAME, 5, 12);
           const benefit = getBenefitsAfterDays(drug, 1);
           expect(benefit).toBe(15);
+        });
+
+        it("Benefit should never be greater that 50", () => {
+          const drug = buildDrug(DRUG_NAME, 5, 49);
+          const benefit = getBenefitsAfterDays(drug, 1);
+          expect(benefit).toBe(50);
         });
       });
     });
