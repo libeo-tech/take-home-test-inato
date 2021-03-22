@@ -1,10 +1,17 @@
-FROM node:12.10.0-alpine
+FROM node:12.10.0-alpine AS builder
 
 WORKDIR /usr/src
 
-COPY package.json /usr/src/package.json
+COPY package.json .
 RUN yarn install
 
-COPY . /usr/src/
+COPY . .
 
-CMD ["yarn", "start"]
+RUN yarn build
+
+FROM node:12.10.0-alpine
+WORKDIR /usr/app
+
+COPY --from=builder /usr/src/dist .
+
+CMD ["node", "index.js"]

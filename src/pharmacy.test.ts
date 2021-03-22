@@ -143,11 +143,11 @@ describe("Pharmacy", () => {
     });
   });
 
-  function buildDrug(name, expireIn, benefit) {
+  function buildDrug(name: string, expireIn: number, benefit: number) {
     return new Drug(name, expireIn, benefit);
   }
 
-  function getBenefitsAfterDays(drug, days) {
+  function getBenefitsAfterDays(drug: Drug, days: number) {
     const pharmacy = new Pharmacy([drug]);
 
     for (let i = days; i > 0; i--) {
