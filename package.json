@@ -20,7 +20,7 @@
     "lint:prettier:fix": "yarn prettier --write '{src,test}/**/*.{ts,js,md,json}'",
     "test": "jest",
     "test:coverage": "yarn test --coverage",
-    "start": "node dist/index.js"
+    "start": "node dist/main.js"
   },
   "jest": {
     "testEnvironment": "node",

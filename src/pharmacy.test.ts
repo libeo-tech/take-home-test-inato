@@ -1,18 +1,21 @@
-import { Drug, Pharmacy } from "./pharmacy";
+import { DegradingDrug, Fervex, HerbalTea, MagicPill, Pharmacy } from "./index";
+import { Drug } from "./Drug";
 
 describe("Pharmacy", () => {
   describe("Given a drug that degrades over time", () => {
-    const DRUG_NAME = "degrading drug";
+    function buildDrug(expireIn: number, benefit: number) {
+      return new DegradingDrug("degrading drug", expireIn, benefit);
+    }
 
     describe("And the expiration date has not passed", () => {
       it("Benefit should degrades by 1", () => {
-        const drug = buildDrug(DRUG_NAME, 2, 3);
+        const drug = buildDrug(2, 3);
         const benefit = getBenefitsAfterDays(drug, 1);
         expect(benefit).toBe(2);
       });
 
       it("Benefit should not be negative", () => {
-        const drug = buildDrug(DRUG_NAME, 10, 1);
+        const drug = buildDrug(10, 1);
         const benefit = getBenefitsAfterDays(drug, 5);
         expect(benefit).toBe(0);
       });
@@ -20,13 +23,13 @@ describe("Pharmacy", () => {
 
     describe("And the expiration date has passed", () => {
       it("Benefit should degrades twice as fast", () => {
-        const drug = buildDrug(DRUG_NAME, 1, 6);
+        const drug = buildDrug(1, 6);
         const benefit = getBenefitsAfterDays(drug, 3);
         expect(benefit).toBe(1);
       });
 
       it("Benefit should not be negative", () => {
-        const drug = buildDrug(DRUG_NAME, 1, 1);
+        const drug = buildDrug(1, 1);
         const benefit = getBenefitsAfterDays(drug, 3);
         expect(benefit).toBe(0);
       });
@@ -34,17 +37,19 @@ describe("Pharmacy", () => {
   });
 
   describe("Given 'Herbal Tea' drug", () => {
-    const DRUG_NAME = "Herbal Tea";
+    function buildDrug(expireIn: number, benefit: number) {
+      return new HerbalTea(expireIn, benefit);
+    }
 
     describe("And the expiration date has not passed", () => {
       it("Benefit should increase by 1", () => {
-        const drug = buildDrug(DRUG_NAME, 2, 1);
+        const drug = buildDrug(2, 1);
         const benefit = getBenefitsAfterDays(drug, 1);
         expect(benefit).toBe(2);
       });
 
       it("Benefit should not be greater than 50", () => {
-        const drug = buildDrug(DRUG_NAME, 4, 49);
+        const drug = buildDrug(4, 49);
         const benefit = getBenefitsAfterDays(drug, 3);
         expect(benefit).toBe(50);
       });
@@ -52,13 +57,13 @@ describe("Pharmacy", () => {
 
     describe("And the expiration date has passed", () => {
       it("Benefit should increase twice as fast", () => {
-        const drug = buildDrug(DRUG_NAME, 1, 1);
+        const drug = buildDrug(1, 1);
         const benefit = getBenefitsAfterDays(drug, 2);
         expect(benefit).toBe(4);
       });
 
       it("Benefit should never be greater that 50", () => {
-        const drug = buildDrug(DRUG_NAME, 1, 49);
+        const drug = buildDrug(1, 49);
         const benefit = getBenefitsAfterDays(drug, 3);
         expect(benefit).toBe(50);
       });
@@ -66,11 +71,13 @@ describe("Pharmacy", () => {
   });
 
   describe("Given 'Magic Pill' drug", () => {
-    const DRUG_NAME = "Magic Pill";
+    function buildDrug(expireIn: number, benefit: number) {
+      return new MagicPill(expireIn, benefit);
+    }
 
     describe("And the expiration date has not passed", () => {
       it("Benefit should stay constant", () => {
-        const drug = buildDrug(DRUG_NAME, 2, 1);
+        const drug = buildDrug(2, 1);
         const benefit = getBenefitsAfterDays(drug, 1);
         expect(benefit).toBe(1);
       });
@@ -78,7 +85,7 @@ describe("Pharmacy", () => {
 
     describe("And the expiration date has passed", () => {
       it("Benefit should stay constant", () => {
-        const drug = buildDrug(DRUG_NAME, 1, 1);
+        const drug = buildDrug(1, 1);
         const benefit = getBenefitsAfterDays(drug, 2);
         expect(benefit).toBe(1);
       });
@@ -86,12 +93,14 @@ describe("Pharmacy", () => {
   });
 
   describe("Given 'Fervex' drug", () => {
-    const DRUG_NAME = "Fervex";
+    function buildDrug(expireIn: number, benefit: number) {
+      return new Fervex(expireIn, benefit);
+    }
 
     describe("And the expiration date has not passed", () => {
       describe("And expiration date is in more that 10 days", () => {
         it("Benefit should increase", () => {
-          const drug = buildDrug(DRUG_NAME, 15, 12);
+          const drug = buildDrug(15, 12);
           const benefit = getBenefitsAfterDays(drug, 1);
           expect(benefit).toBe(13);
         });
@@ -99,7 +108,7 @@ describe("Pharmacy", () => {
 
       describe("And expiration date is in exactly 10 days", () => {
         it("Benefit should increase twice as fast", () => {
-          const drug = buildDrug(DRUG_NAME, 11, 12);
+          const drug = buildDrug(11, 12);
           const benefit = getBenefitsAfterDays(drug, 1);
           expect(benefit).toBe(13);
         });
@@ -107,13 +116,13 @@ describe("Pharmacy", () => {
 
       describe("And expiration date is lower or equal than 10 days and strictly greater than 5 days", () => {
         it("Benefit should increase twice as fast", () => {
-          const drug = buildDrug(DRUG_NAME, 10, 12);
+          const drug = buildDrug(10, 12);
           const benefit = getBenefitsAfterDays(drug, 1);
           expect(benefit).toBe(14);
         });
 
         it("Benefit should never be greater that 50", () => {
-          const drug = buildDrug(DRUG_NAME, 10, 49);
+          const drug = buildDrug(10, 49);
           const benefit = getBenefitsAfterDays(drug, 1);
           expect(benefit).toBe(50);
         });
@@ -121,13 +130,13 @@ describe("Pharmacy", () => {
 
       describe("And expiration date is lower or equal than 5 days and greater than 0 days", () => {
         it("Benefit should increase trice as fast", () => {
-          const drug = buildDrug(DRUG_NAME, 5, 12);
+          const drug = buildDrug(5, 12);
           const benefit = getBenefitsAfterDays(drug, 1);
           expect(benefit).toBe(15);
         });
 
         it("Benefit should never be greater that 50", () => {
-          const drug = buildDrug(DRUG_NAME, 5, 49);
+          const drug = buildDrug(5, 49);
           const benefit = getBenefitsAfterDays(drug, 1);
           expect(benefit).toBe(50);
         });
@@ -136,16 +145,12 @@ describe("Pharmacy", () => {
 
     describe("And the expiration date has passed", () => {
       it("Benefit should drop to 0", () => {
-        const drug = buildDrug(DRUG_NAME, 1, 12);
+        const drug = buildDrug(1, 12);
         const benefit = getBenefitsAfterDays(drug, 2);
         expect(benefit).toBe(0);
       });
     });
   });
-
-  function buildDrug(name: string, expireIn: number, benefit: number) {
-    return new Drug(name, expireIn, benefit);
-  }
 
   function getBenefitsAfterDays(drug: Drug, days: number) {
     const pharmacy = new Pharmacy([drug]);

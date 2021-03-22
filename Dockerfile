@@ -12,6 +12,7 @@ RUN yarn build
 FROM node:12.10.0-alpine
 WORKDIR /usr/app
 
-COPY --from=builder /usr/src/dist .
+COPY --from=builder /usr/src/package.json .
+COPY --from=builder /usr/src/dist ./dist
 
-CMD ["node", "index.js"]
+CMD ["yarn", "start"]
