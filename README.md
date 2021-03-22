@@ -48,3 +48,11 @@ yarn start
 ```sh
 docker-compose up
 ```
+
+## TODO
+- interface/infra/domain
+- serializer
+- commitlint
+- dependabot
+- husky (lint stage prettier)
+- semantic release
