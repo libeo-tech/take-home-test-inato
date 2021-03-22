@@ -18,7 +18,7 @@ export class DegradingDrug implements Drug {
     this.expiresIn--;
   }
 
-  private getBenefitChange() {
+  protected getBenefitChange(): number {
     return this.expiresIn > 0 ? -1 : -2;
   }
 }

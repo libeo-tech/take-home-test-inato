@@ -1,4 +1,11 @@
-import { DegradingDrug, Fervex, HerbalTea, MagicPill, Pharmacy } from "./index";
+import {
+  Dafalgan,
+  DegradingDrug,
+  Fervex,
+  HerbalTea,
+  MagicPill,
+  Pharmacy
+} from "./index";
 import { Drug } from "./Drug";
 
 describe("Pharmacy", () => {
@@ -23,7 +30,41 @@ describe("Pharmacy", () => {
 
     describe("And the expiration date has passed", () => {
       it("Benefit should degrades twice as fast", () => {
-        const drug = buildDrug(1, 6);
+        const drug = buildDrug(0, 7);
+        const benefit = getBenefitsAfterDays(drug, 3);
+        expect(benefit).toBe(1);
+      });
+
+      it("Benefit should not be negative", () => {
+        const drug = buildDrug(1, 1);
+        const benefit = getBenefitsAfterDays(drug, 3);
+        expect(benefit).toBe(0);
+      });
+    });
+  });
+
+  describe("Given 'Dafalgan' drug", () => {
+    function buildDrug(expireIn: number, benefit: number) {
+      return new Dafalgan(expireIn, benefit);
+    }
+
+    describe("And the expiration date has not passed", () => {
+      it("Benefit should degrades by 1", () => {
+        const drug = buildDrug(2, 3);
+        const benefit = getBenefitsAfterDays(drug, 1);
+        expect(benefit).toBe(1);
+      });
+
+      it("Benefit should not be negative", () => {
+        const drug = buildDrug(10, 1);
+        const benefit = getBenefitsAfterDays(drug, 5);
+        expect(benefit).toBe(0);
+      });
+    });
+
+    describe("And the expiration date has passed", () => {
+      it("Benefit should degrades twice as fast", () => {
+        const drug = buildDrug(0, 13);
         const benefit = getBenefitsAfterDays(drug, 3);
         expect(benefit).toBe(1);
       });
