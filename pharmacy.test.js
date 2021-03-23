@@ -27,6 +27,14 @@ describe("Pharmacy", () => {
     expect(
       new Pharmacy([new Drug("test", 2, 1)]).updateBenefitValue()
     ).toEqual([new Drug("test", 1, 0)]);
+
+    expect(
+      new Pharmacy([new Drug("test", 2, 100)]).updateBenefitValue()
+    ).toEqual([new Drug("test", 1, 50)]);
+
+    expect(
+      new Pharmacy([new Drug("test", 2, -2)]).updateBenefitValue()
+    ).toEqual([new Drug("test", 1, 0)]);
   })
 
   it("should respect Magic Pill specifications (increasevalues as in get old. Increase benefit increases by 2 when there are 10 days or les. Increase Benefit by 3 when there are 5 days. Drop 0 when expires", ()=>{
