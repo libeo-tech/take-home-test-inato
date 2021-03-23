@@ -72,6 +72,12 @@ describe("Pharmacy", () => {
     ).toEqual([new Drug(herbalTea, -1, 12)]);
   })
 
+  it("should respect Dafalgan specifications (decrease twice as fast as normal drug)", ()=>{
+    expect(
+      new Pharmacy([new Drug(dafalgan, 5, 2)]).updateBenefitValue()
+    ).toEqual([new Drug(dafalgan, 4, 0)]);
+  })
+
   it("should return the exact same output file", () => {
     Promise.all(outputFilePromises).then(function(results){
       expect(results[0]).toEqual(results[1])
