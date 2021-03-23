@@ -11,7 +11,7 @@ export class Pharmacy {
   updateBenefitValue() {
     const drugs = []
     for (var i = 0; i < this.drugs.length; i++) {
-      let drug = new Drug(this.drugs[i].name, this.drugs[i].expiresIn, this.drugs[i].benefit );
+      let drug = new Drug(this.drugs[i].name, this.drugs[i].expiresIn, this.drugs[i].benefit);
       switch (drug.name) {
         case magicPills:
           break;
@@ -28,27 +28,31 @@ export class Pharmacy {
           else {
             drug.benefit += 1;
           }
-          drug.expiresIn -=1;
-        break;
-        case herbalTea: 
+          drug.expiresIn -= 1;
+          break;
+        case herbalTea:
           if (drug.expiresIn <= 0) {
             drug.benefit += 2;
           }
           else {
             drug.benefit += 1;
           }
-          drug.expiresIn -=1;
+          drug.expiresIn -= 1;
+          break;
+        case dafalgan:
+          drug.expiresIn -= 1;
+          drug.benefit -= 2;
           break;
         default:
-          drug.expiresIn -=1;
+          drug.expiresIn -= 1;
           drug.benefit -= 1;
-          
+
       }
 
-      if(drug.benefit < 0 ) {
+      if (drug.benefit < 0) {
         drug.benefit = 0;
       }
-      if(drug.benefit > 50 ) {
+      if (drug.benefit > 50) {
         drug.benefit = 50;
       }
 
