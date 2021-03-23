@@ -16,12 +16,9 @@ const log = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
   log.push(JSON.stringify(trial.updateBenefitValueAndExpirationDate()));
-  // log.push(trial.updateBenefitValueAndExpirationDate());
 }
 
-console.log('LOG', log);
 const result = JSON.stringify(log);
-
 /* eslint-disable no-console */
 fs.writeFile("output.txt", result, err => {
   if (err) {
