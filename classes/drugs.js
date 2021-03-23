@@ -4,9 +4,6 @@ export class Drug {
       this.expiresIn = expiresIn;
       this.benefit = benefit;
     }
-    decreaseExpiresIn() {
-      this.expiresIn -= 1;
-    }
     increaseBenefit(value) {
       this.benefit += value;
       if (this.benefit > 50) {
