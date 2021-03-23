@@ -30,8 +30,8 @@ export class Pharmacy {
   }
 
   updateBenefitValueAndExpirationDate() {
-    console.log('this drugs', this.drugs);
-    const newDrug = this.drugs.map(drug => {
+    const newDrugs = [];
+    this.drugs.map(drug => {
       switch(drug.name) {
         case "Doliprane": 
           this.updateNormalDrugBenefitValue(drug, 1);
@@ -47,7 +47,10 @@ export class Pharmacy {
           break;       
       }
       drug.expiresIn -= 1;
-    })
-    return newDrug;
+    });
+    console.log('this drugs', this.drugs);
+    newDrugs.push(this.drugs);
+    console.log('new drugs', newDrugs);
+    return newDrugs;
   }
 }
