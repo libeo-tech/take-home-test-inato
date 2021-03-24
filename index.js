@@ -19,6 +19,7 @@ for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
 }
 
 const result = JSON.stringify(log);
+
 /* eslint-disable no-console */
 fs.writeFile("output.txt", result, err => {
   if (err) {

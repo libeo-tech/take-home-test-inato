@@ -22,7 +22,7 @@ export class Pharmacy {
       drug.increaseBenefit(1) 
     } else if (drug.expiresIn <= 10 && drug.expiresIn > 5) {
       drug.increaseBenefit(2)
-    } else if (drug.expiresIn <= 5 && drug.expiresIn > 0) {
+    } else if (drug.expiresIn <= 5 && drug.expiresIn >= 0) {
       drug.increaseBenefit(3)
     } else {
       drug.benefit = 0
