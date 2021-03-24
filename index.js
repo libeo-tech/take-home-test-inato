@@ -18,7 +18,7 @@ for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
   log.push(JSON.stringify(trial.updateBenefitValueAndExpirationDate()));
 }
 
-const result = JSON.stringify(log);
+const result = log.join();
 
 /* eslint-disable no-console */
 fs.writeFile("output.txt", result, err => {

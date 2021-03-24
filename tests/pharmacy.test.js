@@ -1,5 +1,5 @@
-import { Drug } from "./src/drugs";
-import { Pharmacy } from "./src/pharmacy";
+import { Drug } from "../src/drugs";
+import { Pharmacy } from "../src/pharmacy";
 
 describe("Pharmacy", () => {
   // Normal drugs
