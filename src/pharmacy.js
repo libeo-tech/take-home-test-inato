@@ -45,7 +45,9 @@ export class Pharmacy {
           this.updateNormalDrugBenefitValue(drug, 2);
           break;       
       }
-      drug.expiresIn -= 1;
+      if (drug.name !== "Magic Pill") {
+        drug.expiresIn -= 1;
+      }
     });
     return this.drugs;
   }
