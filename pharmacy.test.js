@@ -102,3 +102,15 @@ describe("Pharmacy", () => {
   });
 });
 
+// benefit between 0 and 50
+let osef = new Pharmacy([new DafalganDrug("osef", 1, 6), new HerbalDrug("osef", 1, 49)]);
+for (let i = 0; i < 2; i++) {
+    osef.updateBenefitValue();
+}
+
+describe("Pharmacy", () => {
+  it("should do benefit+2 and expiresIn-1", () => {
+    expect(osef.drugs[0].benefit).toEqual(0) && expect(osef.drugs[1].benefit).toEqual(50);
+  });
+});
+

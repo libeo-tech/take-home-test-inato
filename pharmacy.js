@@ -5,12 +5,24 @@ export class Drug {
     this.benefit = benefit;
   }
 
-  updateBenefitValue() {
-      if (this.expiresIn < 0) {
-          this.benefit -= 2;
+  increaseBenefitValue(number) {
+      if (this.benefit < 0) {
+          this.benefit = 0;
+      }
+      else if (this.benefit > 51) {
+          this.benefit = 50;
       }
       else {
-          this.benefit -= 1;
+          this.benefit += number
+      }
+  }
+
+  updateBenefitValue() {
+      if (this.expiresIn < 0) {
+          this.increaseBenefitValue(-2);
+      }
+      else {
+          this.increaseBenefitValue(-1);
       }
   }
 
@@ -26,10 +38,10 @@ export class HerbalDrug extends Drug {
 
     updateBenefitValue() {
         if (this.expiresIn < 0) {
-            this.benefit += 2;
+            this.increaseBenefitValue(2);
         }
         else {
-            this.benefit += 1;
+            this.increaseBenefitValue(1);
         }
     }
 }
@@ -58,13 +70,13 @@ export class FervexDrug extends Drug {
             this.benefit = 0;
         }
         else if (this.expiresIn <= 5) {
-            this.benefit += 3;
+            this.increaseBenefitValue(3);
         }
         else if (this.expiresIn <= 10) {
-            this.benefit += 2;
+            this.increaseBenefitValue(2);
         }
         else {
-            this.benefit += 1;
+            this.increaseBenefitValue(1);
         }
     }
 
@@ -73,10 +85,10 @@ export class FervexDrug extends Drug {
 export class DafalganDrug extends Drug {
     updateBenefitValue() {
         if (this.expiresIn < 0) {
-            this.benefit -= 4;
+            this.increaseBenefitValue(-4);
         }
         else {
-            this.benefit -= 2;
+            this.increaseBenefitValue(-2);
         }
     }
 }
@@ -88,8 +100,8 @@ export class Pharmacy {
 
   updateBenefitValue() {
       this.drugs.forEach((drug) => {
-          drug.updateBenefitValue();
           drug.updateExpiration();
+          drug.updateBenefitValue();
       });
       return this.drugs;
   }
