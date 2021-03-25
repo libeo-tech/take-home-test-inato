@@ -9,12 +9,14 @@ export class Drug {
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
+
+    // Default rules
     this.defaultRules = [
+      this.ruleDecreaseExpDate,
       this.ruleDecreaseBenefit,
       this.ruleDecreaseBenefitExpired,
       this.ruleBenefitLower,
-      this.ruleDecreaseExpDate
-    ]
+    ];
 
     // Declare custom rules for new drugs here
     this.drugRules = {
@@ -26,65 +28,38 @@ export class Pharmacy {
         this.ruleDecreaseExpDate
       ],
       "Fervex": [
+        this.ruleIncreaseBenefit,
+        this.ruleDecreaseExpDate,
         this.ruleBenefitFervex,
         this.ruleBenefitUpper,
-        this.ruleDecreaseExpDate
       ],
       "Herbal Tea": [
+        this.ruleDecreaseExpDate,
         this.ruleIncreaseBenefit,
         this.ruleIncreaseBenefitExpired,
         this.ruleBenefitUpper,
-        this.ruleDecreaseExpDate
       ],
-    }
+      "Magic Pill": [
+        this.ruleFixExpDate
+      ]
+    };
   }
+
   updateBenefitValue() {
+    let drugRulesNames = Object.keys(this.drugRules);
     for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
-          }
-        }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name == "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
+      let index = drugRulesNames.indexOf(this.drugs[i].name);
+
+      // Executes the default rules
+      if (index === -1) {
+        for (var j = 0; j < this.defaultRules.length; j++) {
+          this.defaultRules[j](i, this.drugs);
         }
       }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) {
-        if (this.drugs[i].name != "Herbal Tea") {
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-            }
-          } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          }
+      else {
+        // Execute the custom rules
+        for (var k = 0; k < this.drugRules[drugRulesNames[index]].length; k++) {
+          this.drugRules[drugRulesNames[index]][k](i, this.drugs);
         }
       }
     }
@@ -93,54 +68,60 @@ export class Pharmacy {
   }
 
   // Deacreases the benefit of a drug
-  ruleDecreaseBenefit(position) {
-    this.drugs[position].benefit -= 1;
+  ruleDecreaseBenefit(position, drugs) {
+    drugs[position].benefit -= 1;
   }
 
   // Decreases the expiration date of a drug
-  ruleDecreaseExpDate(position) {
-    this.drugs[position].expiresIn -= 1;
+  ruleDecreaseExpDate(position, drugs) {
+    drugs[position].expiresIn -= 1;
   }
 
   // Decreases the benefit if expiration date has passed
-  ruleDecreaseBenefitExpired(position) {
-    if (this.drugs[position].expiresIn < 0)
-      this.ruleDecreaseBenefit(position);
+  ruleDecreaseBenefitExpired(position, drugs) {
+    if (drugs[position].expiresIn < 0)
+      drugs[position].benefit -= 1;
   }
 
   // The benefit of an drug is never negative
-  ruleBenefitLower(position) {
-    this.drugs[position].benefit = (this.drugs[position].benefit < 0) ? 0 : this.drugs[position].benefit;
+  ruleBenefitLower(position, drugs) {
+    drugs[position].benefit = (drugs[position].benefit < 0) ? 0 : drugs[position].benefit;
   }
 
   // The benefit of an drug is never more than 50
-  ruleBenefitUpper(position) {
-    this.drugs[position].benefit = (this.drugs[position].benefit > 50) ? 50 : this.drugs[position].benefit;
+  ruleBenefitUpper(position, drugs) {
+    drugs[position].benefit = (drugs[position].benefit > 50) ? 50 : drugs[position].benefit;
   }
 
   // Increases the benefit of a drug
-  ruleIncreaseBenefit(position) {
-    this.drugs[position].benefit += 1;
+  ruleIncreaseBenefit(position, drugs) {
+    drugs[position].benefit += 1;
   }
 
   // Increases the benefit of a drug if expiration date has passed
-  ruleIncreaseBenefitExpired(position) {
-    if (this.drugs[position].expiresIn < 0)
-      this.ruleIncreaseBenefit(position);
+  ruleIncreaseBenefitExpired(position, drugs) {
+    if (drugs[position].expiresIn < 0)
+      drugs[position].benefit += 1;
   }
 
   // Increases benefit when there are 10 days or less and again when there are 5 days or less
   // Benefit drops to 0 after the expiration date
-  ruleBenefitFervex(position) {
-    if (this.drugs[position].expiresIn < 0) {
-      this.drugs[position].benefit = 0;
+  ruleBenefitFervex(position, drugs) {
+    if (drugs[position].expiresIn < 0) {
+      drugs[position].benefit = 0;
       return;
     }
 
-    if (this.drugs[position].expiresIn <= 10) {
-      this.ruleIncreaseBenefit(position);
-      if (this.drugs[position].expiresIn <= 5)
-        this.ruleIncreaseBenefit(position);
+    if (drugs[position].expiresIn <= 10) {
+      drugs[position].benefit += 1;
+      if (drugs[position].expiresIn <= 5)
+        drugs[position].benefit += 1;
     }
+  }
+
+  // Fixes expiration date for an item that never expires
+  ruleFixExpDate(position, drugs) {
+    if (drugs[position].expiresIn < 0)
+      drugs[position].expiresIn = 0;
   }
 }
