@@ -63,4 +63,56 @@ export class Pharmacy {
 
     return this.drugs;
   }
+
+  // Deacreases the benefit of a drug
+  ruleDecreaseBenefit(position) {
+    this.drugs[position].benefit -= 1;
+  }
+  
+  // Decreases the expiration date of a drug
+  ruleDecreaseExpDate(position) {
+    this.drugs[position].expiresIn -= 1;
+  }
+  
+  // Decreases the benefit if expiration date has passed
+  ruleDecreaseBenefitExpired(position) {
+    if (this.drugs[position].expiresIn < 0)
+      this.ruleDecreaseBenefit(position);
+  }
+
+  // The benefit of an drug is never negative
+  ruleBenefitLower(position) {
+    this.drugs[position].benefit = (this.drugs[position].benefit < 0) ? 0 : this.drugs[position].benefit;
+  }
+
+  // The benefit of an drug is never more than 50
+  ruleBenefitUpper(position) {
+    this.drugs[position].benefit = (this.drugs[position].benefit > 50) ? 50 : this.drugs[position].benefit;
+  }
+
+  // Increases the benefit of a drug
+  ruleIncreaseBenefit(position) {
+    this.drugs[position].benefit += 1;
+  }
+
+  // Increases the benefit of a drug if expiration date has passed
+  ruleIncreaseBenefitExpired(position) {
+    if (this.drugs[position].expiresIn < 0)
+      this.ruleIncreaseBenefit(position);
+  }
+
+  // Increases benefit when there are 10 days or less and again when there are 5 days or less
+  // Benefit drops to 0 after the expiration date
+  ruleBenefitFervex(position) {
+    if (this.drugs[position].expiresIn < 0) {
+      this.drugs[position].benefit = 0;
+      return ;
+    }
+
+    if (this.drugs[position].expiresIn <= 10) {
+      this.ruleIncreaseBenefit(position);
+      if (this.drugs[position].expiresIn <= 5)
+        this.ruleIncreaseBenefit(position);      
+    }
+  }
 }
