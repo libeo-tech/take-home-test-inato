@@ -9,6 +9,34 @@ export class Drug {
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
+    this.defaultRules = [
+      this.ruleDecreaseBenefit,
+      this.ruleDecreaseBenefitExpired,
+      this.ruleBenefitLower,
+      this.ruleDecreaseExpDate
+    ]
+
+    // Declare custom rules for new drugs here
+    this.drugRules = {
+      "Dafalgan": [
+        this.ruleDecreaseBenefit,
+        this.ruleDecreaseBenefit,
+        this.ruleBenefitLower,
+        this.ruleBenefitUpper,
+        this.ruleDecreaseExpDate
+      ],
+      "Fervex": [
+        this.ruleBenefitFervex,
+        this.ruleBenefitUpper,
+        this.ruleDecreaseExpDate
+      ],
+      "Herbal Tea": [
+        this.ruleIncreaseBenefit,
+        this.ruleIncreaseBenefitExpired,
+        this.ruleBenefitUpper,
+        this.ruleDecreaseExpDate
+      ],
+    }
   }
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
@@ -68,12 +96,12 @@ export class Pharmacy {
   ruleDecreaseBenefit(position) {
     this.drugs[position].benefit -= 1;
   }
-  
+
   // Decreases the expiration date of a drug
   ruleDecreaseExpDate(position) {
     this.drugs[position].expiresIn -= 1;
   }
-  
+
   // Decreases the benefit if expiration date has passed
   ruleDecreaseBenefitExpired(position) {
     if (this.drugs[position].expiresIn < 0)
@@ -106,13 +134,13 @@ export class Pharmacy {
   ruleBenefitFervex(position) {
     if (this.drugs[position].expiresIn < 0) {
       this.drugs[position].benefit = 0;
-      return ;
+      return;
     }
 
     if (this.drugs[position].expiresIn <= 10) {
       this.ruleIncreaseBenefit(position);
       if (this.drugs[position].expiresIn <= 5)
-        this.ruleIncreaseBenefit(position);      
+        this.ruleIncreaseBenefit(position);
     }
   }
 }
