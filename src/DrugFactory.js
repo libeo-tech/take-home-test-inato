@@ -36,7 +36,7 @@ export class DrugFactory {
     );
   }
 
-  static buildMagixPill(expiresIn, benefit) {
+  static buildMagicPill(expiresIn, benefit) {
     return new Drug(
       "Magic Pill",
       new DrugState(expiresIn, benefit, false),

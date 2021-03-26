@@ -6,7 +6,7 @@ export function getTrialData() {
     DrugFactory.buildDoliprane(20, 30),
     DrugFactory.buildHerbalTea(10, 5),
     DrugFactory.buildFervex(5, 40),
-    DrugFactory.buildMagixPill(15, 40)
+    DrugFactory.buildMagicPill(15, 40)
   ];
 }
 
