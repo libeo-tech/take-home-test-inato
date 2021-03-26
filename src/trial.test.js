@@ -4,7 +4,7 @@ import { runTrial } from "./trial";
 
 describe("trial", () => {
   const OUTPUT_TEST = `${__dirname}/output.test.txt`;
-  const OUTPUT_PROD = `${__dirname}/output.txt`;
+  const OUTPUT_PROD = `${__dirname}/../output.txt`;
 
   beforeEach(clean);
   afterAll(clean);

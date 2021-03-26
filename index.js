@@ -1,4 +1,4 @@
-import { runTrial } from "./trial";
+import { runTrial } from "./src/trial";
 
 runTrial("output.txt", err => {
   /* eslint-disable no-console */
