@@ -28,5 +28,18 @@
     "jest": "24.8.0",
     "prettier": "^1.14.3",
     "regenerator-runtime": "^0.12.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts",
+      "!src/**/@types/**"
+    ],
+    "testMatch": [
+      "<rootDir>/index.e2e.js"
+    ]
   }
 }
