@@ -1,11 +1,10 @@
 import { runTrial, getTrialData } from "./src/trial";
+import { FileStatesOutputTransfort } from "./src/FileStatesOutputTransfort";
 
-runTrial(getTrialData(), "output.txt", err => {
+const transport = new FileStatesOutputTransfort("output.txt");
+runTrial(getTrialData(), transport).then(
   /* eslint-disable no-console */
-  if (err) {
-    console.log("error");
-  } else {
-    console.log("success");
-  }
+  () => console.log("success"),
+  () => console.log("error")
   /* eslint-enable no-console */
-});
+);

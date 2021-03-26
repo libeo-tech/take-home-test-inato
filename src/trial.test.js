@@ -1,6 +1,7 @@
 import { readFileSync, unlinkSync, existsSync } from "fs";
 
 import { runTrial, getTrialData } from "./trial";
+import { FileStatesOutputTransfort } from "./FileStatesOutputTransfort";
 
 describe("trial", () => {
   const OUTPUT_TEST = `${__dirname}/output.test.txt`;
@@ -9,10 +10,12 @@ describe("trial", () => {
   beforeEach(clean);
   afterAll(clean);
 
-  it("should produce the same output file", done => {
-    runTrial(getTrialData(), OUTPUT_TEST, err => {
+  it("should produce the same output file", () => {
+    return runTrial(
+      getTrialData(),
+      new FileStatesOutputTransfort(OUTPUT_TEST)
+    ).then(() => {
       expect(readFile(OUTPUT_TEST)).toBe(readFile(OUTPUT_PROD));
-      done(err);
     });
   });
 

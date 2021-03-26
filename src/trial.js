@@ -1,5 +1,3 @@
-import fs from "fs";
-
 import { Pharmacy } from "./Pharmacy";
 import { DrugFactory } from "./DrugFactory";
 
@@ -12,7 +10,7 @@ export function getTrialData() {
   ];
 }
 
-export function runTrial(drugs, outputFilePath, cb) {
+export function runTrial(drugs, transport) {
   const trial = new Pharmacy(drugs);
 
   const states = [];
@@ -22,9 +20,5 @@ export function runTrial(drugs, outputFilePath, cb) {
     states.push(trial.getState());
   }
 
-  fs.writeFile(outputFilePath, serializeStates(states), cb);
-}
-
-function serializeStates(states) {
-  return states.map(JSON.stringify).join(",");
+  return transport.output(states);
 }
