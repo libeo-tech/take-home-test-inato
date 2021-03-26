@@ -1,6 +1,6 @@
 import { promises } from "fs";
 
-export class FileStatesOutputTransfort {
+export class FileStatesOutputTransport {
   constructor(filePath) {
     this.filepath = filePath;
   }

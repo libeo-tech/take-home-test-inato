@@ -1,7 +1,7 @@
 import { runTrial, getTrialData } from "./src/trial";
-import { FileStatesOutputTransfort } from "./src/FileStatesOutputTransfort";
+import { FileStatesOutputTransport } from "./src/FileStatesOutputTransport";
 
-const transport = new FileStatesOutputTransfort("output.txt");
+const transport = new FileStatesOutputTransport("output.txt");
 runTrial(getTrialData(), transport).then(
   /* eslint-disable no-console */
   () => console.log("success"),
