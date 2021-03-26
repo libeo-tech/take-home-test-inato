@@ -1,16 +1,7 @@
 import { Pharmacy } from "./Pharmacy";
-import { DrugFactory } from "./DrugFactory";
 
-export function getTrialData() {
-  return [
-    DrugFactory.buildDoliprane(20, 30),
-    DrugFactory.buildHerbalTea(10, 5),
-    DrugFactory.buildFervex(5, 40),
-    DrugFactory.buildMagicPill(15, 40)
-  ];
-}
-
-export function runTrial(drugs, transport) {
+export function runTrial(store, transport) {
+  const drugs = store.load();
   const trial = new Pharmacy(drugs);
 
   const states = [];
