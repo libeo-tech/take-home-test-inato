@@ -1,13 +1,14 @@
-import { Drug, Pharmacy } from "./pharmacy";
-
 import fs from "fs";
+
+import { Pharmacy } from "./pharmacy";
+import { DrugFactory } from "./DrugFactory";
 
 export function getTrialData() {
   return [
-    new Drug("Doliprane", 20, 30),
-    new Drug("Herbal Tea", 10, 5),
-    new Drug("Fervex", 5, 40),
-    new Drug("Magic Pill", 15, 40)
+    DrugFactory.buildDoliprane(20, 30),
+    DrugFactory.buildHerbalTea(10, 5),
+    DrugFactory.buildFervex(5, 40),
+    DrugFactory.buildMagixPill(15, 40)
   ];
 }
 
