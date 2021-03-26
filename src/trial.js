@@ -1,6 +1,6 @@
 import fs from "fs";
 
-import { Pharmacy } from "./pharmacy";
+import { Pharmacy } from "./Pharmacy";
 import { DrugFactory } from "./DrugFactory";
 
 export function getTrialData() {

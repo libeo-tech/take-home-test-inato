@@ -1,4 +1,4 @@
-import { Drug } from "./pharmacy";
+import { Drug } from "./Drug";
 
 export class DrugFactory {
   static buildDoliprane(expiresIn, benefit) {
