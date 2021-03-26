@@ -1,6 +1,6 @@
-import { runTrial } from "./src/trial";
+import { runTrial, getTrialData } from "./src/trial";
 
-runTrial("output.txt", err => {
+runTrial(getTrialData(), "output.txt", err => {
   /* eslint-disable no-console */
   if (err) {
     console.log("error");

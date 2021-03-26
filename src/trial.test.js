@@ -1,6 +1,6 @@
 import { readFileSync, unlinkSync, existsSync } from "fs";
 
-import { runTrial } from "./trial";
+import { runTrial, getTrialData } from "./trial";
 
 describe("trial", () => {
   const OUTPUT_TEST = `${__dirname}/output.test.txt`;
@@ -10,7 +10,7 @@ describe("trial", () => {
   afterAll(clean);
 
   it("should produce the same output file", done => {
-    runTrial(OUTPUT_TEST, err => {
+    runTrial(getTrialData(), OUTPUT_TEST, err => {
       expect(readFile(OUTPUT_TEST)).toBe(readFile(OUTPUT_PROD));
       done(err);
     });
