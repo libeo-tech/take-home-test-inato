@@ -1,4 +1,5 @@
 import { Drug } from "./Drug";
+import { DrugState } from "./DrugState";
 
 export class DrugFactory {
   static buildDoliprane(expiresIn, benefit) {
@@ -14,10 +15,10 @@ export class DrugFactory {
   }
 
   static buildMagixPill(expiresIn, benefit) {
-    return buildDrug("Magic Pill", expiresIn, benefit);
+    return buildDrug("Magic Pill", expiresIn, benefit, false);
   }
 }
 
 function buildDrug(name, expiresIn, benefit) {
-  return new Drug(name, expiresIn, benefit);
+  return new Drug(name, new DrugState(expiresIn, benefit));
 }

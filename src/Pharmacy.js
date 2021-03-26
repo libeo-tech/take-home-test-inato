@@ -4,8 +4,9 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
-      const currentBenefit = this.drugs[i].benefit;
-      const currentExpiresIn = this.drugs[i].expiresIn;
+      const currentState = this.drugs[i].getState();
+      const currentBenefit = currentState.getBenefit();
+      const currentExpiresIn = currentState.getExpiresIn();
 
       let change = 0;
 
@@ -31,27 +32,9 @@ export class Pharmacy {
           break;
       }
 
-      this.drugs[i].benefit = ensureMinMaxBenefit(
-        this.drugs[i].benefit + change
-      );
-      this.drugs[i].expiresIn -= 1;
+      currentState.applyDayBenefitChange(change);
     }
 
     return this.drugs;
   }
-}
-
-function ensureMinMaxBenefit(benefit) {
-  const MIN_BENEFIT = 0;
-  const MAX_BENEFIT = 50;
-
-  if (benefit < MIN_BENEFIT) {
-    return MIN_BENEFIT;
-  }
-
-  if (benefit > MAX_BENEFIT) {
-    return MAX_BENEFIT;
-  }
-
-  return benefit;
 }

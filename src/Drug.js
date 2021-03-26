@@ -1,7 +1,10 @@
 export class Drug {
-  constructor(name, expiresIn, benefit) {
+  constructor(name, state) {
     this.name = name;
-    this.expiresIn = expiresIn;
-    this.benefit = benefit;
+    this.state = state;
+  }
+
+  getState() {
+    return this.state;
   }
 }

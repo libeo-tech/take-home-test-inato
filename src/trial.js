@@ -27,8 +27,8 @@ export function runTrial(drugs, outputFilePath, cb) {
 function getDayState(drugs) {
   return drugs.map(drug => ({
     name: drug.name,
-    expiresIn: drug.expiresIn,
-    benefit: drug.benefit
+    expiresIn: drug.getState().getExpiresIn(),
+    benefit: drug.getState().getBenefit()
   }));
 }
 
