@@ -1,21 +1,27 @@
 import { readFileSync, unlinkSync, existsSync } from "fs";
 
-import { FileStatesOutputTransport, StaticDrugStore, runTrial } from "./src";
+import {
+  FileStatesOutputTransport,
+  StaticDrugStore,
+  TrialService
+} from "./src";
 
 describe("trial", () => {
   const OUTPUT_TEST = `${__dirname}/output.test.txt`;
-  const OUTPUT_PROD = `${__dirname}/../output.txt`;
+  const OUTPUT_PROD = `${__dirname}/output.txt`;
 
   beforeEach(clean);
   afterAll(clean);
 
   it("should produce the same output file", () => {
-    return runTrial(
+    return new TrialService(
       new StaticDrugStore(),
       new FileStatesOutputTransport(OUTPUT_TEST)
-    ).then(() => {
-      expect(readFile(OUTPUT_TEST)).toBe(readFile(OUTPUT_PROD));
-    });
+    )
+      .run()
+      .then(() => {
+        expect(readFile(OUTPUT_TEST)).toBe(readFile(OUTPUT_PROD));
+      });
   });
 
   function readFile(file) {
