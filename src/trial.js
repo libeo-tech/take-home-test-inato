@@ -18,18 +18,11 @@ export function runTrial(drugs, outputFilePath, cb) {
   const states = [];
 
   for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-    states.push(getDayState(trial.updateBenefitValue()));
+    trial.updateBenefitValue();
+    states.push(trial.getState());
   }
 
   fs.writeFile(outputFilePath, serializeStates(states), cb);
-}
-
-function getDayState(drugs) {
-  return drugs.map(drug => ({
-    name: drug.name,
-    expiresIn: drug.getState().getExpiresIn(),
-    benefit: drug.getState().getBenefit()
-  }));
 }
 
 function serializeStates(states) {
