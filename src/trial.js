@@ -15,11 +15,23 @@ export function getTrialData() {
 export function runTrial(drugs, outputFilePath, cb) {
   const trial = new Pharmacy(drugs);
 
-  const log = [];
+  const states = [];
 
   for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-    log.push(JSON.stringify(trial.updateBenefitValue()));
+    states.push(getDayState(trial.updateBenefitValue()));
   }
 
-  fs.writeFile(outputFilePath, log, cb);
+  fs.writeFile(outputFilePath, serializeStates(states), cb);
+}
+
+function getDayState(drugs) {
+  return drugs.map(drug => ({
+    name: drug.name,
+    expiresIn: drug.expiresIn,
+    benefit: drug.benefit
+  }));
+}
+
+function serializeStates(states) {
+  return states.map(JSON.stringify).join(",");
 }
