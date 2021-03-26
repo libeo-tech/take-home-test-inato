@@ -1,4 +1,4 @@
-import { DrugFactory } from "../DrugFactory";
+import { DrugFactory } from "../domain/DrugFactory";
 
 export class StaticDrugStore {
   load() {
