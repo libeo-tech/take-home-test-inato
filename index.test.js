@@ -1,8 +1,6 @@
 import { readFileSync, unlinkSync, existsSync } from "fs";
 
-import { runTrial } from "./trial";
-import { FileStatesOutputTransport } from "./FileStatesOutputTransport";
-import { StaticDrugStore } from "./StaticDrugStore";
+import { FileStatesOutputTransport, StaticDrugStore, runTrial } from "./src";
 
 describe("trial", () => {
   const OUTPUT_TEST = `${__dirname}/output.test.txt`;

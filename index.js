@@ -1,6 +1,4 @@
-import { runTrial } from "./src/trial";
-import { FileStatesOutputTransport } from "./src/FileStatesOutputTransport";
-import { StaticDrugStore } from "./src/StaticDrugStore";
+import { FileStatesOutputTransport, StaticDrugStore, runTrial } from "./src";
 
 const store = new StaticDrugStore();
 const transport = new FileStatesOutputTransport("output.txt");
