@@ -1,14 +1,14 @@
 import { promises } from "fs";
-import { PharmacyDrugState, PharmacyDrugStateOutputTransport } from "../domain";
+import { PharmacyDrugState, TrialStateOutputTransport } from "../domain";
 
-export class FileStatesOutputTransport
-  implements PharmacyDrugStateOutputTransport {
+export class FileTrialStateOutputTransport
+  implements TrialStateOutputTransport {
   constructor(private readonly filePath: string) {}
 
   public output(states: PharmacyDrugState[][]): Promise<void> {
     return promises.writeFile(
       this.filePath,
-      FileStatesOutputTransport.serializeStates(states)
+      FileTrialStateOutputTransport.serializeStates(states)
     );
   }
 

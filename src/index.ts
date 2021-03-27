@@ -1,5 +1,13 @@
 // Exposed Domain
-export { TrialService } from "./domain";
+export {
+  TrialService,
+  TrialState,
+  DrugStore,
+  DrugFactory,
+  TrialStateOutputTransport,
+  PharmacyDrugState,
+  Drug,
+} from "./domain";
 
 // Exposed Infrastructure
-export { FileStatesOutputTransport, StaticDrugStore } from "./infra";
+export { FileTrialStateOutputTransport, StaticDrugStore } from "./infra";

@@ -1,7 +1,7 @@
 import { readFileSync, unlinkSync, existsSync } from "fs";
 
 import {
-  FileStatesOutputTransport,
+  FileTrialStateOutputTransport,
   StaticDrugStore,
   TrialService,
 } from "./src";
@@ -16,7 +16,7 @@ describe("trial", () => {
   it("should produce the same output file", () => {
     return new TrialService(
       new StaticDrugStore(),
-      new FileStatesOutputTransport(OUTPUT_TEST)
+      new FileTrialStateOutputTransport(OUTPUT_TEST)
     )
       .run()
       .then(() => {

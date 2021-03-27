@@ -1,15 +1,16 @@
 import { Pharmacy } from "./Pharmacy";
 import { DrugStore } from "./DrugStore";
-import { PharmacyDrugStateOutputTransport } from "./PharmacyDrugStateOutputTransport";
+import { TrialStateOutputTransport } from "./TrialStateOutputTransport";
 import { PharmacyDrugState } from "./PharmacyDrugState";
+import { TrialState } from "./TrialState";
 
 export class TrialService {
   constructor(
     private readonly store: DrugStore,
-    private readonly transport: PharmacyDrugStateOutputTransport
+    private readonly transport: TrialStateOutputTransport
   ) {}
 
-  public async run(): Promise<void> {
+  public async run(): Promise<TrialState> {
     const pharmacy = new Pharmacy(this.store.load());
 
     const states: PharmacyDrugState[][] = [];
@@ -19,6 +20,8 @@ export class TrialService {
       states.push(pharmacy.getState());
     }
 
-    return this.transport.output(states);
+    await this.transport.output(states);
+
+    return states;
   }
 }

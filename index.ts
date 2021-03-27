@@ -1,13 +1,13 @@
 import {
-  FileStatesOutputTransport,
+  FileTrialStateOutputTransport,
   StaticDrugStore,
   TrialService,
 } from "./src";
 
-const store = new StaticDrugStore();
-const transport = new FileStatesOutputTransport("output.txt");
-
 void (async () => {
+  const store = new StaticDrugStore();
+  const transport = new FileTrialStateOutputTransport("output.txt");
+
   try {
     await new TrialService(store, transport).run();
     console.log("success"); // eslint-disable-line no-console

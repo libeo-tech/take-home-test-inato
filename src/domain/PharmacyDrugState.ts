@@ -3,3 +3,4 @@ export interface PharmacyDrugState {
   expiresIn: number;
   benefit: number;
 }
+
