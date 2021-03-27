@@ -32,3 +32,10 @@ settings:
   import/resolver:
     node: {}
     typescript: {}
+rules:
+  jest/no-standalone-expect: "off"
+  jest/expect-expect:
+    - error
+    - assertFunctionNames:
+      - expect
+      - TrialRunner.newInstance().**.expect*.done

@@ -6,6 +6,7 @@ export {
   DrugFactory,
   TrialStateOutputTransport,
   PharmacyDrugState,
+  PharmacyState,
   Drug,
 } from "./domain";
 

@@ -40,6 +40,7 @@
       "!src/**/@types/**"
     ],
     "testMatch": [
+      "<rootDir>/specs/**.spec.ts",
       "<rootDir>/index.e2e.ts"
     ],
     "testPathIgnorePatterns": [

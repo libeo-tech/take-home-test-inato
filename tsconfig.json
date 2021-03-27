@@ -29,6 +29,7 @@
   },
   "include": [
     "./src/**/*",
+    "./specs/**/*",
     "./index.ts",
     "./index.e2e.ts"
   ]
