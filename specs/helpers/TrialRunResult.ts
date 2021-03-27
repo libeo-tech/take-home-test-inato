@@ -17,6 +17,17 @@ export class TrialRunResult {
     return this;
   }
 
+  public expectDayPharmacyStateToEqual(
+    day: number,
+    state: PharmacyState
+  ): this {
+    this.expectations.push((states) => {
+      expect(states[day]).toEqual(state);
+    });
+
+    return this;
+  }
+
   public async done(): Promise<void> {
     const states = await this.statePromise;
     this.expectations.forEach((fn) => fn(states));

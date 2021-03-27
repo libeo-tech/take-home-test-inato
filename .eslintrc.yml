@@ -38,4 +38,5 @@ rules:
     - error
     - assertFunctionNames:
       - expect
+      - expectBenefit
       - TrialRunner.newInstance().**.expect*.done

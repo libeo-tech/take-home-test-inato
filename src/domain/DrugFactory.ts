@@ -8,6 +8,14 @@ import {
 } from "./benefitChangeStrategies";
 
 export class DrugFactory {
+  public static buildDafalgan(expiresIn: number, benefit: number): Drug {
+    return new Drug(
+      "Dafalgan",
+      new DrugState(expiresIn, benefit),
+      new DecreaseBenefitStrategy(2)
+    );
+  }
+
   public static buildDoliprane(expiresIn: number, benefit: number): Drug {
     return new Drug(
       "Doliprane",
