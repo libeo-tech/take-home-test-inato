@@ -4,11 +4,11 @@ import {
   ConstantBenefitStrategy,
   DecreaseBenefitStrategy,
   IncreaseBenefitStrategy,
-  ThresholdsBenefitStrategy
+  ThresholdsBenefitStrategy,
 } from "./benefitChangeStrategies";
 
 export class DrugFactory {
-  static buildDoliprane(expiresIn, benefit) {
+  public static buildDoliprane(expiresIn: number, benefit: number): Drug {
     return new Drug(
       "Doliprane",
       new DrugState(expiresIn, benefit),
@@ -16,7 +16,7 @@ export class DrugFactory {
     );
   }
 
-  static buildHerbalTea(expiresIn, benefit) {
+  public static buildHerbalTea(expiresIn: number, benefit: number): Drug {
     return new Drug(
       "Herbal Tea",
       new DrugState(expiresIn, benefit),
@@ -24,19 +24,19 @@ export class DrugFactory {
     );
   }
 
-  static buildFervex(expiresIn, benefit) {
+  public static buildFervex(expiresIn: number, benefit: number): Drug {
     return new Drug(
       "Fervex",
       new DrugState(expiresIn, benefit),
-      new ThresholdsBenefitStrategy({
-        10: 1,
-        5: 2,
-        0: 3
-      })
+      new ThresholdsBenefitStrategy([
+        { threshold: 10, change: 1 },
+        { threshold: 5, change: 2 },
+        { threshold: 0, change: 3 },
+      ])
     );
   }
 
-  static buildMagicPill(expiresIn, benefit) {
+  public static buildMagicPill(expiresIn: number, benefit: number): Drug {
     return new Drug(
       "Magic Pill",
       new DrugState(expiresIn, benefit, false),

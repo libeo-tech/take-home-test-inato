@@ -3,7 +3,7 @@ import { readFileSync, unlinkSync, existsSync } from "fs";
 import {
   FileStatesOutputTransport,
   StaticDrugStore,
-  TrialService
+  TrialService,
 } from "./src";
 
 describe("trial", () => {
@@ -24,7 +24,7 @@ describe("trial", () => {
       });
   });
 
-  function readFile(file) {
+  function readFile(file: string) {
     return String(readFileSync(file));
   }
 
