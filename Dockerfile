@@ -1,4 +1,4 @@
-FROM node:12.10.0-alpine
+FROM node:15.12.0-alpine
 
 ENV APP_PATH /usr/app
 WORKDIR $APP_PATH

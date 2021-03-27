@@ -7,7 +7,7 @@
   "private": true,
   "engines": {
     "yarn": ">=1.7.0",
-    "node": "=12.x"
+    "node": "=15.x"
   },
   "scripts": {
     "lint": "eslint . --ext .ts",
@@ -64,11 +64,11 @@
     "*.{ts,js}": [
       "yarn eslint --fix",
       "yarn prettier --write",
-      "git add ."
+      "git add"
     ],
     "*.{json,md}": [
       "yarn prettier --write",
-      "git add ."
+      "git add"
     ]
   },
   "commitlint": {
