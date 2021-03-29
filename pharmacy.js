@@ -82,24 +82,21 @@ export class Pharmacy {
 
   /**
    * @function selectDrug
-   * @param {*} drug 
+   * @param {Drug} drug 
    */
   selectDrug(drug) {
     if (!drug)
       return;
-    switch (true) {
-      case drug.name === "Herbal Tea":
+    switch (drug.name) {
+      case "Herbal Tea":
         this.herbalTeaBenefitIncrease(drug);
         break;
-      case drug.name === "Fervex":
+      case "Fervex":
         this.fervexBenefitIncrease(drug);
         break;
-      case drug.name === "Magic Pill":
+      case "Magic Pill":
         break;
-      case drug.name === "Doliprane":
-        this.dolipraneBenefitDecrease(drug);
-        break;
-      case drug.name === 'Dafalgan':
+      case 'Dafalgan':
         this.dafalganBenefitDecrease(drug);
         break;
       default:
