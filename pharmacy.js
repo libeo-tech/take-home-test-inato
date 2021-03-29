@@ -1,3 +1,6 @@
+const MAX_BENEFIT = 50;
+const MIN_BENEFIT = 0;
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
@@ -10,55 +13,104 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+
+  /**
+   * DECREASE BENEFIT
+   */
+
+  /**
+   * @function regularBenefitDecrease
+   * @param {Drug} drug 
+   */
+  regularBenefitDecrease(drug) {
+    if (drug.benefit > MIN_BENEFIT)
+      drug.benefit -= 1;
+  }
+
+  /**
+   * @function dafalganBenefitDecrease
+   * @param {*} drug 
+   */
+  dafalganBenefitDecrease(drug) {
+    if (drug.benefit > MIN_BENEFIT)
+      drug.benefit -= 2;
+  }
+  /**
+   * @function dolipraneBenfitDecrease
+   * @param {Drug} drug 
+   */
+  dolipraneBenefitDecrease(drug) {
+    if (drug.expiresIn < 0 && drug.benefit > MIN_BENEFIT)
+      drug.benefit -= 2;
+    else if (drug.expiresIn > 0 && drug.benefit > MIN_BENEFIT)
+      drug.benefit -= 1;
+  }
+
+  /**
+   * INCREASE BENEFIT
+   */
+
+  increaseBenefit(drug) {
+    if (drug.benefit < MAX_BENEFIT && (drug.expiresIn <= 5 && drug.expiresIn >= MIN_BENEFIT))
+      drug.benefit += 3;
+    else if (drug.benefit < MAX_BENEFIT && drug.expiresIn <= 10 && drug.expiresIn > 5)
+      drug.benefit += 2;
+    else if (drug.benefit < MAX_BENEFIT && drug.expiresIn > 10)
+      drug.benefit += 1;
+  }
+
+  /**
+   * @function herbalTeaBenefitIncrease
+   * @param {Drug} drug 
+   */
+  herbalTeaBenefitIncrease(drug) {
+    this.increaseBenefit(drug);
+    if (drug.benefit < MAX_BENEFIT && drug.expiresIn < MIN_BENEFIT)
+      drug.benefit += 6;
+  }
+
+  /**
+   * @function fervexBenefitIncrease
+   * @param {Drug} drug 
+   */
+  fervexBenefitIncrease(drug) {
+    this.increaseBenefit(drug);
+    if (drug.expiresIn < 0)
+      drug.benefit = MIN_BENEFIT;
+  }
+
+  /**
+   * @function selectDrug
+   * @param {*} drug 
+   */
+  selectDrug(drug) {
+    if (!drug)
+      return;
+    switch (true) {
+      case drug.name === "Herbal Tea":
+        this.herbalTeaBenefitIncrease(drug);
+        break;
+      case drug.name === "Fervex":
+        this.fervexBenefitIncrease(drug);
+        break;
+      case drug.name === "Magic Pill":
+        break;
+      case drug.name === "Doliprane":
+        this.dolipraneBenefitDecrease(drug);
+        break;
+      case drug.name === 'Dafalgan':
+        this.dafalganBenefitDecrease(drug);
+        break;
+      default:
+        this.regularBenefitDecrease(drug);
+    }
+    if (drug.name != "Magic Pill")
+      drug.expiresIn -= 1;
+  }
+
   updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
-          }
-        }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name == "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) {
-        if (this.drugs[i].name != "Herbal Tea") {
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-            }
-          } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          }
-        }
-      }
+    for (let i = 0; i < this.drugs.length; i+=1) {
+      this.selectDrug(this.drugs[i]);
     }
 
     return this.drugs;
