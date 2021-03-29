@@ -25,11 +25,4 @@ fs.writeFile("output.txt", log, err => {
     console.log("success");
   }
 });
-/*fs.writeFile("regular.txt", log, err => {
-  if (err) {
-    console.log("error");
-  } else {
-    console.log("success");
-  }
-});*/
 /* eslint-enable no-console */
