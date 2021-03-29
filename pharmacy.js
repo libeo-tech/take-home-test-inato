@@ -27,9 +27,8 @@ export class Pharmacy {
    * @param {Drug} drug 
    */
   dafalganBenefitDecrease(drug) {
-    if (drug.benefit > MIN_BENEFIT) {
+    if (drug.benefit > MIN_BENEFIT)
       drug.benefit - 2 < MIN_BENEFIT ? drug.benefit = MIN_BENEFIT : drug.benefit -= 2;
-    }
   }
   /**
    * @function regularBenefitDecrease
@@ -37,9 +36,8 @@ export class Pharmacy {
    */
   regularBenefitDecrease(drug) {
     if (drug.benefit > MIN_BENEFIT) {
-      if (drug.expiresIn <= 0) {
+      if (drug.expiresIn <= 0)
         drug.benefit - 2 < MIN_BENEFIT ? drug.benefit = MIN_BENEFIT : drug.benefit -= 2;
-      }
       else
         drug.benefit -= 1;
     }
@@ -57,9 +55,8 @@ export class Pharmacy {
     if (drug.benefit < MAX_BENEFIT) {
       if (drug.expiresIn > 0)
         drug.benefit += 1;
-      else{
+      else
         drug.benefit + 2 > MAX_BENEFIT ? drug.benefit = MAX_BENEFIT : drug.benefit += 2;
-      }
     }    
   }
 
@@ -107,10 +104,8 @@ export class Pharmacy {
   }
 
   updateBenefitValue() {
-    for (let drug of this.drugs) {
+    for (let drug of this.drugs)
       this.selectDrug(drug);
-    }
-
     return this.drugs;
   }
 }
