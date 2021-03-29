@@ -75,13 +75,11 @@ describe("Herbal Tea", () => {
     .toEqual([new Drug('Herbal Tea', -2, 12)]);
   })
 
-  it("1) should not be greater than 50 in benefit", () => {
+  it("should not be greater than 50 in benefit", () => {
     expect(new Pharmacy([new Drug('Herbal Tea', 10, 50)])
     .updateBenefitValue())
     .toEqual([new Drug('Herbal Tea', 9, 50)]);
-  })
 
-  it("2) should not be greater than 50 in benefit", () => {
     expect(new Pharmacy([new Drug('Herbal Tea', -9, 49)])
     .updateBenefitValue())
     .toEqual([new Drug('Herbal Tea', -10, 50)]);
@@ -121,7 +119,7 @@ describe("Fervex", () => {
     .toEqual([new Drug('Fervex', 1, 8)]);
   })
 
-  it("should be 0 after expiration date", () => {
+  it("should drop to 0 after expiration date", () => {
     expect(new Pharmacy([new Drug('Fervex', 0, 10)])
     .updateBenefitValue())
     .toEqual([new Drug('Fervex', -1, 0)]);
@@ -140,7 +138,7 @@ describe("Magic Pill", () => {
     .toEqual([new Drug('Magic Pill', 20, 40)]);
   })
 
-  it("should not increase or decrease benefit", () => {
+  it("should not increase or decrease in benefit", () => {
     expect(new Pharmacy([new Drug('Magic Pill', 20, 10)])
     .updateBenefitValue())
     .toEqual([new Drug('Magic Pill', 20, 10)]);
