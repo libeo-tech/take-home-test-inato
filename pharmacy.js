@@ -19,14 +19,9 @@ export class Pharmacy {
    */
 
   /**
-   * @function regularBenefitDecrease
+   * @function dafalganBenefitDecrease
    * @param {Drug} drug 
    */
-  regularBenefitDecrease(drug) {
-    if (drug.benefit > MIN_BENEFIT)
-      drug.benefit -= 1;
-  }
-
   /**
    * @function dafalganBenefitDecrease
    * @param {*} drug 
@@ -36,10 +31,10 @@ export class Pharmacy {
       drug.benefit -= 2;
   }
   /**
-   * @function dolipraneBenfitDecrease
+   * @function regularBenefitDecrease
    * @param {Drug} drug 
    */
-  dolipraneBenefitDecrease(drug) {
+  regularBenefitDecrease(drug) {
     if (drug.expiresIn < 0 && drug.benefit > MIN_BENEFIT)
       drug.benefit -= 2;
     else if (drug.expiresIn > 0 && drug.benefit > MIN_BENEFIT)
