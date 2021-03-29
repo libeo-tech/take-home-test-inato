@@ -45,15 +45,6 @@ export class Pharmacy {
    * INCREASE BENEFIT
    */
 
-  increaseBenefit(drug) {
-    if (drug.benefit < MAX_BENEFIT && (drug.expiresIn <= 5 && drug.expiresIn >= MIN_BENEFIT))
-      drug.benefit += 3;
-    else if (drug.benefit < MAX_BENEFIT && drug.expiresIn <= 10 && drug.expiresIn > 5)
-      drug.benefit += 2;
-    else if (drug.benefit < MAX_BENEFIT && drug.expiresIn > 10)
-      drug.benefit += 1;
-  }
-
   /**
    * @function herbalTeaBenefitIncrease
    * @param {Drug} drug 
