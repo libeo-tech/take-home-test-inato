@@ -22,23 +22,23 @@ export class Pharmacy {
    * @function dafalganBenefitDecrease
    * @param {Drug} drug 
    */
-  /**
-   * @function dafalganBenefitDecrease
-   * @param {*} drug 
-   */
   dafalganBenefitDecrease(drug) {
-    if (drug.benefit > MIN_BENEFIT)
-      drug.benefit -= 2;
+    if (drug.benefit > MIN_BENEFIT) {
+      drug.benefit - 2 < MIN_BENEFIT ? drug.benefit = MIN_BENEFIT : drug.benefit -= 2;
+    }
   }
   /**
    * @function regularBenefitDecrease
    * @param {Drug} drug 
    */
   regularBenefitDecrease(drug) {
-    if (drug.expiresIn < 0 && drug.benefit > MIN_BENEFIT)
-      drug.benefit -= 2;
-    else if (drug.expiresIn > 0 && drug.benefit > MIN_BENEFIT)
-      drug.benefit -= 1;
+    if (drug.benefit > MIN_BENEFIT) {
+      if (drug.expiresIn <= 0) {
+        drug.benefit - 2 < MIN_BENEFIT ? drug.benefit = MIN_BENEFIT : drug.benefit -= 2;
+      }
+      else
+        drug.benefit -= 1;
+    }
   }
 
   /**
@@ -50,7 +50,7 @@ export class Pharmacy {
    * @param {Drug} drug 
    */
   herbalTeaBenefitIncrease(drug) {
-    this.increaseBenefit(drug);
+    if (drug.benefit < MAX_BENEFIT) {
     if (drug.benefit < MAX_BENEFIT && drug.expiresIn < MIN_BENEFIT)
       drug.benefit += 6;
   }
@@ -60,7 +60,7 @@ export class Pharmacy {
    * @param {Drug} drug 
    */
   fervexBenefitIncrease(drug) {
-    this.increaseBenefit(drug);
+    if (drug.expiresIn <= 0)
     if (drug.expiresIn < 0)
       drug.benefit = MIN_BENEFIT;
   }
