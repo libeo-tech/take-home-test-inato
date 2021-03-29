@@ -11,7 +11,7 @@ describe("Pharmacy", () => {
       .toEqual([new Drug("test", 1, 2)]);
   });
 
-  it("should have 10 elements", () => {
+  it("should return 10 elements", () => {
     expect(new Pharmacy([
                           new Drug("test", 2, 3),
                           new Drug("test", 2, 3),
