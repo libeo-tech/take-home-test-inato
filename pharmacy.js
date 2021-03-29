@@ -59,7 +59,7 @@ export class Pharmacy {
         drug.benefit += 1;
       else{
         drug.benefit + 2 > MAX_BENEFIT ? drug.benefit = MAX_BENEFIT : drug.benefit += 2;
-  }
+      }
     }    
   }
 
@@ -77,7 +77,7 @@ export class Pharmacy {
         drug.benefit + 2 > MAX_BENEFIT ? drug.benefit = MAX_BENEFIT : drug.benefit += 2;
       else if (drug.expiresIn > 0)
         drug.benefit + 3 > MAX_BENEFIT ? drug.benefit = MAX_BENEFIT : drug.benefit += 3;
-  }
+    }
   }
 
   /**
@@ -107,8 +107,8 @@ export class Pharmacy {
   }
 
   updateBenefitValue() {
-    for (let i = 0; i < this.drugs.length; i+=1) {
-      this.selectDrug(this.drugs[i]);
+    for (let drug of this.drugs) {
+      this.selectDrug(drug);
     }
 
     return this.drugs;
