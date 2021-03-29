@@ -55,8 +55,12 @@ export class Pharmacy {
    */
   herbalTeaBenefitIncrease(drug) {
     if (drug.benefit < MAX_BENEFIT) {
-    if (drug.benefit < MAX_BENEFIT && drug.expiresIn < MIN_BENEFIT)
-      drug.benefit += 6;
+      if (drug.expiresIn > 0)
+        drug.benefit += 1;
+      else{
+        drug.benefit + 2 > MAX_BENEFIT ? drug.benefit = MAX_BENEFIT : drug.benefit += 2;
+  }
+    }    
   }
 
   /**
@@ -65,8 +69,15 @@ export class Pharmacy {
    */
   fervexBenefitIncrease(drug) {
     if (drug.expiresIn <= 0)
-    if (drug.expiresIn < 0)
       drug.benefit = MIN_BENEFIT;
+    else if (drug.benefit < MAX_BENEFIT) {
+      if (drug.expiresIn > 10)
+        drug.benefit += 1;
+      else if (drug.expiresIn > 5)
+        drug.benefit + 2 > MAX_BENEFIT ? drug.benefit = MAX_BENEFIT : drug.benefit += 2;
+      else if (drug.expiresIn > 0)
+        drug.benefit + 3 > MAX_BENEFIT ? drug.benefit = MAX_BENEFIT : drug.benefit += 3;
+  }
   }
 
   /**
