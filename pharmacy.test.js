@@ -1,7 +1,17 @@
 import { Drug, Pharmacy } from "./pharmacy";
 
 describe("Pharmacy", () => {
-  it("should be an empty array", () => {
+  it("check on drug property", () => {
+    expect(new Drug("test", 10, 5).name).toEqual("test");
+    expect(new Drug("Doliprane", 10, 5).name).toEqual("Doliprane");
+    expect(new Drug("Herbal Tea", 10, 5).name).toEqual("Herbal Tea");
+    expect(new Drug("Fervex", 10, 5).name).toEqual("Fervex");
+    expect(new Drug("Magic Pill", 10, 5).name).toEqual("Magic Pill");
+    expect(new Drug("Dafalgan", 10, 5).name).toEqual("Dafalgan");
+    expect(new Drug("test", 10, 5).benefit).toEqual(5);
+    expect(new Drug("test", 10, 5).expiresIn).toEqual(10);
+  })
+
     expect(new Pharmacy([]).drugs).toEqual([])
   });
 
