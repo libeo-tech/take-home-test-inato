@@ -32,12 +32,20 @@ describe("Pharmacy", () => {
     .updateBenefitValue()).toHaveLength(10);
   })
 
+  it("should decrease in benefit and expiresIn", () => {
+    expect(new Pharmacy([new Drug("test", 2, 3)])
+      .updateBenefitValue())
+      .toEqual([new Drug("test", 1, 2)]);
+  });
+
+  
   it("benefit value should be between 0 and 50", () => {
     expect(new Drug("test", 2, 53).benefit).toEqual(50);
   
 
     expect(new Drug("test", 2, -20).benefit).toEqual(0);
   })
+
 });
 
 
@@ -68,6 +76,13 @@ describe("Generic drugs", () => {
 })
 
 describe("Herbal Tea", () => {
+  it("ExpiresIn should decrease", () => {
+    expect(new Pharmacy([new Drug('Herbal Tea', 10, 1)])
+    .updateBenefitValue())
+    .not
+    .toEqual([new Drug('test', 10, 2)]);
+  })
+
   it("should increase in benefit the older it gets", () => {
     expect(new Pharmacy([new Drug('Herbal Tea', 10, 9)])
     .updateBenefitValue())
@@ -92,6 +107,13 @@ describe("Herbal Tea", () => {
 })
 
 describe("Fervex", () => {
+  it("ExpiresIn should decrease", () => {
+    expect(new Pharmacy([new Drug('Fervex', 20, 1)])
+    .updateBenefitValue())
+    .not
+    .toEqual([new Drug('Fervex', 20, 2)]);
+  })
+
   it("should increase in benefit the older it gets", () => {
     expect(new Pharmacy([new Drug('Fervex', 20, 9)])
     .updateBenefitValue())
@@ -151,6 +173,13 @@ describe("Magic Pill", () => {
 })
 
 describe("Dafalgan", () => {
+  it("ExpiresIn should decrease", () => {
+    expect(new Pharmacy([new Drug('Dafalgan', 10, 5)])
+    .updateBenefitValue())
+    .not
+    .toEqual([new Drug('Dafalgan', 10, 3)]);
+  })
+
   it ("should not be lesser than 0", () => {
     expect(new Pharmacy([new Drug('Dafalgan', 0, 1)])
     .updateBenefitValue())
