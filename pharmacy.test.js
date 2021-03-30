@@ -12,16 +12,11 @@ describe("Pharmacy", () => {
     expect(new Drug("test", 10, 5).expiresIn).toEqual(10);
   })
 
+  it("should return an empty array", () => {
     expect(new Pharmacy([]).drugs).toEqual([])
   });
 
-  it("should decrease in benefit and expiresIn", () => {
-    expect(new Pharmacy([new Drug("test", 2, 3)])
-      .updateBenefitValue())
-      .toEqual([new Drug("test", 1, 2)]);
-  });
-
-  it("should return 10 elements", () => {
+  it("should return same number of elements (10 elements)", () => {
     expect(new Pharmacy([
                           new Drug("test", 2, 3),
                           new Drug("test", 2, 3),
