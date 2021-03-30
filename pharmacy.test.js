@@ -1,5 +1,8 @@
 import { Drug, Pharmacy } from "./pharmacy";
 
+/**
+ * Pharmacy Test
+ */
 describe("Pharmacy", () => {
   it("check on drug property", () => {
     expect(new Drug("test", 10, 5).name).toEqual("test");
@@ -48,6 +51,9 @@ describe("Pharmacy", () => {
 
 });
 
+/**
+ * Generic Drugs Test
+ */
 
 describe("Generic drugs", () => {
   it("ExpiresIn should decrease", () => {
@@ -74,6 +80,10 @@ describe("Generic drugs", () => {
       .toEqual([new Drug('test', 4, 0)]);
   })
 })
+
+/**
+ * Herbal Tea Test
+ */
 
 describe("Herbal Tea", () => {
   it("ExpiresIn should decrease", () => {
@@ -105,6 +115,10 @@ describe("Herbal Tea", () => {
     .toEqual([new Drug('Herbal Tea', -10, 50)]);
   })
 })
+
+/**
+ * Fervex Test
+ */
 
 describe("Fervex", () => {
   it("ExpiresIn should decrease", () => {
@@ -157,7 +171,9 @@ describe("Fervex", () => {
   })
 })
 
-
+/**
+ * Magic Pill Test
+ */
 describe("Magic Pill", () => {
   it("should not increase or decrease expiresIn", () => {
     expect(new Pharmacy([new Drug('Magic Pill', 20, 40)])
@@ -171,6 +187,10 @@ describe("Magic Pill", () => {
     .toEqual([new Drug('Magic Pill', 20, 10)]);
   })
 })
+
+/**
+ * Dafalgan Test
+ */
 
 describe("Dafalgan", () => {
   it("ExpiresIn should decrease", () => {
