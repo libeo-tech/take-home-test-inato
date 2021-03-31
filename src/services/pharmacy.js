@@ -23,11 +23,21 @@ export class Pharmacy {
   updateBenefitValueNew() {
     for (var i = 0; i < this.drugs.length; i++) {
       // benefit cant be negative
-      if (this.drugs[i].benefit === 0) {
+      if (this.drugs[i].benefit === 0 && this.drugs[i].name != "Herbal Tea") {
         continue;
       }
       if (this.drugs[i].name === "Magic Pill") {
         // magic pill never decrease benefit
+        continue;
+      }
+      if (this.drugs[i].name === "Herbal Tea") {
+        // herbal tea increase
+        if (this.drugs[i].expiresIn < 0) {
+          this.drugs[i].benefit += 2;
+          continue;
+        } else {
+          this.drugs[i].benefit += 1;
+        }
         continue;
       }
       // benefit decrease twice fast if expired
@@ -48,6 +58,7 @@ export class Pharmacy {
       ) {
         if (this.drugs[i].benefit > 0) {
           if (this.drugs[i].name != "Magic Pill") {
+            // apply to all - BENEFIT
             this.drugs[i].benefit = this.drugs[i].benefit - 1;
           }
         }
