@@ -44,6 +44,23 @@ export class Pharmacy {
         }
         continue;
       }
+      if (this.drugs[i].name === "Fervex") {
+        // Fervex increase benefit by 2 if expires 10 days or less
+        if (this.drugs[i].expiresIn < 0) {
+          this.drugs[i].benefit = 0;
+          continue;
+        }
+        if (this.drugs[i].expiresIn <= 5) {
+          this.drugs[i].benefit += 3;
+          continue;
+        }
+        if (this.drugs[i].expiresIn <= 10) {
+          this.drugs[i].benefit += 2;
+          continue;
+        }
+        // Fervex increase benefit by 3 if expires 5 days or less
+        continue;
+      }
       // benefit decrease twice fast if expired
       if (this.drugs[i].expiresIn < 0) {
         this.drugs[i].benefit -= 2;

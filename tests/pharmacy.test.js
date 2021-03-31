@@ -42,14 +42,16 @@ describe("Pharmacy specifics rules for expiresIn value", () => {
   // });
 });
 
-describe("Pharmacy specifics rules for benefit value", () => {
+describe("Pharmacy MAGIC PILL rules for benefit value", () => {
   // SPECIFIC RULES : HERBAL TEA - MAGIC PILL - FERVEX
   it("should let MAGIC PILL benefit", () => {
     expect(
       new Pharmacy([new Drug("Magic Pill", 1, 1)]).updateBenefitValueNew()
     ).toEqual([new Drug("Magic Pill", 1, 1)]);
   });
+});
 
+describe("Pharmacy HERBAL TEA rules for benefit value", () => {
   it("should increase HERBAL TEA benefit", () => {
     expect(
       new Pharmacy([new Drug("Herbal Tea", 0, 1)]).updateBenefitValueNew()
@@ -73,5 +75,23 @@ describe("Pharmacy specifics rules for benefit value", () => {
     expect(
       new Pharmacy([new Drug("Fervex", -1, 50)]).updateBenefitValueNew()
     ).toEqual([new Drug("Fervex", -1, 50)]);
+  });
+});
+
+describe("Pharmacy FERVEX rules for benefit value", () => {
+  it("should increase FERVEX benefit by 2 if 10 days or less", () => {
+    expect(
+      new Pharmacy([new Drug("Fervex", 10, 20)]).updateBenefitValueNew()
+    ).toEqual([new Drug("Fervex", 10, 22)]);
+  });
+  it("should increase FERVEX benefit by 3 if 5 days or less", () => {
+    expect(
+      new Pharmacy([new Drug("Fervex", 5, 20)]).updateBenefitValueNew()
+    ).toEqual([new Drug("Fervex", 5, 23)]);
+  });
+  it("should drop FERVEX benefits to zero", () => {
+    expect(
+      new Pharmacy([new Drug("Fervex", -1, 20)]).updateBenefitValueNew()
+    ).toEqual([new Drug("Fervex", -1, 0)]);
   });
 });
