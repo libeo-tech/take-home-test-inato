@@ -30,10 +30,12 @@ export class Pharmacy {
       if (this.drugs[i].benefit === 50) {
         continue;
       }
+      // --- MAGIC PILL ---
       if (this.drugs[i].name === "Magic Pill") {
         // magic pill never decrease benefit
         continue;
       }
+      // --- HERBAL TEA ---
       if (this.drugs[i].name === "Herbal Tea") {
         // herbal tea increase
         if (this.drugs[i].expiresIn < 0) {
@@ -44,6 +46,7 @@ export class Pharmacy {
         }
         continue;
       }
+      // --- FERVEX ---
       if (this.drugs[i].name === "Fervex") {
         // Fervex increase benefit by 2 if expires 10 days or less
         if (this.drugs[i].expiresIn < 0) {
@@ -59,6 +62,17 @@ export class Pharmacy {
           continue;
         }
         // Fervex increase benefit by 3 if expires 5 days or less
+        continue;
+      }
+      // --- DAFALGAN ---
+      if (this.drugs[i].name === "Dafalgan") {
+        // defalgan decrease twice fast
+        if (this.drugs[i].expiresIn < 0) {
+          this.drugs[i].benefit -= 4;
+          continue;
+        } else {
+          this.drugs[i].benefit -= 2;
+        }
         continue;
       }
       // benefit decrease twice fast if expired
