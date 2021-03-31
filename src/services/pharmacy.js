@@ -26,6 +26,10 @@ export class Pharmacy {
       if (this.drugs[i].benefit === 0 && this.drugs[i].name != "Herbal Tea") {
         continue;
       }
+      // benefit cant be more than 50
+      if (this.drugs[i].benefit === 50) {
+        continue;
+      }
       if (this.drugs[i].name === "Magic Pill") {
         // magic pill never decrease benefit
         continue;

@@ -65,4 +65,13 @@ describe("Pharmacy specifics rules for benefit value", () => {
       new Pharmacy([new Drug("Herbal Tea", -1, 2)]).updateBenefitValueNew()
     ).toEqual([new Drug("Herbal Tea", -1, 4)]);
   });
+
+  it("should not increase benefit if 50 (herbal tea and fervex)", () => {
+    expect(
+      new Pharmacy([new Drug("Herbal Tea", -1, 50)]).updateBenefitValueNew()
+    ).toEqual([new Drug("Herbal Tea", -1, 50)]);
+    expect(
+      new Pharmacy([new Drug("Fervex", -1, 50)]).updateBenefitValueNew()
+    ).toEqual([new Drug("Fervex", -1, 50)]);
+  });
 });
