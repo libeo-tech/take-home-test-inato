@@ -13,15 +13,17 @@ const trial = new Pharmacy(drugs);
 const log = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(trial.updateBenefitValue()));
+  trial.updateExpiresIn();
+  trial.updateBenefitValueNew();
+  log.push(JSON.stringify(trial.drugs));
 }
 
 /* eslint-disable no-console */
-fs.writeFile("output.txt", log, err => {
+fs.writeFile("output.txt", log, (err) => {
   if (err) {
     console.log("error");
   } else {
     console.log("success");
   }
 });
-/* eslint-enable no-console */
+/* eslint-disable no-console */
