@@ -1,7 +1,8 @@
-import { FERVEX, HERBAL_TEA, MAGIC_PILL } from "./drugs/constants";
+import { FERVEX, HERBAL_TEA, MAGIC_PILL, DAFALGAN } from "./drugs/constants";
 import { HerbalTea } from "./drugs/herbalTea";
 import { MagicPill } from "./drugs/magicPill";
 import { Fervex } from "./drugs/fervex";
+import { Dafalgan } from "./drugs/dafalgan";
 
 export class Pharmacy {
   constructor(drugs = []) {
@@ -21,6 +22,9 @@ export class Pharmacy {
 
         case FERVEX:
           return new Fervex(expiresIn, benefit);
+
+        case DAFALGAN:
+          return new Dafalgan(expiresIn, benefit);
 
         default:
           return drug;
