@@ -14,7 +14,7 @@ const log = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
   trial.updateExpiresIn();
-  trial.updateBenefitValueNew();
+  trial.updateBenefitValue();
   log.push(JSON.stringify(trial.drugs));
 }
 
