@@ -56,4 +56,24 @@ describe("Pharmacy", () => {
       new Pharmacy([new Drug("Dafalgan", 0, 5)]).updateBenefitValue()
     ).toEqual([new Drug("Dafalgan", -1, 1)]);
   });
+  it("Herbal Tea benefit should be less than 50", () => {
+    expect(
+      new Pharmacy([new Drug("Herbal Tea", 5, 50)]).updateBenefitValue()
+    ).toEqual([new Drug("Herbal Tea", 4, 50)]);
+  });
+  it("Herbal Tea benefit should be less than 50", () => {
+    expect(
+      new Pharmacy([new Drug("Herbal Tea", -1, 49)]).updateBenefitValue()
+    ).toEqual([new Drug("Herbal Tea", -2, 50)]);
+  });
+  it("Fervex benefit should be less than 50", () => {
+    expect(
+      new Pharmacy([new Drug("Fervex", 5, 50)]).updateBenefitValue()
+    ).toEqual([new Drug("Fervex", 4, 50)]);
+  });
+  it("Dafalgan benefit should be greater than 0", () => {
+    expect(
+      new Pharmacy([new Drug("Dafalgan", -2, 0)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", -3, 0)]);
+  });
 });
