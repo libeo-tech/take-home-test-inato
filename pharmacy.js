@@ -12,21 +12,29 @@ export class Pharmacy {
   }
 
   updateBenefitValue() {
-    var normalDrugs = function(drug) {
+    //benefit can decrease or increase, benefit of never negative nor more than 50
+    function decrease(drug) {
       if (drug.benefit > 0) {
         drug.benefit--;
-        if (drug.expiresIn <= 0 && drug.benefit > 0) {
-          drug.benefit--;
-        }
+      }
+    }
+    function increase(drug) {
+      if (drug.benefit < 50) {
+        drug.benefit++;
+      }
+    }
+    //There are Normal Drugs(Doliprane) and Special Drugs(Herbal Tea, Fervex, Magic Pill, Dafalgan)
+    var normalDrugs = function(drug) {
+      decrease(drug);
+      if (drug.expiresIn <= 0) {
+        decrease(drug);
       }
       drug.expiresIn--;
     };
     var herbalTea = function(drug) {
-      if (drug.benefit < 50) {
-        drug.benefit++;
-        if (drug.expiresIn <= 0 && drug.benefit < 50) {
-          drug.benefit++;
-        }
+      increase(drug);
+      if (drug.expiresIn <= 0) {
+        increase(drug);
       }
       drug.expiresIn--;
     };
@@ -34,37 +42,29 @@ export class Pharmacy {
       drug;
     };
     var fervex = function(drug) {
-      if (drug.benefit < 50) {
-        drug.benefit++;
-        if (drug.expiresIn < 11 && drug.benefit < 50) {
-          drug.benefit++;
-        }
-        if (drug.expiresIn < 6 && drug.benefit < 50) {
-          drug.benefit++;
-        }
-        if (drug.expiresIn <= 0) {
-          drug.benefit = 0;
-        }
+      increase(drug);
+      if (drug.expiresIn < 11) {
+        increase(drug);
+      }
+      if (drug.expiresIn < 6) {
+        increase(drug);
+      }
+      if (drug.expiresIn <= 0) {
+        drug.benefit = 0;
       }
       drug.expiresIn--;
     };
     var dafalgan = function(drug) {
-      if (drug.benefit > 0) {
-        drug.benefit--;
-        if (drug.benefit > 0) {
-          drug.benefit--;
-          if (drug.expiresIn <= 0 && drug.benefit > 0) {
-            drug.benefit--;
-            if (drug.benefit > 0) {
-              drug.benefit--;
-            }
-          }
-        }
+      decrease(drug);
+      decrease(drug);
+      if (drug.expiresIn <= 0) {
+        decrease(drug);
+        decrease(drug);
       }
       drug.expiresIn--;
     };
-
-    this.drugs.map(drug => {
+    //Go through the drugs,different type of drugs have different actions
+    this.drugs.map((drug) => {
       if (drug.name == "Herbal Tea") {
         herbalTea(drug);
       } else if (drug.name == "Magic Pill") {
