@@ -30,11 +30,11 @@ export class Pharmacy {
 
   updateFervex(drug) {
     if (drug.expiresIn > 10) {
-      drug.benefit = drug.benefit + 1;
+      drug.benefit += 1;
     } else if (drug.expiresIn > 5 && drug.expiresIn < 11) {
-      drug.benefit = drug.benefit + 2;
+      drug.benefit += 2;
     } else if (drug.expiresIn > 0 && drug.expiresIn < 6) {
-      drug.benefit = drug.benefit + 3;
+      drug.benefit += 3;
     } else if (drug.expiresIn <= 0) {
       drug.benefit = 0;
     }
@@ -43,18 +43,18 @@ export class Pharmacy {
 
   updateHerbalTea(drug) {
     if (drug.expiresIn <= 0) {
-      drug.benefit = drug.benefit + 2;
+      drug.benefit += 2;
     } else {
-      drug.benefit = drug.benefit + 1;
+      drug.benefit += 1;
     }
     return drug;
   }
 
   updateNormalDrug(drug) {
     if (drug.expiresIn <= 0) {
-      drug.benefit = drug.benefit - 2;
+      drug.benefit -= 2;
     } else {
-      drug.benefit = drug.benefit - 1;
+      drug.benefit -= 1;
     }
     return drug;
   }
