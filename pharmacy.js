@@ -11,30 +11,32 @@ export class Pharmacy {
     this.drugs = drugs;
   }
   //benefit can decrease or increase, benefit of never negative nor more than 50
-  decrease = drug => {
+  decrease = (drug, changeBenefit) => {
     if (drug.benefit > 0) {
-      drug.benefit--;
+      drug.benefit = Math.max(drug.benefit - changeBenefit, 0);
     }
   };
-  increase = drug => {
+  increase = (drug, changeBenefit) => {
     if (drug.benefit < 50) {
-      drug.benefit++;
+      drug.benefit = Math.min(drug.benefit + changeBenefit, 50);
     }
   };
   //There are Normal Drugs(Doliprane) and Special Drugs(Herbal Tea, Fervex, Magic Pill, Dafalgan)
   //Defined rules for different type of drugs
   normalDrugs = drug => {
-    this.decrease(drug);
-    if (drug.expiresIn <= 0) {
-      this.decrease(drug);
+    if (drug.expiresIn > 0) {
+      this.decrease(drug, 1);
+    } else {
+      this.decrease(drug, 2);
     }
     drug.expiresIn--;
   };
 
   herbalTea = drug => {
-    this.increase(drug);
-    if (drug.expiresIn <= 0) {
-      this.increase(drug);
+    if (drug.expiresIn > 0) {
+      this.increase(drug, 1);
+    } else {
+      this.increase(drug, 2);
     }
     drug.expiresIn--;
   };
@@ -44,25 +46,23 @@ export class Pharmacy {
   };
 
   fervex = drug => {
-    this.increase(drug);
-    if (drug.expiresIn < 11) {
-      this.increase(drug);
-    }
-    if (drug.expiresIn < 6) {
-      this.increase(drug);
-    }
-    if (drug.expiresIn <= 0) {
+    if (drug.expiresIn > 10) {
+      this.increase(drug, 1);
+    } else if (drug.expiresIn <= 10 && drug.expiresIn > 5) {
+      this.increase(drug, 2);
+    } else if (drug.expiresIn <= 5 && drug.expiresIn > 0) {
+      this.increase(drug, 3);
+    } else if (drug.expiresIn <= 0) {
       drug.benefit = 0;
     }
     drug.expiresIn--;
   };
 
   dafalgan = drug => {
-    this.decrease(drug);
-    this.decrease(drug);
-    if (drug.expiresIn <= 0) {
-      this.decrease(drug);
-      this.decrease(drug);
+    if (drug.expiresIn > 0) {
+      this.decrease(drug, 2);
+    } else {
+      this.decrease(drug, 4);
     }
     drug.expiresIn--;
   };
