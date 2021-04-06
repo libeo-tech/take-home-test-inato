@@ -14,6 +14,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 14,
+    "benefit": 38
 }], [{
     "name": "Doliprane",
     "expiresIn": 18,
@@ -30,6 +34,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 13,
+    "benefit": 36
 }], [{
     "name": "Doliprane",
     "expiresIn": 17,
@@ -46,6 +54,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 12,
+    "benefit": 34
 }], [{
     "name": "Doliprane",
     "expiresIn": 16,
@@ -62,6 +74,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 11,
+    "benefit": 32
 }], [{
     "name": "Doliprane",
     "expiresIn": 15,
@@ -78,6 +94,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 10,
+    "benefit": 30
 }], [{
     "name": "Doliprane",
     "expiresIn": 14,
@@ -94,6 +114,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 9,
+    "benefit": 28
 }], [{
     "name": "Doliprane",
     "expiresIn": 13,
@@ -110,6 +134,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 8,
+    "benefit": 26
 }], [{
     "name": "Doliprane",
     "expiresIn": 12,
@@ -126,6 +154,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 7,
+    "benefit": 24
 }], [{
     "name": "Doliprane",
     "expiresIn": 11,
@@ -142,6 +174,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 6,
+    "benefit": 22
 }], [{
     "name": "Doliprane",
     "expiresIn": 10,
@@ -158,6 +194,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 5,
+    "benefit": 20
 }], [{
     "name": "Doliprane",
     "expiresIn": 9,
@@ -174,6 +214,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 4,
+    "benefit": 18
 }], [{
     "name": "Doliprane",
     "expiresIn": 8,
@@ -190,6 +234,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 3,
+    "benefit": 16
 }], [{
     "name": "Doliprane",
     "expiresIn": 7,
@@ -206,6 +254,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 2,
+    "benefit": 14
 }], [{
     "name": "Doliprane",
     "expiresIn": 6,
@@ -222,6 +274,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 1,
+    "benefit": 12
 }], [{
     "name": "Doliprane",
     "expiresIn": 5,
@@ -238,6 +294,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": 0,
+    "benefit": 10
 }], [{
     "name": "Doliprane",
     "expiresIn": 4,
@@ -254,6 +314,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -1,
+    "benefit": 8
 }], [{
     "name": "Doliprane",
     "expiresIn": 3,
@@ -270,6 +334,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -2,
+    "benefit": 6
 }], [{
     "name": "Doliprane",
     "expiresIn": 2,
@@ -286,6 +354,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -3,
+    "benefit": 4
 }], [{
     "name": "Doliprane",
     "expiresIn": 1,
@@ -302,6 +374,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -4,
+    "benefit": 2
 }], [{
     "name": "Doliprane",
     "expiresIn": 0,
@@ -318,6 +394,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -5,
+    "benefit": 0
 }], [{
     "name": "Doliprane",
     "expiresIn": -1,
@@ -334,6 +414,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -6,
+    "benefit": 0
 }], [{
     "name": "Doliprane",
     "expiresIn": -2,
@@ -350,6 +434,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -7,
+    "benefit": 0
 }], [{
     "name": "Doliprane",
     "expiresIn": -3,
@@ -366,6 +454,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -8,
+    "benefit": 0
 }], [{
     "name": "Doliprane",
     "expiresIn": -4,
@@ -382,6 +474,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -9,
+    "benefit": 0
 }], [{
     "name": "Doliprane",
     "expiresIn": -5,
@@ -398,6 +494,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -10,
+    "benefit": 0
 }], [{
     "name": "Doliprane",
     "expiresIn": -6,
@@ -414,6 +514,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -11,
+    "benefit": 0
 }], [{
     "name": "Doliprane",
     "expiresIn": -7,
@@ -430,6 +534,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -12,
+    "benefit": 0
 }], [{
     "name": "Doliprane",
     "expiresIn": -8,
@@ -446,6 +554,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -13,
+    "benefit": 0
 }], [{
     "name": "Doliprane",
     "expiresIn": -9,
@@ -462,6 +574,10 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -14,
+    "benefit": 0
 }], [{
     "name": "Doliprane",
     "expiresIn": -10,
@@ -478,4 +594,8 @@
     "name": "Magic Pill",
     "expiresIn": 15,
     "benefit": 40
+}, {
+    "name": "Dafalgan",
+    "expiresIn": -15,
+    "benefit": 0
 }]

@@ -69,9 +69,28 @@ describe("Pharmacy-herbal-tea", () => {
 
 //expireIN negatif
 describe("Pharmacy-herbal-tea", () => {
-  it("should incremente the benefit 2 and decrease expiresIn", () => {
+  it("should set benefit to 0 and decrease expiresIn", () => {
     expect(new Pharmacy([new Drug("Fervex", -6, 40)]).updateBenefitValue()).toEqual(
       [new Drug("Fervex", -7, 0)]
+    );
+  });
+});
+
+// Dafalgran
+//if benefit still >0
+describe("Pharmacy-herbal-tea", () => {
+  it("should decrease the benefit by 2 and decrease expiresIn", () => {
+    expect(new Pharmacy([new Drug("Dafalgan", 2, 12)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", 1, 10)]
+    );
+  });
+});
+
+//if benefit is 0 or less should let it to 0 or set it
+describe("Pharmacy-herbal-tea", () => {
+  it("should set benefit to 0 and decrease expiresIn", () => {
+    expect(new Pharmacy([new Drug("Dafalgan", 2, 1)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", 1, 0)]
     );
   });
 });

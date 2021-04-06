@@ -52,6 +52,16 @@ export class Pharmacy {
     }
   }
 
+  updateDafalgan(i) {
+    if (this.drugs[i].benefit >= 0) {
+      this.drugs[i].benefit = this.drugs[i].benefit - 2;
+    }
+    if (this.drugs[i].benefit < 0) {
+      this.drugs[i].benefit = 0;
+    }
+
+  }
+
   updateBenefitValue() {
     for (let i = 0; i < this.drugs.length; i++) {
 
@@ -59,7 +69,6 @@ export class Pharmacy {
         case "Herbal Tea":
           this.updateHerbalTea(i);
           this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-
           break;
 
         case "Fervex":
@@ -68,6 +77,11 @@ export class Pharmacy {
           break;
 
         case "Magic Pill":
+          break;
+
+        case "Dafalgan":
+          this.updateDafalgan(i);
+          this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
           break;
 
         default:
