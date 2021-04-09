@@ -77,7 +77,7 @@ describe("Drugs", () => {
 
   describe("Magic Pill", () => {
     [
-      { expiresIn: 2, benefit: 3, expectExpiresIn: 1, expectBenefit: 3 },
+      { expiresIn: 2, benefit: 3, expectExpiresIn: 2, expectBenefit: 3 },
       { expiresIn: 0, benefit: 3, expectExpiresIn: 0, expectBenefit: 3 }
     ].forEach(data => {
       it(`should update ${JSON.stringify(data)}`, () => {

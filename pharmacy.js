@@ -42,8 +42,8 @@ export class HerbalTeaDrug extends Drug {
 }
 
 export class MagicPillDrug extends Drug {
-  updateBenefit() {
-    // Nop
+  aDayHasPassed() {
+    // Not for this one
   }
 }
 
