@@ -60,7 +60,7 @@ describe("Drugs", () => {
     });
   });
 
-  describe("Magic Pill", () => {
+  describe("Herbal Tea", () => {
     [
       { expiresIn: 2, benefit: 3, expectExpiresIn: 1, expectBenefit: 4 },
       { expiresIn: 0, benefit: 3, expectExpiresIn: 0, expectBenefit: 5 }
