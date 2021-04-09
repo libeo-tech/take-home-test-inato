@@ -39,11 +39,23 @@ export class HerbalTeaDrug extends Drug {
   constructor(name, expiresIn, benefit) {
     super(name, expiresIn, benefit);
   }
+
+  updateBenefit() {
+    if (this.expiresIn > 0) {
+      this.benefit = this.benefit + 1;
+    } else {
+      this.benefit = this.benefit + 2;
+    }
+  }
 }
 
 export class MagicPillDrug extends Drug {
   constructor(name, expiresIn, benefit) {
     super(name, expiresIn, benefit);
+  }
+
+  updateBenefit() {
+    // Nop
   }
 }
 
@@ -51,11 +63,31 @@ export class FervexDrug extends Drug {
   constructor(name, expiresIn, benefit) {
     super(name, expiresIn, benefit);
   }
+
+  updateBenefit() {
+    if (this.expiresIn > 10) {
+      this.benefit = this.benefit + 1;
+    } else if (this.expiresIn > 5) {
+      this.benefit = this.benefit + 2;
+    } else if (this.expiresIn > 0) {
+      this.benefit = this.benefit + 3;
+    } else {
+      this.benefit = 0;
+    }
+  }
 }
 
 export class DafalganDrug extends Drug {
   constructor(name, expiresIn, benefit) {
     super(name, expiresIn, benefit);
+  }
+
+  updateBenefit() {
+    if (this.expiresIn > 0) {
+      this.benefit = this.benefit - 2;
+    } else {
+      this.benefit = this.benefit - 4;
+    }
   }
 }
 

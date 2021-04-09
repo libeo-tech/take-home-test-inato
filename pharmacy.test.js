@@ -59,4 +59,66 @@ describe("Drugs", () => {
       });
     });
   });
+
+  describe("Magic Pill", () => {
+    [
+      { expiresIn: 2, benefit: 3, expectExpiresIn: 1, expectBenefit: 4 },
+      { expiresIn: 0, benefit: 3, expectExpiresIn: 0, expectBenefit: 5 }
+    ].forEach(data => {
+      it(`should update ${JSON.stringify(data)}`, () => {
+        var drug = new HerbalTeaDrug("test", data.expiresIn, data.benefit);
+        drug.aDayHasPassed();
+
+        expect(drug.expiresIn).toEqual(data.expectExpiresIn);
+        expect(drug.benefit).toEqual(data.expectBenefit);
+      });
+    });
+  });
+
+  describe("Magic Pill", () => {
+    [
+      { expiresIn: 2, benefit: 3, expectExpiresIn: 1, expectBenefit: 3 },
+      { expiresIn: 0, benefit: 3, expectExpiresIn: 0, expectBenefit: 3 }
+    ].forEach(data => {
+      it(`should update ${JSON.stringify(data)}`, () => {
+        var drug = new MagicPillDrug("test", data.expiresIn, data.benefit);
+        drug.aDayHasPassed();
+
+        expect(drug.expiresIn).toEqual(data.expectExpiresIn);
+        expect(drug.benefit).toEqual(data.expectBenefit);
+      });
+    });
+  });
+
+  describe("Fervex", () => {
+    [
+      { expiresIn: 15, benefit: 3, expectExpiresIn: 14, expectBenefit: 4 },
+      { expiresIn: 10, benefit: 3, expectExpiresIn: 9, expectBenefit: 5 },
+      { expiresIn: 5, benefit: 3, expectExpiresIn: 4, expectBenefit: 6 },
+      { expiresIn: 0, benefit: 3, expectExpiresIn: 0, expectBenefit: 0 }
+    ].forEach(data => {
+      it(`should update ${JSON.stringify(data)}`, () => {
+        var drug = new FervexDrug("test", data.expiresIn, data.benefit);
+        drug.aDayHasPassed();
+
+        expect(drug.expiresIn).toEqual(data.expectExpiresIn);
+        expect(drug.benefit).toEqual(data.expectBenefit);
+      });
+    });
+  });
+
+  describe("Dafalgan", () => {
+    [
+      { expiresIn: 2, benefit: 3, expectExpiresIn: 1, expectBenefit: 1 },
+      { expiresIn: 0, benefit: 10, expectExpiresIn: 0, expectBenefit: 6 }
+    ].forEach(data => {
+      it(`should update ${JSON.stringify(data)}`, () => {
+        var drug = new DafalganDrug("test", data.expiresIn, data.benefit);
+        drug.aDayHasPassed();
+
+        expect(drug.expiresIn).toEqual(data.expectExpiresIn);
+        expect(drug.benefit).toEqual(data.expectBenefit);
+      });
+    });
+  });
 });
