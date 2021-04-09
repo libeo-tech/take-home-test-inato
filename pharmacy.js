@@ -5,14 +5,10 @@ export class Drug {
     this.benefit = benefit;
   }
 
-  set benefit(newValue) {
+  setBenefit(newValue) {
     if (newValue <= 50 && newValue >= 0) {
-      this._benefit = newValue;
+      this.benefit = newValue;
     }
-  }
-
-  get benefit() {
-    return this._benefit;
   }
 
   decrementExpiresIn() {
@@ -28,9 +24,9 @@ export class Drug {
 
   updateBenefit() {
     if (this.expiresIn > 0) {
-      this.benefit = this.benefit - 1;
+      this.setBenefit(this.benefit - 1);
     } else {
-      this.benefit = this.benefit - 2;
+      this.setBenefit(this.benefit - 2);
     }
   }
 }
@@ -42,9 +38,9 @@ export class HerbalTeaDrug extends Drug {
 
   updateBenefit() {
     if (this.expiresIn > 0) {
-      this.benefit = this.benefit + 1;
+      this.setBenefit(this.benefit + 1);
     } else {
-      this.benefit = this.benefit + 2;
+      this.setBenefit(this.benefit + 2);
     }
   }
 }
@@ -66,13 +62,13 @@ export class FervexDrug extends Drug {
 
   updateBenefit() {
     if (this.expiresIn > 10) {
-      this.benefit = this.benefit + 1;
+      this.setBenefit(this.benefit + 1);
     } else if (this.expiresIn > 5) {
-      this.benefit = this.benefit + 2;
+      this.setBenefit(this.benefit + 2);
     } else if (this.expiresIn > 0) {
-      this.benefit = this.benefit + 3;
+      this.setBenefit(this.benefit + 3);
     } else {
-      this.benefit = 0;
+      this.setBenefit(0);
     }
   }
 }
@@ -84,9 +80,9 @@ export class DafalganDrug extends Drug {
 
   updateBenefit() {
     if (this.expiresIn > 0) {
-      this.benefit = this.benefit - 2;
+      this.setBenefit(this.benefit - 2);
     } else {
-      this.benefit = this.benefit - 4;
+      this.setBenefit(this.benefit - 4);
     }
   }
 }
