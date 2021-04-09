@@ -32,10 +32,6 @@ export class Drug {
 }
 
 export class HerbalTeaDrug extends Drug {
-  constructor(name, expiresIn, benefit) {
-    super(name, expiresIn, benefit);
-  }
-
   updateBenefit() {
     if (this.expiresIn > 0) {
       this.setBenefit(this.benefit + 1);
@@ -46,20 +42,12 @@ export class HerbalTeaDrug extends Drug {
 }
 
 export class MagicPillDrug extends Drug {
-  constructor(name, expiresIn, benefit) {
-    super(name, expiresIn, benefit);
-  }
-
   updateBenefit() {
     // Nop
   }
 }
 
 export class FervexDrug extends Drug {
-  constructor(name, expiresIn, benefit) {
-    super(name, expiresIn, benefit);
-  }
-
   updateBenefit() {
     if (this.expiresIn > 10) {
       this.setBenefit(this.benefit + 1);
@@ -74,10 +62,6 @@ export class FervexDrug extends Drug {
 }
 
 export class DafalganDrug extends Drug {
-  constructor(name, expiresIn, benefit) {
-    super(name, expiresIn, benefit);
-  }
-
   updateBenefit() {
     if (this.expiresIn > 0) {
       this.setBenefit(this.benefit - 2);
