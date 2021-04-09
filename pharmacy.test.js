@@ -42,5 +42,21 @@ describe("Pharmacy", () => {
     });
   });
 });
+
+describe("Drugs", () => {
+  describe("Drug", () => {
+    [
+      { expiresIn: 2, benefit: 3, expectExpiresIn: 1, expectBenefit: 2 },
+      { expiresIn: 0, benefit: 3, expectExpiresIn: 0, expectBenefit: 1 },
+      { expiresIn: 1, benefit: 0, expectExpiresIn: 0, expectBenefit: 0 }
+    ].forEach(data => {
+      it(`should update ${JSON.stringify(data)}`, () => {
+        var drug = new Drug("test", data.expiresIn, data.benefit);
+        drug.aDayHasPassed();
+
+        expect(drug.expiresIn).toEqual(data.expectExpiresIn);
+        expect(drug.benefit).toEqual(data.expectBenefit);
+      });
+    });
   });
 });

@@ -4,6 +4,35 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+  set benefit(newValue) {
+    if (newValue <= 50 && newValue >= 0) {
+      this._benefit = newValue;
+    }
+  }
+
+  get benefit() {
+    return this._benefit;
+  }
+
+  decrementExpiresIn() {
+    if (this.expiresIn > 0) {
+      this.expiresIn = this.expiresIn - 1;
+    }
+  }
+
+  aDayHasPassed() {
+    this.updateBenefit();
+    this.decrementExpiresIn();
+  }
+
+  updateBenefit() {
+    if (this.expiresIn > 0) {
+      this.benefit = this.benefit - 1;
+    } else {
+      this.benefit = this.benefit - 2;
+    }
+  }
 }
 
 export class HerbalTeaDrug extends Drug {
