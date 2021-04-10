@@ -16,6 +16,7 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     for (const drug of this.drugs) {
+      if (drug.name === "Magic Pill") continue;
       switch (drug.name) {
         case "Herbal Tea":
           drug.benefit =
@@ -24,8 +25,6 @@ export class Pharmacy {
         case "Dafalgan":
           drug.benefit =
             drug.expiresIn > 0 ? drug.benefit - 2 : drug.benefit - 4;
-          break;
-        case "Magic Pill":
           break;
         case "Fervex":
           if (drug.expiresIn <= 0) {
@@ -49,11 +48,8 @@ export class Pharmacy {
       }
       if (drug.benefit > 50) drug.benefit = 50;
       if (drug.benefit < 0) drug.benefit = 0;
-      if (drug.name != "Magic Pill") {
-        drug.expiresIn = drug.expiresIn - 1;
-      }
+      drug.expiresIn = drug.expiresIn - 1;
     }
-
     return this.drugs;
   }
 }
