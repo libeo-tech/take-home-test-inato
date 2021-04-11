@@ -1,4 +1,4 @@
-import { Drug, Pharmacy } from "./pharmacy";
+import { Drug, Pharmacy } from "./pharmacyAlt";
 
 import fs from "fs";
 
@@ -8,6 +8,9 @@ const drugs = [
   new Drug("Fervex", 5, 40),
   new Drug("Magic Pill", 15, 40)
 ];
+
+//drugs.push(new Drug("Dafalgan", 10, 30));
+
 const trial = new Pharmacy(drugs);
 
 const log = [];
