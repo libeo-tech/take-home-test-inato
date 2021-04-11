@@ -48,12 +48,33 @@ export class Drug {
       this.expiresIn = this.expiresIn - 1;
     }
 
+    if (this.name === "Fervex") {
+      if (this.expiresIn < 0) {
+        this.step = 0;
+        this.benefit = 0;
+      } else if (this.expiresIn < 6) {
+        this.step = 3;
+      } else if (this.expiresIn < 11) {
+        this.step = 2;
+      } else {
+        this.step = 1;
+      }
+    }
+
     if (this.expiresIn === -1) {
       this.step = this.step * 2;
     }
 
-    if (this.benefit < 50 && this.benefit > 0) {
+    if (this.benefit < 50 && this.benefit > 0 && this.name !== "Magic Pill") {
       this.benefit = this.benefit + (this.tendency * this.step);
+
+      if (this.benefit > 50) {
+        this.benefit = 50;
+      }
+
+      if (this.benefit < 0) {
+        this.benefit = 0;
+      }
     }
   }
 
