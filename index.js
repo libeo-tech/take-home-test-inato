@@ -14,7 +14,7 @@ const trial = new Pharmacy(drugs);
 const log = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(trial.updateBenefitValue()));
+  log.push(JSON.stringify(trial.updateBenefitValue().map(drug => ({ name: drug.name, expiresIn: drug.expiresIn, benefit: drug.benefit }))));
 }
 
 /* eslint-disable no-console */

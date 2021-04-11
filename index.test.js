@@ -14,7 +14,7 @@ it('should not change the output file while refactoring', () => {
     const log = [];
 
     for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-        log.push(JSON.stringify(trial.updateBenefitValue()));
+        log.push(JSON.stringify(trial.updateBenefitValue().map(drug => ({ name: drug.name, expiresIn: drug.expiresIn, benefit: drug.benefit }))));
     }
 
     expect(JSON.stringify(log)).toMatchSnapshot()
