@@ -16,9 +16,6 @@ export class Drug {
     }
 
     switch (name) {
-      case "Herbal Tea":
-        this.step = 1;
-        break;
       case "Fervex":
         if (expiresIn < 0) {
           this.step = 0;
@@ -29,9 +26,6 @@ export class Drug {
         } else {
           this.step = 1;
         }
-        break;
-      case "Magic Pill":
-        this.step = 1;
         break;
       case "Dafalgan":
         this.step = 2;
