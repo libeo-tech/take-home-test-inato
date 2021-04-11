@@ -1,3 +1,5 @@
+export const MAGIC_PILL_DRUG_NAME = "Magic Pill"
+
 export class MagicPillBenefit {
     constructor(drug) {
         if (drug.name != "Magic Pill") {

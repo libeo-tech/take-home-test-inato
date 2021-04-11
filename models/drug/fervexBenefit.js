@@ -1,9 +1,11 @@
 import { MAX_DRUG_BENEFIT } from "./constants"
 
+export const FERVEX_DRUG_NAME = "Fervex"
+
 export class FervexBenefit {
     constructor(drug) {
-        if (drug.name != "Fervex") {
-            throw new Error("The drug parameter received is incorrect. Its name should be 'Fervex'")
+        if (drug.name != FERVEX_DRUG_NAME) {
+            throw new Error(`The drug parameter received is incorrect. Its name should be '${FERVEX_DRUG_NAME}'`)
         }
         this.drug = drug
     }

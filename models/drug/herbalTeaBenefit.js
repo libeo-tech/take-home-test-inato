@@ -1,10 +1,10 @@
 import { MAX_DRUG_BENEFIT } from "./constants"
 
+export const HERBAL_TEA_DRUG_NAME = "Herbal Tea"
 export class HerbalTeaBenefit {
     constructor(drug) {
-        console.log(drug)
-        if (drug.name != "Herbal Tea") {
-            throw new Error("The drug parameter received is incorrect. Its name should be 'Herbal Tea'")
+        if (drug.name != HERBAL_TEA_DRUG_NAME) {
+            throw new Error(`The drug parameter received is incorrect. Its name should be '${HERBAL_TEA_DRUG_NAME}'`)
         }
         this.drug = drug
     }
