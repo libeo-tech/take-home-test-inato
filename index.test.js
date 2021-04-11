@@ -1,5 +1,5 @@
-import { Pharmacy } from "./pharmacy";
-import { Drug } from "./drug"
+import { Pharmacy } from "./models/pharmacy";
+import { Drug } from "./models/drug"
 
 
 it('should not change the output file while refactoring', () => {
