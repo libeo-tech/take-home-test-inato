@@ -3,6 +3,10 @@ import { Drug } from "./models/drug"
 
 import fs from "fs";
 
+import { range } from "./helper"
+
+const NUMBER_OF_DAYS = 30
+
 const drugs = [
   new Drug("Doliprane", 20, 30),
   new Drug("Herbal Tea", 10, 5),
@@ -12,11 +16,7 @@ const drugs = [
 ];
 const trial = new Pharmacy(drugs);
 
-const log = [];
-
-for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(trial.updateBenefitValue().map(drug => ({ name: drug.name, expiresIn: drug.expiresIn, benefit: drug.benefit }))));
-}
+const log = range(NUMBER_OF_DAYS).map(() => JSON.stringify(trial.updateBenefitValue().map(drug => ({ name: drug.name, expiresIn: drug.expiresIn, benefit: drug.benefit }))))
 
 /* eslint-disable no-console */
 fs.writeFile("output.txt", log, err => {

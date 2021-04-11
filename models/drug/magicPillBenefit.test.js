@@ -13,6 +13,7 @@ describe("Magic Pill Benefit", () => {
         const drugs = [new Drug("Magic Pill", 15, 50), new Drug("Magic Pill", 0, 50)]
 
         drugs.forEach(drug => drug.updateBenefitValue())
+
         drugs.forEach(drug => expect(drug.benefit).toBeLessThanOrEqual(50))
     })
 

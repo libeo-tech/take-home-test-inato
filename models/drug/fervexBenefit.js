@@ -2,6 +2,9 @@ import { MAX_DRUG_BENEFIT } from "./constants"
 
 export const FERVEX_DRUG_NAME = "Fervex"
 
+const BENEFIT_INCREASE_RATE = 1
+const FIRST_BENEFIT_EXPIRATION_LEVEL = 10
+const SECOND_BENEFIT_EXPIRATION_LEVEL = 5
 export class FervexBenefit {
     constructor(drug) {
         if (drug.name != FERVEX_DRUG_NAME) {
@@ -21,13 +24,13 @@ export class FervexBenefit {
             return
         }
 
-        if (this.drug.expiresIn < 5) {
-            this.drug.benefit = Math.min(this.drug.benefit + 3, MAX_DRUG_BENEFIT);
+        if (this.drug.expiresIn < SECOND_BENEFIT_EXPIRATION_LEVEL) {
+            this.drug.benefit = Math.min(this.drug.benefit + BENEFIT_INCREASE_RATE * 3, MAX_DRUG_BENEFIT);
         }
-        else if (this.drug.expiresIn < 10) {
-            this.drug.benefit = Math.min(this.drug.benefit + 2, MAX_DRUG_BENEFIT);
+        else if (this.drug.expiresIn < FIRST_BENEFIT_EXPIRATION_LEVEL) {
+            this.drug.benefit = Math.min(this.drug.benefit + BENEFIT_INCREASE_RATE * 2, MAX_DRUG_BENEFIT);
         } else {
-            this.drug.benefit = Math.min(this.drug.benefit + 1);
+            this.drug.benefit = Math.min(this.drug.benefit + BENEFIT_INCREASE_RATE);
         }
     }
 }

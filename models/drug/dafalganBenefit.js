@@ -2,6 +2,7 @@ import { MIN_DRUG_BENEFIT } from "./constants"
 
 export const DAFALGAN_DRUG_NAME = "Dafalgan"
 
+const BENEFIT_DEGRADATION_RATE = 2
 export class DafalganBenefit {
     constructor(drug) {
         if (drug.name != DAFALGAN_DRUG_NAME) {
@@ -13,9 +14,9 @@ export class DafalganBenefit {
     updateBenefitValue() {
         this.drug.expiresIn -= 1;
         if (this.drug.expiresIn < 0) {
-            this.drug.benefit = Math.max(this.drug.benefit - 4, MIN_DRUG_BENEFIT)
+            this.drug.benefit = Math.max(this.drug.benefit - 2 * BENEFIT_DEGRADATION_RATE, MIN_DRUG_BENEFIT)
         } else {
-            this.drug.benefit = Math.max(this.drug.benefit - 2, MIN_DRUG_BENEFIT)
+            this.drug.benefit = Math.max(this.drug.benefit - BENEFIT_DEGRADATION_RATE, MIN_DRUG_BENEFIT)
         }
     }
 }
