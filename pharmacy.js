@@ -9,9 +9,11 @@ export class Drug {
 function verif(test){
     if (test > 50){
       test = 50;
+      console.log(`We arrived at the maximun of benefit`);
     }
     if (test < 0){
       test = 0;
+      console.log(`Warning, we arrived at the end of benefit`);
     }
     return test
   }
@@ -37,7 +39,7 @@ export class Pharmacy {
 
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
-
+      console.log(`start the update of ${this.drugs[i].name} `);
         this.drugs[i].expiresIn = decrement(this.drugs[i].expiresIn,1);
 
         const expr = this.drugs[i].name ;
@@ -87,6 +89,7 @@ export class Pharmacy {
           default:
             console.log(`Sorry, we haven't ${expr}.`);
     }
+    console.log(`The ${this.drugs[i].name} are updated `);
   }
 
     return this.drugs;
