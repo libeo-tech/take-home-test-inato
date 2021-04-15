@@ -53,4 +53,14 @@ describe("Pharmacy", () => {
       new Drug("Herbal Tea", -1, 7)
     ]);
   });
+
+  it("should decrease twice as fast for Dafalgan", () => {
+    const pharmacy = new Pharmacy([new Drug("Dafalgan", 10, 10)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Dafalgan", 9, 8)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Dafalgan", 8, 6)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Dafalgan", 7, 4)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Dafalgan", 6, 2)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Dafalgan", 5, 0)]);
+    expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Dafalgan", 4, 0)]);
+  });
 });

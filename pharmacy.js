@@ -25,6 +25,9 @@ export class Drug {
         break;
       case "Magic Pill":
         break;
+      case "Dafalgan":
+        this.benefit = this.benefit - 2 <= 0 ? 0 : this.benefit - 2;
+        break;
       default:
         if (this.benefit > 0) {
           if (this.expiresIn <= 0) this.benefit -= 2;
