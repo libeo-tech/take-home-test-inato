@@ -14,12 +14,12 @@ describe("Drug Entity", () => {
   it("should lower the values of benefit and expiresIn at the end of each day", () => {
     const creationTime = 1530518207007;
 
-    jest.spyOn(global.Date, "now").mockImplementationOnce(() => creationTime);
+    jest.spyOn(global.Date, "now").mockImplementation(() => creationTime);
     const drug = new Drug("d", 10, 10);
 
     jest
       .spyOn(global.Date, "now")
-      .mockImplementationOnce(() => creationTime + 100 * 60 * 60 * 24);
+      .mockImplementation(() => creationTime + 1000 * 60 * 60 * 24);
     expect(drug.expiresIn).toBe(9);
     expect(drug.benefit).toBe(9);
   });
