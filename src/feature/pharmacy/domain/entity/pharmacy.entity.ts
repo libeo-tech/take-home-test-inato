@@ -1,4 +1,4 @@
-import { Drug } from "features/drug";
+import { Drug } from "feature/drug";
 
 export class Pharmacy {
   constructor(private drugs: Drug[] = []) {}

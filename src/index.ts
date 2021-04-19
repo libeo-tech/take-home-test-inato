@@ -1,4 +1,4 @@
-import { Drug, Pharmacy } from "./features";
+import { Drug, Pharmacy } from "./feature";
 
 import * as fs from "fs";
 
