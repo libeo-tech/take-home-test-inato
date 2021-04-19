@@ -20,7 +20,15 @@ export class Drug {
 
   get benefit() {
     const daysSinceCreation = this.timeSinceCreation() / (1000 * 24 * 3600);
-    return this._benefit - daysSinceCreation;
+    let benefit;
+    if (this.expiresIn < 0) {
+      benefit = this._benefit - this._expiresIn;
+      benefit -= 2 * (daysSinceCreation - this._expiresIn);
+    } else {
+      benefit = this._benefit - daysSinceCreation;
+    }
+
+    return benefit;
   }
 
   private timeSinceCreation() {
