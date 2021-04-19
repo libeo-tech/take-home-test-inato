@@ -1,15 +1,8 @@
-export class Drug {
-  constructor(name, expiresIn, benefit) {
-    this.name = name;
-    this.expiresIn = expiresIn;
-    this.benefit = benefit;
-  }
-}
+import { Drug } from "features/drug";
 
 export class Pharmacy {
-  constructor(drugs = []) {
-    this.drugs = drugs;
-  }
+  constructor(private drugs: Drug[] = []) {}
+
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       if (
