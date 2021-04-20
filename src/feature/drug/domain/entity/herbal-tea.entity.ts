@@ -7,9 +7,9 @@ export class HerbalTea extends Drug {
 
     // If the expiration date has passed
     if (this.expiresIn < 0) {
-      // Only degrade 1 point before expiration
+      // Increase benefit every day
       benefit =
-        this._benefit - this._expiresIn * this._benefitDegradationPerDay;
+        this._benefit + this._expiresIn * this._benefitDegradationPerDay;
       // Increase twice as fast after expiration date
       benefit +=
         2 *
@@ -17,7 +17,7 @@ export class HerbalTea extends Drug {
         this._benefitDegradationPerDay;
     } else {
       benefit =
-        this._benefit - daysSinceCreation * this._benefitDegradationPerDay;
+        this._benefit + daysSinceCreation * this._benefitDegradationPerDay;
     }
 
     // Benefit should never be 0
