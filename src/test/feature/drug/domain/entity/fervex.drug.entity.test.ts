@@ -61,6 +61,7 @@ describe("Fervex", () => {
       .mockImplementation(() => creationTime + 20 * dayInMs);
     expect(drug.expiresIn).toBe(0);
     expect(drug.benefit).toBe(39);
+
     jest
       .spyOn(global.Date, "now")
       .mockImplementation(() => creationTime + 21 * dayInMs);
@@ -79,11 +80,11 @@ describe("Fervex", () => {
   });
   it("should never degrade the benefit to negative value", () => {
     jest.spyOn(global.Date, "now").mockImplementation(() => creationTime);
-    const drug = new Fervex("Fervex", 10, 2);
+    const drug = new Fervex("Fervex", 1, 2);
 
     jest
       .spyOn(global.Date, "now")
-      .mockImplementation(() => creationTime + 15 * dayInMs);
+      .mockImplementation(() => creationTime + 3 * dayInMs);
     expect(drug.benefit).toBe(0);
   });
 });
