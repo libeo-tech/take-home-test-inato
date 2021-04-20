@@ -34,4 +34,23 @@ describe("Herbal Tea", () => {
     expect(drug.expiresIn).toBe(-2);
     expect(drug.benefit).toBe(14);
   });
+  it("should never exceed 50 in benefit ", () => {
+    jest.spyOn(global.Date, "now").mockImplementation(() => creationTime);
+    const drug = new HerbalTea("Herbal Tea", 100, 100);
+
+    jest
+      .spyOn(global.Date, "now")
+      .mockImplementation(() => creationTime + 50 * dayInMs);
+    expect(drug.benefit).toBe(50);
+
+    jest
+      .spyOn(global.Date, "now")
+      .mockImplementation(() => creationTime + 100 * dayInMs);
+    expect(drug.benefit).toBe(0);
+
+    jest
+      .spyOn(global.Date, "now")
+      .mockImplementation(() => creationTime + 126 * dayInMs);
+    expect(drug.benefit).toBe(50);
+  });
 });

@@ -70,4 +70,10 @@ describe("Drug Entity", () => {
     expect(drug.expiresIn).toBe(6);
     expect(drug.benefit).toBe(0);
   });
+  it("should never exceed 50 in benefit ", () => {
+    const veryBeneficialDrug = new Drug("d", 10, 100);
+    expect(veryBeneficialDrug.benefit).toBe(50);
+    const limitBeneficialDrug = new Drug("d", 10, 50);
+    expect(limitBeneficialDrug.benefit).toBe(50);
+  });
 });
