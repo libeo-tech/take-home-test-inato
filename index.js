@@ -1,19 +1,38 @@
-import { Drug, Pharmacy } from "./pharmacy";
+import { updateBenefitValue } from "./pharmacy";
 
 import fs from "fs";
 
+/* NOTE: I am not a big fun of creating classes for everything, it is better to use
+ *       the default data structures that are provided by the langauge first. That goes
+ *       against the assignment, but I think it is better and makes the code cleaner
+ */
 const drugs = [
-  new Drug("Doliprane", 20, 30),
-  new Drug("Herbal Tea", 10, 5),
-  new Drug("Fervex", 5, 40),
-  new Drug("Magic Pill", 15, 40)
+  {
+    name: "Doliprane",
+    expiresIn: 20,
+    benefit: 30
+  },
+  {
+    name: "Herbal Tea",
+    expiresIn: 10,
+    benefit: 5
+  },
+  {
+    name: "Fervex",
+    expiresIn: 5,
+    benefit: 40
+  },
+  {
+    name: "Magic Pill",
+    expiresIn: 15,
+    benefit: 40
+  }
 ];
-const trial = new Pharmacy(drugs);
 
 const log = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(trial.updateBenefitValue()));
+  log.push(JSON.stringify(updateBenefitValue(drugs)));
 }
 
 /* eslint-disable no-console */
