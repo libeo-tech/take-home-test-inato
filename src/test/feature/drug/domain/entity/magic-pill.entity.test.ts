@@ -1,4 +1,5 @@
 import { MagicPill } from "feature/drug";
+import { mockDateNow } from "test/utils";
 import { creationTime, dayInMs } from "./constants";
 
 describe("Magic Pill Entity", () => {
@@ -13,12 +14,10 @@ describe("Magic Pill Entity", () => {
   });
 
   it("should never lower the values of benefit and expiresIn at the end of each day", () => {
-    jest.spyOn(global.Date, "now").mockImplementation(() => creationTime);
+    mockDateNow(creationTime);
     const drug = new MagicPill("MagicPill", 10, 10);
 
-    jest
-      .spyOn(global.Date, "now")
-      .mockImplementation(() => creationTime + dayInMs);
+    mockDateNow(creationTime + dayInMs);
     expect(drug.expiresIn).toBe(10);
     expect(drug.benefit).toBe(10);
   });

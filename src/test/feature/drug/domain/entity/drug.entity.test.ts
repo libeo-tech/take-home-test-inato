@@ -1,4 +1,5 @@
 import { Drug } from "feature/drug";
+import { mockDateNow } from "test/utils";
 import { creationTime, dayInMs } from "./constants";
 
 describe("Drug Entity", () => {
@@ -13,58 +14,44 @@ describe("Drug Entity", () => {
   });
 
   it("should lower the values of benefit and expiresIn at the end of each day", () => {
-    jest.spyOn(global.Date, "now").mockImplementation(() => creationTime);
+    mockDateNow(creationTime);
     const drug = new Drug("d", 10, 10);
 
-    jest
-      .spyOn(global.Date, "now")
-      .mockImplementation(() => creationTime + dayInMs);
+    mockDateNow(creationTime + dayInMs);
     expect(drug.expiresIn).toBe(9);
     expect(drug.benefit).toBe(9);
   });
 
   it("should degrade twice as fast the benefit one the expiration date has passed", () => {
-    jest.spyOn(global.Date, "now").mockImplementation(() => creationTime);
+    mockDateNow(creationTime);
     const drug = new Drug("d", 10, 20);
 
-    jest
-      .spyOn(global.Date, "now")
-      .mockImplementation(() => creationTime + 10 * dayInMs);
+    mockDateNow(creationTime + 10 * dayInMs);
     expect(drug.expiresIn).toBe(0);
     expect(drug.benefit).toBe(10);
 
-    jest
-      .spyOn(global.Date, "now")
-      .mockImplementation(() => creationTime + 11 * dayInMs);
+    mockDateNow(creationTime + 11 * dayInMs);
     expect(drug.expiresIn).toBe(-1);
     expect(drug.benefit).toBe(8);
 
-    jest
-      .spyOn(global.Date, "now")
-      .mockImplementation(() => creationTime + 12 * dayInMs);
+    mockDateNow(creationTime + 12 * dayInMs);
     expect(drug.expiresIn).toBe(-2);
     expect(drug.benefit).toBe(6);
   });
 
   it("should never degrade the benefit to negative value", () => {
-    jest.spyOn(global.Date, "now").mockImplementation(() => creationTime);
+    mockDateNow(creationTime);
     const drug = new Drug("d", 10, 2);
 
-    jest
-      .spyOn(global.Date, "now")
-      .mockImplementation(() => creationTime + 2 * dayInMs);
+    mockDateNow(creationTime + 2 * dayInMs);
     expect(drug.expiresIn).toBe(8);
     expect(drug.benefit).toBe(0);
 
-    jest
-      .spyOn(global.Date, "now")
-      .mockImplementation(() => creationTime + 3 * dayInMs);
+    mockDateNow(creationTime + 3 * dayInMs);
     expect(drug.expiresIn).toBe(7);
     expect(drug.benefit).toBe(0);
 
-    jest
-      .spyOn(global.Date, "now")
-      .mockImplementation(() => creationTime + 4 * dayInMs);
+    mockDateNow(creationTime + 4 * dayInMs);
     expect(drug.expiresIn).toBe(6);
     expect(drug.benefit).toBe(0);
   });
