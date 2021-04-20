@@ -1,7 +1,5 @@
 import { Drug } from "feature/drug";
-
-const creationTime = 1530518207007;
-const dayInMs = 1000 * 60 * 60 * 24;
+import { creationTime, dayInMs } from "./constants";
 
 describe("Drug Entity", () => {
   it("should have an expiresIn value which denotes the number of days we have until the item expires", () => {
