@@ -1,5 +1,6 @@
 export class Drug {
   protected _createdAt: number;
+  protected readonly _benefitLimit = 50;
 
   constructor(
     protected _name: string,
@@ -33,7 +34,7 @@ export class Drug {
     }
 
     // Benefit should never be 0
-    if (benefit >= 0) return benefit;
+    if (benefit >= 0) return Math.min(benefit, this._benefitLimit);
     return 0;
   }
 

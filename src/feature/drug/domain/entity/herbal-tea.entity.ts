@@ -16,7 +16,7 @@ export class HerbalTea extends Drug {
     }
 
     // Benefit should never be 0
-    if (benefit >= 0) return benefit;
+    if (benefit >= 0) return Math.min(this._benefitLimit, benefit);
     return 0;
   }
 }
