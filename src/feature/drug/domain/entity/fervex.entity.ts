@@ -2,7 +2,7 @@ import { Drug } from "./drug.entity";
 
 export class Fervex extends Drug {
   get benefit() {
-    const daysSinceCreation = this.timeSinceCreation() / (1000 * 24 * 3600);
+    const daysSinceCreation = this.timeSinceCreation / (1000 * 24 * 3600);
     let benefitLoss = 0;
     let daysElapsed = 1;
 

@@ -4,14 +4,15 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",
+    "module": "CommonJS",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "removeComments": true,
     "sourceMap": true,
-    "target": "ES2020",
+    "target": "ES5",
     "outDir": "dist",
     "skipLibCheck": true,
-    "baseUrl": "src"
+    "baseUrl": "./src"
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules/**/*", ".vscode/**/*"]
