@@ -43,11 +43,19 @@ function magicPill(d) {
   return d;
 }
 
+function defalgan(d) {
+  d.expiresIn--;
+  d.benefit = Math.max(d.benefit - 2, MIN_BENEFIT);
+
+  return d;
+}
+
 const drugsfn = {
   Doliprane: doliprane,
   "Herbal Tea": herbalTea,
   Fervex: fervex,
-  "Magic Pill": magicPill
+  "Magic Pill": magicPill,
+  Dafalgan: defalgan
 };
 
 /* NOTE: As it is written in index.js I am going against the assignment

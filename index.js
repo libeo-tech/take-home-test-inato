@@ -26,6 +26,11 @@ const drugs = [
     name: "Magic Pill",
     expiresIn: 15,
     benefit: 40
+  },
+  {
+    name: "Dafalgan",
+    expiresIn: 21,
+    benefit: 42
   }
 ];
 
@@ -35,8 +40,11 @@ for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
   log.push(JSON.stringify(updateBenefitValue(drugs)));
 }
 
+/* NOTE: The `output.txt` file was not writing valid json
+ *       it was missing the outter array brakets.
+ */
 /* eslint-disable no-console */
-fs.writeFile("output.txt", log, err => {
+fs.writeFile("output.txt", `[${log}]`, err => {
   if (err) {
     console.log("error");
   } else {
