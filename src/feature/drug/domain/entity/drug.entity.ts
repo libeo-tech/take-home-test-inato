@@ -1,10 +1,10 @@
 export class Drug {
-  private _createdAt: number;
+  protected _createdAt: number;
 
   constructor(
-    private _name: string,
-    private _expiresIn: number,
-    private _benefit: number
+    protected _name: string,
+    protected _expiresIn: number,
+    protected _benefit: number
   ) {
     this._createdAt = Date.now();
   }
@@ -37,7 +37,7 @@ export class Drug {
     return 0;
   }
 
-  private timeSinceCreation() {
+  protected timeSinceCreation() {
     return Date.now() - this._createdAt;
   }
 }
