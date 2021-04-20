@@ -59,8 +59,7 @@ export class Drug {
 
   protected get timeSinceCreation() {
     if (this._useExternalElapsedDay) {
-      assert(this._daysSinceCreation != undefined);
-      return this._daysSinceCreation * 1000 * 3600 * 24;
+      return this._daysSinceCreation! * 1000 * 3600 * 24;
     }
     return Date.now() - this._createdAt;
   }
