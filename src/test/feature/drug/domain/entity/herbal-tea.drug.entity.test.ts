@@ -37,6 +37,7 @@ describe("Herbal Tea", () => {
   it("should never exceed 50 in benefit ", () => {
     jest.spyOn(global.Date, "now").mockImplementation(() => creationTime);
     const drug = new HerbalTea("Herbal Tea", 100, 100);
+    expect(drug.benefit).toBe(50);
 
     jest
       .spyOn(global.Date, "now")
