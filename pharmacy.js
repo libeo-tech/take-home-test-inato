@@ -12,7 +12,15 @@ export class Drug {
   increaseBenefitBy(n) {
     // The Benefit of an item is never more than 50.
     this.benefit += this.benefit + n > 50 ? 50 - this.benefit : n
-  }  
+  }
+  
+  // speed() {
+
+  // }
+
+  // expired() {
+  //   this > 0
+  // }
 
 
 }
@@ -21,6 +29,8 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+
+  
   updateBenefitValue() {
 
     
@@ -31,10 +41,17 @@ export class Pharmacy {
           break;
         case "Magic Pill":
           drug.expiresIn += 1
-  
           break;
         case "Fervex":
-  
+          if (drug.expiresIn <= 0) {
+            drug.benefit = 0
+          } else if (drug.expiresIn > 10) {
+            drug.increaseBenefitBy(1)
+          } else if (drug.expiresIn > 5) {
+            drug.increaseBenefitBy(2)
+          } else {
+            drug.increaseBenefitBy(3)
+          }
           break;
         case "Dafalgan":
   
