@@ -4,6 +4,15 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+  decreaseBenefitBy(n) {
+    this.benefit -= this.benefit - n < 0 ? this.benefit : n
+  }  
+  increaseBenefitBy(n) {
+    this.benefit += n
+  }  
+
+
 }
 
 export class Pharmacy {
@@ -28,7 +37,7 @@ export class Pharmacy {
   
           break;      
         default:
-          drug.benefit -= drug.expiresIn > 0 ? 1 : 2
+          drug.decreaseBenefitBy(drug.expiresIn > 0 ? 1 : 2)
         }
         
         drug.expiresIn -= 1
@@ -86,11 +95,5 @@ export class Pharmacy {
     return this.drugs;
   }
 
-  // decreaseBenefitBy(n) {
-  //   this.benefit -= n
-  // }  
-  // increaseBenefitBy(n) {
-  //   this.benefit += n
-  // }  
   
 }
