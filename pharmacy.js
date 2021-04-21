@@ -12,6 +12,23 @@ export class Pharmacy {
   }
   updateBenefitValue() {
 
+    // switch (drug.name) {
+    //   case "Herbal Tea":
+
+    //     break;
+    //   case "Magic Pill":
+
+    //     break;
+    //   case "Fervex":
+
+    //     break;
+    //   case "Dafalgan":
+
+    //     break;      
+    //   default:
+    //     drug += 1;
+    // }
+
     this.drugs.forEach(drug => {
       if (
         drug.name != "Herbal Tea" &&
@@ -19,21 +36,21 @@ export class Pharmacy {
       ) {
         if (drug.benefit > 0) {
           if (drug.name != "Magic Pill") {
-            drug.benefit = drug.benefit - 1;
+            drug.benefit -= 1;
           }
         }
       } else {
         if (drug.benefit < 50) {
-          drug.benefit = drug.benefit + 1;
+          drug.benefit += 1;
           if (drug.name == "Fervex") {
             if (drug.expiresIn < 11) {
               if (drug.benefit < 50) {
-                drug.benefit = drug.benefit + 1;
+                drug.benefit += 1;
               }
             }
             if (drug.expiresIn < 6) {
               if (drug.benefit < 50) {
-                drug.benefit = drug.benefit + 1;
+                drug.benefit += 1;
               }
             }
           }
@@ -47,7 +64,7 @@ export class Pharmacy {
           if (drug.name != "Fervex") {
             if (drug.benefit > 0) {
               if (drug.name != "Magic Pill") {
-                drug.benefit = drug.benefit - 1;
+                drug.benefit -= 1;
               }
             }
           } else {
@@ -56,17 +73,20 @@ export class Pharmacy {
           }
         } else {
           if (drug.benefit < 50) {
-            drug.benefit = drug.benefit + 1;
+            drug.benefit += 1;
           }
         }
       }
     })
 
-
-
-    // for (var i = 0; i < this.drugs.length; i++) {
-    // }
-
     return this.drugs;
   }
+
+  // decreaseBenefitBy(n) {
+  //   this.benefit -= n
+  // }  
+  // increaseBenefitBy(n) {
+  //   this.benefit += n
+  // }  
+  
 }
