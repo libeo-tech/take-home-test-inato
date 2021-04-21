@@ -13,6 +13,10 @@ export class Drug {
     // The Benefit of an item is never more than 50.
     this.benefit += this.benefit + n > 50 ? 50 - this.benefit : n
   }
+
+  defaultBenefitVariation() {
+    return this.expiresIn > 0 ? 1 : 2
+  }
 }
 
 export class Pharmacy {
@@ -25,7 +29,7 @@ export class Pharmacy {
     this.drugs.forEach(drug => {
       switch (drug.name) {
         case "Herbal Tea":
-          drug.increaseBenefitBy(drug.expiresIn > 0 ? 1 : 2)
+          drug.increaseBenefitBy(drug.defaultBenefitVariation())
           break;
         case "Magic Pill":
           drug.expiresIn += 1
@@ -42,11 +46,10 @@ export class Pharmacy {
           }
           break;
         case "Dafalgan":
-          drug.decreaseBenefitBy(drug.expiresIn > 0 ? 2 : 4)
-  
+          drug.decreaseBenefitBy(drug.defaultBenefitVariation()*2)
           break;      
         default:
-          drug.decreaseBenefitBy(drug.expiresIn > 0 ? 1 : 2)
+          drug.decreaseBenefitBy(drug.defaultBenefitVariation())
         }
         drug.expiresIn -= 1
     })
