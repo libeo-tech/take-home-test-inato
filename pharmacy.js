@@ -30,6 +30,7 @@ export class Pharmacy {
           drug.increaseBenefitBy(drug.expiresIn > 0 ? 1 : 2)
           break;
         case "Magic Pill":
+          drug.expiresIn += 1
   
           break;
         case "Fervex":
