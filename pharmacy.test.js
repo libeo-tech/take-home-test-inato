@@ -10,7 +10,7 @@ describe("Pharmacy", () => {
 
   it("Once the expiration date has passed, Benefit degrades twice as fast.", () => {
     expect(new Pharmacy([new Drug("test", 0, 3)]).updateBenefitValue()).toEqual(
-      [new Drug("test", 0, 1)]
+      [new Drug("test", -1, 1)]
     );
   });
 
@@ -21,10 +21,11 @@ describe("Pharmacy", () => {
   });
 
   it("The Benefit of an item is never more than 50.", () => {
-    expect(new Pharmacy([new Drug("test", 10, 60)])).toEqual(
-      [new Drug("test", 10, 50)]
+    expect(new Pharmacy([new Drug("Herbal Tea", 20, 50)]).updateBenefitValue()).toEqual(
+      [new Drug("Herbal Tea", 19, 50)]
     );
   });
+
   describe("Drugs", () => {
     describe("Magic Pill", () => {
       it("Never expires nor decreases in Benefit", () => {
@@ -41,7 +42,7 @@ describe("Pharmacy", () => {
       });
       it("Benefit increases twice as fast after the expiration date.", () => {
         expect(new Pharmacy([new Drug("Herbal Tea", 0, 3)]).updateBenefitValue()).toEqual(
-          [new Drug("Herbal Tea", 0, 5)]
+          [new Drug("Herbal Tea", -1, 5)]
         );
       });
     });
@@ -62,8 +63,8 @@ describe("Pharmacy", () => {
         );
       });
       it("Benefit drops to 0 after the expiration date.", () => {
-        expect(new Pharmacy([new Drug("Fervex", 1, 3)]).updateBenefitValue()).toEqual(
-          [new Drug("Fervex", 0, 0)]
+        expect(new Pharmacy([new Drug("Fervex", 0, 3)]).updateBenefitValue()).toEqual(
+          [new Drug("Fervex", -1, 0)]
         );
       });
     });
