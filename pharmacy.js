@@ -6,10 +6,12 @@ export class Drug {
   }
 
   decreaseBenefitBy(n) {
+    // The Benefit of an item is never negative.
     this.benefit -= this.benefit - n < 0 ? this.benefit : n
   }  
   increaseBenefitBy(n) {
-    this.benefit += n
+    // The Benefit of an item is never more than 50.
+    this.benefit += this.benefit + n > 50 ? 50 - this.benefit : n
   }  
 
 
@@ -25,7 +27,7 @@ export class Pharmacy {
     this.drugs.forEach(drug => {
       switch (drug.name) {
         case "Herbal Tea":
-  
+          drug.increaseBenefitBy(drug.expiresIn > 0 ? 1 : 2)
           break;
         case "Magic Pill":
   
