@@ -13,16 +13,6 @@ export class Drug {
     // The Benefit of an item is never more than 50.
     this.benefit += this.benefit + n > 50 ? 50 - this.benefit : n
   }
-  
-  // speed() {
-
-  // }
-
-  // expired() {
-  //   this > 0
-  // }
-
-
 }
 
 export class Pharmacy {
@@ -32,8 +22,6 @@ export class Pharmacy {
 
   
   updateBenefitValue() {
-
-    
     this.drugs.forEach(drug => {
       switch (drug.name) {
         case "Herbal Tea":
@@ -54,66 +42,14 @@ export class Pharmacy {
           }
           break;
         case "Dafalgan":
+          drug.decreaseBenefitBy(drug.expiresIn > 0 ? 2 : 4)
   
           break;      
         default:
           drug.decreaseBenefitBy(drug.expiresIn > 0 ? 1 : 2)
         }
-        
         drug.expiresIn -= 1
-
-
-      // if (
-      //   drug.name != "Herbal Tea" &&
-      //   drug.name != "Fervex"
-      // ) {
-      //   if (drug.benefit > 0) {
-      //     if (drug.name != "Magic Pill") {
-      //       drug.benefit -= 1;
-      //     }
-      //   }
-      // } else {
-      //   if (drug.benefit < 50) {
-      //     drug.benefit += 1;
-      //     if (drug.name == "Fervex") {
-      //       if (drug.expiresIn < 11) {
-      //         if (drug.benefit < 50) {
-      //           drug.benefit += 1;
-      //         }
-      //       }
-      //       if (drug.expiresIn < 6) {
-      //         if (drug.benefit < 50) {
-      //           drug.benefit += 1;
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
-      // if (drug.name != "Magic Pill") {
-      //   drug.expiresIn = drug.expiresIn - 1;
-      // }
-      // if (drug.expiresIn < 0) {
-      //   if (drug.name != "Herbal Tea") {
-      //     if (drug.name != "Fervex") {
-      //       if (drug.benefit > 0) {
-      //         if (drug.name != "Magic Pill") {
-      //           drug.benefit -= 1;
-      //         }
-      //       }
-      //     } else {
-      //       drug.benefit =
-      //         drug.benefit - drug.benefit;
-      //     }
-      //   } else {
-      //     if (drug.benefit < 50) {
-      //       drug.benefit += 1;
-      //     }
-      //   }
-      // }
     })
-
     return this.drugs;
   }
-
-  
 }
