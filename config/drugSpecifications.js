@@ -74,6 +74,24 @@ module.exports = {
           benefitChange: -Number.MAX_VALUE
         }
       ]
+    },
+
+    /**
+     * Dafalgan specifications
+     * Default: -2
+     * Once 0 days reached: -4
+     */
+    Dafalgan: {
+      default: {
+        benefitChange: -2,
+        expires: true
+      },
+      stateChanges: [
+        {
+          fromExpiresIn: 0,
+          benefitChange: -4
+        }
+      ]
     }
   }
 };
