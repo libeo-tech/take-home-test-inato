@@ -44,18 +44,17 @@ export class Pharmacy {
       }
 
       if (isPastExpirationDate(this.drugs[i])) {
+        if (this.drugs[i].name == "Fervex") {
+          this.drugs[i].benefit = 0;
+        }
         if (this.drugs[i].name == "Herbal Tea") {
           if (this.drugs[i].benefit < MAX_ITEM_BENEFIT) {
             increaseValue(this.drugs[i]);
           }
         } else {
-          if (this.drugs[i].name == "Fervex") {
-            this.drugs[i].benefit = 0;
-          } else {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
-                decreaseValue(this.drugs[i]);
-              }
+          if (this.drugs[i].benefit > 0) {
+            if (this.drugs[i].name != "Magic Pill") {
+              decreaseValue(this.drugs[i]);
             }
           }
         }
