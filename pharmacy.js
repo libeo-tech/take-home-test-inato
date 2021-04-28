@@ -10,6 +10,8 @@ const increaseValue = (drug) => (drug.benefit = drug.benefit + 1);
 
 const decreaseValue = (drug) => (drug.benefit = drug.benefit - 1);
 
+const isPastExpirationDate = (drug) => drug.expiresIn < 0;
+
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
@@ -45,7 +47,7 @@ export class Pharmacy {
       if (this.drugs[i].name != "Magic Pill") {
         this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
       }
-      if (this.drugs[i].expiresIn < 0) {
+      if (isPastExpirationDate(this.drugs[i])) {
         if (this.drugs[i].name != "Herbal Tea") {
           if (this.drugs[i].name != "Fervex") {
             if (this.drugs[i].benefit > 0) {
