@@ -16,6 +16,9 @@ export const updateBenefitAfterExpiration = (drug) => {
   if (isBenefitDecreasingAfterExpiration(drug)) {
     decreaseValueTwice(drug);
   }
+  if (isBenefitDoubleDecreasingAfterExpiration(drug)) {
+    decreaseValueTwice(drug);
+  }
 };
 
 const increaseValue = (drug) =>
@@ -39,12 +42,17 @@ const isBenefitDecreasingAfterExpiration = (drug) =>
   !ZERO_AFTER_EXPIRATION_ITEMS.includes(drug.name) &&
   !INCREASING_AFTER_EXPIRATION_ITEMS.includes(drug.name);
 
+const isBenefitDoubleDecreasingAfterExpiration = (drug) =>
+  DOUBLE_INCREASING_AFTER_EXPIRATION_ITEMS.includes(drug.name);
+
 const isBenefitZeroAfterExpiration = (drug) =>
   ZERO_AFTER_EXPIRATION_ITEMS.includes(drug.name);
 
 const MAX_ITEM_BENEFIT = 50;
 
 const INCREASING_AFTER_EXPIRATION_ITEMS = ["Herbal Tea"];
+
+const DOUBLE_INCREASING_AFTER_EXPIRATION_ITEMS = ["Dafalgan"];
 
 const ZERO_AFTER_EXPIRATION_ITEMS = ["Fervex"];
 
