@@ -1,5 +1,5 @@
 export const updateBenefitBeforeExpiration = (drug) => {
-  if (drug.name == "Herbal Tea" || drug.name == "Fervex") {
+  if (isBenefitIncreasingBeforeExpiration(drug)) {
     increaseValue(drug);
   } else {
     decreaseValue(drug);
@@ -28,8 +28,8 @@ const increaseValueTwice = (drug) =>
 const decreaseValueTwice = (drug) =>
   (drug.benefit = Math.max(drug.benefit - 2, 0));
 
-const isBenefitDecreasingBeforeExpiration = (drug) =>
-  !INCREASING_ITEMS.includes(drug);
+const isBenefitIncreasingBeforeExpiration = (drug) =>
+  INCREASING_ITEMS.includes(drug.name);
 
 const MAX_ITEM_BENEFIT = 50;
 
