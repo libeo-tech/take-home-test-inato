@@ -33,7 +33,7 @@ export class Pharmacy {
         this.drugs[i].name == "Fervex"
       ) {
         if (this.drugs[i].benefit < MAX_ITEM_BENEFIT) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
+          increaseValue(this.drugs[i]);
         }
       } else {
         if (this.drugs[i].benefit > 0) {
