@@ -48,7 +48,11 @@ export class Pharmacy {
         this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
       }
       if (isPastExpirationDate(this.drugs[i])) {
-        if (this.drugs[i].name != "Herbal Tea") {
+        if (this.drugs[i].name == "Herbal Tea") {
+          if (this.drugs[i].benefit < 50) {
+            increaseValue(this.drugs[i]);
+          }
+        } else {
           if (this.drugs[i].name != "Fervex") {
             if (this.drugs[i].benefit > 0) {
               if (this.drugs[i].name != "Magic Pill") {
@@ -57,10 +61,6 @@ export class Pharmacy {
             }
           } else {
             this.drugs[i].benefit = 0;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            increaseValue(this.drugs[i]);
           }
         }
       }
