@@ -22,7 +22,7 @@ export class Pharmacy {
       ) {
         if (this.drugs[i].benefit > 0) {
           if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
+            decreaseValue(this.drugs[i]);
           }
         }
       } else {
@@ -31,12 +31,12 @@ export class Pharmacy {
           if (this.drugs[i].name == "Fervex") {
             if (this.drugs[i].expiresIn < 11) {
               if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
+                increaseValue(this.drugs[i]);
               }
             }
             if (this.drugs[i].expiresIn < 6) {
               if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
+                increaseValue(this.drugs[i]);
               }
             }
           }
@@ -50,7 +50,7 @@ export class Pharmacy {
           if (this.drugs[i].name != "Fervex") {
             if (this.drugs[i].benefit > 0) {
               if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
+                decreaseValue(this.drugs[i]);
               }
             }
           } else {
@@ -59,7 +59,7 @@ export class Pharmacy {
           }
         } else {
           if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
+            increaseValue(this.drugs[i]);
           }
         }
       }
