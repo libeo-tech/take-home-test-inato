@@ -39,9 +39,7 @@ export class Pharmacy {
         }
       } else {
         if (this.drugs[i].benefit > 0) {
-          if (isDrugExpiring(this.drugs[i])) {
-            decreaseValue(this.drugs[i]);
-          }
+          decreaseValue(this.drugs[i]);
         }
       }
 
@@ -55,9 +53,7 @@ export class Pharmacy {
           }
         } else {
           if (this.drugs[i].benefit > 0) {
-            if (this.drugs[i].name != "Magic Pill") {
-              decreaseValue(this.drugs[i]);
-            }
+            decreaseValue(this.drugs[i]);
           }
         }
       }
