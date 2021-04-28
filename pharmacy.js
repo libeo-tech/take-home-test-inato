@@ -9,7 +9,10 @@ export class Drug {
   }
 }
 
-const increaseValue = (drug) => (drug.benefit = drug.benefit + 1);
+const MAX_ITEM_BENEFIT = 50;
+
+const increaseValue = (drug) =>
+  (drug.benefit = Math.min(MAX_ITEM_BENEFIT, drug.benefit + 1));
 
 const decreaseValue = (drug) => (drug.benefit = Math.max(drug.benefit - 1, 0));
 
@@ -18,8 +21,6 @@ const isPastExpirationDate = (drug) => drug.expiresIn < 0;
 const updateExpiration = (drug) => (drug.expiresIn = drug.expiresIn - 1);
 
 const isDrugExpiring = (drug) => drug.name != "Magic Pill";
-
-const MAX_ITEM_BENEFIT = 50;
 
 export class Pharmacy {
   constructor(drugs = []) {
@@ -42,9 +43,7 @@ export class Pharmacy {
       }
 
       if (drug.name == "Herbal Tea" || drug.name == "Fervex") {
-        if (drug.benefit < MAX_ITEM_BENEFIT) {
-          increaseValue(drug);
-        }
+        increaseValue(drug);
       } else {
         decreaseValue(drug);
       }
@@ -54,9 +53,7 @@ export class Pharmacy {
           drug.benefit = 0;
         }
         if (drug.name == "Herbal Tea") {
-          if (drug.benefit < MAX_ITEM_BENEFIT) {
-            increaseValue(drug);
-          }
+          increaseValue(drug);
         } else {
           decreaseValue(drug);
         }
