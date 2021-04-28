@@ -38,12 +38,6 @@ export class Pharmacy {
         continue;
       }
 
-      if (drug.name == "Herbal Tea" || drug.name == "Fervex") {
-        increaseValue(drug);
-      } else {
-        decreaseValue(drug);
-      }
-
       if (isPastExpirationDate(drug)) {
         updateBenefitAfterExpiration(drug);
       } else {
