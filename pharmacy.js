@@ -26,6 +26,8 @@ export class Pharmacy {
     for (var i = 0; i < this.drugs.length; i++) {
       if (isDrugExpiring(this.drugs[i])) {
         updateExpiration(this.drugs[i]);
+      } else {
+        continue;
       }
 
       if (
