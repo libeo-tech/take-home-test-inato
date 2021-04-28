@@ -1,12 +1,6 @@
 export const updateBenefitBeforeExpiration = (drug) => {
   if (drug.name == "Fervex") {
-    increaseValue(drug);
-    if (drug.expiresIn < 11) {
-      increaseValue(drug);
-    }
-    if (drug.expiresIn < 6) {
-      increaseValue(drug);
-    }
+    increaseValueForFervex(drug);
   }
   if (isBenefitIncreasingBeforeExpiration(drug)) {
     increaseValue(drug);
@@ -31,6 +25,15 @@ export const updateBenefitAfterExpiration = (drug) => {
   }
 };
 
+const increaseValueForFervex = (drug) => {
+  increaseValue(drug);
+  if (drug.expiresIn < 11) {
+    increaseValue(drug);
+  }
+  if (drug.expiresIn < 6) {
+    increaseValue(drug);
+  }
+};
 const increaseValue = (drug) =>
   (drug.benefit = Math.min(MAX_ITEM_BENEFIT, drug.benefit + 1));
 
