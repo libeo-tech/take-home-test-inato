@@ -7,12 +7,13 @@ export const updateBenefitBeforeExpiration = (drug) => {
 };
 
 export const updateBenefitAfterExpiration = (drug) => {
-  if (drug.name == "Fervex") {
+  if (isBenefitZeroAfterExpiration(drug)) {
     drug.benefit = 0;
   }
-  if (drug.name == "Herbal Tea") {
+  if (isBenefitIncreasingAfterExpiration(drug)) {
     increaseValueTwice(drug);
-  } else {
+  }
+  if (isBenefitDecreasingAfterExpiration(drug)) {
     decreaseValueTwice(drug);
   }
 };
@@ -29,8 +30,22 @@ const decreaseValueTwice = (drug) =>
   (drug.benefit = Math.max(drug.benefit - 2, 0));
 
 const isBenefitIncreasingBeforeExpiration = (drug) =>
-  INCREASING_ITEMS.includes(drug.name);
+  INCREASING_BEFORE_EXPIRATION_ITEMS.includes(drug.name);
+
+const isBenefitIncreasingAfterExpiration = (drug) =>
+  INCREASING_AFTER_EXPIRATION_ITEMS.includes(drug.name);
+
+const isBenefitDecreasingAfterExpiration = (drug) =>
+  !ZERO_AFTER_EXPIRATION_ITEMS.includes(drug.name) &&
+  !INCREASING_AFTER_EXPIRATION_ITEMS.includes(drug.name);
+
+const isBenefitZeroAfterExpiration = (drug) =>
+  ZERO_AFTER_EXPIRATION_ITEMS.includes(drug.name);
 
 const MAX_ITEM_BENEFIT = 50;
 
-const INCREASING_ITEMS = ["Herbal Tea", "Fervex"];
+const INCREASING_AFTER_EXPIRATION_ITEMS = ["Herbal Tea"];
+
+const ZERO_AFTER_EXPIRATION_ITEMS = ["Fervex"];
+
+const INCREASING_BEFORE_EXPIRATION_ITEMS = ["Herbal Tea", "Fervex"];
