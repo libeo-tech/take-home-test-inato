@@ -7,16 +7,11 @@ export const updateBenefitBeforeExpiration = (drug) => {
 };
 
 export const updateBenefitAfterExpiration = (drug) => {
-  if (drug.name == "Herbal Tea" || drug.name == "Fervex") {
-    increaseValue(drug);
-  } else {
-    decreaseValue(drug);
-  }
   if (drug.name == "Fervex") {
     drug.benefit = 0;
   }
   if (drug.name == "Herbal Tea") {
-    increaseValue(drug);
+    increaseValueTwice(drug);
   } else {
     decreaseValueTwice(drug);
   }
@@ -28,7 +23,7 @@ const increaseValue = (drug) =>
 const decreaseValue = (drug) => (drug.benefit = Math.max(drug.benefit - 1, 0));
 
 const increaseValueTwice = (drug) =>
-  (drug.benefit = Math.max(drug.benefit - 2, 0));
+  (drug.benefit = Math.min(drug.benefit + 2, MAX_ITEM_BENEFIT));
 
 const decreaseValueTwice = (drug) =>
   (drug.benefit = Math.max(drug.benefit - 2, 0));
