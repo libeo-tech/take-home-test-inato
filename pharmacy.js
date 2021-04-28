@@ -54,8 +54,7 @@ export class Pharmacy {
               }
             }
           } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
+            this.drugs[i].benefit = 0;
           }
         } else {
           if (this.drugs[i].benefit < 50) {
