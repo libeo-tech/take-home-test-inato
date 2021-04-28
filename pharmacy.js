@@ -1,7 +1,7 @@
 import {
   updateBenefitAfterExpiration,
   updateBenefitBeforeExpiration,
-} from "./updateBenefit";
+} from "./updateBenefit.js";
 
 export class Drug {
   constructor(name, expiresIn, benefit) {
@@ -38,12 +38,6 @@ export class Pharmacy {
         continue;
       }
 
-      if (isPastExpirationDate(drug)) {
-        updateBenefitAfterExpiration(drug);
-      } else {
-        updateBenefitBeforeExpiration(drug);
-      }
-
       if (drug.name == "Herbal Tea" || drug.name == "Fervex") {
         increaseValue(drug);
       } else {
@@ -51,14 +45,9 @@ export class Pharmacy {
       }
 
       if (isPastExpirationDate(drug)) {
-        if (drug.name == "Fervex") {
-          drug.benefit = 0;
-        }
-        if (drug.name == "Herbal Tea") {
-          increaseValue(drug);
-        } else {
-          decreaseValue(drug);
-        }
+        updateBenefitAfterExpiration(drug);
+      } else {
+        updateBenefitBeforeExpiration(drug);
       }
     }
 
