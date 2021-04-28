@@ -24,36 +24,35 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
-      if (isDrugExpiring(this.drugs[i])) {
-        updateExpiration(this.drugs[i]);
+      const drug = this.drugs[i];
+
+      if (isDrugExpiring(drug)) {
+        updateExpiration(drug);
       } else {
         continue;
       }
 
-      if (
-        this.drugs[i].name == "Herbal Tea" ||
-        this.drugs[i].name == "Fervex"
-      ) {
-        if (this.drugs[i].benefit < MAX_ITEM_BENEFIT) {
-          increaseValue(this.drugs[i]);
+      if (drug.name == "Herbal Tea" || drug.name == "Fervex") {
+        if (drug.benefit < MAX_ITEM_BENEFIT) {
+          increaseValue(drug);
         }
       } else {
-        if (this.drugs[i].benefit > 0) {
-          decreaseValue(this.drugs[i]);
+        if (drug.benefit > 0) {
+          decreaseValue(drug);
         }
       }
 
-      if (isPastExpirationDate(this.drugs[i])) {
-        if (this.drugs[i].name == "Fervex") {
-          this.drugs[i].benefit = 0;
+      if (isPastExpirationDate(drug)) {
+        if (drug.name == "Fervex") {
+          drug.benefit = 0;
         }
-        if (this.drugs[i].name == "Herbal Tea") {
-          if (this.drugs[i].benefit < MAX_ITEM_BENEFIT) {
-            increaseValue(this.drugs[i]);
+        if (drug.name == "Herbal Tea") {
+          if (drug.benefit < MAX_ITEM_BENEFIT) {
+            increaseValue(drug);
           }
         } else {
-          if (this.drugs[i].benefit > 0) {
-            decreaseValue(this.drugs[i]);
+          if (drug.benefit > 0) {
+            decreaseValue(drug);
           }
         }
       }
