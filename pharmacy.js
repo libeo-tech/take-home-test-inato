@@ -8,7 +8,7 @@ export class Drug {
 
 const increaseValue = (drug) => (drug.benefit = drug.benefit + 1);
 
-const decreaseValue = (drug) => (drug.benefit = drug.benefit - 1);
+const decreaseValue = (drug) => (drug.benefit = Math.max(drug.benefit - 1, 0));
 
 const isPastExpirationDate = (drug) => drug.expiresIn < 0;
 
@@ -46,9 +46,7 @@ export class Pharmacy {
           increaseValue(drug);
         }
       } else {
-        if (drug.benefit > 0) {
-          decreaseValue(drug);
-        }
+        decreaseValue(drug);
       }
 
       if (isPastExpirationDate(drug)) {
@@ -60,9 +58,7 @@ export class Pharmacy {
             increaseValue(drug);
           }
         } else {
-          if (drug.benefit > 0) {
-            decreaseValue(drug);
-          }
+          decreaseValue(drug);
         }
       }
     }
