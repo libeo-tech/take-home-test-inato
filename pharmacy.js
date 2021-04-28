@@ -11,13 +11,6 @@ export class Drug {
   }
 }
 
-const MAX_ITEM_BENEFIT = 50;
-
-const increaseValue = (drug) =>
-  (drug.benefit = Math.min(MAX_ITEM_BENEFIT, drug.benefit + 1));
-
-const decreaseValue = (drug) => (drug.benefit = Math.max(drug.benefit - 1, 0));
-
 const isPastExpirationDate = (drug) => drug.expiresIn < 0;
 
 const updateExpiration = (drug) => (drug.expiresIn = drug.expiresIn - 1);
