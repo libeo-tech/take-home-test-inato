@@ -18,6 +18,9 @@ const isDrugExpiring = (drug) => drug.name != "Magic Pill";
 
 const MAX_ITEM_BENEFIT = 50;
 
+const updateBeforeExpirationDateBenefit = (drug) => {};
+
+const updateAfterExpirationDateBenefit = (drug) => {};
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
@@ -30,6 +33,12 @@ export class Pharmacy {
         updateExpiration(drug);
       } else {
         continue;
+      }
+
+      if (isPastExpirationDate(drug)) {
+        updateBeforeExpirationDateBenefit(drug);
+      } else {
+        updateAfterExpirationDateBenefit(drug);
       }
 
       if (drug.name == "Herbal Tea" || drug.name == "Fervex") {
