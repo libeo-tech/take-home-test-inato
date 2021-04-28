@@ -24,6 +24,10 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
+      if (isDrugExpiring(this.drugs[i])) {
+        updateExpiration(this.drugs[i]);
+      }
+
       if (
         this.drugs[i].name != "Herbal Tea" &&
         this.drugs[i].name != "Fervex"
@@ -50,9 +54,7 @@ export class Pharmacy {
           }
         }
       }
-      if (isDrugExpiring(this.drugs[i])) {
-        updateExpiration(this.drugs[i]);
-      }
+
       if (isPastExpirationDate(this.drugs[i])) {
         if (this.drugs[i].name == "Herbal Tea") {
           if (this.drugs[i].benefit < MAX_ITEM_BENEFIT) {
