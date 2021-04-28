@@ -14,6 +14,8 @@ const isPastExpirationDate = (drug) => drug.expiresIn < 0;
 
 const updateExpiration = (drug) => (drug.expiresIn = drug.expiresIn - 1);
 
+const isDrugExpiring = (drug) => drug.name != "Magic Pill";
+
 const MAX_ITEM_BENEFIT = 50;
 
 export class Pharmacy {
@@ -48,7 +50,7 @@ export class Pharmacy {
           }
         }
       }
-      if (this.drugs[i].name != "Magic Pill") {
+      if (isDrugExpiring(this.drugs[i])) {
         updateExpiration(this.drugs[i]);
       }
       if (isPastExpirationDate(this.drugs[i])) {
