@@ -6,6 +6,10 @@ export class Drug {
   }
 }
 
+const increaseValue = (drug) => (drug.benefit = drug.benefit + 1);
+
+const decreaseValue = (drug) => (drug.benefit = drug.benefit - 1);
+
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
