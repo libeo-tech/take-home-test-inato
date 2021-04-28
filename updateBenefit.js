@@ -42,9 +42,6 @@ const decreaseValue = (drug) => (drug.benefit = Math.max(drug.benefit - 1, 0));
 const increaseValueTwice = (drug) =>
   (drug.benefit = Math.min(drug.benefit + 2, MAX_ITEM_BENEFIT));
 
-const increaseValueThrice = (drug) =>
-  (drug.benefit = Math.min(drug.benefit + 2, MAX_ITEM_BENEFIT));
-
 const decreaseValueTwice = (drug) =>
   (drug.benefit = Math.max(drug.benefit - 2, 0));
 
@@ -77,6 +74,3 @@ const DOUBLE_INCREASING_AFTER_EXPIRATION_ITEMS = ["Dafalgan"];
 const ZERO_AFTER_EXPIRATION_ITEMS = ["Fervex"];
 
 const INCREASING_BEFORE_EXPIRATION_ITEMS = ["Herbal Tea"];
-
-const FERVEX_TWO_INCREASE_DATE = 10;
-const FERVEX_THREE_INCREASE_DATE = 5;
