@@ -37,7 +37,7 @@ export class Pharmacy {
         }
       } else {
         if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
+          if (isDrugExpiring(this.drugs[i])) {
             decreaseValue(this.drugs[i]);
           }
         }
