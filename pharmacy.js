@@ -1,5 +1,7 @@
-import { updateBenefitAfterExpiration } from "./updateBenefitAfterExpiration";
-import { updateBenefitBeforeExpiration } from "./updateBenefitBeforeExpiration";
+import {
+  updateBenefitAfterExpiration,
+  updateBenefitBeforeExpiration,
+} from "./updateBenefit";
 
 export class Drug {
   constructor(name, expiresIn, benefit) {
