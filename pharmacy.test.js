@@ -71,4 +71,20 @@ describe("Pharmacy", () => {
       ).toStrictEqual([ new Drug("Fervex", 1, 7) ]);
     });
   });
+
+  describe("Dafalgan", () => {
+    it("should decrease benefit by 2", () => {
+      expect(
+        new Pharmacy([ new Drug("Dafalgan", 10, 2) ]).updateBenefitValue()
+      ).toStrictEqual([ new Drug("Dafalgan", 9, 0) ]);
+    });
+
+    it("should increase benefit by 4", () => {
+      expect(
+        new Pharmacy([ new Drug("Dafalgan", 0, 4) ]).updateBenefitValue()
+      ).toStrictEqual([ new Drug("Dafalgan", -1, 0) ]);
+    });
+
+
+  });
 });

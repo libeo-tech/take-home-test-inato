@@ -1,4 +1,4 @@
-import { FERVEX, MAGIC_PILL, HERBAL_TEA } from "./constants";
+import { FERVEX, MAGIC_PILL, HERBAL_TEA, DAFALGAN } from "./constants";
 
 /**
  * Class representing a Drug
@@ -29,13 +29,16 @@ export class Pharmacy {
     let benefitChange;
     switch (name) {
       case FERVEX:
-        benefitChange = this.getFervexBenefitChange(expiresIn);
+        benefitChange = this.getFervexBenefitChange(benefit, expiresIn);
         break;
       case MAGIC_PILL:
         benefitChange = 0;
         break;
       case HERBAL_TEA:
         benefitChange = expiresIn > 0 ? 1 : 2;
+        break;
+      case DAFALGAN:
+        benefitChange = expiresIn > 0 ? -2 : -4;
         break;
       default:
         benefitChange = expiresIn > 0 ? -1 : -2;
@@ -55,9 +58,9 @@ export class Pharmacy {
         drug.benefit,
         drug.expiresIn
       );
-      if (updatedBenefit >= 0 && updatedBenefit <= 50) {
-        drug.benefit = updatedBenefit;
-      }
+
+      drug.benefit = this.validBenefit(updatedBenefit);
+
       drug.expiresIn--;
     });
     return this.drugs;
@@ -68,16 +71,31 @@ export class Pharmacy {
    * @param {number} expiresIn
    * @returns {number}
    */
-  getFervexBenefitChange (expiresIn) {
+  getFervexBenefitChange (benefit, expiresIn) {
     switch (true) {
       case expiresIn > 5 && expiresIn <= 10:
         return 2;
       case expiresIn <= 5 && expiresIn >= 0:
         return 3;
       case expiresIn < 0:
-        return 0;
+        return -benefit;
       default:
         return 1;
+    }
+  }
+  /**
+   * @description returns a valid benefit that fits into the required range
+   * @param {number} updatedBenefit 
+   * @returns {number}
+   */
+  validBenefit (updatedBenefit) {
+    switch (true) {
+      case updatedBenefit < 0:
+        return 0;
+      case updatedBenefit >= 0 && updatedBenefit <= 50:
+        return updatedBenefit;
+      case updatedBenefit > 50:
+        return 50;
     }
   }
 }
