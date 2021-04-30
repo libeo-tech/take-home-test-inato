@@ -4,7 +4,7 @@ import { FERVEX, MAGIC_PILL, HERBAL_TEA, DAFALGAN } from "./constants";
  * Class representing a Drug
  */
 export class Drug {
-  constructor (name, expiresIn, benefit) {
+  constructor(name, expiresIn, benefit) {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
@@ -15,7 +15,7 @@ export class Drug {
  * Class representing a Pharmacy containing drugs
  */
 export class Pharmacy {
-  constructor (drugs = []) {
+  constructor(drugs = []) {
     this.drugs = drugs;
   }
   /**
@@ -25,7 +25,7 @@ export class Pharmacy {
    * @param {number} expiresIn
    * @returns {number}
    */
-  getUpdatedDrugBenefit (name, benefit, expiresIn) {
+  getUpdatedDrugBenefit(name, benefit, expiresIn) {
     let benefitChange;
     switch (name) {
       case FERVEX:
@@ -51,7 +51,7 @@ export class Pharmacy {
    * @description update benefits for all drugs
    * @returns {array}
    */
-  updateBenefitValue () {
+  updateBenefitValue() {
     this.drugs.forEach(drug => {
       const updatedBenefit = this.getUpdatedDrugBenefit(
         drug.name,
@@ -71,7 +71,7 @@ export class Pharmacy {
    * @param {number} expiresIn
    * @returns {number}
    */
-  getFervexBenefitChange (benefit, expiresIn) {
+  getFervexBenefitChange(benefit, expiresIn) {
     switch (true) {
       case expiresIn > 5 && expiresIn <= 10:
         return 2;
@@ -85,10 +85,10 @@ export class Pharmacy {
   }
   /**
    * @description returns a valid benefit that fits into the required range
-   * @param {number} updatedBenefit 
+   * @param {number} updatedBenefit
    * @returns {number}
    */
-  validBenefit (updatedBenefit) {
+  validBenefit(updatedBenefit) {
     switch (true) {
       case updatedBenefit < 0:
         return 0;
