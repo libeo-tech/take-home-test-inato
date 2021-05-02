@@ -1,4 +1,4 @@
-import Drug, { Dafalgan, Fervex, HerbalTea, MagicPill } from "./drug";
+import Drug, { Dafalgan, Fervex, HerbalTea, MagicPill } from "../src/drug";
 
 describe("Drug", function() {
   test("Should decrease de benefit of one", function() {
