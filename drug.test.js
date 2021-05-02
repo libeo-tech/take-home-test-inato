@@ -1,17 +1,17 @@
 import Drug, { Dafalgan, Fervex, HerbalTea, MagicPill } from "./drug";
 
 describe("Drug", function() {
-  test("Benefit should decrease de benefit of one", function() {
+  test("Should decrease de benefit of one", function() {
     const myDrug = new Drug("MyDrug", 12, 5);
     myDrug.decreaseBenefit();
     expect(myDrug).toEqual(new Drug("MyDrug", 12, 4));
   });
-  test("Benefit should decrease de benefit of one", function() {
+  test("Should decrease de benefit of one", function() {
     const myDrug = new Drug("MyDrug", 12, 5);
     myDrug.increaseBenefit();
     expect(myDrug).toEqual(new Drug("MyDrug", 12, 6));
   });
-  test("Benefit should decrease the expireIn of one Day", function() {
+  test("Should decrease the expireIn of one Day", function() {
     const myDrug = new Drug("MyDrug", 12, 5);
     myDrug.updateExpiresIn();
     expect(myDrug).toEqual(new Drug("MyDrug", 11, 5));
@@ -61,12 +61,12 @@ describe("Drug", function() {
       fervex.updateBenefitAfterOneDay();
       expect(fervex).toEqual(new Fervex(9, 3));
     });
-    test("Sould benefit increases by 3 when there are 5 days or less of expiration date", function() {
+    test("Should benefit increases by 3 when there are 5 days or less of expiration date", function() {
       const fervex = new Fervex(5, 1);
       fervex.updateBenefitAfterOneDay();
       expect(fervex).toEqual(new Fervex(4, 4));
     });
-    test("Sould benefit drops to 0 after the expiration date", function() {
+    test("Should benefit drops to 0 after the expiration date", function() {
       const fervex = new Fervex(0, 1);
       fervex.updateBenefitAfterOneDay();
       expect(fervex).toEqual(new Fervex(-1, 0));
