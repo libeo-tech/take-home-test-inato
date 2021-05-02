@@ -10,14 +10,14 @@ export default class Drug {
     }
   }
   increaseBenefit() {
-    this.benefit += 1;
-  }
-  updateExpiresIn() {
     if (this.benefit < 50) {
-      this.expiresIn -= 1;
+      this.benefit += 1;
     }
   }
-  updateDataAfterOneDay() {
+  updateExpiresIn() {
+    this.expiresIn -= 1;
+  }
+  updateBenefitAfterOneDay() {
     this.updateExpiresIn();
     this.decreaseBenefit();
   }
@@ -41,7 +41,7 @@ class HerbalTea extends Drug {
       this.benefit += 1;
     }
   }
-  updateDataAfterOneDay() {
+  updateBenefitAfterOneDay() {
     this.updateExpiresIn();
     this.increaseBenefit();
   }
@@ -61,7 +61,7 @@ class Fervex extends Drug {
       this.benefit = 0;
     }
   }
-  updateDataAfterOneDay() {
+  updateBenefitAfterOneDay() {
     this.updateExpiresIn();
     this.increaseBenefit();
   }

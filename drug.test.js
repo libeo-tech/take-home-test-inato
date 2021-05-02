@@ -28,56 +28,56 @@ describe("Drug", function() {
     myDrug.increaseBenefit();
     expect(myDrug).toEqual(new Drug("MyDrug", 12, 50));
   });
-});
 
-describe("MagicPill", function() {
-  test("Should never expires nor decreases in Benefit", function() {
-    const magicPill = new MagicPill(1, 1);
-    magicPill.decreaseBenefit();
-    magicPill.decreaseBenefit();
-    magicPill.updateExpiresIn();
-    magicPill.updateExpiresIn();
-    expect(magicPill).toEqual(new MagicPill(1, 1));
-  });
-});
-
-describe("HerbalTea", function() {
-  test("Should increases in Benefit the older it gets", function() {
-    const herbaltea = new HerbalTea(5, 1);
-    herbaltea.updateDataAfterOneDay();
-    herbaltea.updateDataAfterOneDay();
-    expect(herbaltea).toEqual(new HerbalTea(3, 3));
+  describe("MagicPill", function() {
+    test("Should never expires nor decreases in Benefit", function() {
+      const magicPill = new MagicPill(1, 1);
+      magicPill.decreaseBenefit();
+      magicPill.decreaseBenefit();
+      magicPill.updateExpiresIn();
+      magicPill.updateExpiresIn();
+      expect(magicPill).toEqual(new MagicPill(1, 1));
+    });
   });
 
-  test("Benefit should twice as fast after the expiration date.", function() {
-    const herbaltea = new HerbalTea(0, 1);
-    herbaltea.updateDataAfterOneDay();
-    expect(herbaltea).toEqual(new HerbalTea(-1, 3));
-  });
-});
+  describe("HerbalTea", function() {
+    test("Should increases in Benefit the older it gets", function() {
+      const herbaltea = new HerbalTea(5, 1);
+      herbaltea.updateBenefitAfterOneDay();
+      herbaltea.updateBenefitAfterOneDay();
+      expect(herbaltea).toEqual(new HerbalTea(3, 3));
+    });
 
-describe("Fervex", function() {
-  test("Should benefit increases by 2 when there are 10 days or less of expiration date", function() {
-    const fervex = new Fervex(10, 1);
-    fervex.updateDataAfterOneDay();
-    expect(fervex).toEqual(new Fervex(9, 3));
+    test("Benefit should twice as fast after the expiration date.", function() {
+      const herbaltea = new HerbalTea(0, 1);
+      herbaltea.updateBenefitAfterOneDay();
+      expect(herbaltea).toEqual(new HerbalTea(-1, 3));
+    });
   });
-  test("Sould benefit increases by 3 when there are 5 days or less of expiration date", function() {
-    const fervex = new Fervex(5, 1);
-    fervex.updateDataAfterOneDay();
-    expect(fervex).toEqual(new Fervex(4, 4));
-  });
-  test("Sould benefit drops to 0 after the expiration date", function() {
-    const fervex = new Fervex(0, 1);
-    fervex.updateDataAfterOneDay();
-    expect(fervex).toEqual(new Fervex(-1, 0));
-  });
-});
 
-describe("Dafalgan", function() {
-  test("Should degrades in Benefit twice as fast as normal drugs", () => {
-    const dafalgan = new Dafalgan(25, 4);
-    dafalgan.updateDataAfterOneDay();
-    expect(dafalgan).toEqual(new Dafalgan(24, 2));
+  describe("Fervex", function() {
+    test("Should benefit increases by 2 when there are 10 days or less of expiration date", function() {
+      const fervex = new Fervex(10, 1);
+      fervex.updateBenefitAfterOneDay();
+      expect(fervex).toEqual(new Fervex(9, 3));
+    });
+    test("Sould benefit increases by 3 when there are 5 days or less of expiration date", function() {
+      const fervex = new Fervex(5, 1);
+      fervex.updateBenefitAfterOneDay();
+      expect(fervex).toEqual(new Fervex(4, 4));
+    });
+    test("Sould benefit drops to 0 after the expiration date", function() {
+      const fervex = new Fervex(0, 1);
+      fervex.updateBenefitAfterOneDay();
+      expect(fervex).toEqual(new Fervex(-1, 0));
+    });
+  });
+
+  describe("Dafalgan", function() {
+    test("Should degrades in Benefit twice as fast as normal drugs", () => {
+      const dafalgan = new Dafalgan(25, 4);
+      dafalgan.updateBenefitAfterOneDay();
+      expect(dafalgan).toEqual(new Dafalgan(24, 2));
+    });
   });
 });
