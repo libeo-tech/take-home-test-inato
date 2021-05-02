@@ -20,13 +20,13 @@ export class Drug {
   }
 
   updateDrugProperties() {
-    if (this.name != "Herbal Tea" && this.name != "Fervex") {
-      if (this.name != "Magic Pill") {
+    if (this.name !== "Herbal Tea" && this.name !== "Fervex") {
+      if (this.name !== "Magic Pill") {
         this.benefit = this.benefit - 1;
       }
     } else {
       this.benefit = this.benefit + 1;
-      if (this.name == "Fervex") {
+      if (this.name === "Fervex") {
         if (this.expiresIn < 11) {
           this.benefit = this.benefit + 1;
         }
@@ -35,13 +35,13 @@ export class Drug {
         }
       }
     }
-    if (this.name != "Magic Pill") {
+    if (this.name !== "Magic Pill") {
       this.expiresIn = this.expiresIn - 1;
     }
     if (this.expiresIn < 0) {
-      if (this.name != "Herbal Tea") {
-        if (this.name != "Fervex") {
-          if (this.name != "Magic Pill") {
+      if (this.name !== "Herbal Tea") {
+        if (this.name !== "Fervex") {
+          if (this.name !== "Magic Pill") {
             this.benefit = this.benefit - 1;
           }
         } else {
