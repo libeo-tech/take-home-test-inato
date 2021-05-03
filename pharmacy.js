@@ -20,36 +20,33 @@ export class Drug {
   }
 
   updateDrugProperties() {
-    if (this.name !== "Herbal Tea" && this.name !== "Fervex") {
-      if (this.name !== "Magic Pill") {
-        this.benefit = this.benefit - 1;
-      }
-    } else {
-      this.benefit = this.benefit + 1;
-      if (this.name === "Fervex") {
-        if (this.expiresIn < 11) {
-          this.benefit = this.benefit + 1;
-        }
-        if (this.expiresIn < 6) {
-          this.benefit = this.benefit + 1;
-        }
-      }
-    }
-    if (this.name !== "Magic Pill") {
-      this.expiresIn = this.expiresIn - 1;
-    }
-    if (this.expiresIn < 0) {
-      if (this.name !== "Herbal Tea") {
-        if (this.name !== "Fervex") {
-          if (this.name !== "Magic Pill") {
-            this.benefit = this.benefit - 1;
-          }
+    switch (this.name) {
+      case "Herbal Tea":
+        this.benefit += this.expiresIn < 0 ? 2 : 1;
+        this.expiresIn--;
+        break;
+      case "Magic Pill":
+        break;
+      case "Fervex":
+        if (this.expiresIn < 0) {
+          this.benefit = 0;
+        } else if (this.expiresIn <= 5) {
+          this.benefit += 3;
+        } else if (this.expiresIn <= 10) {
+          this.benefit += 2;
         } else {
-          this.benefit = this.benefit - this.benefit;
+          this.benefit++;
         }
-      } else {
-        this.benefit = this.benefit + 1;
-      }
+        this.expiresIn--;
+        break;
+      case "Dafalgan":
+        this.benefit -= this.expiresIn < 0 ? 4 : 2;
+        this.expiresIn--;
+        break;
+      default:
+        this.benefit -= this.expiresIn < 0 ? 2 : 1;
+        this.expiresIn--;
+        break;
     }
   }
 }

@@ -68,7 +68,7 @@ describe("Pharmacy", () => {
     const drugs = [new Drug("Fervex", 15, 3)];
     const pharmacy = new Pharmacy(drugs);
 
-    const expectedDrugs = [new Drug("Fervex", 15, 4)];
+    const expectedDrugs = [new Drug("Fervex", 14, 4)];
 
     expect(pharmacy.updateBenefitValue()).toEqual(expectedDrugs);
   });
@@ -77,7 +77,7 @@ describe("Pharmacy", () => {
     const drugs = [new Drug("Fervex", 8, 3)];
     const pharmacy = new Pharmacy(drugs);
 
-    const expectedDrugs = [new Drug("Fervex", 8, 5)];
+    const expectedDrugs = [new Drug("Fervex", 7, 5)];
 
     expect(pharmacy.updateBenefitValue()).toEqual(expectedDrugs);
   });
@@ -86,7 +86,7 @@ describe("Pharmacy", () => {
     const drugs = [new Drug("Fervex", 8, 3)];
     const pharmacy = new Pharmacy(drugs);
 
-    const expectedDrugs = [new Drug("Fervex", 8, 6)];
+    const expectedDrugs = [new Drug("Fervex", 7, 6)];
 
     expect(pharmacy.updateBenefitValue()).toEqual(expectedDrugs);
   });
