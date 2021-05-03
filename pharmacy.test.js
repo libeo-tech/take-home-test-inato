@@ -108,4 +108,13 @@ describe("Pharmacy", () => {
 
     expect(pharmacy.updateBenefitValue()).toEqual(expectedDrugs);
   });
+
+  it("should drop benefit of Dafalgan twice as fast as normal drugs after expiration", () => {
+    const drugs = [new Drug("Dafalgan", -1, 5)];
+    const pharmacy = new Pharmacy(drugs);
+
+    const expectedDrugs = [new Drug("Dafalgan", -2, 1)];
+
+    expect(pharmacy.updateBenefitValue()).toEqual(expectedDrugs);
+  });
 });
