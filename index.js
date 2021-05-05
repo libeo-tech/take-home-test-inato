@@ -1,13 +1,23 @@
-import { Drug, Pharmacy } from "./pharmacy";
+import {
+  buildDrug,
+  Dafalgan,
+  Drug,
+  Fervex,
+  HerbalTea,
+  MagicPill,
+  Pharmacy
+} from "./pharmacy";
 
 import fs from "fs";
 
 const drugs = [
-  new Drug("Doliprane", 20, 30),
-  new Drug("Herbal Tea", 10, 5),
-  new Drug("Fervex", 5, 40),
-  new Drug("Magic Pill", 15, 40)
+  buildDrug("Doliprane", 20, 30, Drug),
+  buildDrug("Herbal Tea", 10, 5, HerbalTea),
+  buildDrug("Fervex", 5, 40, Fervex),
+  buildDrug("MagicPill", 15, 40, MagicPill),
+  buildDrug("Dafalgan", 15, 40, Dafalgan)
 ];
+
 const trial = new Pharmacy(drugs);
 
 const log = [];
