@@ -66,7 +66,7 @@ export class Pharmacy {
       else if ( drug.expiresIn <=  5 && drug.expiresIn > 0  ) {
         this.drugs[key].benefit = Math.min((drug.benefit + 1 * 3 ), 50)
       } 
-      else if (drug.expiresIn === 0) {
+      else if (drug.expiresIn <= 0) {
         this.drugs[key].benefit = 0
       }
       else {
