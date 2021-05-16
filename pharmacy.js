@@ -1,15 +1,40 @@
+export const MIN_BENEFIT = 0;
+export const MAX_BENEFIT = 50;
+
+export const computeNewBenefitGeneric = (benefit, expiresIn) => 
+  trimBenefit(expiresIn <= 0 ? benefit - 2 : benefit - 1);
+
+export const computeNewExpiresInGeneric = expiresIn => --expiresIn;
+
+export const trimBenefit = benefit => benefit <= MIN_BENEFIT 
+  ? MIN_BENEFIT 
+  : benefit >= MAX_BENEFIT ? MAX_BENEFIT : benefit;
+
 export class Drug {
-  constructor(name, expiresIn, benefit) {
+  constructor(name, expiresIn, benefit, expires, computeNewBenefit, computeNewExpiresIn) {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
+    this.expires = expires;
+    this.computeNewBenefit = computeNewBenefit;
+    this.computeNewExpiresIn = computeNewExpiresIn;
   }
-}
+};
 
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
-  }
+  };
+
+  updatePharmacy() {
+    this.drugs.forEach(drug => {
+      drug.expiresIn = drug.computeNewExpiresIn(drug.expiresIn);
+      drug.benefit = drug.computeNewBenefit(drug.benefit, drug.expiresIn);
+    });
+
+    return this.drugs;
+  };
+
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       if (
@@ -62,5 +87,5 @@ export class Pharmacy {
     }
 
     return this.drugs;
-  }
-}
+  };
+};
