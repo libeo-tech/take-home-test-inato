@@ -12,109 +12,110 @@ export class Pharmacy {
   }
 
   updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      const drugName = this.drugs[i].name;
+    this.drugs.forEach(drug => {
+      const drugName = drug.name;
 
       if (drugName == "Doliprane") {
-        if (this.drugs[i].benefit > 0) {
-          this.drugs[i].benefit = this.drugs[i].benefit - 1;
-        }
-
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-
-        if (this.drugs[i].expiresIn < 0 && this.drugs[i].benefit > 0) {
-          this.drugs[i].benefit = this.drugs[i].benefit - 1;
-        }
-
-        continue;
+        this.updateDoliprane(drug);
+        return;
       }
 
       if (drugName == "Dafalgan") {
-        if (this.drugs[i].benefit > 0) {
-          this.drugs[i].benefit = this.drugs[i].benefit - 1;
-        }
-
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 2;
-
-        if (this.drugs[i].expiresIn < 0 && this.drugs[i].benefit > 0) {
-          this.drugs[i].benefit = this.drugs[i].benefit - 1;
-        }
-
-        continue;
+        this.updateDafalgan(drug);
+        return;
       }
 
       const allButHerbalTeaOrFervex =
         drugName != "Herbal Tea" && drugName != "Fervex";
 
       if (allButHerbalTeaOrFervex) {
-        if (this.isBenefitsAtLeastMoreThan0(i)) {
+        if (this.isBenefitsAtLeastMoreThan0(drug.benefit)) {
           const allButMagicPills = drugName != "Magic Pill";
           if (allButMagicPills) {
-            this.substractOneFromBenefits(i);
+            drug.benefit = this.getBeneficeMinusOne(drug.benefit);
           }
         }
       } else {
-        if (this.isBenefitsLessThan50(i)) {
-          this.drugs[i].benefit = this.addOneToBenefits(this.drugs[i].benefit);
+        if (this.isBenefitsLessThan50(drug.benefit)) {
+          drug.benefit = this.getBenefitsPlusOne(drug.benefit);
           if (drugName == "Fervex") {
-            this.getBenefitsForFervex(i);
+            if (drug.expiresIn < 11) {
+              if (drug.benefit < 50) {
+                drug.benefit = this.getBenefitsPlusOne(drug.benefit);
+              }
+            }
+            if (drug.expiresIn < 6) {
+              if (drug.benefit < 50) {
+                drug.benefit = this.getBenefitsPlusOne(drug.benefit);
+              }
+            }
           }
         }
       }
       if (drugName != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
+        drug.expiresIn = drug.expiresIn - 1;
       }
-      if (this.drugs[i].expiresIn < 0) {
+      if (drug.expiresIn < 0) {
         if (drugName != "Herbal Tea") {
           if (drugName != "Fervex") {
-            if (this.isBenefitsAtLeastMoreThan0(i)) {
+            if (this.isBenefitsAtLeastMoreThan0(drug.benefit)) {
               if (drugName != "Magic Pill") {
-                this.substractOneFromBenefits(i);
+                drug.benefit = this.getBeneficeMinusOne(drug.benefit);
               }
             }
           } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
+            drug.benefit = drug.benefit - drug.benefit;
           }
         } else {
-          if (this.isBenefitsLessThan50(i)) {
-            this.drugs[i].benefit = this.addOneToBenefits(
-              this.drugs[i].benefit
-            );
+          if (this.isBenefitsLessThan50(drug.benefit)) {
+            drug.benefit = this.getBenefitsPlusOne(drug.benefit);
           }
         }
       }
-    }
+
+      return drug;
+    });
 
     return this.drugs;
   }
 
-  isBenefitsAtLeastMoreThan0(i) {
-    return this.drugs[i].benefit > 0;
-  }
-
-  isBenefitsLessThan50(i) {
-    return this.drugs[i].benefit < 50;
-  }
-
-  getBenefitsForFervex(i) {
-    if (this.drugs[i].expiresIn < 11) {
-      if (this.drugs[i].benefit < 50) {
-        this.drugs[i].benefit = this.addOneToBenefits(this.drugs[i].benefit);
-      }
+  updateDafalgan(drug) {
+    if (drug.benefit > 0) {
+      drug.benefit = this.getBeneficeMinusOne(drug.benefit);
     }
-    if (this.drugs[i].expiresIn < 6) {
-      if (this.drugs[i].benefit < 50) {
-        this.drugs[i].benefit = this.addOneToBenefits(this.drugs[i].benefit);
-      }
+
+    drug.expiresIn = drug.expiresIn - 2;
+
+    if (drug.expiresIn < 0 && drug.benefit > 0) {
+      drug.benefit = this.getBeneficeMinusOne(drug.benefit);
     }
   }
 
-  addOneToBenefits(actualBenefit) {
+  updateDoliprane(drug) {
+    if (drug.benefit > 0) {
+      drug.benefit = this.getBeneficeMinusOne(drug.benefit);
+    }
+
+    drug.expiresIn = drug.expiresIn - 1;
+
+    if (drug.expiresIn < 0 && drug.benefit > 0) {
+      drug.benefit = this.getBeneficeMinusOne(drug.benefit);
+    }
+  }
+
+  isBenefitsAtLeastMoreThan0(drugBenefits) {
+    return drugBenefits > 0;
+  }
+
+  isBenefitsLessThan50(drugBenefits) {
+    return drugBenefits < 50;
+  }
+
+  getBenefitsPlusOne(actualBenefit) {
     return actualBenefit + 1;
   }
 
-  substractOneFromBenefits(i) {
-    this.drugs[i].benefit = this.drugs[i].benefit - 1;
+  getBeneficeMinusOne(actualBenefit) {
+    return actualBenefit - 1;
   }
 }
