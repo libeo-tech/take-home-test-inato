@@ -29,6 +29,20 @@ export class Pharmacy {
         continue;
       }
 
+      if (drugName == "Dafalgan") {
+        if (this.drugs[i].benefit > 0) {
+          this.drugs[i].benefit = this.drugs[i].benefit - 1;
+        }
+
+        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 2;
+
+        if (this.drugs[i].expiresIn < 0 && this.drugs[i].benefit > 0) {
+          this.drugs[i].benefit = this.drugs[i].benefit - 1;
+        }
+
+        continue;
+      }
+
       const allButHerbalTeaOrFervex =
         drugName != "Herbal Tea" && drugName != "Fervex";
 

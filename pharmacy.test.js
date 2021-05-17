@@ -119,6 +119,60 @@ describe("Black box testing", () => {
   });
 });
 
+describe("dafalgan testing", () => {
+  it("should descrease dafalgan for 1 days ", () => {
+    const drugs = [new Drug("Dafalgan", 20, 30)];
+    const trial = new Pharmacy(drugs);
+
+    const log = computeLogs(trial, 1);
+
+    expect(log).toEqual(['[{"name":"Dafalgan","expiresIn":18,"benefit":29}]']);
+  });
+
+  it("should descrease dafalgan for 2 days ", () => {
+    const drugs = [new Drug("Dafalgan", 20, 30)];
+    const trial = new Pharmacy(drugs);
+
+    const log = computeLogs(trial, 2);
+
+    expect(log).toEqual([
+      '[{"name":"Dafalgan","expiresIn":18,"benefit":29}]',
+      '[{"name":"Dafalgan","expiresIn":16,"benefit":28}]',
+    ]);
+  });
+
+  it("should descrease Dafalgan for 21 days ", () => {
+    const drugs = [new Drug("Dafalgan", 20, 30)];
+    const trial = new Pharmacy(drugs);
+
+    const log = computeLogs(trial, 21);
+
+    expect(log).toEqual([
+      '[{"name":"Dafalgan","expiresIn":18,"benefit":29}]',
+      '[{"name":"Dafalgan","expiresIn":16,"benefit":28}]',
+      '[{"name":"Dafalgan","expiresIn":14,"benefit":27}]',
+      '[{"name":"Dafalgan","expiresIn":12,"benefit":26}]',
+      '[{"name":"Dafalgan","expiresIn":10,"benefit":25}]',
+      '[{"name":"Dafalgan","expiresIn":8,"benefit":24}]',
+      '[{"name":"Dafalgan","expiresIn":6,"benefit":23}]',
+      '[{"name":"Dafalgan","expiresIn":4,"benefit":22}]',
+      '[{"name":"Dafalgan","expiresIn":2,"benefit":21}]',
+      '[{"name":"Dafalgan","expiresIn":0,"benefit":20}]',
+      '[{"name":"Dafalgan","expiresIn":-2,"benefit":18}]',
+      '[{"name":"Dafalgan","expiresIn":-4,"benefit":16}]',
+      '[{"name":"Dafalgan","expiresIn":-6,"benefit":14}]',
+      '[{"name":"Dafalgan","expiresIn":-8,"benefit":12}]',
+      '[{"name":"Dafalgan","expiresIn":-10,"benefit":10}]',
+      '[{"name":"Dafalgan","expiresIn":-12,"benefit":8}]',
+      '[{"name":"Dafalgan","expiresIn":-14,"benefit":6}]',
+      '[{"name":"Dafalgan","expiresIn":-16,"benefit":4}]',
+      '[{"name":"Dafalgan","expiresIn":-18,"benefit":2}]',
+      '[{"name":"Dafalgan","expiresIn":-20,"benefit":0}]',
+      '[{"name":"Dafalgan","expiresIn":-22,"benefit":0}]',
+    ]);
+  });
+});
+
 describe("doliprane testing", () => {
   it("should descrease Doliprane for 1 days ", () => {
     const drugs = [new Drug("Doliprane", 20, 30)];
