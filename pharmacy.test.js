@@ -120,13 +120,13 @@ describe("Black box testing", () => {
 });
 
 describe("dafalgan testing", () => {
-  it("should descrease dafalgan for 1 days ", () => {
+  it("should descrease dafalgan for 1 days that expires twice a day ", () => {
     const drugs = [new Drug("Dafalgan", 20, 30)];
     const trial = new Pharmacy(drugs);
 
     const log = computeLogs(trial, 1);
 
-    expect(log).toEqual(['[{"name":"Dafalgan","expiresIn":18,"benefit":29}]']);
+    expect(log).toEqual(['[{"name":"Dafalgan","expiresIn":19,"benefit":28}]']);
   });
 
   it("should descrease dafalgan for 2 days ", () => {
@@ -136,8 +136,8 @@ describe("dafalgan testing", () => {
     const log = computeLogs(trial, 2);
 
     expect(log).toEqual([
-      '[{"name":"Dafalgan","expiresIn":18,"benefit":29}]',
-      '[{"name":"Dafalgan","expiresIn":16,"benefit":28}]',
+      '[{"name":"Dafalgan","expiresIn":19,"benefit":28}]',
+      '[{"name":"Dafalgan","expiresIn":18,"benefit":26}]',
     ]);
   });
 
@@ -148,27 +148,48 @@ describe("dafalgan testing", () => {
     const log = computeLogs(trial, 21);
 
     expect(log).toEqual([
-      '[{"name":"Dafalgan","expiresIn":18,"benefit":29}]',
-      '[{"name":"Dafalgan","expiresIn":16,"benefit":28}]',
-      '[{"name":"Dafalgan","expiresIn":14,"benefit":27}]',
-      '[{"name":"Dafalgan","expiresIn":12,"benefit":26}]',
-      '[{"name":"Dafalgan","expiresIn":10,"benefit":25}]',
-      '[{"name":"Dafalgan","expiresIn":8,"benefit":24}]',
-      '[{"name":"Dafalgan","expiresIn":6,"benefit":23}]',
-      '[{"name":"Dafalgan","expiresIn":4,"benefit":22}]',
-      '[{"name":"Dafalgan","expiresIn":2,"benefit":21}]',
+      '[{"name":"Dafalgan","expiresIn":19,"benefit":28}]',
+      '[{"name":"Dafalgan","expiresIn":18,"benefit":26}]',
+      '[{"name":"Dafalgan","expiresIn":17,"benefit":24}]',
+      '[{"name":"Dafalgan","expiresIn":16,"benefit":22}]',
+      '[{"name":"Dafalgan","expiresIn":15,"benefit":20}]',
+      '[{"name":"Dafalgan","expiresIn":14,"benefit":18}]',
+      '[{"name":"Dafalgan","expiresIn":13,"benefit":16}]',
+      '[{"name":"Dafalgan","expiresIn":12,"benefit":14}]',
+      '[{"name":"Dafalgan","expiresIn":11,"benefit":12}]',
+      '[{"name":"Dafalgan","expiresIn":10,"benefit":10}]',
+      '[{"name":"Dafalgan","expiresIn":9,"benefit":8}]',
+      '[{"name":"Dafalgan","expiresIn":8,"benefit":6}]',
+      '[{"name":"Dafalgan","expiresIn":7,"benefit":4}]',
+      '[{"name":"Dafalgan","expiresIn":6,"benefit":2}]',
+      '[{"name":"Dafalgan","expiresIn":5,"benefit":0}]',
+      '[{"name":"Dafalgan","expiresIn":4,"benefit":0}]',
+      '[{"name":"Dafalgan","expiresIn":3,"benefit":0}]',
+      '[{"name":"Dafalgan","expiresIn":2,"benefit":0}]',
+      '[{"name":"Dafalgan","expiresIn":1,"benefit":0}]',
+      '[{"name":"Dafalgan","expiresIn":0,"benefit":0}]',
+      '[{"name":"Dafalgan","expiresIn":-1,"benefit":0}]',
+    ]);
+  });
+
+  it("should descrease Dafalgan benefit twice as fast after expiration date", () => {
+    const drugs = [new Drug("Dafalgan", 5, 30)];
+    const trial = new Pharmacy(drugs);
+
+    const log = computeLogs(trial, 11);
+
+    expect(log).toEqual([
+      '[{"name":"Dafalgan","expiresIn":4,"benefit":28}]',
+      '[{"name":"Dafalgan","expiresIn":3,"benefit":26}]',
+      '[{"name":"Dafalgan","expiresIn":2,"benefit":24}]',
+      '[{"name":"Dafalgan","expiresIn":1,"benefit":22}]',
       '[{"name":"Dafalgan","expiresIn":0,"benefit":20}]',
-      '[{"name":"Dafalgan","expiresIn":-2,"benefit":18}]',
-      '[{"name":"Dafalgan","expiresIn":-4,"benefit":16}]',
-      '[{"name":"Dafalgan","expiresIn":-6,"benefit":14}]',
-      '[{"name":"Dafalgan","expiresIn":-8,"benefit":12}]',
-      '[{"name":"Dafalgan","expiresIn":-10,"benefit":10}]',
-      '[{"name":"Dafalgan","expiresIn":-12,"benefit":8}]',
-      '[{"name":"Dafalgan","expiresIn":-14,"benefit":6}]',
-      '[{"name":"Dafalgan","expiresIn":-16,"benefit":4}]',
-      '[{"name":"Dafalgan","expiresIn":-18,"benefit":2}]',
-      '[{"name":"Dafalgan","expiresIn":-20,"benefit":0}]',
-      '[{"name":"Dafalgan","expiresIn":-22,"benefit":0}]',
+      '[{"name":"Dafalgan","expiresIn":-1,"benefit":16}]',
+      '[{"name":"Dafalgan","expiresIn":-2,"benefit":12}]',
+      '[{"name":"Dafalgan","expiresIn":-3,"benefit":8}]',
+      '[{"name":"Dafalgan","expiresIn":-4,"benefit":4}]',
+      '[{"name":"Dafalgan","expiresIn":-5,"benefit":0}]',
+      '[{"name":"Dafalgan","expiresIn":-6,"benefit":0}]',
     ]);
   });
 });

@@ -12,6 +12,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
+    "test:watch": "jest --watch",
     "start": "babel-node index.js"
   },
   "devDependencies": {
