@@ -80,25 +80,13 @@ export class Pharmacy {
   }
 
   updateDafalgan(drug) {
-    // if (drug.benefit > 0) {
-    //   drug.benefit = this.getBeneficeMinusOne(drug.benefit);
-    // }
-
-    // drug.expiresIn = drug.expiresIn - 1;
-
-    // if (drug.expiresIn < 0 && drug.benefit > 0) {
-    //   drug.benefit = this.getBeneficeMinusOne(drug.benefit);
-    // }
-
     if (drug.benefit > 0) {
-      // drug.benefit = this.getBeneficeMinusOne(drug.benefit);
       drug.benefit = drug.benefit - 2;
     }
 
     drug.expiresIn = drug.expiresIn - 1;
 
     if (drug.expiresIn < 0 && drug.benefit > 0) {
-      // drug.benefit = this.getBeneficeMinusOne(drug.benefit);
       drug.benefit = drug.benefit - 2;
     }
   }
