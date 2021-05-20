@@ -1,5 +1,5 @@
 import { Pharmacy } from "./pharmacy";
-import { Drug, Fervex, HerbalTea, MagicPill } from "./drugs";
+import { Drug, Fervex, HerbalTea, MagicPill, Dafalgan } from "./drugs";
 
 describe("Pharmacy", () => {
   it("normal drug should decrease the benefit and expiresIn", () => {
@@ -41,5 +41,15 @@ describe("Pharmacy", () => {
     expect(new Pharmacy([new Fervex("", 0, 50)]).updateBenefitValue()).toEqual([
       new Fervex("", -1, 0)
     ]);
+  });
+  it("Dafalgan should decrease the benefit twice as fast as normal drug and decrease expiresIn", () => {
+    expect(
+      new Pharmacy([new Dafalgan("", 12, 3)]).updateBenefitValue()
+    ).toEqual([new Dafalgan("", 11, 1)]);
+  });
+  it("Dafalgan should decrease the benefit twice as fast as normal drug and decrease expiresIn when expiresIn < 0", () => {
+    expect(new Pharmacy([new Dafalgan("", 0, 4)]).updateBenefitValue()).toEqual(
+      [new Dafalgan("", -1, 0)]
+    );
   });
 });
