@@ -1,5 +1,8 @@
 export class Drug {
-  constructor(name, expiresIn, benefit) {
+  name: string;
+  expiresIn: number;
+  benefit: number;
+  constructor(name: string, expiresIn: number, benefit: number) {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
@@ -7,11 +10,12 @@ export class Drug {
 }
 
 export class Pharmacy {
+  drugs: Drug[];
   constructor(drugs = []) {
     this.drugs = drugs;
   }
 
-  handleHerbalTea(drug) {
+  handleHerbalTea(drug: Drug) {
     this.increaseBenefit(drug);
     this.decreaseExpires(drug);
 
@@ -20,7 +24,7 @@ export class Pharmacy {
     }
   }
 
-  handleFervex(drug) {
+  handleFervex(drug: Drug) {
     this.increaseBenefit(drug);
 
     if (drug.expiresIn < 11) {
@@ -37,7 +41,7 @@ export class Pharmacy {
     }
   }
 
-  handleDafalgan(drug) {
+  handleDafalgan(drug: Drug) {
     this.decreaseExpires(drug);
 
     if (drug.expiresIn < 0 && drug.benefit >= 2) {
@@ -45,13 +49,13 @@ export class Pharmacy {
     }
   }
 
-  increaseBenefit(drug) {
+  increaseBenefit(drug: Drug) {
     if (drug.benefit < 50) {
       drug.benefit += 1;
     }
   }
 
-  decreaseExpires(drug) {
+  decreaseExpires(drug: Drug) {
     drug.expiresIn -= 1;
   }
 
