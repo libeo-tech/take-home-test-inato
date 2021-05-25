@@ -24,16 +24,16 @@ export class Pharmacy {
     this.increaseBenefit(drug);
 
     if (drug.expiresIn < 11 && drug.benefit < 50) {
-      drug.benefit = drug.benefit + 1;
+      drug.benefit += 1;
     }
     if (drug.expiresIn < 6 && drug.benefit < 50) {
-      drug.benefit = drug.benefit + 1;
+      drug.benefit += 1;
     }
 
     this.decreaseExpires(drug);
 
     if (drug.expiresIn < 0) {
-      drug.benefit = drug.benefit - drug.benefit;
+      drug.benefit = 0;
     }
   }
 
@@ -43,6 +43,11 @@ export class Pharmacy {
 
   handleDafalgan(drug) {
     this.increaseBenefit(drug);
+    this.decreaseExpires(drug);
+
+    if (drug.expiresIn < 0 && drug.benefit >= 2) {
+      drug.benefit -= 2;
+    }
   }
 
   increaseBenefit(drug) {
