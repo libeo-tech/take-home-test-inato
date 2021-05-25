@@ -23,11 +23,11 @@ export class Pharmacy {
   handleFervex(drug) {
     this.increaseBenefit(drug);
 
-    if (drug.expiresIn < 11 && drug.benefit < 50) {
-      drug.benefit += 1;
+    if (drug.expiresIn < 11) {
+      this.increaseBenefit(drug);
     }
-    if (drug.expiresIn < 6 && drug.benefit < 50) {
-      drug.benefit += 1;
+    if (drug.expiresIn < 6) {
+      this.increaseBenefit(drug);
     }
 
     this.decreaseExpires(drug);
@@ -37,16 +37,11 @@ export class Pharmacy {
     }
   }
 
-  handleMagicPill(drug) {
-    this.increaseBenefit(drug);
-  }
-
   handleDafalgan(drug) {
-    this.increaseBenefit(drug);
     this.decreaseExpires(drug);
 
     if (drug.expiresIn < 0 && drug.benefit >= 2) {
-      drug.benefit -= 2;
+      drug.benefit = drug.benefit - 2;
     }
   }
 
@@ -70,7 +65,6 @@ export class Pharmacy {
           this.handleFervex(drug);
           break;
         case "Magic Pill":
-          this.handleMagicPill(drug);
           break;
         case "Dafalgan":
           this.handleDafalgan(drug);
