@@ -10,8 +10,28 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+
+  calculateDafalgan(drug) {
+    let { name, expiresIn, benefit } = drug;
+    let degradeValue = 2;
+
+    if (expiresIn <= 0) {
+      degradeValue = 4;
+    }
+
+    benefit = benefit >= degradeValue ? benefit - degradeValue : 0;
+    expiresIn--;
+
+    return new Drug(name, expiresIn, benefit);
+  }
+
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
+      if (this.drugs[i].name === "Dafalgan") {
+        this.drugs[i] = this.calculateDafalgan(this.drugs[i]);
+        continue;
+      }
+
       if (
         this.drugs[i].name != "Herbal Tea" &&
         this.drugs[i].name != "Fervex"
