@@ -25,10 +25,33 @@ export class Pharmacy {
     return new Drug(name, expiresIn, benefit);
   }
 
+  calculateFervex(drug) {
+    let { name, expiresIn, benefit } = drug;
+
+    if (expiresIn > 10) {
+      benefit++;
+    } else if (expiresIn > 5 && expiresIn <= 10) {
+      benefit = benefit + 2;
+    } else if (expiresIn > 0 && expiresIn <= 5) {
+      benefit = benefit + 3;
+    } else {
+      benefit = 0;
+    }
+
+    expiresIn--;
+
+    return new Drug(name, expiresIn, benefit);
+  }
+
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       if (this.drugs[i].name === "Dafalgan") {
         this.drugs[i] = this.calculateDafalgan(this.drugs[i]);
+        continue;
+      }
+
+      if (this.drugs[i].name === "Fervex") {
+        this.drugs[i] = this.calculateFervex(this.drugs[i]);
         continue;
       }
 
