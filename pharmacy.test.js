@@ -20,13 +20,16 @@ describe("Pharmacy", () => {
     });
 
     it("Benefit increases twice as fast after the expiration", () => {
-      const pharmacy = new Pharmacy([new Drug("Herbal Tea", 0, 2)]);
+      const pharmacy = new Pharmacy([new Drug("Herbal Tea", 1, 2)]);
 
       expect(pharmacy.updateBenefitValue()).toEqual([
-        new Drug("Herbal Tea", -1, 4)
+        new Drug("Herbal Tea", 0, 3)
       ]);
       expect(pharmacy.updateBenefitValue()).toEqual([
-        new Drug("Herbal Tea", -2, 6)
+        new Drug("Herbal Tea", -1, 5)
+      ]);
+      expect(pharmacy.updateBenefitValue()).toEqual([
+        new Drug("Herbal Tea", -2, 7)
       ]);
     });
   });
@@ -48,13 +51,26 @@ describe("Pharmacy", () => {
 
       expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Fervex", 9, 5)]);
       expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Fervex", 8, 7)]);
+      expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Fervex", 7, 9)]);
+      expect(pharmacy.updateBenefitValue()).toEqual([
+        new Drug("Fervex", 6, 11)
+      ]);
+      expect(pharmacy.updateBenefitValue()).toEqual([
+        new Drug("Fervex", 5, 13)
+      ]);
+      expect(pharmacy.updateBenefitValue()).toEqual([
+        new Drug("Fervex", 4, 16)
+      ]);
     });
 
     it("Benefit increases by 3 when there are 5 days or less", () => {
-      const pharmacy = new Pharmacy([new Drug("Fervex", 5, 3)]);
+      const pharmacy = new Pharmacy([new Drug("Fervex", 6, 3)]);
 
-      expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Fervex", 4, 6)]);
-      expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Fervex", 3, 9)]);
+      expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Fervex", 5, 5)]);
+      expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Fervex", 4, 8)]);
+      expect(pharmacy.updateBenefitValue()).toEqual([
+        new Drug("Fervex", 3, 11)
+      ]);
     });
 
     it("Benefit drops to 0 after the expiration date", () => {
@@ -63,6 +79,9 @@ describe("Pharmacy", () => {
       expect(pharmacy.updateBenefitValue()).toEqual([new Drug("Fervex", 0, 6)]);
       expect(pharmacy.updateBenefitValue()).toEqual([
         new Drug("Fervex", -1, 0)
+      ]);
+      expect(pharmacy.updateBenefitValue()).toEqual([
+        new Drug("Fervex", -2, 0)
       ]);
     });
   });
@@ -105,6 +124,20 @@ describe("Pharmacy", () => {
         new Drug("Doliprane", -2, 3)
       ]);
     });
+
+    it("Benefit never get negative after expiration", () => {
+      const pharmacy = new Pharmacy([new Drug("Doliprane", 1, 4)]);
+
+      expect(pharmacy.updateBenefitValue()).toEqual([
+        new Drug("Doliprane", 0, 3)
+      ]);
+      expect(pharmacy.updateBenefitValue()).toEqual([
+        new Drug("Doliprane", -1, 1)
+      ]);
+      expect(pharmacy.updateBenefitValue()).toEqual([
+        new Drug("Doliprane", -2, 0)
+      ]);
+    });
   });
 
   describe("Dafalgan", () => {
@@ -127,6 +160,20 @@ describe("Pharmacy", () => {
       ]);
       expect(pharmacy.updateBenefitValue()).toEqual([
         new Drug("Dafalgan", -1, 2)
+      ]);
+      expect(pharmacy.updateBenefitValue()).toEqual([
+        new Drug("Dafalgan", -2, 0)
+      ]);
+    });
+
+    it("Benefit never get negative after expiration", () => {
+      const pharmacy = new Pharmacy([new Drug("Dafalgan", 1, 3)]);
+
+      expect(pharmacy.updateBenefitValue()).toEqual([
+        new Drug("Dafalgan", 0, 1)
+      ]);
+      expect(pharmacy.updateBenefitValue()).toEqual([
+        new Drug("Dafalgan", -1, 0)
       ]);
       expect(pharmacy.updateBenefitValue()).toEqual([
         new Drug("Dafalgan", -2, 0)
