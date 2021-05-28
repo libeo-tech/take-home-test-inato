@@ -43,6 +43,20 @@ export class Pharmacy {
     return new Drug(name, expiresIn, benefit);
   }
 
+  calculateHerbalTea(drug) {
+    let { name, expiresIn, benefit } = drug;
+
+    if (expiresIn > 0) {
+      benefit++;
+    } else {
+      benefit = benefit + 2;
+    }
+
+    expiresIn--;
+
+    return new Drug(name, expiresIn, benefit);
+  }
+
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       if (this.drugs[i].name === "Dafalgan") {
@@ -52,6 +66,11 @@ export class Pharmacy {
 
       if (this.drugs[i].name === "Fervex") {
         this.drugs[i] = this.calculateFervex(this.drugs[i]);
+        continue;
+      }
+
+      if (this.drugs[i].name === "Herbal Tea") {
+        this.drugs[i] = this.calculateHerbalTea(this.drugs[i]);
         continue;
       }
 
