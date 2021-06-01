@@ -28,7 +28,7 @@ describe("Pharmacy", () => {
 
   it("default drug - should never be above 50", () => {
     expect(new Pharmacy([new Drug("default-drug", 100, 52)]).updateBenefitValue()).toEqual(
-      [new Drug("default-drug", 99, 51)]
+      [new Drug("default-drug", 99, 49)]
     );
   });
 
