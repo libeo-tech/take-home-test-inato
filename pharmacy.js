@@ -1,9 +1,9 @@
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
+    this.expiresIn = expiresIn;
     if(benefit > 50) benefit = 50
     this.benefit = benefit;
-    this.expiresIn = expiresIn;
   }
 
   updateBenefitAndExpiresValues(){
@@ -17,13 +17,13 @@ export class Drug {
         break
 
       case 'Herbal Tea':
-        if(this.expiresIn <= 0) {
+        if(this.expiresIn < 0) {
           this.increaseBenefit(2)
         } else this.increaseBenefit(1)
         break
 
       case 'Fervex':
-        if(this.expiresIn <= 0) {
+        if(this.expiresIn < 0) {
           this.benefit = 0
         }else if(this.expiresIn <= 5) {
           this.increaseBenefit(3)

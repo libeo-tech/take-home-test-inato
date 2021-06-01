@@ -50,6 +50,12 @@ describe("Pharmacy", () => {
     );
   });
 
+  it("Herbal Tead - should not increase the benefit and decrease expiresIn by one", () => {
+    expect(new Pharmacy([new Drug("Herbal Tea", 1, 50)]).updateBenefitValue()).toEqual(
+      [new Drug("Herbal Tea", 0, 50)]
+    );
+  });
+
   it("Magic Pill - should not decrease the benefit or expiresIn", () => {
     expect(new Pharmacy([new Drug("Magic Pill", 10, 10)]).updateBenefitValue()).toEqual(
       [new Drug("Magic Pill", 10, 10)]
@@ -83,6 +89,12 @@ describe("Pharmacy", () => {
   it("Fervex - should drop benefit to zero and decrease expiresIn by one", () => {
     expect(new Pharmacy([new Drug("Fervex", 0, 10)]).updateBenefitValue()).toEqual(
       [new Drug("Fervex", -1, 0)]
+    );
+  });
+
+  it("Fervex - should increase benefit by 3 and decrease expiresIn by one", () => {
+    expect(new Pharmacy([new Drug("Fervex", 1, 10)]).updateBenefitValue()).toEqual(
+      [new Drug("Fervex", 0, 13)]
     );
   });
 
