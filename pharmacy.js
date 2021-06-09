@@ -1,13 +1,5 @@
 const BENEFIT_MAX = 50;
 const BENEFIT_MIN = 0;
-
-export class Dafalgan extends Drug {
-  constructor(specifications) {
-    super({ name: "Dafalgan", ...specifications });
-    this.shouldEvolve = this.shouldEvolve * 2;
-    this.shouldEvolveWhenExpired = this.shouldEvolve * 2;
-  }
-}
 export class Drug {
   constructor({
     name = "drug",
@@ -56,6 +48,14 @@ export class Drug {
     }
     this.benefit = this.validateBenefit();
     this.expiresIn = this.updateExpiresIn();
+  }
+}
+
+export class Dafalgan extends Drug {
+  constructor(specifications) {
+    super({ name: "Dafalgan", ...specifications });
+    this.shouldEvolve = this.shouldEvolve * 2;
+    this.shouldEvolveWhenExpired = this.shouldEvolve * 2;
   }
 }
 
