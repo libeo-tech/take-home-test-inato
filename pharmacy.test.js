@@ -57,7 +57,7 @@ describe("Dafalgan", () => {
   it("evolves() should decrease the benefit by four and expiresIn by one", () => {
     const test = new Dafalgan({ expiresIn: -2, benefit: 4 });
     test.evolves();
-    expect(test.benefit).toEqual(2);
+    expect(test.benefit).toEqual(0);
     expect(test.expiresIn).toEqual(-3);
   });
 });
