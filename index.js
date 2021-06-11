@@ -1,12 +1,12 @@
-import { Drug, Pharmacy } from "./pharmacy";
+import { Drug, HerbalTea, MagicPill, Fervex, Pharmacy,Dafalgan } from "./pharmacy";
 
 import fs from "fs";
 
 const drugs = [
-  new Drug("Doliprane", 20, 30),
-  new Drug("Herbal Tea", 10, 5),
-  new Drug("Fervex", 5, 40),
-  new Drug("Magic Pill", 15, 40)
+  new Drug({ name: "Doliprane", expiresIn: 20, benefit: 30 }),
+  new HerbalTea({ expiresIn: 10, benefit: 5 }),
+  new Fervex({ expiresIn: 5, benefit: 40 }),
+  new MagicPill({ expiresIn: 15, benefit: 40 }),
 ];
 const trial = new Pharmacy(drugs);
 
