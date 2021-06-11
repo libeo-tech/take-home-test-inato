@@ -50,5 +50,59 @@ export class Pharmacy {
     this.drugs = drugs;
   }
 
+  /**
+  * Update  the benefit and the expiration date  of the list of drugs in the pharmacy
+  * A benefit is never  less than 0 or more than 50
+  * Find more about this function in the Readme.md
+  * @return {Array<Drug>}      the  updated list of drugs of the pharmacy
+  */
 
+  updateBenefitValue(){
+    for (var i = 0; i < this.drugs.length; i++){
+      if (this.drugs[i].name != "Magic Pill") {
+        this.drugs[i].decreaseExpirationDate()
+      }
+      switch (this.drugs[i].name) {
+        case "Herbal Tea":
+          if(this.drugs[i].expiresIn < 0 ){
+            this.drugs[i].increaseBenefitValue(2);
+          }
+          else{
+            this.drugs[i].increaseBenefitValue(1);
+          }
+          break;
+        case "Fervex":
+          if (this.drugs[i].expiresIn < 11 && this.drugs[i].expiresIn >= 6 ) {
+            this.drugs[i].increaseBenefitValue(2);
+          }
+          if (this.drugs[i].expiresIn < 6 && this.drugs[i].expiresIn >= 0 ) {
+            this.drugs[i].increaseBenefitValue(3);
+          }
+          if (this.drugs[i].expiresIn < 0){ 
+            this.drugs[i].dropBenefitToZero();
+          }
+        
+          break;
+        case "Magic Pill":
+          continue;
+        case "Dafalgan":
+          if(this.drugs[i].expiresIn >= 0 ){
+            this.drugs[i].decreaseBenefitValue(2);
+          }
+          else {
+            this.drugs[i].decreaseBenefitValue(4);
+          }
+          break;
+        default:
+          if(this.drugs[i].expiresIn >= 0 ){
+            this.drugs[i].decreaseBenefitValue(1);
+          }
+          else {
+            this.drugs[i].decreaseBenefitValue(2);
+          }
+          break;
+      }
+    }
+    return this.drugs;
+  }
 }
