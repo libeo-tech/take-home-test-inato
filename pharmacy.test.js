@@ -78,4 +78,15 @@ describe("Pharmacy", () => {
       expect(pharmacy.drugs).toEqual([new Drug("Herbal Tea", -2, 6)]);
     });
   });
+
+  describe("Magic Pill", () => {
+    it("should not change benefit or expiresIn", () => {
+      const drugs = [new Drug("Magic Pill", 2, 2)];
+      const pharmacy = new Pharmacy(drugs);
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+
+      expect(pharmacy.drugs).toEqual([new Drug("Magic Pill", 2, 2)]);
+    });
+  });
 });
