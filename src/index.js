@@ -13,15 +13,11 @@ const trial = new Pharmacy(drugs);
 
 const log = [];
 
-for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  console.log('id 1', elapsedDays, trial)
-  // console.log('sdfsfs', { name: trial.name, benefit: trial.benefit, expiresIn: trial.expiresIn })
-  // console.log('id 1', elapsedDays, trial.updateBenefitValue())
+for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++)
   log.push(JSON.stringify(trial.updateBenefitValue()));
-}
 
 /* eslint-disable no-console */
-fs.writeFile("test.txt", log, err => {
+fs.writeFile("output.txt", log, err => {
   if (err) {
     console.log("error");
   } else {

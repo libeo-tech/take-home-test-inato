@@ -37,7 +37,14 @@ const getFervexUpdatedValues = (drug) => {
 };
 
 const getDafalganUpdatedValues = (drug) => {
-  return drug;
+  decreaseExpiresInValue(drug);
+
+  const { benefit, expiresIn } = drug;
+
+  if (benefit - 2 >= 0 && expiresIn >= 0)
+    drug.benefit = benefit - 2;
+  else if (benefit - 4 >= 0 && expiresIn < 0)
+    drug.benefit = benefit - 4;
 };
 
 const decreaseExpiresInValue = (drug) => {
