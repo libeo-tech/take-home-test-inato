@@ -7,13 +7,18 @@ export class Drug {
 
   updateBenefitValue() {
     Drug.benefitUpdaters.default(this);
+    this.benefit = Math.max(this.benefit, 0);
   }
 }
 
 Drug.benefitUpdaters = {
   default(drug) {
+    if (drug.expiresIn > 0) {
+      drug.benefit -= 1;
+    } else {
+      drug.benefit -= 2;
+    }
     drug.expiresIn--;
-    drug.benefit--;
   }
 };
 
