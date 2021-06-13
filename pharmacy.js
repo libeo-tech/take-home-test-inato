@@ -6,7 +6,11 @@ export class Drug {
   }
 
   updateBenefitValue() {
-    Drug.benefitUpdaters.default(this);
+    if (Drug.benefitUpdaters.hasOwnProperty(this.name)) {
+      Drug.benefitUpdaters[this.name](this);
+    } else {
+      Drug.benefitUpdaters.default(this);
+    }
     this.benefit = Math.max(this.benefit, 0);
   }
 }
@@ -20,6 +24,15 @@ Drug.benefitUpdaters = {
     }
     drug.expiresIn--;
   }
+};
+
+Drug.benefitUpdaters["Herbal Tea"] = drug => {
+  if (drug.expiresIn > 0) {
+    drug.benefit += 1;
+  } else {
+    drug.benefit += 2;
+  }
+  drug.expiresIn--;
 };
 
 export class Pharmacy {
