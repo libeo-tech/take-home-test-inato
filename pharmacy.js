@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 
-import { updatedDrugValues } from "../utils";
+import { updatedDrugValues } from "./utils";
 
 export class Drug {
   constructor(name, expiresIn, benefit) {
