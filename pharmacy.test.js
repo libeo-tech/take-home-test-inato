@@ -1,5 +1,34 @@
 import { Drug, Pharmacy } from "./pharmacy";
 
+describe("Drug", () => {
+  it("should allow setting benefit", () => {
+    const drug = new Drug("test", 99, 2);
+
+    drug.benefit = 1;
+    expect(drug).toEqual(new Drug("test", 99, 1));
+  });
+
+  it("should not allow setting benefit below 0", () => {
+    const drug = new Drug("test", 99, 2);
+
+    drug.benefit = 0;
+    expect(drug).toEqual(new Drug("test", 99, 0));
+
+    drug.benefit = -3;
+    expect(drug).toEqual(new Drug("test", 99, 0));
+  });
+
+  it("should not allow setting benefit above 50", () => {
+    const drug = new Drug("test", 99, 2);
+
+    drug.benefit = 50;
+    expect(drug).toEqual(new Drug("test", 99, 50));
+
+    drug.benefit = 54;
+    expect(drug).toEqual(new Drug("test", 99, 50));
+  });
+});
+
 describe("Pharmacy", () => {
   it("should decrease benefit and expiresIn of a drug", () => {
     const drugs = [new Drug("test", 2, 3)];
@@ -32,15 +61,6 @@ describe("Pharmacy", () => {
     ]);
   });
 
-  it("should not decrease benefit below zero", () => {
-    const drugs = [new Drug("test", 99, 1)];
-    const pharmacy = new Pharmacy(drugs);
-    pharmacy.updateBenefitValue();
-    pharmacy.updateBenefitValue();
-
-    expect(pharmacy.drugs).toEqual([new Drug("test", 97, 0)]);
-  });
-
   it("should decrease benefit twice as fast after drug expires", () => {
     const drugs = [new Drug("test", 0, 6)];
     const pharmacy = new Pharmacy(drugs);
@@ -48,15 +68,6 @@ describe("Pharmacy", () => {
     pharmacy.updateBenefitValue();
 
     expect(pharmacy.drugs).toEqual([new Drug("test", -2, 2)]);
-  });
-
-  it("should not decrease benefit below zero, even if drug expired", () => {
-    const drugs = [new Drug("test", 0, 2)];
-    const pharmacy = new Pharmacy(drugs);
-    pharmacy.updateBenefitValue();
-    pharmacy.updateBenefitValue();
-
-    expect(pharmacy.drugs).toEqual([new Drug("test", -2, 0)]);
   });
 
   describe("Herbal Tea", () => {

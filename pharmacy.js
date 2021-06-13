@@ -1,3 +1,6 @@
+const MIN_BENEFIT = 0;
+const MAX_BENEFIT = 50;
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
@@ -11,7 +14,16 @@ export class Drug {
     } else {
       Drug.benefitUpdaters.default(this);
     }
-    this.benefit = Math.max(this.benefit, 0);
+  }
+
+  get benefit() {
+    return this._benefit;
+  }
+
+  set benefit(value) {
+    this._benefit = value;
+    this._benefit = Math.max(this._benefit, MIN_BENEFIT);
+    this._benefit = Math.min(this._benefit, MAX_BENEFIT);
   }
 }
 
