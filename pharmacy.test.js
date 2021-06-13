@@ -58,4 +58,24 @@ describe("Pharmacy", () => {
 
     expect(pharmacy.drugs).toEqual([new Drug("test", -2, 0)]);
   });
+
+  describe("Herbal Tea", () => {
+    it("should increase benefit until it expires", () => {
+      const drugs = [new Drug("Herbal Tea", 2, 2)];
+      const pharmacy = new Pharmacy(drugs);
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+
+      expect(pharmacy.drugs).toEqual([new Drug("Herbal Tea", 0, 4)]);
+    });
+
+    it("should increase benefit twice as fast after it expires", () => {
+      const drugs = [new Drug("Herbal Tea", 0, 2)];
+      const pharmacy = new Pharmacy(drugs);
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+
+      expect(pharmacy.drugs).toEqual([new Drug("Herbal Tea", -2, 6)]);
+    });
+  });
 });
