@@ -132,4 +132,20 @@ describe("Pharmacy", () => {
       expect(pharmacy.drugs).toEqual([new Drug("Fervex", -1, 0)]);
     });
   });
+
+  describe("Drug mix", () => {
+    it("should respect specific rules for a mix of drugs", () => {
+      const fervex = new Drug("Fervex", 5, 0);
+      const tea = new Drug("Herbal Tea", 0, 2);
+
+      const fervexAfterTwoDays = new Drug("Fervex", 3, 6);
+      const teaAfterTwoDays = new Drug("Herbal Tea", -2, 6);
+
+      const pharmacy = new Pharmacy([fervex, tea]);
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+
+      expect(pharmacy.drugs).toEqual([fervexAfterTwoDays, teaAfterTwoDays]);
+    });
+  });
 });
