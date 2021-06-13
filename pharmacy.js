@@ -35,6 +35,8 @@ Drug.benefitUpdaters["Herbal Tea"] = drug => {
   drug.expiresIn--;
 };
 
+Drug.benefitUpdaters["Magic Pill"] = () => {};
+
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
