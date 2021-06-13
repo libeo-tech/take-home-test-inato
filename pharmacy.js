@@ -62,6 +62,15 @@ Drug.benefitUpdaters["Fervex"] = drug => {
   drug.expiresIn--;
 };
 
+Drug.benefitUpdaters["Dafalgan"] = drug => {
+  if (drug.expiresIn > 0) {
+    drug.benefit -= 2;
+  } else {
+    drug.benefit -= 4;
+  }
+  drug.expiresIn--;
+};
+
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;

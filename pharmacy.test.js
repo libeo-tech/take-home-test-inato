@@ -144,6 +144,26 @@ describe("Pharmacy", () => {
     });
   });
 
+  describe("Dafalgan", () => {
+    it("should decrease benefit by 2", () => {
+      const drugs = [new Drug("Dafalgan", 2, 6)];
+      const pharmacy = new Pharmacy(drugs);
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+
+      expect(pharmacy.drugs).toEqual([new Drug("Dafalgan", 0, 2)]);
+    });
+
+    it("should decrease benefit by 4 after expiration", () => {
+      const drugs = [new Drug("Dafalgan", 0, 10)];
+      const pharmacy = new Pharmacy(drugs);
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+
+      expect(pharmacy.drugs).toEqual([new Drug("Dafalgan", -2, 2)]);
+    });
+  });
+
   describe("Drug mix", () => {
     it("should respect specific rules for a mix of drugs", () => {
       const fervex = new Drug("Fervex", 5, 0);
