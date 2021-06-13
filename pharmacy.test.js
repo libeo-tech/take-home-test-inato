@@ -89,4 +89,47 @@ describe("Pharmacy", () => {
       expect(pharmacy.drugs).toEqual([new Drug("Magic Pill", 2, 2)]);
     });
   });
+
+  describe("Fervex", () => {
+    it("should increase benefit until 10 days before expiration", () => {
+      const drugs = [new Drug("Fervex", 12, 3)];
+      const pharmacy = new Pharmacy(drugs);
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+
+      expect(pharmacy.drugs).toEqual([new Drug("Fervex", 10, 5)]);
+    });
+
+    it("should increase benefit by 2 if it expires in 10 to 5 days", () => {
+      const drugs = [new Drug("Fervex", 10, 0)];
+      const pharmacy = new Pharmacy(drugs);
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+
+      expect(pharmacy.drugs).toEqual([new Drug("Fervex", 5, 10)]);
+    });
+
+    it("should increase benefit by 3 if it expires in 5 days or less", () => {
+      const drugs = [new Drug("Fervex", 5, 0)];
+      const pharmacy = new Pharmacy(drugs);
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+      pharmacy.updateBenefitValue();
+
+      expect(pharmacy.drugs).toEqual([new Drug("Fervex", 0, 15)]);
+    });
+
+    it("should have no benefit after expiration", () => {
+      const drugs = [new Drug("Fervex", 0, 10)];
+      const pharmacy = new Pharmacy(drugs);
+      pharmacy.updateBenefitValue();
+
+      expect(pharmacy.drugs).toEqual([new Drug("Fervex", -1, 0)]);
+    });
+  });
 });
