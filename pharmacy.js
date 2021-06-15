@@ -1,19 +1,59 @@
-const MIN_BENEFIT = 0;
-const MAX_BENEFIT = 50;
-
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
+    if (Drug.implementations.hasOwnProperty(name)) {
+      this.implementation = new Drug.implementations[name](expiresIn, benefit);
+    } else {
+      this.implementation = new DefaultDrugImplementation(expiresIn, benefit);
+    }
+  }
+
+  updateBenefitValue() {
+    this.implementation.updateBenefitValue();
+  }
+
+  get expiresIn() {
+    return this.implementation.expiresIn;
+  }
+
+  set expiresIn(value) {
+    this.implementation.expiresIn = value;
+  }
+
+  get benefit() {
+    return this.implementation.benefit;
+  }
+
+  set benefit(value) {
+    this.implementation.benefit = value;
+  }
+}
+
+Drug.implementations = {};
+
+class DefaultDrugImplementation {
+  constructor(expiresIn, benefit) {
+    this.MIN_BENEFIT = 0;
+    this.MAX_BENEFIT = 50;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
 
   updateBenefitValue() {
-    if (Drug.benefitUpdaters.hasOwnProperty(this.name)) {
-      Drug.benefitUpdaters[this.name](this);
+    this.updateBenefit();
+    this.updateExpiresIn();
+  }
+
+  updateBenefit() {
+    if (this.expiresIn > 0) {
+      this.benefit -= 1;
     } else {
-      Drug.benefitUpdaters.default(this);
+      this.benefit -= 2;
     }
+  }
+
+  updateExpiresIn() {
+    this.expiresIn--;
   }
 
   get benefit() {
@@ -22,54 +62,57 @@ export class Drug {
 
   set benefit(value) {
     this._benefit = value;
-    this._benefit = Math.max(this._benefit, MIN_BENEFIT);
-    this._benefit = Math.min(this._benefit, MAX_BENEFIT);
+    this._benefit = Math.max(this._benefit, this.MIN_BENEFIT);
+    this._benefit = Math.min(this._benefit, this.MAX_BENEFIT);
   }
 }
 
-Drug.benefitUpdaters = {
-  default(drug) {
-    if (drug.expiresIn > 0) {
-      drug.benefit -= 1;
+class HerbalTea extends DefaultDrugImplementation {
+  updateBenefit() {
+    if (this.expiresIn > 0) {
+      this.benefit += 1;
     } else {
-      drug.benefit -= 2;
+      this.benefit += 2;
     }
-    drug.expiresIn--;
   }
-};
+}
 
-Drug.benefitUpdaters["Herbal Tea"] = drug => {
-  if (drug.expiresIn > 0) {
-    drug.benefit += 1;
-  } else {
-    drug.benefit += 2;
+Drug.implementations["Herbal Tea"] = HerbalTea;
+
+class MagicPill extends DefaultDrugImplementation {
+  updateBenefit() {}
+  updateExpiresIn() {}
+}
+
+Drug.implementations["Magic Pill"] = MagicPill;
+
+class Fervex extends DefaultDrugImplementation {
+  updateBenefit() {
+    if (this.expiresIn > 10) {
+      this.benefit += 1;
+    } else if (this.expiresIn > 5) {
+      this.benefit += 2;
+    } else if (this.expiresIn > 0) {
+      this.benefit += 3;
+    } else {
+      this.benefit = 0;
+    }
   }
-  drug.expiresIn--;
-};
+}
 
-Drug.benefitUpdaters["Magic Pill"] = () => {};
+Drug.implementations["Fervex"] = Fervex;
 
-Drug.benefitUpdaters["Fervex"] = drug => {
-  if (drug.expiresIn > 10) {
-    drug.benefit += 1;
-  } else if (drug.expiresIn > 5) {
-    drug.benefit += 2;
-  } else if (drug.expiresIn > 0) {
-    drug.benefit += 3;
-  } else {
-    drug.benefit = 0;
+class Dafalgan extends DefaultDrugImplementation {
+  updateBenefit() {
+    if (this.expiresIn > 0) {
+      this.benefit -= 2;
+    } else {
+      this.benefit -= 4;
+    }
   }
-  drug.expiresIn--;
-};
+}
 
-Drug.benefitUpdaters["Dafalgan"] = drug => {
-  if (drug.expiresIn > 0) {
-    drug.benefit -= 2;
-  } else {
-    drug.benefit -= 4;
-  }
-  drug.expiresIn--;
-};
+Drug.implementations["Dafalgan"] = Dafalgan;
 
 export class Pharmacy {
   constructor(drugs = []) {
