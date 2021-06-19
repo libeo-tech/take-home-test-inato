@@ -12,6 +12,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
+    "test:coverage": "jest --coverage --collectCoverageFrom=pharmacy.js",
     "start": "babel-node index.js"
   },
   "devDependencies": {
