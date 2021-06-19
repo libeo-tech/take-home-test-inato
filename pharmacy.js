@@ -25,6 +25,9 @@ export class Pharmacy {
         case this.HERBAL_TEA:
           this.updateHerbalTea(this.drugs[i]);
           break;
+        case this.MAGIC_PILL:
+          //do nothing
+            break;
         default:
           this.updateNormalDrug(this.drugs[i]);
       }

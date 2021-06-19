@@ -32,5 +32,11 @@ describe("Pharmacy", () => {
       [new Drug("Herbal Tea", 1, 50), new Drug("Herbal Tea", -3, 50)]
     );
   });
+
+  it("Magic Pill never expires nor decreases in Benefit", () => {
+    expect(new Pharmacy([new Drug("Magic Pill", 2, 30)]).updateBenefitValue()).toEqual(
+      [new Drug("Magic Pill", 2, 30)]
+    );
+  });
   
 });
