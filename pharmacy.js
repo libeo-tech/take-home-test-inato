@@ -1,8 +1,13 @@
 export class Drug {
-  constructor(name, expiresIn, benefit) {
+  constructor(name, expiresInOrObject, benefit) {
     this.name = name;
-    this.expiresIn = expiresIn;
-    this.benefit = benefit;
+    if (typeof expiresInOrObject === "object" && expiresInOrObject != null) {
+      this.expiresIn = expiresInOrObject.expiresIn;
+      this.benefit = expiresInOrObject.benefit;
+    } else {
+      this.expiresIn = expiresInOrObject;
+      this.benefit = benefit;
+    }
   }
 }
 

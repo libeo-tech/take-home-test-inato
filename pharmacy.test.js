@@ -18,3 +18,27 @@ describe("Pharmacy", () => {
     });
   });
 });
+
+describe("Drug", () => {
+  it("should accept benefit and expiresIn as two arguments", () => {
+    /* GIVEN */
+    const benefit = 8;
+    const expiresIn = 15;
+    /* WHEN */
+    const drug = new Drug("test", expiresIn, benefit);
+    /* THEN */
+    expect(drug.benefit).toBe(benefit);
+    expect(drug.expiresIn).toBe(expiresIn);
+  });
+
+  it("should accept benefit and expiresIn as an object", () => {
+    /* GIVEN */
+    const benefit = 8;
+    const expiresIn = 15;
+    /* WHEN */
+    const drug = new Drug("test", { expiresIn, benefit });
+    /* THEN */
+    expect(drug.benefit).toBe(benefit);
+    expect(drug.expiresIn).toBe(expiresIn);
+  });
+});
