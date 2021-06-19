@@ -61,6 +61,14 @@ export class Pharmacy {
           }
         }
       }
+
+      // special case: "Dafalgan" lower benefit by two, four if expiry has pass
+      if (drug.name === "Dafalgan") {
+        this.setBenefitToDrug(
+          drug,
+          initialBenefit - (initialExpiresIn > 0 ? 2 : 4)
+        );
+      }
     }
 
     return this.drugs;

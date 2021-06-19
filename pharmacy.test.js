@@ -287,6 +287,54 @@ describe("Pharmacy", () => {
       `);
     });
   });
+
+  describe("Dafalgan", () => {
+    it("should decrease the benefit by 2", () => {
+      expect(
+        new Pharmacy([
+          new Drug("Dafalgan", { expiresIn: 2, benefit: 15 })
+        ]).updateBenefitValue()
+      ).toMatchInlineSnapshot(`
+        Array [
+          Drug {
+            "benefit": 13,
+            "expiresIn": 1,
+            "name": "Dafalgan",
+          },
+        ]
+      `);
+    });
+    it("should decrease the benefit by 4 when the expiration date has passed", () => {
+      expect(
+        new Pharmacy([
+          new Drug("Dafalgan", { expiresIn: 0, benefit: 10 })
+        ]).updateBenefitValue()
+      ).toMatchInlineSnapshot(`
+        Array [
+          Drug {
+            "benefit": 6,
+            "expiresIn": -1,
+            "name": "Dafalgan",
+          },
+        ]
+      `);
+    });
+    it("should decrease the benefit by 3 when the expiration date has passed and benefit is 3", () => {
+      expect(
+        new Pharmacy([
+          new Drug("Dafalgan", { expiresIn: -1, benefit: 3 })
+        ]).updateBenefitValue()
+      ).toMatchInlineSnapshot(`
+        Array [
+          Drug {
+            "benefit": 0,
+            "expiresIn": -2,
+            "name": "Dafalgan",
+          },
+        ]
+      `);
+    });
+  });
 });
 
 describe("Drug", () => {
