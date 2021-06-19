@@ -16,9 +16,12 @@ export class Pharmacy {
 
   MAGIC_PILL = "Magic Pill";
 
+  DAFALGAN = "Dafalgan";
+
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+  
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       switch (this.drugs[i].name) {
@@ -31,6 +34,9 @@ export class Pharmacy {
         case this.FERVEX:
           this.updateFervex(this.drugs[i]);
           break;
+          case this.DAFALGAN:
+            this.updateNormalDrug(this.drugs[i], 2);
+            break;
         default:
           this.updateNormalDrug(this.drugs[i]);
       }
@@ -62,12 +68,12 @@ export class Pharmacy {
     }
   }
 
-  updateNormalDrug(drug) {
+  updateNormalDrug(drug, x = 1) {
     drug.expiresIn = drug.expiresIn - 1;
     if (drug.expiresIn >= 0) {
-      drug.benefit = this.decreaseBenefit(drug.benefit, 1);
+      drug.benefit = this.decreaseBenefit(drug.benefit, x);
     } else { 
-      drug.benefit = this.decreaseBenefit(drug.benefit, 2);
+      drug.benefit = this.decreaseBenefit(drug.benefit, 2*x);
     }
   }
 
