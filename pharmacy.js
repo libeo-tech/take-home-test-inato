@@ -22,6 +22,9 @@ export class Pharmacy {
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       switch (this.drugs[i].name) {
+        case this.HERBAL_TEA:
+          this.updateHerbalTea(this.drugs[i]);
+          break;
         default:
           this.updateNormalDrug(this.drugs[i]);
       }
@@ -29,6 +32,15 @@ export class Pharmacy {
     }
 
     return this.drugs;
+  }
+
+  updateHerbalTea(drug) {
+    drug.expiresIn = drug.expiresIn - 1;
+    if (drug.expiresIn >= 0) {
+      drug.benefit = this.increaseBenefit(drug.benefit, 1);
+    } else { 
+      drug.benefit = this.increaseBenefit(drug.benefit, 2);
+    }
   }
 
   updateNormalDrug(drug) {
@@ -55,5 +67,6 @@ export class Pharmacy {
     } else { 
       benefit = max;
     }
+    return benefit;
   }
 }

@@ -16,6 +16,16 @@ describe("Pharmacy", () => {
       [new Drug("test", -1, 3)]
     );
   });
-  
+
+  it("Herbal Tea increases in Benefit the older it gets.", () => {
+    expect(new Pharmacy([new Drug("Herbal Tea", 20, 30)]).updateBenefitValue()).toEqual(
+      [new Drug("Herbal Tea", 19, 31)]
+    );
+  });
+  it("Herbal Tea increases in Benefit increases twice as fast after the expiration date", () => {
+    expect(new Pharmacy([new Drug("Herbal Tea", 0, 30)]).updateBenefitValue()).toEqual(
+      [new Drug("Herbal Tea", -1, 32)]
+    );
+  });
   
 });
