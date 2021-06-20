@@ -19,6 +19,9 @@ export class Pharmacy {
       if (drug.name !== "Herbal Tea" && drug.name !== "Fervex") {
         if (drug.benefit > 0) {
           drug.benefit--;
+          if (drug.name === "Dafalgan") {
+            drug.benefit--;
+          }
         }
       } else {
         if (drug.benefit < 50) {
@@ -44,9 +47,6 @@ export class Pharmacy {
         if (drug.name === "Fervex") {
           drug.benefit = 0;
           return;
-        }
-        if (drug.benefit > 0) {
-          drug.benefit--;
         }
       }
     });
