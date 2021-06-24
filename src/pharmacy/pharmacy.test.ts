@@ -3,7 +3,7 @@ import { Pharmacy } from "./pharmacy";
 
 describe("Pharmacy", () => {
   it("should update all drugs in the pharmacy", () => {
-    let myParmacy = new Pharmacy([
+    const myParmacy = new Pharmacy([
       new Drug("test", 2, 3),
       new Drug("Herbal Tea", 5, 2),
       new Drug("Magic Pill", -2, 5),
