@@ -5,7 +5,8 @@ import { MagicPill } from "./specialDrugs/magicPill";
 export const SpecialDrugsNames = {
   HerbalTea: "Herbal Tea",
   MagicPill: "Magic Pill",
-  Fervex: "Fervex"
+  Fervex: "Fervex",
+  Dafalgan: "Dafalgan"
 };
 
 export const SpecialDrugs = {
