@@ -27,11 +27,8 @@ describe("Drug", () => {
     drug.update();
     expect(drug).toEqual(new Drug("test", -6, 0));
 
-    /*
-    * TODO: Failing test, the output should never be negative even if input is
-    expect(
-      new Pharmacy([new Drug("test", -5, -10)]).updateBenefitValue()
-    ).toEqual([new Drug("test", -6, 0)]);
-    */
+    drug = new Drug("test", -5, -10);
+    drug.update();
+    expect(drug).toEqual(new Drug("test", -6, 0));
   });
 });

@@ -32,14 +32,12 @@ describe(SpecialDrugsNames.HerbalTea, () => {
     drug.update();
     expect(drug).toEqual(new Drug(SpecialDrugsNames.HerbalTea, -3, 50));
 
-    /*
-    * TODO: Failing test, the output should never be above 50 even if input is
-    expect(
-      new Pharmacy([new Drug("test", 5, 60)]).updateBenefitValue()
-    ).toEqual([new Drug("test", 4, 50)]);
-    expect(
-      new Pharmacy([new Drug("test", -5, 49)]).updateBenefitValue()
-    ).toEqual([new Drug("test", -6, 50)]);
-    */
+    drug = new Drug(SpecialDrugsNames.HerbalTea, 5, 60);
+    drug.update();
+    expect(drug).toEqual(new Drug(SpecialDrugsNames.HerbalTea, 4, 50));
+
+    drug = new Drug(SpecialDrugsNames.HerbalTea, -5, 49);
+    drug.update();
+    expect(drug).toEqual(new Drug(SpecialDrugsNames.HerbalTea, -6, 50));
   });
 });
