@@ -2,6 +2,8 @@ env:
   jest: true
   node: true
 parser: babel-eslint
+plugin:
+  - '@typescript-eslint'
 extends:
   - eslint:recommended
   - plugin:prettier/recommended

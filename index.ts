@@ -1,6 +1,6 @@
 import { Drug, Pharmacy } from "./pharmacy";
 
-import fs from "fs";
+import * as fs from "fs";
 
 const drugs = [
   new Drug("Doliprane", 20, 30),
@@ -17,6 +17,11 @@ for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
 }
 
 /* eslint-disable no-console */
+/*  Hate to disable ts :'(
+ *  but stringfying the log in order to have the correct type would change
+ *  the output preventing a direct comparaison with the reference
+ */
+// @ts-ignore
 fs.writeFile("output.txt", log, err => {
   if (err) {
     console.log("error");
