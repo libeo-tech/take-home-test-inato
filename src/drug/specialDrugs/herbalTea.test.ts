@@ -1,35 +1,36 @@
 import { Drug } from "../drug";
+import { SpecialDrugsNames } from "../specialDrugsList";
 
-describe("Herbal Tea", () => {
+describe(SpecialDrugsNames.HerbalTea, () => {
   /* Herbal Tea */
   it("[Herbal Tea] should increase benefit and decrease expiresIn before expiration", () => {
-    let drug = new Drug("Herbal Tea", 5, 2);
+    let drug = new Drug(SpecialDrugsNames.HerbalTea, 5, 2);
     drug.update();
-    expect(drug).toEqual(new Drug("Herbal Tea", 4, 3));
+    expect(drug).toEqual(new Drug(SpecialDrugsNames.HerbalTea, 4, 3));
 
-    drug = new Drug("Herbal Tea", 2, 5);
+    drug = new Drug(SpecialDrugsNames.HerbalTea, 2, 5);
     drug.update();
-    expect(drug).toEqual(new Drug("Herbal Tea", 1, 6));
+    expect(drug).toEqual(new Drug(SpecialDrugsNames.HerbalTea, 1, 6));
   });
 
   it("[Herbal Tea] should increase benefit*2 and decrease expiresIn after expiration", () => {
-    let drug = new Drug("Herbal Tea", 0, 2);
+    let drug = new Drug(SpecialDrugsNames.HerbalTea, 0, 2);
     drug.update();
-    expect(drug).toEqual(new Drug("Herbal Tea", -1, 4));
+    expect(drug).toEqual(new Drug(SpecialDrugsNames.HerbalTea, -1, 4));
 
-    drug = new Drug("Herbal Tea", -2, 5);
+    drug = new Drug(SpecialDrugsNames.HerbalTea, -2, 5);
     drug.update();
-    expect(drug).toEqual(new Drug("Herbal Tea", -3, 7));
+    expect(drug).toEqual(new Drug(SpecialDrugsNames.HerbalTea, -3, 7));
   });
 
   it("[Herbal Tea] benefit should never be above 50", () => {
-    let drug = new Drug("Herbal Tea", 5, 50);
+    let drug = new Drug(SpecialDrugsNames.HerbalTea, 5, 50);
     drug.update();
-    expect(drug).toEqual(new Drug("Herbal Tea", 4, 50));
+    expect(drug).toEqual(new Drug(SpecialDrugsNames.HerbalTea, 4, 50));
 
-    drug = new Drug("Herbal Tea", -2, 50);
+    drug = new Drug(SpecialDrugsNames.HerbalTea, -2, 50);
     drug.update();
-    expect(drug).toEqual(new Drug("Herbal Tea", -3, 50));
+    expect(drug).toEqual(new Drug(SpecialDrugsNames.HerbalTea, -3, 50));
 
     /*
     * TODO: Failing test, the output should never be above 50 even if input is
