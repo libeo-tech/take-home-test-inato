@@ -13,7 +13,7 @@
     "lint": "eslint .",
     "test": "jest",
     "test:watch": "jest --watch",
-    "start": "babel-node --extensions .ts -- ./index.ts"
+    "start": "babel-node --extensions .ts -- ./src/index.ts"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
