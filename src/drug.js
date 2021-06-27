@@ -1,10 +1,12 @@
 const MIN_BENEFIT = 0;
 const MAX_BENEFIT = 50;
+const BENEFIT_DEGRADATION = 1;
 
 const updateBenefitMapping = {
   "Magic Pill": updateMagicPillBenefitValue,
   "Herbal Tea": updateHerbalTeaBenefitValue,
-  Fervex: updateFervexBenefitValue
+  Fervex: updateFervexBenefitValue,
+  Dafalgan: updateDafalganBenefitValue
 };
 
 export class Drug {
@@ -34,11 +36,11 @@ function updateNormalBenefitValue(expiresIn, benefit) {
   let newBenefit = benefit;
 
   if (hasBenefit(newBenefit)) {
-    newBenefit -= 1;
+    newBenefit -= BENEFIT_DEGRADATION;
   }
 
   if (isExpired(newExpiresIn) && hasBenefit(newBenefit)) {
-    newBenefit -= 1;
+    newBenefit -= BENEFIT_DEGRADATION;
   }
 
   return { expiresIn: newExpiresIn, benefit: newBenefit };
@@ -53,11 +55,11 @@ function updateHerbalTeaBenefitValue(expiresIn, benefit) {
   let newBenefit = benefit;
 
   if (isInferiorToMaxBenefit(newBenefit)) {
-    newBenefit += 1;
+    newBenefit += BENEFIT_DEGRADATION;
   }
 
   if (isExpired(newExpiresIn) && isInferiorToMaxBenefit(newBenefit)) {
-    newBenefit += 1;
+    newBenefit += BENEFIT_DEGRADATION;
   }
 
   return { expiresIn: newExpiresIn, benefit: newBenefit };
@@ -68,17 +70,36 @@ function updateFervexBenefitValue(expiresIn, benefit) {
   let newBenefit = benefit;
 
   if (isInferiorToMaxBenefit(newBenefit)) {
-    newBenefit += 1;
+    newBenefit += BENEFIT_DEGRADATION;
     if (newExpiresIn < 11 && isInferiorToMaxBenefit(newBenefit)) {
-      newBenefit += 1;
+      newBenefit += BENEFIT_DEGRADATION;
     }
     if (newExpiresIn < 6 && isInferiorToMaxBenefit(newBenefit)) {
-      newBenefit += 1;
+      newBenefit += BENEFIT_DEGRADATION;
     }
   }
 
   if (isExpired(newExpiresIn)) {
     newBenefit -= newBenefit;
+  }
+
+  return { expiresIn: newExpiresIn, benefit: newBenefit };
+}
+
+function updateDafalganBenefitValue(expiresIn, benefit) {
+  const newExpiresIn = expiresIn - 1;
+  let newBenefit = benefit;
+
+  if (hasBenefit(newBenefit)) {
+    newBenefit -= BENEFIT_DEGRADATION * 2;
+  }
+
+  if (isExpired(newExpiresIn) && hasBenefit(newBenefit)) {
+    newBenefit -= BENEFIT_DEGRADATION * 2;
+  }
+
+  if (!hasBenefit(newBenefit)) {
+    newBenefit = MIN_BENEFIT;
   }
 
   return { expiresIn: newExpiresIn, benefit: newBenefit };
