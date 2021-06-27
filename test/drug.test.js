@@ -1,7 +1,7 @@
 import { Drug } from "../src/drug";
 
 describe("Drug", () => {
-  it.each([["Efferalgan", 2, 3], ["Doliprane", 2, 3]])(
+  it.each([["Efferalgan", 2, 3], ["Doliprane", 2, 3], ["Dafalgan", 0, 1]])(
     "%s should decrease the benefit by 1 and expiresIn by 1",
     (name, expiresIn, benefit) => {
       const actual = new Drug(name, expiresIn, benefit).updateBenefitValue();
@@ -9,11 +9,32 @@ describe("Drug", () => {
       expect(actual).toEqual(expected);
     }
   );
-  it.each([["Doliprane", 0, 10], ["Doliprane", 0, 2]])(
+  it.each([
+    ["Doliprane", 0, 10],
+    ["Doliprane", 0, 2],
+    ["Dafalgan", 2, 3],
+    ["Dafalgan", 0, 2]
+  ])(
     "%s should decrease the benefit by 2 and expiresIn by 1",
     (name, expiresIn, benefit) => {
       const actual = new Drug(name, expiresIn, benefit).updateBenefitValue();
       const expected = new Drug(name, expiresIn - 1, benefit - 2);
+      expect(actual).toEqual(expected);
+    }
+  );
+  it.each([["Dafalgan", 0, 3]])(
+    "%s should decrease the benefit by 3 and expiresIn by 1",
+    (name, expiresIn, benefit) => {
+      const actual = new Drug(name, expiresIn, benefit).updateBenefitValue();
+      const expected = new Drug(name, expiresIn - 1, benefit - 3);
+      expect(actual).toEqual(expected);
+    }
+  );
+  it.each([["Dafalgan", 0, 4]])(
+    "%s should decrease the benefit by 4 and expiresIn by 1",
+    (name, expiresIn, benefit) => {
+      const actual = new Drug(name, expiresIn, benefit).updateBenefitValue();
+      const expected = new Drug(name, expiresIn - 1, benefit - 4);
       expect(actual).toEqual(expected);
     }
   );
