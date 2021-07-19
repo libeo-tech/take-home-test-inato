@@ -1,0 +1,1 @@
+export { Pharmacy } from "./pharmacy";
