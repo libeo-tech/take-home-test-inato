@@ -27,7 +27,11 @@ export class Pharmacy {
         return drug;
       }
 
-      drug.benefit = this.decrementBenefit(drug, drug.expiresIn < 0 ? 2 : 1);
+      if (drug.name === "Dafalgan") {
+        drug.benefit = this.decrementBenefit(drug, drug.expiresIn < 0 ? 4 : 2);
+      } else {
+        drug.benefit = this.decrementBenefit(drug, drug.expiresIn < 0 ? 2 : 1);
+      }
 
       return drug;
     });

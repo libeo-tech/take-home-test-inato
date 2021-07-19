@@ -8,6 +8,24 @@ describe("Pharmacy", () => {
     );
   });
 
+  it("should decrease by 2", () => {
+    expect(new Pharmacy([new Drug("test", 0, 3)]).updateBenefitValue()).toEqual(
+      [new Drug("test", -1, 1)]
+    );
+  });
+
+  it("should decrease the benefit by 2 for Dafalgan", () => {
+    expect(
+      new Pharmacy([new Drug("Dafalgan", 2, 3)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", 1, 1)]);
+  });
+
+  it("should decrease the benefit by 4 for Dafalgan", () => {
+    expect(
+      new Pharmacy([new Drug("Dafalgan", 0, 5)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", -1, 1)]);
+  });
+
   it("should not decrease under 0", () => {
     expect(new Pharmacy([new Drug("test", 2, 0)]).updateBenefitValue()).toEqual(
       [new Drug("test", 1, 0)]
