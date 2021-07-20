@@ -1,10 +1,16 @@
+import { Drug } from '../drug/drug';
+
+
 export class Pharmacy {
-  constructor(drugs = []) {
+
+  drugs: Drug[] = [];
+
+  constructor(drugs: Drug[] = []) {
     this.drugs = drugs;
   }
 
   updateBenefitValue() {
-    this.drugs = this.drugs.map(drug => {
+    this.drugs = this.drugs.map((drug: Drug) => {
       if (drug.name === "Magic Pill") return drug;
 
       drug.expiresIn = drug.expiresIn - 1;
@@ -38,11 +44,11 @@ export class Pharmacy {
     return this.drugs;
   }
 
-  incrementBenefit(drug, amount) {
+  incrementBenefit(drug: Drug, amount: number) {
     return drug.benefit + amount < 50 ? drug.benefit + amount : 50;
   }
 
-  decrementBenefit(drug, amount) {
+  decrementBenefit(drug: Drug, amount: number) {
     return drug.benefit - amount > 0 ? drug.benefit - amount : 0;
   }
 }
