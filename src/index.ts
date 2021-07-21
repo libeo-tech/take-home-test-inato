@@ -1,14 +1,15 @@
 import fs from "fs";
 import { Pharmacy } from "./modules/pharmacy";
-import { Drug } from "./modules/drug";
+import { DrugFactory } from "./modules/drug";
 
 
 const drugs = [
-    new Drug("Doliprane", 20, 30),
-    new Drug("Herbal Tea", 10, 5),
-    new Drug("Fervex", 5, 40),
-    new Drug("Magic Pill", 15, 40)
+    DrugFactory.createDrug("Doliprane", 20, 30),
+    DrugFactory.createDrug("Herbal Tea", 10, 5),
+    DrugFactory.createDrug("Fervex", 5, 40),
+    DrugFactory.createDrug("Magic Pill", 15, 40),
 ];
+
 const trial = new Pharmacy(drugs);
 
 const log = [];

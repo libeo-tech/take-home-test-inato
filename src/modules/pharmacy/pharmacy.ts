@@ -1,4 +1,4 @@
-import { Drug } from '../drug/drug';
+import { Drug } from '../../models/Drug';
 
 
 export class Pharmacy {
@@ -10,45 +10,10 @@ export class Pharmacy {
   }
 
   updateBenefitValue() {
-    this.drugs = this.drugs.map((drug: Drug) => {
-      if (drug.name === "Magic Pill") return drug;
-
-      drug.expiresIn = drug.expiresIn - 1;
-
-      if (drug.name === "Fervex") {
-        if (drug.expiresIn < 0) {
-          drug.benefit = 0;
-        } else if (drug.expiresIn <= 5) {
-          drug.benefit = this.incrementBenefit(drug, 3);
-        } else if (drug.expiresIn <= 10) {
-          drug.benefit = this.incrementBenefit(drug, 2);
-        } else {
-          drug.benefit = this.incrementBenefit(drug, 1);
-        }
-        return drug;
-      }
-
-      if (drug.name === "Herbal Tea") {
-        drug.benefit = this.incrementBenefit(drug, drug.expiresIn < 0 ? 2 : 1);
-        return drug;
-      }
-
-      if (drug.name === "Dafalgan") {
-        drug.benefit = this.decrementBenefit(drug, drug.expiresIn < 0 ? 4 : 2);
-      } else {
-        drug.benefit = this.decrementBenefit(drug, drug.expiresIn < 0 ? 2 : 1);
-      }
-
-      return drug;
+    this.drugs.forEach((drug: Drug) => {
+      drug.updateExpireIn();
+      drug.updateBenefit();
     });
     return this.drugs;
-  }
-
-  incrementBenefit(drug: Drug, amount: number) {
-    return drug.benefit + amount < 50 ? drug.benefit + amount : 50;
-  }
-
-  decrementBenefit(drug: Drug, amount: number) {
-    return drug.benefit - amount > 0 ? drug.benefit - amount : 0;
   }
 }

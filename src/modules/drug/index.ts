@@ -1,1 +1,1 @@
-export { Drug } from "./drug";
+export { DrugFactory } from "./drug-factory";

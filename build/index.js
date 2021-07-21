@@ -7,10 +7,10 @@ var fs_1 = __importDefault(require("fs"));
 var pharmacy_1 = require("./modules/pharmacy");
 var drug_1 = require("./modules/drug");
 var drugs = [
-    new drug_1.Drug("Doliprane", 20, 30),
-    new drug_1.Drug("Herbal Tea", 10, 5),
-    new drug_1.Drug("Fervex", 5, 40),
-    new drug_1.Drug("Magic Pill", 15, 40)
+    drug_1.DrugFactory.createDrug("Doliprane", 20, 30),
+    drug_1.DrugFactory.createDrug("Herbal Tea", 10, 5),
+    drug_1.DrugFactory.createDrug("Fervex", 5, 40),
+    drug_1.DrugFactory.createDrug("Magic Pill", 15, 40),
 ];
 var trial = new pharmacy_1.Pharmacy(drugs);
 var log = [];
