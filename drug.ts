@@ -10,7 +10,8 @@ export class Drug {
   }
 }
 
-export const drugs = {
+export const drugNames = {
+  doliprane: "Doliprane",
   herbalTea: "Herbal Tea",
   fervex: "Fervex",
   magicPill: "Magic Pill",
