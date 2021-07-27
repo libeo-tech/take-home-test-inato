@@ -19,12 +19,6 @@ describe("Global pharmacy guidelines", () => {
       new Pharmacy([new Drug("test", 1, 0)]).updateBenefitValue()
     ).toEqual([new Drug("test", 0, 0)]);
   });
-
-  it("should never raise benefit above 50", () => {
-    expect(
-      new Pharmacy([new Drug(drugNames.herbalTea, 1, 50)]).updateBenefitValue()
-    ).toEqual([new Drug(drugNames.herbalTea, 0, 50)]);
-  });
 });
 
 describe("Herbal tea guidelines", () => {
@@ -38,6 +32,12 @@ describe("Herbal tea guidelines", () => {
     expect(
       new Pharmacy([new Drug(drugNames.herbalTea, 0, 1)]).updateBenefitValue()
     ).toEqual([new Drug(drugNames.herbalTea, -1, 3)]);
+  });
+
+  it("should never raise benefit above 50", () => {
+    expect(
+      new Pharmacy([new Drug(drugNames.herbalTea, 1, 50)]).updateBenefitValue()
+    ).toEqual([new Drug(drugNames.herbalTea, 0, 50)]);
   });
 });
 
@@ -72,5 +72,11 @@ describe("Fervex guidelines", () => {
     expect(
       new Pharmacy([new Drug(drugNames.fervex, 0, 10)]).updateBenefitValue()
     ).toEqual([new Drug(drugNames.fervex, -1, 0)]);
+  });
+
+  it("should never raise benefit above 50", () => {
+    expect(
+      new Pharmacy([new Drug(drugNames.fervex, 3, 48)]).updateBenefitValue()
+    ).toEqual([new Drug(drugNames.fervex, 2, 50)]);
   });
 });
