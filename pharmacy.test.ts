@@ -80,3 +80,17 @@ describe("Fervex guidelines", () => {
     ).toEqual([new Drug(drugNames.fervex, 2, 50)]);
   });
 });
+
+describe("Dafalgan guidelines", () => {
+  it("should decrease benefit by 2 before expiration date", () => {
+    expect(
+      new Pharmacy([new Drug(drugNames.dafalgan, 2, 3)]).updateBenefitValue()
+    ).toEqual([new Drug(drugNames.dafalgan, 1, 1)]);
+  });
+
+  it("should decrease benefit by 4 after expiration date", () => {
+    expect(
+      new Pharmacy([new Drug(drugNames.dafalgan, 0, 5)]).updateBenefitValue()
+    ).toEqual([new Drug(drugNames.dafalgan, -1, 1)]);
+  });
+});
