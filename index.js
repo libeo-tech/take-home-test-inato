@@ -1,12 +1,14 @@
 import { Drug, Pharmacy } from "./pharmacy";
+import { PHARMA_TYPE } from "./constants";
 
 import fs from "fs";
 
 const drugs = [
   new Drug("Doliprane", 20, 30),
-  new Drug("Herbal Tea", 10, 5),
-  new Drug("Fervex", 5, 40),
-  new Drug("Magic Pill", 15, 40)
+  new Drug(PHARMA_TYPE.HERBAL, 10, 5),
+  new Drug(PHARMA_TYPE.FERVEX, 5, 40),
+  new Drug(PHARMA_TYPE.MAGIC, 15, 40),
+  new Drug(PHARMA_TYPE.DAFALGAN, 15, 50)
 ];
 const trial = new Pharmacy(drugs);
 
