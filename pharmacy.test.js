@@ -4,7 +4,7 @@ import {
   updateDafalganDrug,
   updateFervexDrug,
   updateHerbalTeaDrug,
-  updateMagicPillDrug,
+  updateMagicPillDrug
 } from "./pharmacy";
 
 describe("Pharmacy", () => {

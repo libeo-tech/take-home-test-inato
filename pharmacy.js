@@ -24,7 +24,7 @@ export function updateDefaultDrug(drug) {
   return {
     ...drug,
     expiresIn,
-    benefit: checkBenefitLimit(benefit),
+    benefit: checkBenefitLimit(benefit)
   };
 }
 
@@ -37,7 +37,7 @@ export function updateMagicPillDrug(drug) {
   return {
     ...drug,
     expiresIn,
-    benefit: checkBenefitLimit(benefit),
+    benefit: checkBenefitLimit(benefit)
   };
 }
 
@@ -48,7 +48,7 @@ export function updateHerbalTeaDrug(drug) {
   return {
     ...drug,
     expiresIn,
-    benefit: checkBenefitLimit(benefit),
+    benefit: checkBenefitLimit(benefit)
   };
 }
 
@@ -65,7 +65,7 @@ export function updateFervexDrug(drug) {
   return {
     ...drug,
     expiresIn,
-    benefit: checkBenefitLimit(benefit),
+    benefit: checkBenefitLimit(benefit)
   };
 }
 
@@ -76,7 +76,7 @@ export function updateDafalganDrug(drug) {
   return {
     ...drug,
     expiresIn,
-    benefit: checkBenefitLimit(benefit),
+    benefit: checkBenefitLimit(benefit)
   };
 }
 
@@ -85,7 +85,7 @@ const updateDrugsHandlers = {
   "Magic Pill": updateMagicPillDrug,
   "Herbal Tea": updateHerbalTeaDrug,
   Fervex: updateFervexDrug,
-  Dafalgan: updateDafalganDrug,
+  Dafalgan: updateDafalganDrug
 };
 export class Pharmacy {
   constructor(drugs = []) {
