@@ -119,4 +119,15 @@ describe("Pharmacy", () => {
       ]);
     });
   });
+
+  describe("Dafalgan", () => {
+    it("should decrease twice faster the benefit and expiresIn for Dafalgan", () => {
+      const trial = createPharmacy([
+        { name: "Dafalgan", expiresIn: 2, benefit: 3 }
+      ]);
+      expect(trial.update()).toEqual([
+        { name: "Dafalgan", expiresIn: 1, benefit: 1 }
+      ]);
+    });
+  });
 });
