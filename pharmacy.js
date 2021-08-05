@@ -36,6 +36,23 @@ export class Drug {
   }
 }
 
+export class Fervex extends Drug {
+  constructor(name, expiresIn, benefit, aging) {
+    super(name, expiresIn, benefit, aging);
+  }
+  expired() {
+    if (this.expiresIn === 0) {
+      this.benefit = 0;
+    } else if (this.expiresIn > 10) {
+      this.benefit += 1;
+    } else if (this.expiresIn > 5 && this.expiresIn <= 10) {
+      this.benefit += 2;
+    } else if (this.expiresIn < 5 && this.expiresIn >= 0) {
+      this.benefit += 3;
+    }
+  }
+}
+
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
