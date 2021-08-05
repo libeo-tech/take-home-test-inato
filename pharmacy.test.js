@@ -19,19 +19,19 @@ describe("Pharmacy", () => {
     expect(new Pharmacy([drug]).updateBenefitValue()).toEqual([expectedDrug]);
   });
 
-  it("should increase the benefit for HerbalTea", () => {
+  it("should increase the benefit for Herbal Tea", () => {
     const drug = new Drug("Herbal Tea", 10, 5);
     const expectedDrug = new Drug("Herbal Tea", 9, 6);
     expect(new Pharmacy([drug]).updateBenefitValue()).toEqual([expectedDrug]);
   });
 
-  it("should increase the benefit for HerbalTea twice as fast when the expiration date has passed", () => {
+  it("should increase the benefit for Herbal Tea twice as fast when the expiration date has passed", () => {
     const drug = new Drug("Herbal Tea", -1, 5);
     const expectedDrug = new Drug("Herbal Tea", -2, 7);
     expect(new Pharmacy([drug]).updateBenefitValue()).toEqual([expectedDrug]);
   });
 
-  it("should not increase the benefit of an item more than 50", () => {
+  it("should not increase the benefit above 50", () => {
     const drug = new Drug("Herbal Tea", 10, 50);
     const expectedDrug = new Drug("Herbal Tea", 9, 50);
     expect(new Pharmacy([drug]).updateBenefitValue()).toEqual([expectedDrug]);
@@ -40,6 +40,12 @@ describe("Pharmacy", () => {
   it("should not decrease the benefit or expire for Magic Pill", () => {
     const drug = new Drug("Magic Pill", 10, 50);
     const expectedDrug = new Drug("Magic Pill", 10, 50);
+    expect(new Pharmacy([drug]).updateBenefitValue()).toEqual([expectedDrug]);
+  });
+
+  it("should increase the benefit for Fervex when expiration date is above 10", () => {
+    const drug = new Drug("Fervex", 12, 10);
+    const expectedDrug = new Drug("Fervex", 11, 11);
     expect(new Pharmacy([drug]).updateBenefitValue()).toEqual([expectedDrug]);
   });
 
