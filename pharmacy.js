@@ -1,3 +1,5 @@
+const Min_Benefit = 0;
+const Max_Benefit = 50;
 export class Drug {
   constructor(name, expiresIn, benefit, aging = 1, expiration = 1) {
     this.name = name;
@@ -8,6 +10,7 @@ export class Drug {
   }
 
   age() {
+    // reduce benefit per aging factor
     if (this.expiresIn <= 0) {
       this.expired();
     } else {
@@ -18,12 +21,12 @@ export class Drug {
 
   expired() {
     // check benefit threshold
-    if (this.benefit > 0 && this.benefit < 50) {
+    if (this.benefit > Min_Benefit && this.benefit < Max_Benefit) {
       this.benefit -= this.aging * 2;
-      if (this.benefit < 0) {
-        this.benefit = 0;
-      } else if (this.benefit > 50) {
-        this.benefit = 50;
+      if (this.benefit < Min_Benefit) {
+        this.benefit = Min_Benefit;
+      } else if (this.benefit > Max_Benefit) {
+        this.benefit = Max_Benefit;
       }
     }
   }
@@ -36,6 +39,7 @@ export class Drug {
   }
 }
 
+// Fervex has special expiration conditions, donc we morph Drug.expired()
 export class Fervex extends Drug {
   constructor(name, expiresIn, benefit, aging) {
     super(name, expiresIn, benefit, aging);
