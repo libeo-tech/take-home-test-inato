@@ -1,4 +1,5 @@
 import { Drug, Pharmacy } from "./pharmacy";
+import drugsDefinitions from "./drugsDefinitions.json";
 
 import fs from "fs";
 
@@ -8,7 +9,7 @@ const drugs = [
   new Drug("Fervex", 5, 40),
   new Drug("Magic Pill", 15, 40)
 ];
-const trial = new Pharmacy(drugs);
+const trial = new Pharmacy(drugs, drugsDefinitions);
 
 const log = [];
 

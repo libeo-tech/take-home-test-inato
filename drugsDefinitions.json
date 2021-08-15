@@ -1,0 +1,22 @@
+{
+    "Magic Pill": {
+        "expireCycle": 0,
+        "beforeExpire": 0,
+        "afterExpire": 0
+    },
+    "Herbal Tea": {
+        "expireCycle": -1,
+        "beforeExpire": 1,
+        "afterExpire": 2
+    },
+    "Fervex": {
+        "expireCycle": -1,
+        "beforeExpire": [
+            [11, 1],
+            [6, 2],
+            [0, 3]
+        ],
+        "afterExpire": 0,
+        "afterExpireInitialValue": 0
+    }
+}
