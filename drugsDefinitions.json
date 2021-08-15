@@ -18,5 +18,10 @@
         ],
         "afterExpire": 0,
         "afterExpireInitialValue": 0
+    },
+    "Dafalgan": {
+        "expireCycle": -1,
+        "beforeExpire": -2,
+        "afterExpire": -4
     }
 }

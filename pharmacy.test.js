@@ -75,4 +75,13 @@ describe("business rules", () => {
       ).toEqual([new Drug("Fervex", -2, 0)]);
     });
   });
+
+  // -- Dafalgan --
+  describe("Dafalgan", () => {
+    it("should decrease the benefit twice as fast as normal drugs for 'Dafalgan'", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 2, 3)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", 1, 1)]);
+    });
+  });
 });
