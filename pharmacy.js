@@ -32,6 +32,14 @@ export class Pharmacy {
     }
   }
 
+  default (drug) {
+    if (!drug.isExpired()) {
+      drug.benefit -= 1
+      drug.expiresIn -= 1
+    } else drug.benefit -= 2
+    return this.regularizeDrugsValues(drug)
+  }
+
   herbalTea (herbalTea) {
     if (!herbalTea.isExpired()) {
       herbalTea.benefit += 1
@@ -43,10 +51,13 @@ export class Pharmacy {
   updateBenefitValue () {
     this.drugs.forEach(drug => {
       switch (drug.name) {
+        case 'Magic pill':
+          break
         case 'Herbal tea':
           drug = this.herbalTea(drug)
           break
         default:
+          drug = this.default(drug)
           break
       }
     })

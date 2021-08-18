@@ -19,3 +19,17 @@ describe('Herbal tea tests', () => {
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
   })
 })
+
+describe('Default drugs tests', () => {
+  it('should decrease the benefit and decrease expiresIn', () => {
+    const pharmacy = new Pharmacy([new Drug('Mythoprane', 1, 2)])
+    const expected = new Pharmacy([new Drug('Mythoprane', 0, 1)])
+    expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
+  })
+
+  it('should do nothing', () => {
+    const pharmacy = new Pharmacy([new Drug('Mythoprane', 0, 0)])
+    const expected = new Pharmacy([new Drug('Mythoprane', 0, 0)])
+    expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
+  })
+})
