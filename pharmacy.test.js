@@ -69,7 +69,7 @@ describe('Fervex tests', () => {
   })
 })
 
-describe('Default dafalgan tests', () => {
+describe('Dafalgan tests', () => {
   it('should decrease the benefit by 2 and decrease expiresIn', () => {
     const pharmacy = new Pharmacy([new Drug('Dafalgan', 5, 5)])
     const expected = new Pharmacy([new Drug('Dafalgan', 4, 3)])
