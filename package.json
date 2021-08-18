@@ -5,6 +5,11 @@
   "author": "inato",
   "license": "MIT",
   "private": true,
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
   "engines": {
     "yarn": ">=1.7.0",
     "node": "=12.x"
@@ -27,6 +32,7 @@
     "eslint-plugin-prettier": "^2.6.2",
     "jest": "24.8.0",
     "prettier": "^1.14.3",
-    "regenerator-runtime": "^0.12.1"
+    "regenerator-runtime": "^0.12.1",
+    "standard": "^16.0.3"
   }
 }
