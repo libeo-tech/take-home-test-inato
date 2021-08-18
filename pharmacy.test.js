@@ -8,7 +8,7 @@ describe('Default drugs tests', () => {
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
   })
 
-  it('should do nothing', () => {
+  it('should decrease expiresIn', () => {
     const pharmacy = new Pharmacy([new Drug('Mythoprane', 0, 0)])
     const expected = new Pharmacy([new Drug('Mythoprane', -1, 0)])
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
@@ -28,7 +28,7 @@ describe('Herbal Tea tests', () => {
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
   })
 
-  it('should do nothing', () => {
+  it('should decrease expiresIn', () => {
     const pharmacy = new Pharmacy([new Drug('Herbal Tea', 0, 50)])
     const expected = new Pharmacy([new Drug('Herbal Tea', -1, 50)])
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
@@ -82,7 +82,7 @@ describe('Default dafalgan tests', () => {
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
   })
 
-  it('should do nothing', () => {
+  it('should decrease expiresIn', () => {
     const pharmacy = new Pharmacy([new Drug('Dafalgan', 0, 0)])
     const expected = new Pharmacy([new Drug('Dafalgan', -1, 0)])
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)

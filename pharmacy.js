@@ -22,9 +22,8 @@ export class Pharmacy {
   }
 
   updateDefault (drug) {
-    if (!drug.isExpired()) {
-      drug.benefit -= 1
-    } else drug.benefit -= 2
+    if (!drug.isExpired()) drug.benefit -= 1
+    else drug.benefit -= 2
     return this.regularizeBenefitValues(drug)
   }
 
