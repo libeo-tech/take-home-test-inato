@@ -67,6 +67,14 @@ export class Pharmacy {
     }
   }
 
+  updateDafalgan (dafalgan) {
+    if (!dafalgan.isExpired()) {
+      dafalgan.benefit -= 2
+      dafalgan.expiresIn -= 1
+    } else dafalgan.benefit -= 4
+    return this.regularizeDrugsValues(dafalgan)
+  }
+
   updateBenefitValue () {
     this.drugs.forEach(drug => {
       switch (drug.name) {
@@ -77,6 +85,9 @@ export class Pharmacy {
           break
         case 'Fervex':
           drug = this.updateFervex(drug)
+          break
+        case 'Dafalgan':
+          drug = this.updateDafalgan(drug)
           break
         default:
           drug = this.default(drug)
