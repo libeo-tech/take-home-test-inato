@@ -6,9 +6,7 @@ export class Drug {
   }
 
   isExpired () {
-    if (this.expiresIn > 0) {
-      return false
-    }
+    if (this.expiresIn > 0) return false
     return true
   }
 }
@@ -18,82 +16,69 @@ export class Pharmacy {
     this.drugs = drugs
   }
 
-  regularizeDrugsValues (drug) {
-    switch (true) {
-      case drug.benefit > 50:
-        drug.benefit = 50
-        break
-      case drug.benefit < 0:
-        drug.benefit = 0
-        break
-      case drug.expiresIn < 0:
-        drug.expiresIn = 0
-        break
-    }
+  regularizeBenefitValues (drug) {
+    if (drug.benefit > 50) drug.benefit = 50
+    else if (drug.benefit < 0) drug.benefit = 0
   }
 
-  default (drug) {
+  updateDefault (drug) {
     if (!drug.isExpired()) {
       drug.benefit -= 1
-      drug.expiresIn -= 1
     } else drug.benefit -= 2
-    return this.regularizeDrugsValues(drug)
+    return this.regularizeBenefitValues(drug)
   }
 
   updateHerbalTea (herbalTea) {
     if (!herbalTea.isExpired()) {
       herbalTea.benefit += 1
-      herbalTea.expiresIn -= 1
     } else herbalTea.benefit += 2
-    return this.regularizeDrugsValues(herbalTea)
+    return this.regularizeBenefitValues(herbalTea)
   }
 
   updateFervex (fervex) {
     switch (true) {
       case !fervex.isExpired() && fervex.expiresIn > 10:
         fervex.benefit += 1
-        fervex.expiresIn -= 1
         break
       case fervex.expiresIn <= 10 && fervex.expiresIn > 5:
         fervex.benefit += 2
-        fervex.expiresIn -= 1
         break
       case fervex.expiresIn <= 5 && fervex.expiresIn > 0:
         fervex.benefit += 3
-        fervex.expiresIn -= 1
         break
       case fervex.isExpired(): fervex.benefit = 0
         break
     }
+    return this.regularizeBenefitValues(fervex)
   }
 
   updateDafalgan (dafalgan) {
     if (!dafalgan.isExpired()) {
       dafalgan.benefit -= 2
-      dafalgan.expiresIn -= 1
     } else dafalgan.benefit -= 4
-    return this.regularizeDrugsValues(dafalgan)
+    return this.regularizeBenefitValues(dafalgan)
   }
 
   updateBenefitValue () {
-    this.drugs.forEach(drug => {
-      switch (drug.name) {
-        case 'Magic pill':
-          break
-        case 'Herbal tea':
-          drug = this.updateHerbalTea(drug)
+    for (let i = 0; i < this.drugs.length; i++) {
+      switch (this.drugs[i].name) {
+        case 'Magic Pill':
+          continue
+        case 'Herbal Tea':
+          this.updateHerbalTea(this.drugs[i])
           break
         case 'Fervex':
-          drug = this.updateFervex(drug)
+          this.updateFervex(this.drugs[i])
           break
         case 'Dafalgan':
-          drug = this.updateDafalgan(drug)
+          this.updateDafalgan(this.drugs[i])
           break
         default:
-          drug = this.default(drug)
+          this.updateDefault(this.drugs[i])
           break
       }
-    })
+      this.drugs[i].expiresIn--
+    }
     return this.drugs
   }
 }

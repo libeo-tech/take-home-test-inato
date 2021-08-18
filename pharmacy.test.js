@@ -1,7 +1,5 @@
 import { Drug, Pharmacy } from './pharmacy'
-
-import myOutput from './my_output.txt'
-import output from './output.txt'
+import fs from 'fs'
 
 describe('Default drugs tests', () => {
   it('should decrease the benefit and decrease expiresIn', () => {
@@ -12,35 +10,35 @@ describe('Default drugs tests', () => {
 
   it('should do nothing', () => {
     const pharmacy = new Pharmacy([new Drug('Mythoprane', 0, 0)])
-    const expected = new Pharmacy([new Drug('Mythoprane', 0, 0)])
+    const expected = new Pharmacy([new Drug('Mythoprane', -1, 0)])
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
   })
 })
 
-describe('Herbal tea tests', () => {
+describe('Herbal Tea tests', () => {
   it('should increase the benefit and decrease expiresIn', () => {
-    const pharmacy = new Pharmacy([new Drug('Herbal tea', 10, 5)])
-    const expected = new Pharmacy([new Drug('Herbal tea', 9, 6)])
+    const pharmacy = new Pharmacy([new Drug('Herbal Tea', 10, 5)])
+    const expected = new Pharmacy([new Drug('Herbal Tea', 9, 6)])
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
   })
 
   it('should increase the benefit by 2', () => {
-    const pharmacy = new Pharmacy([new Drug('Herbal tea', 0, 2)])
-    const expected = new Pharmacy([new Drug('Herbal tea', 0, 4)])
+    const pharmacy = new Pharmacy([new Drug('Herbal Tea', 0, 2)])
+    const expected = new Pharmacy([new Drug('Herbal Tea', -1, 4)])
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
   })
 
   it('should do nothing', () => {
-    const pharmacy = new Pharmacy([new Drug('Herbal tea', 0, 50)])
-    const expected = new Pharmacy([new Drug('Herbal tea', 0, 50)])
+    const pharmacy = new Pharmacy([new Drug('Herbal Tea', 0, 50)])
+    const expected = new Pharmacy([new Drug('Herbal Tea', -1, 50)])
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
   })
 })
 
 describe('Magic pill tests', () => {
   it('should do nothing', () => {
-    const pharmacy = new Pharmacy([new Drug('Magic pill', 10, 10)])
-    const expected = new Pharmacy([new Drug('Magic pill', 10, 10)])
+    const pharmacy = new Pharmacy([new Drug('Magic Pill', 10, 10)])
+    const expected = new Pharmacy([new Drug('Magic Pill', 10, 10)])
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
   })
 })
@@ -66,7 +64,7 @@ describe('Fervex tests', () => {
 
   it('should update both benefit and expiriesIn to 0', () => {
     const pharmacy = new Pharmacy([new Drug('Fervex', 0, 5)])
-    const expected = new Pharmacy([new Drug('Fervex', 0, 0)])
+    const expected = new Pharmacy([new Drug('Fervex', -1, 0)])
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
   })
 })
@@ -80,19 +78,23 @@ describe('Default dafalgan tests', () => {
 
   it('should decrease the benefit by 4 and decrease expiresIn', () => {
     const pharmacy = new Pharmacy([new Drug('Dafalgan', 0, 5)])
-    const expected = new Pharmacy([new Drug('Dafalgan', 0, 1)])
+    const expected = new Pharmacy([new Drug('Dafalgan', -1, 1)])
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
   })
 
   it('should do nothing', () => {
     const pharmacy = new Pharmacy([new Drug('Dafalgan', 0, 0)])
-    const expected = new Pharmacy([new Drug('Dafalgan', 0, 0)])
+    const expected = new Pharmacy([new Drug('Dafalgan', -1, 0)])
     expect(pharmacy.updateBenefitValue()).toEqual(expected.drugs)
   })
 })
 
-describe('files comparing test', () => {
-  it('should be deep equal', () => {
-    expect(output).toEqual(myOutput)
+describe('Final test', () => {
+  it('should be deep equal', async () => {
+    const expectedFile = fs.readFileSync('./output.txt', 'utf8')
+    const inputFile = fs.readFileSync('./my_output.txt', 'utf8')
+    const expectedArray = JSON.parse(`[${expectedFile}]`).sort()
+    const inputArray = JSON.parse(`[${inputFile}]`).sort()
+    expect(expectedArray).toEqual(inputArray)
   })
 })
