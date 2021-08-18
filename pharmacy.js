@@ -40,12 +40,31 @@ export class Pharmacy {
     return this.regularizeDrugsValues(drug)
   }
 
-  herbalTea (herbalTea) {
+  updateHerbalTea (herbalTea) {
     if (!herbalTea.isExpired()) {
       herbalTea.benefit += 1
       herbalTea.expiresIn -= 1
     } else herbalTea.benefit += 2
     return this.regularizeDrugsValues(herbalTea)
+  }
+
+  updateFervex (fervex) {
+    switch (true) {
+      case !fervex.isExpired() && fervex.expiresIn > 10:
+        fervex.benefit += 1
+        fervex.expiresIn -= 1
+        break
+      case fervex.expiresIn <= 10 && fervex.expiresIn > 5:
+        fervex.benefit += 2
+        fervex.expiresIn -= 1
+        break
+      case fervex.expiresIn <= 5 && fervex.expiresIn > 0:
+        fervex.benefit += 3
+        fervex.expiresIn -= 1
+        break
+      case fervex.isExpired(): fervex.benefit = 0
+        break
+    }
   }
 
   updateBenefitValue () {
@@ -54,7 +73,10 @@ export class Pharmacy {
         case 'Magic pill':
           break
         case 'Herbal tea':
-          drug = this.herbalTea(drug)
+          drug = this.updateHerbalTea(drug)
+          break
+        case 'Fervex':
+          drug = this.updateFervex(drug)
           break
         default:
           drug = this.default(drug)
