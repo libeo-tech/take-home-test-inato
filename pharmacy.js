@@ -36,7 +36,7 @@ export class Pharmacy {
 
   updateFervex (fervex) {
     switch (true) {
-      case !fervex.isExpired() && fervex.expiresIn > 10:
+      case fervex.expiresIn > 10:
         fervex.benefit += 1
         break
       case fervex.expiresIn <= 10 && fervex.expiresIn > 5:
