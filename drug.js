@@ -19,6 +19,13 @@ export class Drug {
           nextEvolution = 0;
         break;
   
+        case "Fervex": 
+          if(this.expiresIn <= 0) nextEvolution = -this.benefit;
+          else if(this.expiresIn <= 5) nextEvolution = 3;
+          else if(this.expiresIn <= 10) nextEvolution = 2;
+          else nextEvolution = -1; // Not specified in subject so considered as a normal drug
+        break;
+
         default: 
           nextEvolution = this.expiresIn >= 0 ? -1 : -2;
       }

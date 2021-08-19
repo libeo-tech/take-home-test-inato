@@ -48,3 +48,35 @@ describe("Pharmacy", () => {
     );
   });
 });
+
+describe("Pharmacy", () => {
+  it("should decrease the benefit and expiresIn as normal drug", () => {
+    expect(new Pharmacy([new Drug("Fervex", 15, 3)]).updateBenefitValue()).toEqual(
+      [new Drug("Fervex" , 14, 2)]
+    );
+  });
+});
+
+describe("Pharmacy", () => {
+  it("should decrease expiresIn and increase the benefit by 2", () => {
+    expect(new Pharmacy([new Drug("Fervex", 10, 3)]).updateBenefitValue()).toEqual(
+      [new Drug("Fervex" , 9, 5)]
+    );
+  });
+});
+
+describe("Pharmacy", () => {
+  it("should decrease expiresIn and increase the benefit by 3", () => {
+    expect(new Pharmacy([new Drug("Fervex", 4, 3)]).updateBenefitValue()).toEqual(
+      [new Drug("Fervex" , 3, 6)]
+    );
+  });
+});
+
+describe("Pharmacy", () => {
+  it("should decrease expiresIn and set benefit to 0", () => {
+    expect(new Pharmacy([new Drug("Fervex", -1, 40)]).updateBenefitValue()).toEqual(
+      [new Drug("Fervex" , -2, 0)]
+    );
+  });
+});
