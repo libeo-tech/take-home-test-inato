@@ -26,8 +26,11 @@ export class Drug {
           else nextEvolution = -1; // Not specified in subject so considered as a normal drug
         break;
 
-        default: 
-          nextEvolution = this.expiresIn >= 0 ? -1 : -2;
+        case "Dafalgan":
+          nextEvolution = this.expiresIn >= 0 ? -2 : -4;
+        break;
+
+        default: nextEvolution = this.expiresIn >= 0 ? -1 : -2;
       }
 
       this.setBenefit(nextEvolution + this.benefit);

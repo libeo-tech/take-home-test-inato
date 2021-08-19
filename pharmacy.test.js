@@ -80,3 +80,19 @@ describe("Pharmacy", () => {
     );
   });
 });
+
+describe("Pharmacy", () => {
+  it("should decrease expiresIn and the benefit by 2 ", () => {
+    expect(new Pharmacy([new Drug("Dafalgan", 2, 3)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", 1, 1)]
+    );
+  });
+});
+
+describe("Pharmacy", () => {
+  it("should decrease expiresIn and the benefit by 4", () => {
+    expect(new Pharmacy([new Drug("Dafalgan", -1, 6)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", -2, 2)]
+    );
+  });
+});
