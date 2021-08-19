@@ -8,6 +8,24 @@ export class Drug {
       this.benefit = benefit;
     }
 
+    updateBenefit(){
+      let nextEvolution;
+      switch (this.name){
+        case "Herbal Tea":
+          nextEvolution = this.expiresIn >= 0 ? 1 : 2;
+        break;
+
+        case "Magic Pill":
+          nextEvolution = 0;
+        break;
+  
+        default: 
+          nextEvolution = this.expiresIn >= 0 ? -1 : -2;
+      }
+
+      this.setBenefit(nextEvolution + this.benefit);
+    }
+
     setBenefit(value){
         if(value < MIN_BENEFIT) this.benefit = MIN_BENEFIT;
         else if (value > MAX_BENEFIT) this.benefit = MAX_BENEFIT;
