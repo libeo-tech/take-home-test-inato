@@ -1,4 +1,4 @@
-import { Drug, Fervex, HerbalTea, MagicPill, Pharmacy } from "./pharmacy";
+import { Dafalgan, Drug, Fervex, HerbalTea, MagicPill, Pharmacy } from "./pharmacy";
 
 describe("Pharmacy", () => {
   it("should decrease the Benefit and expiresIn", () => {
@@ -100,4 +100,42 @@ describe("Fervex", () => {
     );
   });
 
+});
+
+describe("Dafalgan", () => {
+  it("Dafalgan should decreases 2x faster in Benefit the older it gets.", () => {
+    expect(new Pharmacy([new Dafalgan(2, 3)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", 1, 1)]
+    );
+  });
+  it("Dafalgan Benefit should not be negative.", () => {
+    expect(new Pharmacy([new Dafalgan(2, 1)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", 1, 0)]
+    );
+  });
+  it("Dafalgan should decreases of 0 if Benefit is equal to 0", () => {
+    expect(new Pharmacy([new Dafalgan(0, 4)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", -1, 0)]
+    );
+  });
+  it("-0 : Dafalgan decreases 4x faster in Benefit should not be negative.", () => {
+    expect(new Pharmacy([new Dafalgan(-1, 0)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", -2, 0)]
+    );
+  });
+  it("-1 : Dafalgan decreases 4x faster in Benefit should not be negative.", () => {
+    expect(new Pharmacy([new Dafalgan(-1, 1)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", -2, 0)]
+    );
+  });
+  it("-2 : Dafalgan decreases 4x faster in Benefit should not be negative.", () => {
+    expect(new Pharmacy([new Dafalgan(-1, 2)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", -2, 0)]
+    );
+  });
+  it("-3 : Dafalgan decreases 4x faster in Benefit should not be negative.", () => {
+    expect(new Pharmacy([new Dafalgan(-1, 3)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", -2, 0)]
+    );
+  });
 });
