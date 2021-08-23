@@ -48,3 +48,13 @@ yarn start
 ```sh
 docker-compose up
 ```
+
+## Dafalgan feature precisions
+
+What I understand from "Dafalgan" degrades in Benefit twice as fast as normal drugs." is before expiration date, Dafalgan Benefit will decrease by 2, and then after expiration date Dafalgan Benefit will decrease by 4.
+When Dafalgan Benefit is near to reach 0, I take the liberty to decrease its Benefit by the appropriate number to match a 0 at the end.
+For example if expiration date is passed (then Benefit decreases at 4 by each day) and Benefit is equal to 3, the next day benefit will decrease of 3 to match 0.
+
+## Time spent
+
+Refactoring, Implementing and testing took me approximatly more than one hour. I spent a little more time to clean code, specially tests to make it pleasant to read.
