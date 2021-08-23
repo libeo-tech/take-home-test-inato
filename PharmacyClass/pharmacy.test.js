@@ -1,34 +1,37 @@
-import { Dafalgan, Drug, Fervex, HerbalTea, MagicPill, Pharmacy } from "./pharmacy";
+import { Dafalgan, Drug, Fervex, HerbalTea, MagicPill } from "../DrugClasses";
+import { Pharmacy } from ".";
 
 describe("Pharmacy", () => {
   it("should decrease the Benefit and expiresIn", () => {
-    expect(new Pharmacy([new Drug("test", 2, 3)]).updateBenefitValue()).toEqual(
-      [new Drug("test", 1, 2)]
-    );
+    expect(
+      new Pharmacy([new Drug("test", 2, 3)]).updateBenefitValue()
+    ).toEqual([new Drug("test", 1, 2)]);
   });
 });
 
 describe("Benefit", () => {
   it("Once the expiration date has passed, Benefit degrades twice as fast.", () => {
-    expect(new Pharmacy([new Drug("test", 0, 6)]).updateBenefitValue()).toEqual(
-      [new Drug("test", -1, 4)]
-    );
+    expect(
+      new Pharmacy([new Drug("test", 0, 6)]).updateBenefitValue()
+    ).toEqual([new Drug("test", -1, 4)]);
   });
   test("The Benefit of an item can't be superior to 50 at instantiation.", () => {
-    expect(() => {new Drug("test", 2, 51)}).toThrow(" Benefit > 50 !");
+    expect(() => {
+      new Drug("test", 2, 51);
+    }).toThrow(" Benefit > 50 !");
   });
   it("The Benefit of an item is never superior to 50 after been updated.", () => {
-    expect(new Pharmacy([new Drug("Herbal Tea", 0, 50)]).updateBenefitValue()).toEqual(
-      [new Drug("Herbal Tea", -1, 50)]
-    );
+    expect(
+      new Pharmacy([new Drug("Herbal Tea", 0, 50)]).updateBenefitValue()
+    ).toEqual([new Drug("Herbal Tea", -1, 50)]);
   });
   test("The Benefit of an item can't be negative at instantiation.", () => {
     expect(() => {new Drug("test", 2, -1)}).toThrow(" Benefit negative ! ");
   });
   it("The Benefit of an item is never negative after been updated.", () => {
-    expect(new Pharmacy([new Drug("test", 2, 0)]).updateBenefitValue()).toEqual(
-      [new Drug("test", 1, 0)]
-    );
+    expect(
+      new Pharmacy([new Drug("test", 2, 0)]).updateBenefitValue()
+    ).toEqual([new Drug("test", 1, 0)]);
   });
 });
 

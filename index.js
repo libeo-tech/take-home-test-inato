@@ -1,4 +1,5 @@
-import { Drug, Fervex, HerbalTea, MagicPill, Pharmacy } from "./pharmacy";
+import { Drug, Fervex, HerbalTea, MagicPill } from "./DrugClasses";
+import { Pharmacy } from "./PharmacyClass";
 
 import fs from "fs";
 
@@ -7,7 +8,6 @@ const drugs = [
   new HerbalTea(10, 5),
   new Fervex(5, 40),
   new MagicPill(15, 40)
-  //new Dafalgan(15, 40)
 ];
 const trial = new Pharmacy(drugs);
 
