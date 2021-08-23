@@ -8,13 +8,61 @@ export class Drug {
       if (benefit < 0) throw new Error(" Benefit negative ! ");
     }
   }
+
+  updateBenefit() {
+    if (this.expiresIn < 0) {
+      this.benefit = this.benefit - 2;
+    } else this.benefit = this.benefit - 1;
+  }
+  updateExpiresIn() {
+    this.expiresIn = this.expiresIn - 1;
+  }
+}
+
+export class HerbalTea extends Drug {
+  constructor(expiresIn, benefit) {
+    super("Herbal Tea", expiresIn, benefit);
+  }
+  updateBenefit() {
+    if (this.expiresIn <= 0 && this.benefit + 2 <= 50) {
+      this.benefit = this.benefit + 2;
+    } else this.benefit = this.benefit + 1;
+  }
+}
+
+export class MagicPill extends Drug {
+  constructor(expiresIn, benefit) {
+    super("Magic Pill", expiresIn, benefit);
+  }
+  updateBenefit() {
+    this.benefit = this.benefit;
+  }
+}
+
+export class Fervex extends Drug {
+  constructor(expiresIn, benefit) {
+    super("Fervex", expiresIn, benefit);
+  }
+  updateBenefit() {
+    if (this.expiresIn < 5 && this.expiresIn >= 0 && this.benefit + 3 <= 50) {
+      this.benefit = this.benefit + 3;
+    } else if (
+      this.expiresIn < 10 &&
+      this.expiresIn >= 5 &&
+      this.benefit + 2 <= 50
+    ) {
+      this.benefit = this.benefit + 2;
+    } else if (this.expiresIn < 0) {
+      this.benefit = 0;
+    } else this.benefit = this.benefit + 1;
+  }
 }
 
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
-  updateBenefitValue() {
+  legacyUpdateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       if (
         this.drugs[i].name != "Herbal Tea" &&
@@ -65,6 +113,16 @@ export class Pharmacy {
       }
     }
 
+    return this.drugs;
+  }
+  updateBenefitValue() {
+    for (var i = 0; i < this.drugs.length; i++) {
+      if (this.drugs[i].name !== "Magic Pill") {
+        this.drugs[i].updateExpiresIn();
+        if (this.drugs[i].benefit < 50 && this.drugs[i].benefit > 0)
+          this.drugs[i].updateBenefit();
+      }
+    }
     return this.drugs;
   }
 }
