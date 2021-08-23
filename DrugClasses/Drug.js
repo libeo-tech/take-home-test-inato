@@ -10,9 +10,9 @@ export class Drug {
   }
 
   updateBenefit() {
-    if (this.expiresIn < 0) {
-      this.benefit = this.benefit - 2;
-    } else this.benefit = this.benefit - 1;
+    this.expiresIn < 0
+      ? (this.benefit = this.benefit - 2)
+      : (this.benefit = this.benefit - 1);
   }
   updateExpiresIn() {
     this.expiresIn = this.expiresIn - 1;
