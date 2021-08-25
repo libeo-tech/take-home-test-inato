@@ -24,18 +24,14 @@ export class Pharmacy {
         }
       }
       if (drug.name === "Herbal Tea") {
-        if (drug.expiresIn < 0) {
-          drug.benefit = benefitMaxCalc(drug.benefit, 2);
-        } else {
-          drug.benefit = benefitMaxCalc(drug.benefit, 1);
-        }
+        drug.expiresIn < 0
+          ? (drug.benefit = benefitMaxCalc(drug.benefit, 2))
+          : (drug.benefit = benefitMaxCalc(drug.benefit, 1));
       }
       if (drug.name === "Dafalgan") {
-        if (drug.expiresIn >= 0) {
-          drug.benefit = benefitMinCalc(drug.benefit, 2);
-        } else {
-          drug.benefit = benefitMinCalc(drug.benefit, 4);
-        }
+        drug.expiresIn >= 0
+          ? (drug.benefit = benefitMinCalc(drug.benefit, 2))
+          : (drug.benefit = benefitMinCalc(drug.benefit, 4));
       }
       if (
         drug.name !== "Fervex" &&
@@ -43,11 +39,9 @@ export class Pharmacy {
         drug.name !== "Herbal Tea" &&
         drug.name !== "Dafalgan"
       ) {
-        if (drug.expiresIn >= 0) {
-          drug.benefit = benefitMinCalc(drug.benefit, 1);
-        } else {
-          drug.benefit = benefitMinCalc(drug.benefit, 2);
-        }
+        drug.expiresIn >= 0
+          ? (drug.benefit = benefitMinCalc(drug.benefit, 1))
+          : (drug.benefit = benefitMinCalc(drug.benefit, 2));
       }
       if (drug.name !== "Magic Pill") {
         drug.expiresIn = drug.expiresIn - 1;
