@@ -74,4 +74,18 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("Herbal Tea", 14, 50)]);
     });
   });
+
+  describe("Dafalgan", () => {
+    it("should decrease the benefit twice and decrease expiresIn", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 15, 40)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", 14, 38)]);
+    });
+
+    it("should decrease the benefit by 4 and decrease expiresIn after expiration date", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", -1, 35)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", -2, 31)]);
+    });
+  });
 });
