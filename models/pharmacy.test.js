@@ -19,6 +19,20 @@ describe("Pharmacy", () => {
       expect(drugs).toEqual([new Drug("test", 1, 2)]);
     });
 
+    it("should decrease the benefit for all drugs", () => {
+      const pharmacy = new Pharmacy([
+        new Drug("Drug 1", 2, 3),
+        new Drug("Drug 2", 2, 4)
+      ]);
+
+      const drugs = pharmacy.updateBenefitValue();
+
+      expect(drugs).toEqual([
+        new Drug("Drug 1", 1, 2),
+        new Drug("Drug 2", 1, 3)
+      ]);
+    });
+
     it("should limit the benefit to 0", () => {
       const pharmacy = new Pharmacy([new Drug("My drug", 4, 0)]);
 
