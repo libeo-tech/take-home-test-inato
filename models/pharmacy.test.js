@@ -119,4 +119,14 @@ describe("Pharmacy", () => {
       expect(drugs).toEqual([new Drug("Fervex", -1, 0)]);
     });
   });
+
+  describe("Dafalgan", () => {
+    it("should degrade in benefit twice", () => {
+      const pharmacy = new Pharmacy([new Drug("Dafalgan", 3, 4)]);
+
+      const drugs = pharmacy.updateBenefitValue();
+
+      expect(drugs).toEqual([new Drug("Dafalgan", 2, 2)]);
+    });
+  });
 });

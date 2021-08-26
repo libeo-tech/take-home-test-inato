@@ -28,10 +28,18 @@ const fervex = new DrugBehavior({
   dropBenefitAfterExpiration: true
 });
 
+const dafalgan = new DrugBehavior({
+  expirationSpeed: -1,
+  benefitDefaultSpeed: -2,
+  benefitStageSpeeds: [],
+  dropBenefitAfterExpiration: false
+});
+
 const behaviors = {
   "Herbal Tea": herbalTea,
   "Magic Pill": magicPill,
-  Fervex: fervex
+  Fervex: fervex,
+  Dafalgan: dafalgan
 };
 
 export const getDrugBehavior = name => {
