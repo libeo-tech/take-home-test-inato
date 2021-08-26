@@ -128,5 +128,13 @@ describe("Pharmacy", () => {
 
       expect(drugs).toEqual([new Drug("Dafalgan", 2, 2)]);
     });
+
+    it("should degrade in benefit twice after expiration", () => {
+      const pharmacy = new Pharmacy([new Drug("Dafalgan", 0, 6)]);
+
+      const drugs = pharmacy.updateBenefitValue();
+
+      expect(drugs).toEqual([new Drug("Dafalgan", -1, 2)]);
+    });
   });
 });

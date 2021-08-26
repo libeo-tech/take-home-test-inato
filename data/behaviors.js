@@ -31,7 +31,7 @@ const fervex = new DrugBehavior({
 const dafalgan = new DrugBehavior({
   expirationSpeed: -1,
   benefitDefaultSpeed: -2,
-  benefitStageSpeeds: [],
+  benefitStageSpeeds: [{ days: 0, speed: -4 }],
   dropBenefitAfterExpiration: false
 });
 
