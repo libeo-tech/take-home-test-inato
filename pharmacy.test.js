@@ -1,7 +1,7 @@
 import { Drug, Pharmacy } from "./pharmacy";
 
 describe("Pharmacy", () => {
-  //GENERAL
+  // GENERAL
   it("should decrease the benefit and expiresIn", () => {
     expect(new Pharmacy([new Drug("test", 2, 3)]).updateBenefitValue()).toEqual(
       [new Drug("test", 1, 2)]
@@ -9,8 +9,8 @@ describe("Pharmacy", () => {
   });
 
   it("benefit should not go below 0", () => {
-    expect(new Pharmacy([new Drug("test", 0, 5)]).updateBenefitValueXDays(10)).toEqual(
-      [new Drug("test", -10, 0)]
+    expect(new Pharmacy([new Drug("test", 10, 5)]).updateBenefitValueXDays(10)).toEqual(
+      [new Drug("test", 0, 0)]
     );
   });
 
