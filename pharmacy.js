@@ -24,8 +24,8 @@ export class Pharmacy {
   }
   fervexBenefitEvolutionWithTime(remainingDays) {
     if (remainingDays > 10) return 1
-    if (remainingDays < 10 && remainingDays > 5) return 2
-    if (remainingDays < 5 && remainingDays > 0) return 3
+    if (remainingDays <= 10 && remainingDays > 5) return 2
+    if (remainingDays <= 5 && remainingDays > 0) return 3
     if (remainingDays <= 0) return 0
   }
   updateFervexBenefitValue(fervex) {
