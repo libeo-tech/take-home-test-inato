@@ -10,6 +10,12 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+  updateBenefitValueXDays(x) {
+    for (let i = 0; i < x; i++) {
+      this.updateBenefitValue()
+    }
+    return this.drugs
+  }
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       if (
