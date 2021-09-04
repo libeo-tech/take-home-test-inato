@@ -48,22 +48,22 @@ describe("Pharmacy", () => {
     ).toEqual([new Drug("Magic Pill", 15, 40)]);
   });
 
-  //FERVEX
-  it("Fervew should gain 2 benefit when exp. date is between 10 and 5", () => {
-    expect(new Pharmacy([new Drug("Fervex", 8, 5)]).updateBenefitValueXDays(1)).toEqual(
-      [new Drug("Fervex", 7, 7)]
+  // DAFALGAN
+  it("should decrease the benefit twice as fast as regular drugs", () => {
+    expect(new Pharmacy([new Drug("test", 2, 3), new Drug("Dafalgan", 2, 3)]).updateBenefitValue()).toEqual(
+      [new Drug("test", 1, 2), new Drug("Dafalgan", 1, 1) ]
     );
   });
 
-  it("Fervew should gain 3 benefit when exp. date is between 5 and 0", () => {
-    expect(new Pharmacy([new Drug("Fervex", 3, 5)]).updateBenefitValueXDays(1)).toEqual(
-      [new Drug("Fervex", 2, 8)]
+  it("should decrease the benefit faster after exp.date", () => {
+    expect(new Pharmacy([new Drug("Dafalgan", 5, 10), new Drug("Dafalgan", 0, 10)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", 4, 8), new Drug("Dafalgan", -1, 6)]
     );
   });
 
-  it("Fervew should benefit should drop to 0 after exp. date", () => {
-    expect(new Pharmacy([new Drug("Fervex", 0, 50)]).updateBenefitValueXDays(1)).toEqual(
-      [new Drug("Fervex", -1, 0)]
-    );
+  it("benefit should not go below 0", () => {
+    expect(
+      new Pharmacy([new Drug("Dafalgan", 10, 5)]).updateBenefitValueXDays(10)
+    ).toEqual([new Drug("Dafalgan", 0, 0)]);
   });
 });
