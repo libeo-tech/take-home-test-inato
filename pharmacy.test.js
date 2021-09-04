@@ -8,29 +8,44 @@ describe("Pharmacy", () => {
     );
   });
 
-  it("benefit should not go below 0", () => {
-    expect(new Pharmacy([new Drug("test", 10, 5)]).updateBenefitValueXDays(10)).toEqual(
-      [new Drug("test", 0, 0)]
+  it("should decrease the benefit faster after exp.date", () => {
+    expect(new Pharmacy([new Drug("test", 5, 10), new Drug("test2", 0, 10)]).updateBenefitValue()).toEqual(
+      [new Drug("test", 4, 9), new Drug("test2", -1, 8)]
     );
+  });
+
+  it("benefit should not go below 0", () => {
+    expect(
+      new Pharmacy([new Drug("test", 10, 5)]).updateBenefitValueXDays(10)
+    ).toEqual([new Drug("test", 0, 0)]);
   });
 
   // HERBAL TEA
   it("Herbal Tea should increase by 1 the benefit each day", () => {
-    expect(new Pharmacy([new Drug("Herbal Tea", 2, 3)]).updateBenefitValue()).toEqual(
-      [new Drug("Herbal Tea", 1, 4)]
-    );
+    expect(
+      new Pharmacy([new Drug("Herbal Tea", 2, 3)]).updateBenefitValue()
+    ).toEqual([new Drug("Herbal Tea", 1, 4)]);
   });
+
+  it("Herbal Tea should increase benefit twice as fast after exp.date", () => {
+    expect(
+      new Pharmacy([new Drug("Herbal Tea", 2, 3), new Drug("Herbal Tea", 0, 3)]).updateBenefitValue()
+    ).toEqual([new Drug("Herbal Tea", 1, 4), new Drug("Herbal Tea", -1, 5)]);
+  });
+
   it("benefit should not go above 50", () => {
-    expect(new Pharmacy([new Drug("Herbal Tea", 10, 5)]).updateBenefitValueXDays(30)).toEqual(
-      [new Drug("Herbal Tea", -20, 50)]
-    );
+    expect(
+      new Pharmacy([new Drug("Herbal Tea", 10, 5)]).updateBenefitValueXDays(30)
+    ).toEqual([new Drug("Herbal Tea", -20, 50)]);
   });
 
   //MAGIC PILL
   it("Magic Pill should not move", () => {
-    expect(new Pharmacy([new Drug("Magic Pill", 15, 40)]).updateBenefitValueXDays(100)).toEqual(
-      [new Drug("Magic Pill", 15, 40)]
-    );
+    expect(
+      new Pharmacy([new Drug("Magic Pill", 15, 40)]).updateBenefitValueXDays(
+        100
+      )
+    ).toEqual([new Drug("Magic Pill", 15, 40)]);
   });
 
   //FERVEX
