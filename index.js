@@ -1,4 +1,5 @@
-import { Drug, Pharmacy } from "./pharmacy";
+import { Drug } from "./Drug";
+import { Pharmacy } from "./Pharmacy";
 
 import fs from "fs";
 
@@ -10,7 +11,7 @@ const drugs = [
 ];
 const trial = new Pharmacy(drugs);
 
-var log = "";
+let log = "";
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
   log += JSON.stringify(trial.updateBenefitValue()) + ",";

@@ -1,11 +1,3 @@
-export class Drug {
-  constructor(name, expiresIn, benefit) {
-    this.name = name;
-    this.expiresIn = expiresIn;
-    this.benefit = benefit;
-  }
-}
-
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
@@ -23,12 +15,12 @@ export class Pharmacy {
       }
       return value;
     };
-    for (var i = 0; i < this.drugs.length; i++) {
+    for (let i = 0; i < this.drugs.length; i++) {
       const nextExpiresIn =
         this.drugs[i].name === "Magic Pill"
           ? this.drugs[i].expiresIn
           : this.drugs[i].expiresIn - 1;
-      var nextBenefit = this.drugs[i].benefit;
+      let nextBenefit = this.drugs[i].benefit;
       switch (this.drugs[i].name) {
         case "Herbal Tea":
           nextBenefit = increaseBenefit(nextBenefit);
