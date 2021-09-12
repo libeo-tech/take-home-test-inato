@@ -51,6 +51,14 @@ export class Pharmacy {
           break;
         case "Magic Pill":
           break;
+        case "Dafalgan":
+          nextBenefit = decreaseBenefit(nextBenefit);
+          nextBenefit = decreaseBenefit(nextBenefit);
+          if (nextExpiresIn < 0) {
+            nextBenefit = decreaseBenefit(nextBenefit);
+            nextBenefit = decreaseBenefit(nextBenefit);
+          }
+          break;
         default:
           nextBenefit = decreaseBenefit(nextBenefit);
           if (nextExpiresIn < 0) {
