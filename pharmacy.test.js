@@ -1,4 +1,4 @@
-import { Pharmacy } from "./pharmacy";
+import { Pharmacy } from "./Pharmacy";
 import { Drug } from "./Drug";
 
 describe("Pharmacy", () => {
