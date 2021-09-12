@@ -10,11 +10,12 @@ const drugs = [
 ];
 const trial = new Pharmacy(drugs);
 
-const log = [];
+var log = "";
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(trial.updateBenefitValue()));
+  log += JSON.stringify(trial.updateBenefitValue()) + ",";
 }
+log = log.slice(0, -1);
 
 /* eslint-disable no-console */
 fs.writeFile("output.txt", log, err => {
