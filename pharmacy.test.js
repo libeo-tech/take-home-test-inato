@@ -1,7 +1,7 @@
 import { Drug, Pharmacy } from "./pharmacy";
 
-describe("Pharmacy before Maj", () => {
-  it("should decrease the benefit and expiresIn (2) - default", () => {
+describe("Pharmacy - Default", () => {
+  it("should decrease the benefit and expiresIn", () => {
     const drugs = [new Drug("default", 2, 3)];
     const pharmacy = new Pharmacy(drugs);
     const trial = pharmacy.updateBenefitValue();
@@ -9,285 +9,181 @@ describe("Pharmacy before Maj", () => {
     expect(trial).toEqual([{ name: "default", expiresIn: 1, benefit: 2 }]);
   });
 
-  it("should decrease the benefit and expiresIn (2) - Doliprane", () => {
-    const drugs = [new Drug("Doliprane", 2, 3)];
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("default", 0, 3)];
     const pharmacy = new Pharmacy(drugs);
     const trial = pharmacy.updateBenefitValue();
 
-    expect(trial).toEqual([{ name: "Doliprane", expiresIn: 1, benefit: 2 }]);
+    expect(trial).toEqual([{ name: "default", expiresIn: -1, benefit: 1 }]);
   });
 
-  it("should decrease the benefit and expiresIn (2) - Dafalgan", () => {
-    const drugs = [new Drug("Dafalgan", 2, 3)];
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("default", -2, -1)];
     const pharmacy = new Pharmacy(drugs);
     const trial = pharmacy.updateBenefitValue();
 
-    expect(trial).toEqual([{ name: "Dafalgan", expiresIn: 1, benefit: 1 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (2) - Herbal Tea", () => {
-    const drugs = [new Drug("Herbal Tea", 2, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Herbal Tea", expiresIn: 1, benefit: 4 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (2) - Fervex", () => {
-    const drugs = [new Drug("Fervex", 2, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Fervex", expiresIn: 1, benefit: 6 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (2) - Magic Pill", () => {
-    const drugs = [new Drug("Magic Pill", 2, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Magic Pill", expiresIn: 2, benefit: 3 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (6) - default", () => {
-    const drugs = [new Drug("default", 6, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "default", expiresIn: 5, benefit: 2 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (6) - Doliprane", () => {
-    const drugs = [new Drug("Doliprane", 6, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Doliprane", expiresIn: 5, benefit: 2 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (6) - Dafalgan", () => {
-    const drugs = [new Drug("Dafalgan", 6, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Dafalgan", expiresIn: 5, benefit: 1 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (6) - Herbal Tea", () => {
-    const drugs = [new Drug("Herbal Tea", 6, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Herbal Tea", expiresIn: 5, benefit: 4 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (6) - Fervex", () => {
-    const drugs = [new Drug("Fervex", 6, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Fervex", expiresIn: 5, benefit: 5 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (6) - Magic Pill", () => {
-    const drugs = [new Drug("Magic Pill", 6, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Magic Pill", expiresIn: 6, benefit: 3 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (12) - default", () => {
-    const drugs = [new Drug("default", 12, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "default", expiresIn: 11, benefit: 2 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (12) - Doliprane", () => {
-    const drugs = [new Drug("Doliprane", 12, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Doliprane", expiresIn: 11, benefit: 2 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (12) - Dafalgan", () => {
-    const drugs = [new Drug("Dafalgan", 12, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Dafalgan", expiresIn: 11, benefit: 1 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (12) - Herbal Tea", () => {
-    const drugs = [new Drug("Herbal Tea", 12, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Herbal Tea", expiresIn: 11, benefit: 4 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (12) - Fervex", () => {
-    const drugs = [new Drug("Fervex", 12, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Fervex", expiresIn: 11, benefit: 4 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (12) - Magic Pill", () => {
-    const drugs = [new Drug("Magic Pill", 12, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateBenefitValue();
-
-    expect(trial).toEqual([{ name: "Magic Pill", expiresIn: 12, benefit: 3 }]);
+    expect(trial).toEqual([{ name: "default", expiresIn: -3, benefit: 0 }]);
   });
 });
 
-describe("Pharmacy After Maj", () => {
-  it("should decrease the benefit and expiresIn (2) - default", () => {
-    const drugs = [new Drug("default", 2, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateNewBenefitValue();
-
-    expect(trial).toEqual([{ name: "default", expiresIn: 1, benefit: 2 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (2) - Doliprane", () => {
+describe("Pharmacy - Doliprane", () => {
+  it("should decrease the benefit and expiresIn", () => {
     const drugs = [new Drug("Doliprane", 2, 3)];
     const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateNewBenefitValue();
+    const trial = pharmacy.updateBenefitValue();
 
     expect(trial).toEqual([{ name: "Doliprane", expiresIn: 1, benefit: 2 }]);
   });
 
-  it("should decrease the benefit and expiresIn (2) - Dafalgan", () => {
-    const drugs = [new Drug("Dafalgan", 2, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateNewBenefitValue();
-
-    expect(trial).toEqual([{ name: "Dafalgan", expiresIn: 1, benefit: 1 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (2) - Herbal Tea", () => {
-    const drugs = [new Drug("Herbal Tea", 2, 3)];
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Doliprane", 0, 3)];
     const pharmacy = new Pharmacy(drugs);
     const trial = pharmacy.updateBenefitValue();
 
-    expect(trial).toEqual([{ name: "Herbal Tea", expiresIn: 1, benefit: 4 }]);
+    expect(trial).toEqual([{ name: "Doliprane", expiresIn: -1, benefit: 1 }]);
   });
 
-  it("should decrease the benefit and expiresIn (2) - Fervex", () => {
-    const drugs = [new Drug("Fervex", 2, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateNewBenefitValue();
-
-    expect(trial).toEqual([{ name: "Fervex", expiresIn: 1, benefit: 6 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (2) - Magic Pill", () => {
-    const drugs = [new Drug("Magic Pill", 2, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateNewBenefitValue();
-
-    expect(trial).toEqual([{ name: "Magic Pill", expiresIn: 2, benefit: 3 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (6) - default", () => {
-    const drugs = [new Drug("default", 6, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateNewBenefitValue();
-
-    expect(trial).toEqual([{ name: "default", expiresIn: 5, benefit: 2 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (6) - Doliprane", () => {
-    const drugs = [new Drug("Doliprane", 6, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateNewBenefitValue();
-
-    expect(trial).toEqual([{ name: "Doliprane", expiresIn: 5, benefit: 2 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (6) - Dafalgan", () => {
-    const drugs = [new Drug("Dafalgan", 6, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateNewBenefitValue();
-
-    expect(trial).toEqual([{ name: "Dafalgan", expiresIn: 5, benefit: 1 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (6) - Herbal Tea", () => {
-    const drugs = [new Drug("Herbal Tea", 6, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateNewBenefitValue();
-
-    expect(trial).toEqual([{ name: "Herbal Tea", expiresIn: 5, benefit: 4 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (6) - Fervex", () => {
-    const drugs = [new Drug("Fervex", 6, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateNewBenefitValue();
-
-    expect(trial).toEqual([{ name: "Fervex", expiresIn: 5, benefit: 5 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (6) - Magic Pill", () => {
-    const drugs = [new Drug("Magic Pill", 6, 3)];
-    const pharmacy = new Pharmacy(drugs);
-    const trial = pharmacy.updateNewBenefitValue();
-
-    expect(trial).toEqual([{ name: "Magic Pill", expiresIn: 6, benefit: 3 }]);
-  });
-
-  it("should decrease the benefit and expiresIn (12) - default", () => {
-    const drugs = [new Drug("default", 12, 3)];
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Doliprane", -2, -1)];
     const pharmacy = new Pharmacy(drugs);
     const trial = pharmacy.updateBenefitValue();
 
-    expect(trial).toEqual([{ name: "default", expiresIn: 11, benefit: 2 }]);
+    expect(trial).toEqual([{ name: "Doliprane", expiresIn: -3, benefit: 0 }]);
   });
+});
 
-  it("should decrease the benefit and expiresIn (12) - Doliprane", () => {
-    const drugs = [new Drug("Doliprane", 12, 3)];
+describe("Pharmacy - Dafalgan", () => {
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Dafalgan", 2, 10)];
     const pharmacy = new Pharmacy(drugs);
     const trial = pharmacy.updateBenefitValue();
 
-    expect(trial).toEqual([{ name: "Doliprane", expiresIn: 11, benefit: 2 }]);
+    expect(trial).toEqual([{ name: "Dafalgan", expiresIn: 1, benefit: 8 }]);
   });
 
-  it("should decrease the benefit and expiresIn (12) - Dafalgan", () => {
-    const drugs = [new Drug("Dafalgan", 12, 3)];
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Dafalgan", 0, 3)];
     const pharmacy = new Pharmacy(drugs);
     const trial = pharmacy.updateBenefitValue();
 
-    expect(trial).toEqual([{ name: "Dafalgan", expiresIn: 11, benefit: 1 }]);
+    expect(trial).toEqual([{ name: "Dafalgan", expiresIn: -1, benefit: 0 }]);
   });
 
-  it("should decrease the benefit and expiresIn (12) - Herbal Tea", () => {
-    const drugs = [new Drug("Herbal Tea", 12, 3)];
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Dafalgan", -2, 10)];
     const pharmacy = new Pharmacy(drugs);
     const trial = pharmacy.updateBenefitValue();
 
-    expect(trial).toEqual([{ name: "Herbal Tea", expiresIn: 11, benefit: 4 }]);
+    expect(trial).toEqual([{ name: "Dafalgan", expiresIn: -3, benefit: 6 }]);
   });
+});
 
-  it("should decrease the benefit and expiresIn (12) - Fervex", () => {
-    const drugs = [new Drug("Fervex", 12, 3)];
+describe("Pharmacy - Herbal Tea", () => {
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Herbal Tea", 2, 10)];
     const pharmacy = new Pharmacy(drugs);
     const trial = pharmacy.updateBenefitValue();
 
-    expect(trial).toEqual([{ name: "Fervex", expiresIn: 11, benefit: 4 }]);
+    expect(trial).toEqual([{ name: "Herbal Tea", expiresIn: 1, benefit: 11 }]);
   });
 
-  it("should decrease the benefit and expiresIn (12) - Magic Pill", () => {
-    const drugs = [new Drug("Magic Pill", 12, 3)];
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Herbal Tea", 0, 3)];
     const pharmacy = new Pharmacy(drugs);
     const trial = pharmacy.updateBenefitValue();
 
-    expect(trial).toEqual([{ name: "Magic Pill", expiresIn: 12, benefit: 3 }]);
+    expect(trial).toEqual([{ name: "Herbal Tea", expiresIn: -1, benefit: 5 }]);
+  });
+
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Herbal Tea", -2, 10)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Herbal Tea", expiresIn: -3, benefit: 12 }]);
+  });
+
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Herbal Tea", -2, 50)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Herbal Tea", expiresIn: -3, benefit: 50 }]);
+  });
+});
+
+describe("Pharmacy - Fervex", () => {
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Fervex", 12, 10)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Fervex", expiresIn: 11, benefit: 11 }]);
+  });
+
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Fervex", 11, 10)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Fervex", expiresIn: 10, benefit: 12 }]);
+  });
+
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Fervex", 9, 3)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Fervex", expiresIn: 8, benefit: 5 }]);
+  });
+
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Fervex", 6, 10)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Fervex", expiresIn: 5, benefit: 13 }]);
+  });
+
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Fervex", 5, 10)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Fervex", expiresIn: 4, benefit: 13 }]);
+  });
+});
+
+describe("Pharmacy - Magic Pill", () => {
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Magic Pill", 12, 10)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Magic Pill", expiresIn: 12, benefit: 10 }]);
+  });
+
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Magic Pill", 11, 10)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Magic Pill", expiresIn: 11, benefit: 10 }]);
+  });
+
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Magic Pill", 9, 3)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Magic Pill", expiresIn: 9, benefit: 3 }]);
+  });
+
+  it("should decrease the benefit and expiresIn", () => {
+    const drugs = [new Drug("Magic Pill", 5, 10)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Magic Pill", expiresIn: 5, benefit: 10 }]);
   });
 });
