@@ -33,8 +33,8 @@ const findVariation = name => {
       benefit: 1,
       resetBenefitAfterExpiration: true,
       steps: [
-        { deviationDays: 10, benefit: 2 },
-        { deviationDays: 5, benefit: 3 }
+        { deviationDays: 11, benefit: 2 },
+        { deviationDays: 6, benefit: 3 }
       ]
     };
   }
@@ -58,71 +58,6 @@ export class Drug {
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
-  }
-  updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) {
-          if (
-            this.drugs[i].name != "Magic Pill" &&
-            this.drugs[i].name != "Dafalgan"
-          ) {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
-          }
-          if (this.drugs[i].name == "Dafalgan") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 2;
-          }
-        }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name == "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) {
-        if (this.drugs[i].name != "Herbal Tea") {
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (
-                this.drugs[i].name != "Magic Pill" &&
-                this.drugs[i].name != "Dafalgan"
-              ) {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-              if (this.drugs[i].name == "Dafalgan") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 2;
-              }
-            }
-          } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          }
-        }
-      }
-    }
-
-    return this.drugs;
   }
   findNewBenefit(drug, variation) {
     // Trie du tableau pour que les plus grandes valeurs sorte en premier
@@ -151,7 +86,7 @@ export class Pharmacy {
     newBenefit = newBenefit < 0 ? 0 : newBenefit;
     return newBenefit;
   }
-  updateNewBenefitValue() {
+  updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       const variation = findVariation(this.drugs[i].name);
       this.drugs[i].expiresIn += variation.rateExpire;
