@@ -17,6 +17,14 @@ describe("Pharmacy before Maj", () => {
     expect(trial).toEqual([{ name: "Doliprane", expiresIn: 1, benefit: 2 }]);
   });
 
+  it("should decrease the benefit and expiresIn (2) - Dafalgan", () => {
+    const drugs = [new Drug("Dafalgan", 2, 3)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Dafalgan", expiresIn: 1, benefit: 1 }]);
+  });
+
   it("should decrease the benefit and expiresIn (2) - Herbal Tea", () => {
     const drugs = [new Drug("Herbal Tea", 2, 3)];
     const pharmacy = new Pharmacy(drugs);
@@ -57,6 +65,14 @@ describe("Pharmacy before Maj", () => {
     expect(trial).toEqual([{ name: "Doliprane", expiresIn: 5, benefit: 2 }]);
   });
 
+  it("should decrease the benefit and expiresIn (6) - Dafalgan", () => {
+    const drugs = [new Drug("Dafalgan", 6, 3)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Dafalgan", expiresIn: 5, benefit: 1 }]);
+  });
+
   it("should decrease the benefit and expiresIn (6) - Herbal Tea", () => {
     const drugs = [new Drug("Herbal Tea", 6, 3)];
     const pharmacy = new Pharmacy(drugs);
@@ -95,6 +111,14 @@ describe("Pharmacy before Maj", () => {
     const trial = pharmacy.updateBenefitValue();
 
     expect(trial).toEqual([{ name: "Doliprane", expiresIn: 11, benefit: 2 }]);
+  });
+
+  it("should decrease the benefit and expiresIn (12) - Dafalgan", () => {
+    const drugs = [new Drug("Dafalgan", 12, 3)];
+    const pharmacy = new Pharmacy(drugs);
+    const trial = pharmacy.updateBenefitValue();
+
+    expect(trial).toEqual([{ name: "Dafalgan", expiresIn: 11, benefit: 1 }]);
   });
 
   it("should decrease the benefit and expiresIn (12) - Herbal Tea", () => {
