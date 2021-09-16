@@ -4,7 +4,7 @@ const findVariation = name => {
       rateExpire: -1,
       limitMax: 50,
       benefit: -2,
-      resetBenefitAfterExpire: false,
+      resetBenefitAfterExpiration: false,
       steps: [{ deviationDays: 0, benefit: -4 }]
     };
   }
@@ -13,7 +13,7 @@ const findVariation = name => {
       rateExpire: 0,
       limitMax: 50,
       benefit: 0,
-      resetBenefitAfterExpire: false,
+      resetBenefitAfterExpiration: false,
       steps: []
     };
   }
@@ -22,7 +22,7 @@ const findVariation = name => {
       rateExpire: -1,
       limitMax: 50,
       benefit: 1,
-      resetBenefitAfterExpire: false,
+      resetBenefitAfterExpiration: false,
       steps: [{ deviationDays: 0, benefit: 2 }]
     };
   }
@@ -31,7 +31,7 @@ const findVariation = name => {
       rateExpire: -1,
       limitMax: 50,
       benefit: 1,
-      resetBenefitAfterExpire: true,
+      resetBenefitAfterExpiration: true,
       steps: [
         { deviationDays: 10, benefit: 2 },
         { deviationDays: 5, benefit: 3 }
@@ -42,10 +42,11 @@ const findVariation = name => {
     rateExpire: -1,
     limitMax: 50,
     benefit: -1,
-    resetBenefitAfterExpire: false,
+    resetBenefitAfterExpiration: false,
     steps: [{ deviationDays: 0, benefit: -2 }]
   };
 };
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
@@ -121,6 +122,41 @@ export class Pharmacy {
       }
     }
 
+    return this.drugs;
+  }
+  findNewBenefit(drug, variation) {
+    // Trie du tableau pour que les plus grandes valeurs sorte en premier
+    variation.steps.sort((a, b) => b.deviationDays - a.deviationDays);
+    const benfitVariation = variation.steps.reduce(
+      (acc, { deviationDays, benefit }) => {
+        if (drug.expiresIn < deviationDays) {
+          return benefit;
+        }
+        return acc;
+      },
+      variation.benefit
+    );
+
+    // Check limit max
+    let newBenefit =
+      drug.benefit + benfitVariation > variation.limitMax
+        ? variation.limitMax
+        : drug.benefit + benfitVariation;
+
+    // Check expiration 0
+    newBenefit =
+      variation.resetBenefitAfterExpiration && drug.expiresIn < 0
+        ? 0
+        : newBenefit;
+    newBenefit = newBenefit < 0 ? 0 : newBenefit;
+    return newBenefit;
+  }
+  updateNewBenefitValue() {
+    for (var i = 0; i < this.drugs.length; i++) {
+      const variation = findVariation(this.drugs[i].name);
+      this.drugs[i].expiresIn += variation.rateExpire;
+      this.drugs[i].benefit = this.findNewBenefit(this.drugs[i], variation);
+    }
     return this.drugs;
   }
 }
