@@ -1,6 +1,5 @@
-import { Drug, Pharmacy } from "./pharmacy";
-
 import fs from "fs";
+import { Drug, Pharmacy } from "./src/Pharmacy/pharmacy";
 
 const drugs = [
   new Drug("Doliprane", 20, 30),
@@ -8,6 +7,7 @@ const drugs = [
   new Drug("Fervex", 5, 40),
   new Drug("Magic Pill", 15, 40)
 ];
+
 const trial = new Pharmacy(drugs);
 
 const log = [];
