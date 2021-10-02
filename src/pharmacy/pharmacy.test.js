@@ -67,7 +67,7 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("Fervex", 0, 50)]);
     });
 
-    it.only("should reset benefit to 50 ( second test )", () => {
+    it("should reset benefit to 50 ( second test )", () => {
       expect(
         new Pharmacy([new Drug("Fervex", 2, 49)]).updateBenefitValue()
       ).toEqual([new Drug("Fervex", 1, 50)]);
