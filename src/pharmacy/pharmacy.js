@@ -13,10 +13,25 @@ export class Pharmacy {
 
     drug.benefit--;
 
-    if (drug.expiresIn >= 0 || drug.benefit === 0) {
+    if (drug.expiresIn >= 0 || drug.benefit === MIN_BENEFIT) {
       return;
     }
     drug.benefit--;
+  }
+
+  updateDafalganDrug(drug) {
+    drug.expiresIn--;
+    drug.benefit = drug.benefit - 2;
+
+    if (drug.expiresIn < 0) {
+      drug.benefit = drug.benefit - 2;
+    }
+
+    if (drug.benefit < MIN_BENEFIT) {
+      drug.benefit = MIN_BENEFIT;
+      return;
+    }
+    return;
   }
 
   updateHerbalTeaDrug(drug) {
@@ -71,6 +86,9 @@ export class Pharmacy {
           this.updateFervexDrug(drug);
           break;
         case DRUGS_TYPES.magicPill:
+          break;
+        case DRUGS_TYPES.dafalgan:
+          this.updateDafalganDrug(drug);
           break;
         default:
           this.updateStandardDrug(drug);

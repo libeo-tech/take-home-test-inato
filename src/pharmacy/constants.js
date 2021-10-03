@@ -2,7 +2,8 @@ export const DRUGS_TYPES = {
   herbalTea: "Herbal Tea",
   fervex: "Fervex",
   magicPill: "Magic Pill",
-  doliprane: "Doliprane"
+  doliprane: "Doliprane",
+  dafalgan: "Dafalgan"
 };
 
 export const MIN_BENEFIT = 0;

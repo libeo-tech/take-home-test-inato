@@ -117,4 +117,30 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("Magic Pill", 1, 3)]);
     });
   });
+
+  describe("Dafalgan", () => {
+    it("should decrease twice as fast as normal drug", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 2, 3)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", 1, 1)]);
+    });
+
+    it("should decrease twice as fast as normal drug when the expireIn is passed", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 0, 4)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", -1, 0)]);
+    });
+
+    it("should decrese the benefit but never be negative", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 1, 1)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", 0, 0)]);
+    });
+
+    it("should decrese the benefit but never be negative ( second test )", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 0, 1)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", -1, 0)]);
+    });
+  });
 });

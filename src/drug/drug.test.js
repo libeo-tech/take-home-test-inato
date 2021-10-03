@@ -16,4 +16,8 @@ describe("Drug", () => {
   it("should create Drug object with 50 benefit", () => {
     expect(new Drug("test", 2, 52).benefit).toEqual(50);
   });
+
+  it("should create Drug object with 0 benefit", () => {
+    expect(new Drug("test", 2, -2).benefit).toEqual(0);
+  });
 });
