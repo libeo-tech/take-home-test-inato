@@ -1,4 +1,4 @@
-import { Drug } from "./drug";
+import { Drug } from "./pharmacy";
 
 describe("Drug", () => {
   it("should create Drug object with name test", () => {
@@ -11,13 +11,5 @@ describe("Drug", () => {
 
   it("should create Drug object with 3 benefit", () => {
     expect(new Drug("test", 2, 3).benefit).toEqual(3);
-  });
-
-  it("should create Drug object with 50 benefit", () => {
-    expect(new Drug("test", 2, 52).benefit).toEqual(50);
-  });
-
-  it("should create Drug object with 0 benefit", () => {
-    expect(new Drug("test", 2, -2).benefit).toEqual(0);
   });
 });

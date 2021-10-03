@@ -1,8 +1,7 @@
-import { Pharmacy } from "./src/pharmacy/pharmacy";
-import { Drug } from "./src/drug/drug";
+import { Drug, Pharmacy } from "./pharmacy";
 
 import fs from "fs";
-import { DRUGS_TYPES } from "./src/pharmacy/constants";
+import { DRUGS_TYPES } from "./constants";
 
 const drugs = [
   new Drug(DRUGS_TYPES.doliprane, 20, 30),

@@ -1,4 +1,17 @@
 import { DRUGS_TYPES, MAX_BENEFIT, MIN_BENEFIT } from "./constants";
+
+export class Drug {
+  constructor(name, expiresIn, benefit) {
+    this.name = name;
+    this.expiresIn = expiresIn;
+    this.benefit = benefit;
+  }
+
+  isPassed() {
+    if (this.expiresIn < 0) return true;
+    return false;
+  }
+}
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
@@ -13,7 +26,7 @@ export class Pharmacy {
 
     drug.benefit--;
 
-    if (drug.expiresIn >= 0 || drug.benefit === MIN_BENEFIT) {
+    if (!drug.isPassed() || drug.benefit === MIN_BENEFIT) {
       return;
     }
     drug.benefit--;
@@ -23,7 +36,7 @@ export class Pharmacy {
     drug.expiresIn--;
     drug.benefit = drug.benefit - 2;
 
-    if (drug.expiresIn < 0) {
+    if (drug.isPassed()) {
       drug.benefit = drug.benefit - 2;
     }
 
@@ -45,7 +58,7 @@ export class Pharmacy {
       drug.benefit = MAX_BENEFIT;
       return;
     }
-    if (drug.expiresIn < 0 && drug.benefit < MAX_BENEFIT) {
+    if (drug.isPassed() && drug.benefit < MAX_BENEFIT) {
       drug.benefit++;
       return;
     }
@@ -53,12 +66,12 @@ export class Pharmacy {
 
   updateFervexDrug(drug) {
     drug.expiresIn--;
-    if (drug.benefit >= MAX_BENEFIT && drug.expiresIn >= 0) {
+    if (drug.benefit >= MAX_BENEFIT && !drug.isPassed()) {
       drug.benefit = MAX_BENEFIT;
       return;
     }
     drug.benefit++;
-    if (drug.benefit >= MAX_BENEFIT && drug.expiresIn >= 0) {
+    if (drug.benefit >= MAX_BENEFIT && !drug.isPassed()) {
       drug.benefit = MAX_BENEFIT;
       return;
     }
@@ -70,7 +83,7 @@ export class Pharmacy {
       drug.benefit++;
     }
 
-    if (drug.expiresIn < 0) {
+    if (drug.isPassed()) {
       drug.benefit = MIN_BENEFIT;
     }
 
