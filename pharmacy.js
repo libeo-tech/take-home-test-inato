@@ -11,12 +11,18 @@ export class Pharmacy {
     this.drugs = drugs;
   }
   updateBenefitValue() {
+    const specialIncrements = {
+      "Herbal Tea": 1
+    };
     this.drugs.map(drug => {
       // decrement days
       drug.expiresIn -= 1;
 
       // normal case
-      let increment = -1;
+      let increment =
+        specialIncrements[drug.name] !== undefined
+          ? specialIncrements[drug.name]
+          : -1;
       if (drug.expiresIn < 0) {
         increment = 2 * increment;
       }

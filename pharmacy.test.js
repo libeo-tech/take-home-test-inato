@@ -18,4 +18,16 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("test", -1, 0)]);
     });
   });
+  describe("Herbal Tea case", () => {
+    it("should increases in Benefit the older it gets", () => {
+      expect(
+        new Pharmacy([new Drug("Herbal Tea", 2, 3)]).updateBenefitValue()
+      ).toEqual([new Drug("Herbal Tea", 1, 4)]);
+    });
+    it("Benefit should increase twice as fast after the expiration date", () => {
+      expect(
+        new Pharmacy([new Drug("Herbal Tea", 0, 2)]).updateBenefitValue()
+      ).toEqual([new Drug("Herbal Tea", -1, 4)]);
+    });
+  });
 });
