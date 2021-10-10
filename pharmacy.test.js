@@ -17,6 +17,11 @@ describe("Pharmacy", () => {
         new Pharmacy([new Drug("test", 0, 0)]).updateBenefitValue()
       ).toEqual([new Drug("test", -1, 0)]);
     });
+    it("The Benefit of an item should never be more than 50", () => {
+      expect(
+        new Pharmacy([new Drug("Herbal Tea", 0, 50)]).updateBenefitValue()
+      ).toEqual([new Drug("Herbal Tea", -1, 50)]);
+    });
   });
   describe("Herbal Tea case", () => {
     it("should increases in Benefit the older it gets", () => {

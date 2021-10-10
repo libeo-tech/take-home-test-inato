@@ -14,6 +14,7 @@ export class Pharmacy {
     const specialIncrements = {
       "Herbal Tea": 1
     };
+    const maxBenefitValue = 50;
     this.drugs.map(drug => {
       // decrement days
       drug.expiresIn -= 1;
@@ -28,6 +29,7 @@ export class Pharmacy {
       }
       drug.benefit += increment;
       drug.benefit = drug.benefit >= 0 ? drug.benefit : 0;
+      drug.benefit = drug.benefit >= maxBenefitValue ? maxBenefitValue : drug.benefit;
 
       return drug;
     });
