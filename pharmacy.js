@@ -11,23 +11,31 @@ export class Pharmacy {
     this.drugs = drugs;
   }
   updateBenefitValue() {
-    const specialIncrements = {
-      "Herbal Tea": 1
+    const specialBenefitIncrements = {
+      "Herbal Tea": 1,
+      "Magic Pill": 0
+    };
+    const specialExpiresInIncrements = {
+      "Magic Pill": 0
     };
     const maxBenefitValue = 50;
     this.drugs.map(drug => {
       // decrement days
-      drug.expiresIn -= 1;
+      let expiresInIncrement =
+        specialExpiresInIncrements[drug.name] !== undefined
+          ? specialExpiresInIncrements[drug.name]
+          : -1;
+      drug.expiresIn += expiresInIncrement;
 
       // normal case
-      let increment =
-        specialIncrements[drug.name] !== undefined
-          ? specialIncrements[drug.name]
+      let benefitIncrement =
+        specialBenefitIncrements[drug.name] !== undefined
+          ? specialBenefitIncrements[drug.name]
           : -1;
       if (drug.expiresIn < 0) {
-        increment = 2 * increment;
+        benefitIncrement = 2 * benefitIncrement;
       }
-      drug.benefit += increment;
+      drug.benefit += benefitIncrement;
       drug.benefit = drug.benefit >= 0 ? drug.benefit : 0;
       drug.benefit = drug.benefit >= maxBenefitValue ? maxBenefitValue : drug.benefit;
 
