@@ -10,6 +10,7 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+
   getNewBenefit(drug) {
     const maxBenefitValue = 50;
     const specialBenefitIncrements = {
@@ -24,16 +25,15 @@ export class Pharmacy {
     if (drug.expiresIn < 0) {
       benefitIncrement = 2 * benefitIncrement;
     }
-    if (drug.benefit + benefitIncrement <= 0) {
-
+    const newBenefit = drug.benefit + benefitIncrement;
+    if (newBenefit <= 0) {
       return 0;
     }
-    if (drug.benefit >= maxBenefitValue) {
-
+    if (newBenefit >= maxBenefitValue) {
       return maxBenefitValue;
     }
 
-    return drug.benefit + benefitIncrement;
+    return newBenefit;
   }
 
   getNewExpiresIn(drug) {
@@ -47,6 +47,7 @@ export class Pharmacy {
 
     return drug.expiresIn + expiresInIncrement;
   }
+
   updateBenefitValue() {
     this.drugs.map(drug => {
       drug.expiresIn = this.getNewExpiresIn(drug);
