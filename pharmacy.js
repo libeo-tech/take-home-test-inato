@@ -27,7 +27,8 @@ export class Pharmacy {
     const maxBenefitValue = 50;
     const specialBenefitIncrements = {
       "Herbal Tea": 1,
-      "Magic Pill": 0
+      "Magic Pill": 0,
+      Dafalgan: -2
     };
     let newBenefit;
     if (drug.name === "Fervex") {

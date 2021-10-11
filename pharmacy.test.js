@@ -76,4 +76,16 @@ describe("Pharmacy", () => {
       ).toEqual([new Drug("Fervex", -1, 0)]);
     });
   });
+  describe("Dafalgan case", () => {
+    it("Benefit should degrade by 2 before expirecy", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 1, 50)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", 0, 48)]);
+    });
+    it("Benefit should degrade by 4 after expirecy", () => {
+      expect(
+        new Pharmacy([new Drug("Dafalgan", 0, 50)]).updateBenefitValue()
+      ).toEqual([new Drug("Dafalgan", -1, 46)]);
+    });
+  });
 });
