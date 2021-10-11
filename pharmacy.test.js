@@ -9,8 +9,11 @@ describe("Pharmacy", () => {
     });
     it("should double degradation once expiration date is passed", () => {
       expect(
-        new Pharmacy([new Drug("test", 0, 2)]).updateBenefitValue()
-      ).toEqual([new Drug("test", -1, 0)]);
+        new Pharmacy([new Drug("test", 1, 11)]).updateBenefitValue()
+      ).toEqual([new Drug("test", 0, 10)]);
+      expect(
+        new Pharmacy([new Drug("test", 0, 10)]).updateBenefitValue()
+      ).toEqual([new Drug("test", -1, 8)]);
     });
     it("the benefit of an item is never negative", () => {
       expect(
@@ -48,24 +51,24 @@ describe("Pharmacy", () => {
   describe("Fervex case", () => {
     it("should increase in Benefit before expiration date", () => {
       expect(
-        new Pharmacy([new Drug("Fervex", 11, 50)]).updateBenefitValue()
-      ).toEqual([new Drug("Fervex", 10, 51)]);
+        new Pharmacy([new Drug("Fervex", 11, 49)]).updateBenefitValue()
+      ).toEqual([new Drug("Fervex", 10, 50)]);
     });
     it("Benefit should increase by 2 when there are 10 days or less", () => {
       expect(
-        new Pharmacy([new Drug("Fervex", 10, 50)]).updateBenefitValue()
-      ).toEqual([new Drug("Fervex", 9, 52)]);
+        new Pharmacy([new Drug("Fervex", 10, 48)]).updateBenefitValue()
+      ).toEqual([new Drug("Fervex", 9, 50)]);
       expect(
-        new Pharmacy([new Drug("Fervex", 6, 50)]).updateBenefitValue()
-      ).toEqual([new Drug("Fervex", 5, 52)]);
+        new Pharmacy([new Drug("Fervex", 6, 48)]).updateBenefitValue()
+      ).toEqual([new Drug("Fervex", 5, 50)]);
     });
     it("Benefit should increase by 3 when there are 5 days or less", () => {
       expect(
-        new Pharmacy([new Drug("Fervex", 5, 50)]).updateBenefitValue()
-      ).toEqual([new Drug("Fervex", 4, 53)]);
+        new Pharmacy([new Drug("Fervex", 5, 47)]).updateBenefitValue()
+      ).toEqual([new Drug("Fervex", 4, 50)]);
       expect(
         new Pharmacy([new Drug("Fervex", 1, 50)]).updateBenefitValue()
-      ).toEqual([new Drug("Fervex", 0, 53)]);
+      ).toEqual([new Drug("Fervex", 0, 50)]);
     });
     it("Benefit should drop to 0 after the expiration date", () => {
       expect(

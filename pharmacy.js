@@ -10,6 +10,18 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+  getFervexBenefit(expiresIn, benefit) {
+    if (expiresIn >= 10) {
+      return benefit + 1;
+    }
+    if (expiresIn >= 5) {
+      return benefit + 2;
+    }
+    if (expiresIn >= 0) {
+      return benefit + 3;
+    }
+    return 0;
+  }
 
   getNewBenefit(drug) {
     const maxBenefitValue = 50;
@@ -17,15 +29,20 @@ export class Pharmacy {
       "Herbal Tea": 1,
       "Magic Pill": 0
     };
+    let newBenefit;
+    if (drug.name === "Fervex") {
+      newBenefit = this.getFervexBenefit(drug.expiresIn, drug.benefit);
+    } else {
+      let benefitIncrement =
+        specialBenefitIncrements[drug.name] !== undefined
+          ? specialBenefitIncrements[drug.name]
+          : -1;
 
-    let benefitIncrement =
-      specialBenefitIncrements[drug.name] !== undefined
-        ? specialBenefitIncrements[drug.name]
-        : -1;
-    if (drug.expiresIn < 0) {
-      benefitIncrement = 2 * benefitIncrement;
+      if (drug.expiresIn < 0) {
+        benefitIncrement = 2 * benefitIncrement;
+      }
+      newBenefit = drug.benefit + benefitIncrement;
     }
-    const newBenefit = drug.benefit + benefitIncrement;
     if (newBenefit <= 0) {
       return 0;
     }
