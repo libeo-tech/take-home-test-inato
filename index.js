@@ -1,12 +1,23 @@
-import { Doliprane, Fervex, MagicPill, Pharmacy, HerbalTea } from "./models";
+import {
+  Doliprane,
+  Fervex,
+  MagicPill,
+  Pharmacy,
+  HerbalTea,
+  DegradingDrugStrategy,
+  StaticDrugStrategy,
+  IncreasingDrugStrategy
+} from "./models";
 
 import fs from "fs";
 
+const increasingDrugStrategy = new IncreasingDrugStrategy();
+
 const drugs = [
-  new Doliprane(20, 30),
-  new HerbalTea(10, 5),
-  new Fervex(5, 40),
-  new MagicPill(15, 40)
+  new Doliprane(20, 30, new DegradingDrugStrategy()),
+  new HerbalTea(10, 5, increasingDrugStrategy),
+  new Fervex(5, 40, increasingDrugStrategy),
+  new MagicPill(15, 40, new StaticDrugStrategy())
 ];
 const trial = new Pharmacy(drugs);
 
