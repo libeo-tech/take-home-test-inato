@@ -1,2 +1,9 @@
 node_modules/
 coverage
+.*
+!.babelrc
+!.eslintrc.yml
+README.md
+Dockerfile
+docker-compose.yml
+output.txt
