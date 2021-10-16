@@ -11,7 +11,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "jest",
+    "test": "jest --coverage --coverageReporters=\"html\" --collectCoverageFrom \"**/*.js\" --modulePathIgnorePatterns=\"coverage\"",
     "start": "babel-node index.js"
   },
   "devDependencies": {
