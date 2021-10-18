@@ -10,6 +10,8 @@ import {
   StaticDrugStrategy
 } from "../models";
 
+import { THRESHOLD_CONSTANTS } from "../constants";
+
 describe("Models of Drugs: Dafalgan", () => {
   it("should instantiate a Dafalgan successfully, and check it is a drug", () => {
     expect(
@@ -75,14 +77,24 @@ describe("Models of Drugs: Fervex", () => {
     expect(fervex.benefit).toEqual(31);
   });
 
-  it("should increase the Fervex benefit twice when updating and when its expiry date is superior to 5 days and inferior or equal to 10 days", () => {
-    const fervex = new Fervex(10, 30, new IncreasingDrugStrategy());
+  it(`should increase the Fervex benefit twice when updating and when its expiry date is superior to 
+  ${THRESHOLD_CONSTANTS.FERVEX.SECOND_EXPIRY_LIMIT} days and inferior or equal to ${THRESHOLD_CONSTANTS.FERVEX.FIRST_EXPIRY_LIMIT} days`, () => {
+    const fervex = new Fervex(
+      THRESHOLD_CONSTANTS.FERVEX.FIRST_EXPIRY_LIMIT,
+      30,
+      new IncreasingDrugStrategy()
+    );
     fervex.updateBenefit();
     expect(fervex.benefit).toEqual(32);
   });
 
-  it("should increase the Fervex benefit by 3 when updating and when it has not expired yet and its expiry date is inferior or equal to 5 days", () => {
-    const fervex = new Fervex(5, 30, new IncreasingDrugStrategy());
+  it(`should increase the Fervex benefit by 3 when updating and when it has not expired yet and
+   its expiry date is inferior or equal to ${THRESHOLD_CONSTANTS.FERVEX.SECOND_EXPIRY_LIMIT} days`, () => {
+    const fervex = new Fervex(
+      THRESHOLD_CONSTANTS.FERVEX.SECOND_EXPIRY_LIMIT,
+      30,
+      new IncreasingDrugStrategy()
+    );
     fervex.updateBenefit();
     expect(fervex.benefit).toEqual(33);
   });

@@ -6,13 +6,15 @@ import {
   StaticDrugStrategy
 } from "../models";
 
+import { ERROR_CONSTANTS } from "../constants";
+
 describe("Drug Strategies: Abstract Drug Strategy", () => {
   it("should fail instantiating an abstract drug strategy", () => {
     try {
       new AbstractDrugStrategy();
     } catch (error) {
       expect(error.message).toEqual(
-        "Cannot construct Abstract instances directly"
+        ERROR_CONSTANTS.ABSTRACT_CLASS_INSTANTIATION_ERROR
       );
       expect(error instanceof TypeError).toBe(true);
     }

@@ -12,10 +12,10 @@ export default class Fervex extends Drug {
       this.benefit = THRESHOLD_CONSTANTS.BENEFIT.MIN_VALUE;
     } else {
       this.strategy.updateBenefit(this);
-      if (this.expiresIn <= 5) {
+      if (this.expiresIn <= THRESHOLD_CONSTANTS.FERVEX.FIRST_EXPIRY_LIMIT) {
         this.strategy.updateBenefit(this);
       }
-      if (this.expiresIn <= 10) {
+      if (this.expiresIn <= THRESHOLD_CONSTANTS.FERVEX.SECOND_EXPIRY_LIMIT) {
         this.strategy.updateBenefit(this);
       }
     }

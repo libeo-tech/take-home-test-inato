@@ -1,4 +1,4 @@
-import { THRESHOLD_CONSTANTS } from "../constants";
+import { THRESHOLD_CONSTANTS, ERROR_CONSTANTS } from "../constants";
 
 export default class AbstractDrugStrategy {
   constructor() {
@@ -6,7 +6,7 @@ export default class AbstractDrugStrategy {
     this.maxBenefit = THRESHOLD_CONSTANTS.BENEFIT.MAX_VALUE;
     this.expiryDateLimit = THRESHOLD_CONSTANTS.EXPIRY_DATE.LIMIT;
     if (new.target === AbstractDrugStrategy) {
-      throw new TypeError("Cannot construct Abstract instances directly");
+      throw new TypeError(ERROR_CONSTANTS.ABSTRACT_CLASS_INSTANTIATION_ERROR);
     }
   }
 

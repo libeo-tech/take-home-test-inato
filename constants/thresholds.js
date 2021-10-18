@@ -5,6 +5,10 @@ const THRESHOLD_CONSTANTS = Object.freeze({
   },
   EXPIRY_DATE: {
     LIMIT: 0
+  },
+  FERVEX: {
+    FIRST_EXPIRY_LIMIT: 10,
+    SECOND_EXPIRY_LIMIT: 5
   }
 });
 
