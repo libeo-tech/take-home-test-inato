@@ -58,6 +58,9 @@ export class Pharmacy {
         case DRUG.FERVEX:
           drug.benefit = this.updateFervex(drug);
           break;
+        case DRUG.DAFALGAN:
+          drug.benefit = this.decreaseBenefit(drug, 2);
+          break;
 
         default:
           drug.benefit = this.isExpired(drug.expiresIn)
