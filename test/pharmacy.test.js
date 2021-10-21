@@ -66,3 +66,24 @@ describe("Fervex", () => {
     );
   });
 });
+
+// Test of "Dafalgan"
+describe("Dafalgan", () => {
+  it("should decrease in benefit twice as fast", () => {
+    expect(new Pharmacy([new Drug("Dafalgan", 5, 18)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", 4, 16)]
+    );
+  });
+
+  it("should decrease the benefit twice as fast after expiration", () => {
+    expect(new Pharmacy([new Drug("Dafalgan", -2, 19)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", -3, 15)]
+    );
+  });
+
+  it("should never decrease the benefit below 0", () => {
+    expect(new Pharmacy([new Drug("Dafalgan", 5, 2)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", 4, 0)]
+    );
+  });
+});

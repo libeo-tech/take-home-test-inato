@@ -31,6 +31,9 @@ export class Pharmacy {
           case "Fervex":
             this.drugs[i].benefit = benefit.FervexBenefitValue(this.drugs[i].expiresIn, this.drugs[i].benefit);
             break;
+          case "Dafalgan":
+              this.drugs[i].benefit = benefit.DafalganBenefitValue(this.drugs[i].expiresIn, this.drugs[i].benefit);
+              break;
           default:
             this.drugs[i].benefit = benefit.DefaultBenefitValue(this.drugs[i].expiresIn, this.drugs[i].benefit);
         }

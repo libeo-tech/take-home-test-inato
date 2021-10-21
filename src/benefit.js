@@ -30,12 +30,27 @@ export function FervexBenefitValue(expiry, benefit){
   }
 }
 
+export function DafalganBenefitValue(expiry, benefit){
+  if(expiry < 0){
+    if(benefit > 3){
+      return benefit - 4;
+    }
+    else{
+      return 0;
+    }
+  }
+  else if(benefit > 1){
+    return benefit -2;
+  }
+  else return 0;
+}
+
 export function MagicPillBenefitValue(expiry, benefit){
   return benefit;
 }
 
 export function DefaultBenefitValue(expiry, benefit){
-  if(expiry < 0){
+  if((expiry < 0) && (benefit > 1)){
     return benefit - 2;
   }
   else{
