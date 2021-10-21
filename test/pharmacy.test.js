@@ -1,4 +1,4 @@
-import { Drug, Pharmacy } from "./pharmacy";
+import { Drug, Pharmacy } from "../src/pharmacy";
 
 // Test just any drug
 describe("Pharmacy", () => {
