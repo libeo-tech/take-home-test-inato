@@ -1,5 +1,5 @@
 import { Pharmacy } from "./src/models";
-import { MagicPill, Doliprane, Fervex, HerbalTea } from "./src/models/Drugs";
+import { MagicPill, Doliprane, Fervex, HerbalTea, Dafalgan } from "./src/models/Drugs";
 import fs from "fs";
 
 const drugs = [
@@ -7,6 +7,7 @@ const drugs = [
   new HerbalTea(10, 5),
   new Fervex(5, 40),
   new MagicPill(15, 40),
+  new Dafalgan(20, 40),
 ];
 
 const trial = new Pharmacy(drugs);

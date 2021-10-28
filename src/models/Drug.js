@@ -36,9 +36,13 @@ export default class Drug {
    * @returns {Number} - The new calculated benefit
    */
    calculateNextBenefit() {
-    if (this.benefit > 0){
-      this.benefit -= (this.expiresIn <= 0) ? 2 : 1;
+    if (this.benefit >= 2 && this.expiresIn < 0){
+      this.benefit -= 2;
     }
+    else if (this.benefit >= 1 && this.expiresIn >= 0){
+      this.benefit--;
+    }
+
     return this.benefit;
   }
 
