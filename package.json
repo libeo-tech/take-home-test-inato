@@ -1,13 +1,13 @@
 {
   "name": "take-home-test",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "repository": "git@github.com:inato/take-home-test.git",
   "author": "inato",
   "license": "MIT",
   "private": true,
   "engines": {
     "yarn": ">=1.7.0",
-    "node": "=12.x"
+    "node": ">=14.x"
   },
   "scripts": {
     "lint": "eslint .",
