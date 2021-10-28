@@ -26,5 +26,5 @@ describe("Doliprane", () => {
     expect(dolipraneCalculated.benefit).toEqual(dolipraneClean.benefit);
     expect(dolipraneCalculated.expiresIn).toEqual(dolipraneClean.expiresIn);
   });
-
+  
 });
