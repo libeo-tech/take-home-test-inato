@@ -37,7 +37,7 @@ export default class Drug {
    */
    #calculateNextBenefit() {
     if (this.benefit > 0){
-      this.benefit--;
+      this.benefit -= (this.expiresIn <= 0) ? 2 : 1;
     }
     return this.benefit;
   }
