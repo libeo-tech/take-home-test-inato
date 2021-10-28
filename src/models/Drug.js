@@ -35,7 +35,7 @@ export default class Drug {
    * Return the new benefit, after day change
    * @returns {Number} - The new calculated benefit
    */
-   #calculateNextBenefit() {
+   calculateNextBenefit() {
     if (this.benefit > 0){
       this.benefit -= (this.expiresIn <= 0) ? 2 : 1;
     }
@@ -49,7 +49,7 @@ export default class Drug {
    */
    toNextDay() {
     this.expiresIn--;
-    this.#calculateNextBenefit();
+    this.calculateNextBenefit();
     return this;
   }
 }

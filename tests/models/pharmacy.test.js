@@ -1,4 +1,4 @@
-import { Drug, Pharmacy } from "../src/models";
+import { Drug } from "../../src/models";
 
 describe("Pharmacy", () => {
   it("should decrease the benefit and expiresIn", () => {

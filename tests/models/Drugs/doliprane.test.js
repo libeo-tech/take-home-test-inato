@@ -1,4 +1,4 @@
-import { Doliprane } from "../src/models/Drugs";
+import { Doliprane } from "../../../src/models/Drugs";
 
 describe("Doliprane", () => {
   it("should decrease the benefit and expiresIn", () => {
