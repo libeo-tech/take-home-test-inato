@@ -12,11 +12,6 @@ describe("Pharmacy", () => {
       expect(drugs[0].benefit).toEqual(1);
     });
 
-    it("should never compute a negative benefit", () => {
-      const drugs = new Pharmacy([new Drug("test", 2, 0)]).updateBenefitValue();
-      expect(drugs[0].benefit).toEqual(0);
-    });
-
     it("should decrease the expiration date", () => {
       const drugs = new Pharmacy([new Drug("test", 2, 3)]).updateBenefitValue();
       expect(drugs[0].expiresIn).toEqual(1);
@@ -44,13 +39,6 @@ describe("Pharmacy", () => {
         new Drug("Herbal Tea", 0, 3),
       ]).updateBenefitValue();
       expect(drugs[0].benefit).toEqual(5);
-    });
-
-    it("should never compute a benefit greater than 50", () => {
-      const drugs = new Pharmacy([
-        new Drug("Herbal Tea", 2, 50),
-      ]).updateBenefitValue();
-      expect(drugs[0].benefit).toEqual(50);
     });
 
     it("should decrease the expiration date", () => {
