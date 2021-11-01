@@ -5,6 +5,9 @@ interface DrugBehavior {
   benefit: number;
 }
 
+/**
+ * Nothing happens, neither with the expiration date, nor with the benefit.
+ */
 class FixedDrugBehavior implements DrugBehavior {
   constructor(public expiresIn: number, public benefit: number, _: null) {}
 
@@ -37,6 +40,14 @@ abstract class BaseDrugBehavior implements DrugBehavior {
   }
 }
 
+/**
+ * The expiration date is updated with a fixed increment.
+ *
+ * The benefit :
+ * - is updated with a first fixed increment.
+ * - is updated with a different fixed increment after reaching the
+ *   expiration date.
+ */
 class ThresholdDrugBehavior extends BaseDrugBehavior {
   protected benefitAfterThreshold: number;
 
@@ -66,6 +77,17 @@ type WithThreshold = {
   threshold: number;
 };
 
+/**
+ * The expiration date is updated with a fixed increment.
+ *
+ * The benefit :
+ * - is updated with a first fixed increment.
+ * - is updated with a different fixed increments after reaching thresholds
+ *   on the expiration date.
+ * - is fixed to specific values after reaching thresholds on the expiration
+ *   date.
+ * - the benefit fixed values have priority over the benefit increment values.
+ */
 function sortBySmallestThresholdFirst(
   element1: WithThreshold,
   element2: WithThreshold
@@ -78,7 +100,13 @@ type BenefitValues = readonly {
   threshold: number;
 }[];
 class MultiThresholdDrugBehavior extends BaseDrugBehavior {
+  /**
+   * The fixed increments associated to their thresholds.
+   */
   protected thresholdBenefitIncrements: BenefitValues;
+  /**
+   * The fixed values associated to their thresholds.
+   */
   protected thresholdBenefitValues: BenefitValues;
 
   constructor(

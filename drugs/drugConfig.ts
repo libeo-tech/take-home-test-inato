@@ -6,6 +6,15 @@ import {
   MultiThresholdDrugBehavior,
 } from "./drugBehavior";
 
+/**
+ * A drug config contains all the fixed numbers needed to configure a
+ * drug behavior.
+ *
+ * Everytime a drug is added to the system, it should be added at least
+ * here as a DrugConfig object, and pushed to the specificDrugConfig
+ * array below.
+ */
+
 type DrugConfig<BehaviorClass extends Newable> = {
   name: string;
   behavior: BehaviorClass extends Newable<DrugBehavior> ? BehaviorClass : never;
@@ -80,6 +89,13 @@ const specificDrugConfig = [
   dafalgan,
 ] as const;
 
+/**
+ * Gets the drug config infos from the drug name.
+ * If the name is unknown, returns the generic config.
+ *
+ * @param name the name of the drug we are looking for.
+ * @returns the drug config.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getDrugConfig(name: string): DrugConfig<Newable<DrugBehavior>> {
   for (const config of specificDrugConfig) {
