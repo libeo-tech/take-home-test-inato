@@ -63,7 +63,22 @@ const fervex: DrugConfig<typeof MultiThresholdDrugBehavior> = {
   },
 } as const;
 
-const specificDrugConfig = [herbalTeaConfig, magicPill, fervex] as const;
+const dafalgan: DrugConfig<typeof ThresholdDrugBehavior> = {
+  name: "Dafalgan",
+  behavior: ThresholdDrugBehavior,
+  options: {
+    expirationDateIncrement: -1,
+    benefitIncrement: -2,
+    benefitAfterThreshold: -4,
+  },
+} as const;
+
+const specificDrugConfig = [
+  herbalTeaConfig,
+  magicPill,
+  fervex,
+  dafalgan,
+] as const;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getDrugConfig(name: string): DrugConfig<Newable<DrugBehavior>> {

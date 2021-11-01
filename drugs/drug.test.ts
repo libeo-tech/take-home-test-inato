@@ -102,4 +102,24 @@ describe("Drug", () => {
       expect(drug.expiresIn).toEqual(1);
     });
   });
+
+  describe("Dafalgan", () => {
+    it("should decrease the benefit before expiration", () => {
+      const drug = new Drug("Dafalgan", 2, 3);
+      drug.update();
+      expect(drug.benefit).toEqual(1);
+    });
+
+    it("should decrease the benefit twice as fast after the expiration", () => {
+      const drug = new Drug("Dafalgan", 0, 10);
+      drug.update();
+      expect(drug.benefit).toEqual(6);
+    });
+
+    it("should decrease the expiration date", () => {
+      const drug = new Drug("Dafalgan", 2, 3);
+      drug.update();
+      expect(drug.expiresIn).toEqual(1);
+    });
+  });
 });
