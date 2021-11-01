@@ -1,7 +1,19 @@
 env:
   jest: true
   node: true
-parser: babel-eslint
+parser: "@typescript-eslint/parser"
+parserOptions:
+  project:
+    - "./tsconfig.json"
+plugins:
+  - "@typescript-eslint"
 extends:
-  - eslint:recommended
-  - plugin:prettier/recommended
+  - "eslint:recommended"
+  - "plugin:@typescript-eslint/eslint-recommended"
+  - "plugin:@typescript-eslint/recommended"
+  - "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  - "plugin:prettier/recommended"
+rules:
+  "@typescript-eslint/no-unsafe-assignment": "error"
+  "@typescript-eslint/no-unsafe-return": "error"
+  "@typescript-eslint/no-explicit-any": "error"
