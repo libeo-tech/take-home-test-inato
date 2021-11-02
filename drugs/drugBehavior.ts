@@ -33,7 +33,7 @@ abstract class BaseDrugBehavior implements DrugBehavior {
   }
 
   updateBenefit(): void {
-    // empty
+    // to be overrided by children
   }
   updateExpirationDate(): void {
     this.expiresIn += this.expirationDateIncrement;
@@ -41,15 +41,15 @@ abstract class BaseDrugBehavior implements DrugBehavior {
 }
 
 /**
- * The expiration date is updated with a fixed increment.
+ * The expiration date is updated with an increment.
  *
  * The benefit :
- * - is updated with a first fixed increment.
- * - is updated with a different fixed increment after reaching the
+ * - is updated with a first increment until expiration.
+ * - is updated with a different increment after reaching the
  *   expiration date.
  */
-class ThresholdDrugBehavior extends BaseDrugBehavior {
-  protected benefitAfterThreshold: number;
+class ExpirationDrugBehavior extends BaseDrugBehavior {
+  protected benefitAfterExpiration: number;
 
   constructor(
     expiresIn: number,
@@ -57,51 +57,41 @@ class ThresholdDrugBehavior extends BaseDrugBehavior {
     options: {
       expirationDateIncrement: number;
       benefitIncrement: number;
-      benefitAfterThreshold: number;
+      benefitAfterExpiration: number;
     }
   ) {
     super(expiresIn, benefit, options);
-    this.benefitAfterThreshold = options.benefitAfterThreshold;
+    this.benefitAfterExpiration = options.benefitAfterExpiration;
   }
 
   updateBenefit(): void {
     if (this.expiresIn >= 0) {
       this.benefit += this.benefitIncrement;
     } else {
-      this.benefit += this.benefitAfterThreshold;
+      this.benefit += this.benefitAfterExpiration;
     }
   }
-}
-
-type WithThreshold = {
-  threshold: number;
-};
-
-/**
- * The expiration date is updated with a fixed increment.
- *
- * The benefit :
- * - is updated with a first fixed increment.
- * - is updated with a different fixed increments after reaching thresholds
- *   on the expiration date.
- * - is fixed to specific values after reaching thresholds on the expiration
- *   date.
- * - the benefit fixed values have priority over the benefit increment values.
- */
-function sortBySmallestThresholdFirst(
-  element1: WithThreshold,
-  element2: WithThreshold
-) {
-  return element1.threshold > element2.threshold ? 1 : -1;
 }
 
 type BenefitValues = readonly {
   benefitAfterThreshold: number;
   threshold: number;
 }[];
+
+/**
+ * The expiration date is updated with an increment.
+ *
+ * The benefit :
+ * - is updated with a first increment until the first threshold.
+ * - is updated with a different increments after reaching thresholds
+ *   on the expiration date.
+ * - is fixed to specific values after reaching thresholds on the expiration
+ *   date.
+ * The benefit fixed values have priority over the benefit increments.
+ */
 class MultiThresholdDrugBehavior extends BaseDrugBehavior {
   /**
-   * The fixed increments associated to their thresholds.
+   * The increments associated to their thresholds.
    */
   protected thresholdBenefitIncrements: BenefitValues;
   /**
@@ -147,5 +137,21 @@ class MultiThresholdDrugBehavior extends BaseDrugBehavior {
   }
 }
 
+type WithThreshold = {
+  threshold: number;
+  [otherAttrs: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+};
+
+function sortBySmallestThresholdFirst(
+  element1: WithThreshold,
+  element2: WithThreshold
+) {
+  return element1.threshold > element2.threshold ? 1 : -1;
+}
+
 export type { DrugBehavior };
-export { ThresholdDrugBehavior, FixedDrugBehavior, MultiThresholdDrugBehavior };
+export {
+  ExpirationDrugBehavior,
+  FixedDrugBehavior,
+  MultiThresholdDrugBehavior,
+};

@@ -1,7 +1,7 @@
 import type { ConstructorThirdArgument, Newable } from "../types";
 import type { DrugBehavior } from "./drugBehavior";
 import {
-  ThresholdDrugBehavior,
+  ExpirationDrugBehavior,
   FixedDrugBehavior,
   MultiThresholdDrugBehavior,
 } from "./drugBehavior";
@@ -21,23 +21,23 @@ type DrugConfig<BehaviorClass extends Newable> = {
   options: ConstructorThirdArgument<BehaviorClass>;
 };
 
-const genericDrugConfig: DrugConfig<typeof ThresholdDrugBehavior> = {
+const genericDrugConfig: DrugConfig<typeof ExpirationDrugBehavior> = {
   name: "Generic drug",
-  behavior: ThresholdDrugBehavior,
+  behavior: ExpirationDrugBehavior,
   options: {
     expirationDateIncrement: -1,
     benefitIncrement: -1,
-    benefitAfterThreshold: -2,
+    benefitAfterExpiration: -2,
   },
 } as const;
 
-const herbalTeaConfig: DrugConfig<typeof ThresholdDrugBehavior> = {
+const herbalTeaConfig: DrugConfig<typeof ExpirationDrugBehavior> = {
   name: "Herbal Tea",
-  behavior: ThresholdDrugBehavior,
+  behavior: ExpirationDrugBehavior,
   options: {
     expirationDateIncrement: -1,
     benefitIncrement: 1,
-    benefitAfterThreshold: 2,
+    benefitAfterExpiration: 2,
   },
 } as const;
 
@@ -72,13 +72,13 @@ const fervex: DrugConfig<typeof MultiThresholdDrugBehavior> = {
   },
 } as const;
 
-const dafalgan: DrugConfig<typeof ThresholdDrugBehavior> = {
+const dafalgan: DrugConfig<typeof ExpirationDrugBehavior> = {
   name: "Dafalgan",
-  behavior: ThresholdDrugBehavior,
+  behavior: ExpirationDrugBehavior,
   options: {
     expirationDateIncrement: -1,
     benefitIncrement: -2,
-    benefitAfterThreshold: -4,
+    benefitAfterExpiration: -4,
   },
 } as const;
 
