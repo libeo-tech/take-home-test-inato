@@ -1,4 +1,5 @@
-import { Drug, Pharmacy } from "./pharmacy";
+import { Pharmacy } from "../pharmacy";
+import { Drug } from "../Drug";
 
 describe("Pharmacy default", () => {
   it("should decrease the benefit and expiresIn", () => {
@@ -29,10 +30,15 @@ describe("Pharmacy Dafalgan", () => {
       new Pharmacy([new Drug("Dafalgan", 2, 3)]).updateBenefitValue()
     ).toEqual([new Drug("Dafalgan", 1, 1)]);
   });
-  it("should degrades benefit twice after expiresIn", () => {
+  it("should degrades benefit by 4 after expiresIn", () => {
+    expect(
+      new Pharmacy([new Drug("Dafalgan", 0, 5)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", -1, 1)]);
+  });
+  it("should degrades benefit by 4 && never be negative ", () => {
     expect(
       new Pharmacy([new Drug("Dafalgan", 0, 3)]).updateBenefitValue()
-    ).toEqual([new Drug("Dafalgan", -1, 1)]);
+    ).toEqual([new Drug("Dafalgan", -1, 0)]);
   });
   it("should benefit never be negative", () => {
     expect(
@@ -72,8 +78,8 @@ describe("Pharmacy Herbal Tea", () => {
 describe("Pharmacy Fervex", () => {
   it("should benefit of Fervex drops to 0", () => {
     expect(
-      new Pharmacy([new Drug("Fervex", 0, 50)]).updateBenefitValue()
-    ).toEqual([new Drug("Fervex", -1, 0)]);
+      new Pharmacy([new Drug("Fervex", -1, 50)]).updateBenefitValue()
+    ).toEqual([new Drug("Fervex", -2, 0)]);
   });
   it("should benefit of Fervex never be more than 50 && increase by 2", () => {
     expect(
