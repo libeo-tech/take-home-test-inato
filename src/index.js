@@ -12,12 +12,12 @@ const drugs = [
   new Fervex(5, 40),
   new MagicPill(15, 40),
 ];
-const trial = new Pharmacy(drugs);
+const pharmacy = new Pharmacy(drugs);
 
 const log = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(trial.updateBenefitValue()));
+  log.push(JSON.stringify(pharmacy.updateDrugs()));
 }
 
 /* eslint-disable no-console */
