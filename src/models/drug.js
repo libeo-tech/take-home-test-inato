@@ -11,7 +11,9 @@ export default class Drug {
     } else {
       this.benefit = this.benefit - 1;
     }
+  }
 
+  cleanBenefitValue() {
     if (this.benefit < 0) {
       this.benefit = 0;
     }
@@ -27,6 +29,7 @@ export default class Drug {
 
   update() {
     this.updateBenefit();
+    this.cleanBenefitValue();
     this.updateExpiresIn();
 
     return this;

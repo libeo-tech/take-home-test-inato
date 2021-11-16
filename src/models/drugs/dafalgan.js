@@ -7,6 +7,7 @@ export default class Dafalgan extends Drugs {
 
   updateBenefit() {
     super.updateBenefit();
+    this.cleanBenefitValue();
     super.updateBenefit();
   }
 }

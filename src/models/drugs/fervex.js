@@ -11,19 +11,13 @@ export default class Fervex extends Drugs {
       return;
     }
 
-    if (this.expiresIn > 0 && this.expiresIn <= 5) {
+    if (this.expiresIn <= 5) {
       this.benefit = this.benefit + 3;
-      if (this.benefit > 50) {
-        this.benefit = 50;
-      }
       return;
     }
 
-    if (this.expiresIn > 0 && this.expiresIn <= 10) {
+    if (this.expiresIn <= 10) {
       this.benefit = this.benefit + 2;
-      if (this.benefit > 50) {
-        this.benefit = 50;
-      }
       return;
     }
 

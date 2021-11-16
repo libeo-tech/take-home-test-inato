@@ -12,12 +12,6 @@ export default class HerbalTea extends Drugs {
       this.benefit = this.benefit + 1;
     }
 
-    if (this.benefit < 0) {
-      this.benefit = 0;
-    }
-
-    if (this.benefit > 50) {
-      this.benefit = 50;
-    }
+    super.cleanBenefitValue();
   }
 }
