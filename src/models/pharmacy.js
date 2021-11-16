@@ -7,4 +7,3 @@ export default class Pharmacy {
     return this.drugs.map(drug => drug.update());
   }
 }
-  

@@ -1,18 +1,18 @@
-import Pharmacy from './models/pharmacy';
-import Doliprane from './models/drugs/doliprane';
-import HerbalTea from './models/drugs/herbalTea';
-import Fervex from './models/drugs/fervex';
-import MagicPill from './models/drugs/magicPill';
+import Pharmacy from "./models/pharmacy";
+import Doliprane from "./models/drugs/doliprane";
+import HerbalTea from "./models/drugs/herbalTea";
+import Fervex from "./models/drugs/fervex";
+import MagicPill from "./models/drugs/magicPill";
 
 import fs from "fs";
-import Dafalgan from './models/drugs/dafalgan';
+import Dafalgan from "./models/drugs/dafalgan";
 
 const drugs = [
   new Doliprane(20, 30),
   new HerbalTea(10, 5),
   new Fervex(5, 40),
   new MagicPill(15, 40),
-  new Dafalgan(20, 25),
+  new Dafalgan(20, 25)
 ];
 const pharmacy = new Pharmacy(drugs);
 
