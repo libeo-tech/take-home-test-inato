@@ -1,7 +1,10 @@
 {
   "name": "take-home-test",
   "version": "1.0.0",
-  "repository": "git@github.com:inato/take-home-test.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/inato/take-home-test.git"
+  },
   "author": "inato",
   "license": "MIT",
   "private": true,
@@ -28,5 +31,11 @@
     "jest": "24.8.0",
     "prettier": "^1.14.3",
     "regenerator-runtime": "^0.12.1"
-  }
+  },
+  "description": "You are a new developer in the Inato team, and your first job is to add a feature to an old existing piece of code. We recommend spending between 1 hour and 2 hours on the exercise. (Do more if you like 😇, do less if you think you've shown what you want😎)",
+  "bugs": {
+    "url": "https://github.com/inato/take-home-test/issues"
+  },
+  "homepage": "https://github.com/inato/take-home-test#readme",
+  "main": "index.js"
 }
