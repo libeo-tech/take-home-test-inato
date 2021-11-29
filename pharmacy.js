@@ -1,5 +1,15 @@
+const MAX_BENEFIT = 50;
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
+    if (benefit < 0) {
+      throw new Error("benefit must be > 0");
+    }
+
+    if (benefit > MAX_BENEFIT) {
+      throw new Error(`benefit must be < MAX_BENEFIT`);
+    }
+
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;

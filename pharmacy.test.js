@@ -1,6 +1,19 @@
 import { Drug, Pharmacy } from "./pharmacy";
 
 describe("Pharmacy", () => {
+  describe("Drugs #constructor", () => {
+    it("should throw if a drug is intialized with a benefit < 0", () => {
+      expect(() => new Drug("Doliprane", 20, -1)).toThrowError(
+        new Error("benefit must be > 0")
+      );
+    });
+    it("should throw if a drug is intialized with a benefit > 50", () => {
+      expect(() => new Drug("Doliprane", 20, 51)).toThrowError(
+        new Error("benefit must be < MAX_BENEFIT")
+      );
+    });
+  });
+
   describe("common drugs", () => {
     it("should decrease expiresIn and benefit by 1", () => {
       expect(
