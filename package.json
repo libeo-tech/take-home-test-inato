@@ -1,17 +1,17 @@
 {
   "name": "take-home-test",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": "git@github.com:inato/take-home-test.git",
   "author": "inato",
   "license": "MIT",
   "private": true,
   "engines": {
     "yarn": ">=1.7.0",
-    "node": "=12.x"
+    "node": "16.13.0"
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "jest",
+    "test": "eslint . && jest --coverage",
     "start": "babel-node index.js"
   },
   "devDependencies": {
@@ -28,5 +28,15 @@
     "jest": "24.8.0",
     "prettier": "^1.14.3",
     "regenerator-runtime": "^0.12.1"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   }
 }
