@@ -38,6 +38,24 @@ describe("Drug", () => {
     });
   });
 
+  describe("Dafalgan", () => {
+    it("should decrease expiresIn and benefit by 2", () => {
+      expect(new Drug("Dafalgan", 20, 30).updateBenefit()).toEqual(
+        new Drug("Dafalgan", 19, 28)
+      );
+    });
+    it("should not decrease the benefit if it's already equal to 0", () => {
+      expect(new Drug("Dafalgan", 20, 0).updateBenefit()).toEqual(
+        new Drug("Dafalgan", 19, 0)
+      );
+    });
+    it("should decrease expiresIn and benefit by 4 if expiresIn is negative", () => {
+      expect(new Drug("Dafalgan", -1, 30).updateBenefit()).toEqual(
+        new Drug("Dafalgan", -2, 26)
+      );
+    });
+  });
+
   describe("Herbal Tea", () => {
     it("should decrease expiresIn and increase benefit by 1", () => {
       expect(new Drug("Herbal Tea", 20, 30).updateBenefit()).toEqual(

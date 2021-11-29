@@ -49,6 +49,10 @@ export class Drug {
         this.updateFervexBenefit();
         break;
       }
+      case "Dafalgan": {
+        this.updateDafalganBenefit();
+        break;
+      }
       default: {
         this.updateCommonDrugBenefit();
         break;
@@ -90,7 +94,16 @@ export class Drug {
     this.benefit += 1;
   }
 
-  updateCommonDrugBenefit() {
+  updateDafalganBenefit() {
+    this.updateCommonDrugBenefit(2);
+  }
+
+  /**
+   *
+   * @param {number} degradation - decrease of benefit will be based on the degradation coefficient
+   * @returns
+   */
+  updateCommonDrugBenefit(degradation = 1) {
     this.expiresIn -= 1;
 
     if (this.benefit === 0) {
@@ -98,10 +111,10 @@ export class Drug {
     }
 
     if (this.expiresIn < 0) {
-      this.benefit -= 2;
+      this.benefit -= degradation * 2;
       return;
     }
 
-    this.benefit -= 1;
+    this.benefit -= degradation;
   }
 }

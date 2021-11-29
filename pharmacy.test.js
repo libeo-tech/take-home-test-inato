@@ -9,6 +9,7 @@ describe("Pharmacy", () => {
   it("should update the benefit and expiresIn of all drugs", () => {
     const initialDrugs = [
       new Drug("Doliprane", 20, 30),
+      new Drug("Dafalgan", 20, 30),
       new Drug("Herbal Tea", 10, 5),
       new Drug("Fervex", 5, 40),
       new Drug("Magic Pill", 15, 40),
@@ -16,6 +17,7 @@ describe("Pharmacy", () => {
 
     const updatedDrugs = [
       new Drug("Doliprane", 19, 29),
+      new Drug("Dafalgan", 19, 28),
       new Drug("Herbal Tea", 9, 6),
       new Drug("Fervex", 4, 43),
       new Drug("Magic Pill", 15, 40),
