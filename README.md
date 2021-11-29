@@ -37,6 +37,18 @@ Feel free to make any changes to the `updateBenefitValue` method implementation 
 
 Please commit as frequently as possible to make the review easier.
 
+## Installation
+
+```bash
+# switch to the right node version
+nvm use
+
+# install dependencies
+yarn
+
+yarn start
+```
+
 ## Test
 
 To make sure that you will not break anything in the existing code, we added a log of the simulation in the _output.txt_ file. Make sure that your code is able to generate the same file. You can generate a new file by running one of the following commands:
