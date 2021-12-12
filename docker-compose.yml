@@ -1,6 +1,6 @@
 version: "3"
 services:
-  inato:
+  libeo:
     build: .
     volumes:
       - ".:/usr/src"
