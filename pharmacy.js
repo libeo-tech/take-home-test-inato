@@ -1,7 +1,7 @@
 import { updateDrugs } from "./lib/drugsUpdater";
 
 
-const ERROR_DRUG_INSTANTIATION = "Error while creating a new drug: Bad params"
+export const ERROR_DRUG_INSTANTIATION = "Error while creating a new drug: Bad params"
 export class Drug {
 
   
