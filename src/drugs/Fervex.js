@@ -20,7 +20,7 @@ export class Fervex extends Drug {
    *      - benefit = 0 if the expiration date has expired
    *      - benefit increases by 1 if the expiration date > 10
    *      - benefit increases by 2 if the expiration date is "5 < expirationDate < 10"
-   *      - benefit increases by 3 if the expiration date is "expirationDate < 5"
+   *      - benefit increases by 3 if the expiration date is "expirationDate <= 5"
    *   Decrease the expiresIn prop
    * @returns {object} a plain js object representation for the class props
    */
