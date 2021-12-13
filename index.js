@@ -2,18 +2,18 @@ import { Drug, Pharmacy } from "./src/pharmacy";
 
 import fs from "fs";
 
-const drugs = [
-  new Drug("Doliprane", 20, 30),
-  new Drug("Herbal Tea", 10, 5),
-  new Drug("Fervex", 5, 40),
-  new Drug("Magic Pill", 15, 40)
-];
-const trial = new Pharmacy(drugs);
+const trial = new Pharmacy();
+
+trial.addDrug(new Drug("Doliprane", 20, 30));
+trial.addDrug(new Drug("Herbal Tea", 10, 5));
+trial.addDrug(new Drug("Fervex", 5, 40));
+trial.addDrug(new Drug("Magic Pill", 15, 40));
 
 const log = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(trial.updateBenefitValue()));
+  const res = trial.updateBenefitValue();
+  log.push(JSON.stringify(res));
 }
 
 /* eslint-disable no-console */
