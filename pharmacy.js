@@ -1,5 +1,7 @@
 import { updateDrugs } from "./lib/drugsUpdater";
 
+const MIN_BENEFIT = 0;
+const MAX_BENEFIT = 50;
 
 export const ERROR_DRUG_INSTANTIATION = "Error while creating a new drug: Bad params"
 export class Drug {
@@ -15,6 +17,18 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+    dicreaseExpiresInByOne() {
+      this.expiresIn -= 1;
+    }
+
+    dicreaseBenefitBy(n) {
+      this.benefit = Math.max(this.benefit - n, MIN_BENEFIT);
+    }
+
+    increaseBenefitBy(n) {
+      this.benefit = Math.min(this.benefit + n, MAX_BENEFIT)
+    }
 
 
 
