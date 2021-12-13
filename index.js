@@ -1,8 +1,8 @@
 import { Pharmacy } from "./src/pharmacy";
-import { Doliprane } from "../src/drugs/Doliprane";
-import { HerbalTea } from "../src/drugs/HerbalTea";
-import { Fervex } from "../src/drugs/Fervex";
-import { MagicPill } from "../src/drugs/MagicPill";
+import { Doliprane } from "./src/drugs/Doliprane";
+import { HerbalTea } from "./src/drugs/HerbalTea";
+import { Fervex } from "./src/drugs/Fervex";
+import { MagicPill } from "./src/drugs/MagicPill";
 
 import fs from "fs";
 
