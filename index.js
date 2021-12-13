@@ -1,13 +1,17 @@
-import { Drug, Pharmacy } from "./src/pharmacy";
+import { Pharmacy } from "./src/pharmacy";
+import { Doliprane } from "../src/drugs/Doliprane";
+import { HerbalTea } from "../src/drugs/HerbalTea";
+import { Fervex } from "../src/drugs/Fervex";
+import { MagicPill } from "../src/drugs/MagicPill";
 
 import fs from "fs";
 
 const trial = new Pharmacy();
 
-trial.addDrug(new Drug("Doliprane", 20, 30));
-trial.addDrug(new Drug("Herbal Tea", 10, 5));
-trial.addDrug(new Drug("Fervex", 5, 40));
-trial.addDrug(new Drug("Magic Pill", 15, 40));
+trial.addDrug(new Doliprane(20, 30));
+trial.addDrug(new HerbalTea(10, 5));
+trial.addDrug(new Fervex(5, 40));
+trial.addDrug(new MagicPill(15, 40));
 
 const log = [];
 
