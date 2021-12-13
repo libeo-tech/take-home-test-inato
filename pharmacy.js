@@ -30,8 +30,6 @@ export class Drug {
       this.benefit = Math.min(this.benefit + n, MAX_BENEFIT)
     }
 
-
-
 }
 
 export class Pharmacy {
