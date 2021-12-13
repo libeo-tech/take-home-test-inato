@@ -1,11 +1,23 @@
 import { updateDrugs } from "./lib/drugsUpdater";
 
+
+const ERROR_DRUG_INSTANTIATION = "Error while creating a new drug: Bad params"
 export class Drug {
+
+  
   constructor(name, expiresIn, benefit) {
+    if (typeof name !== "string" ||
+    typeof expiresIn !== "number" ||
+    typeof benefit !== "number") {
+      throw new Error(ERROR_DRUG_INSTANTIATION)
+    }
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+
+
 }
 
 export class Pharmacy {
