@@ -10,6 +10,12 @@ describe("Drug", () => {
   it("Should throw an error because of bad params", () => {
     expect(() => new Drug("test", "1", 2)).toThrow(ERROR_DRUG_INSTANTIATION);
   });
+  it("Should throw an error because of bad params", () => {
+    expect(() => new Drug("test", 1, 52)).toThrow(ERROR_DRUG_INSTANTIATION);
+  });
+  it("Should throw an error because of bad params", () => {
+    expect(() => new Drug("test", 1, -1)).toThrow(ERROR_DRUG_INSTANTIATION);
+  });
   it("should decrease by one expireIn", () => {
     const drug = new Drug("test", 1, 2);
     drug.dicreaseExpiresInByOne();
