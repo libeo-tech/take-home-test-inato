@@ -10,7 +10,9 @@ export class Drug {
     if (
       typeof name !== "string" ||
       typeof expiresIn !== "number" ||
-      typeof benefit !== "number"
+      typeof benefit !== "number" ||
+      benefit < MIN_BENEFIT ||
+      benefit > MAX_BENEFIT
     ) {
       throw new Error(ERROR_DRUG_INSTANTIATION);
     }
