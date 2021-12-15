@@ -1,9 +1,9 @@
-import { Drug } from '../drug';
+import { Drug } from "../drug";
 
 export class Dafalgan extends Drug {
   constructor(expiresIn, benefit) {
-		super(Dafalgan.name, expiresIn, benefit);
-	}
+    super(Dafalgan.name, expiresIn, benefit);
+  }
 
   decreaseExpiresIn() {
     this.expiresIn -= 1;

@@ -1,9 +1,9 @@
-import { Drug } from '../drug';
+import { Drug } from "../drug";
 
 export class Fervex extends Drug {
   constructor(expiresIn, benefit) {
-		super(Fervex.name, expiresIn, benefit);
-	}
+    super(Fervex.name, expiresIn, benefit);
+  }
 
   decreaseExpiresIn() {
     this.expiresIn -= 1;
@@ -15,7 +15,7 @@ export class Fervex extends Drug {
     } else if (this.expiresIn <= 3 && this.expiresIn > 0) {
       this.benefit += super.defaultBenefitPerDay * 3;
     } else {
-      this.benefit = 0
+      this.benefit = 0;
     }
   }
 }
