@@ -1,13 +1,43 @@
-export class Drug {
-  constructor(name, expiresIn, benefit) {
-    this.name = name;
-    this.expiresIn = expiresIn;
-    this.benefit = benefit;
+interface DrugData {
+  readonly name: string;
+  expiresIn: number;
+  benefit: number;
+}
+export class Drug implements DrugData {
+  constructor(
+    public readonly name: string,
+    public expiresIn: number,
+    public benefit: number,
+  ) {
+  }
+
+  public toJSON = (): DrugData => ({
+    name: this.name,
+    expiresIn: this.expiresIn,
+    benefit: this.benefit
+  });
+
+  public toObject = (): DrugData => ({
+    name: this.name,
+    expiresIn: this.expiresIn,
+    benefit: this.benefit
+  });
+
+  public benefitRevaluate(): void {
+    this._benefitRevaluate();
+    this.updateExpires();
+  }
+
+  protected _benefitRevaluate(): void {
+    // TODO: Missing logic
+  }
+
+  protected updateExpires(): void {
+    this.expiresIn = this.expiresIn - 1;
   }
 }
-
 export class Pharmacy {
-  constructor(drugs = []) {
+  constructor(public drugs = []) {
     this.drugs = drugs;
   }
   updateBenefitValue() {
