@@ -7,7 +7,8 @@ const drugs = [
   new Drug("Doliprane", 20, 30, [new Linear(), new DoubleAfterExpires()]),
   new Drug("Herbal Tea", 10, 5, [new Linear(), new DoubleAfterExpires(), new Reverse()]),
   new Drug("Fervex", 5, 40, [new Linear(), new ChangeAcrossExpires(), new Reverse(), new ZeroAfterExpires()]),
-  new Drug("Magic Pill", 15, 40)
+  new Drug("Magic Pill", 15, 40),
+  new Drug("Dafalgan", 20, 30, [new Linear(), new DoubleAfterExpires(), new Double()]),
 ];
 const trial = new Pharmacy(drugs);
 
