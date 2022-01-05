@@ -1,13 +1,13 @@
 {
   "name": "take-home-test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "git@github.com:inato/take-home-test.git",
   "author": "inato",
   "license": "MIT",
   "private": true,
   "engines": {
-    "yarn": ">=1.7.0",
-    "node": "=12.x"
+    "yarn": ">=3.1.0",
+    "node": "=16.x"
   },
   "scripts": {
     "lint": "eslint .",
@@ -15,18 +15,16 @@
     "start": "babel-node index.js"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.0",
-    "@babel/core": "^7.1.0",
-    "@babel/node": "^7.0.0",
-    "@babel/preset-env": "^7.1.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^9.0.0",
-    "babel-jest": "^23.6.0",
-    "eslint": "^5.6.0",
-    "eslint-config-prettier": "^3.1.0",
-    "eslint-plugin-prettier": "^2.6.2",
-    "jest": "24.8.0",
-    "prettier": "^1.14.3",
-    "regenerator-runtime": "^0.12.1"
+    "@babel/cli": "^7.16.7",
+    "@babel/core": "^7.16.7",
+    "@babel/eslint-parser": "^7.16.5",
+    "@babel/node": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "babel-jest": "^27.4.6",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "27.4.7",
+    "prettier": "^2.5.1"
   }
 }
