@@ -27,4 +27,19 @@ describe("Pharmacy", () => {
       defaultOutput
     );
   });
+  it("Dafalgan with expiresIn > 0 should decrease by 2", () => {
+    expect(new Pharmacy([new Drug("Dafalgan", 20, 10)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", 19, 8)]
+    );
+  });
+  it("Dafalgan with expiresIn < 0 should decrease by 4", () => {
+    expect(new Pharmacy([new Drug("Dafalgan", -2, 10)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", -3, 6)]
+    );
+  });
+  it("Dafalgan with expiresIn < 0 should not go under 0", () => {
+    expect(new Pharmacy([new Drug("Dafalgan", -2, 2)]).updateBenefitValue()).toEqual(
+      [new Drug("Dafalgan", -3, 0)]
+    );
+  });
 });

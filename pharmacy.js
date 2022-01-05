@@ -6,7 +6,8 @@ const drugsConfiguration = {
   'Herbal Tea': { expireVariation: -1, benefitVariation: [ { operator: 'lte', value: 0, benefitVariation: 2 }, { operator: 'gt', value: 0, benefitVariation: 1 }] },
   'Magic Pill': { expireVariation: 0, benefitVariation: [] },
   'Fervex': { expireVariation: -1, benefitVariation: [ { operator: 'lte', value: 0, benefitValue: 0 }, { operator: 'lte', value: 5, benefitVariation: 3 }, { operator: 'lte', value: 10, benefitVariation: 2 }] },
-  'Doliprane': { expireVariation: -1, benefitVariation: [ { operator: 'gt', value: 0, benefitVariation: -1 }, { operator: 'lte', value: 0, benefitVariation: -2 }] }
+  'Doliprane': { expireVariation: -1, benefitVariation: [ { operator: 'gt', value: 0, benefitVariation: -1 }, { operator: 'lte', value: 0, benefitVariation: -2 }] },
+  'Dafalgan': { expireVariation: -1, benefitVariation: [ { operator: 'gt', value: 0, benefitVariation: -2 }, { operator: 'lte', value: 0, benefitVariation: -4 }] }
 };
 // Use for not configured drug like test in the pharmacy.test file
 const defaultDrugConfiguration = { expireVariation: -1, benefitVariation: [ { operator: 'gt', value: 0, benefitVariation: -1 }, { operator: 'lte', value: 0, benefitVariation: -2 }] };
