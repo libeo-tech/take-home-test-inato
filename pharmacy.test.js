@@ -64,4 +64,14 @@ describe("Pharmacy", () => {
       expect(pharmacy.updateBenefitValue()).toMatchSnapshot();
     });
   });
+
+  describe("Dafalgan", () => {
+    let dafalgan = new Drug("Dafalgan", 20, 10);
+    let pharmacy = new Pharmacy([dafalgan]);
+    it("[unit] should degrades in benefit twice", () => {
+      expect(pharmacy.updateBenefitValue()).toStrictEqual([
+        new Drug("Dafalgan", 19, 8)
+      ]);
+    });
+  });
 });
