@@ -1,11 +1,101 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Pharmacy [unit] should decrease the benefit and expiresIn 1`] = `
+exports[`Pharmacy Fervex [unit] should increases in benefit as its expiration date approaches 1`] = `
+Array [
+  Drug {
+    "benefit": 11,
+    "expiresIn": 19,
+    "name": "Fervex",
+  },
+]
+`;
+
+exports[`Pharmacy Fervex [unit] should increases in benefit by 2 when <= 10 days 1`] = `
+Array [
+  Drug {
+    "benefit": 13,
+    "expiresIn": 8,
+    "name": "Fervex",
+  },
+]
+`;
+
+exports[`Pharmacy Fervex [unit] should increases in benefit by 3 when <= 5 days 1`] = `
+Array [
+  Drug {
+    "benefit": 16,
+    "expiresIn": 3,
+    "name": "Fervex",
+  },
+]
+`;
+
+exports[`Pharmacy General drug [unit] should decrease benefit & expiresIn 1`] = `
 Array [
   Drug {
     "benefit": 2,
     "expiresIn": 1,
     "name": "test",
+  },
+]
+`;
+
+exports[`Pharmacy General drug [unit] should degrades benefit twice after expiration 1`] = `
+Array [
+  Drug {
+    "benefit": 0,
+    "expiresIn": -1,
+    "name": "test",
+  },
+]
+`;
+
+exports[`Pharmacy General drug [unit] should not have benefit > 50 1`] = `
+Array [
+  Drug {
+    "benefit": 50,
+    "expiresIn": -19,
+    "name": "Herbal Tea",
+  },
+]
+`;
+
+exports[`Pharmacy General drug [unit] should not have negative benefit 1`] = `
+Array [
+  Drug {
+    "benefit": 0,
+    "expiresIn": -2,
+    "name": "test",
+  },
+]
+`;
+
+exports[`Pharmacy Herbal Tea [unit] should increases in benefit as its expiration date approaches 1`] = `
+Array [
+  Drug {
+    "benefit": 6,
+    "expiresIn": 4,
+    "name": "Herbal Tea",
+  },
+]
+`;
+
+exports[`Pharmacy Herbal Tea [unit] should increases in benefit twice after the expiration date 1`] = `
+Array [
+  Drug {
+    "benefit": 5,
+    "expiresIn": -1,
+    "name": "Herbal Tea",
+  },
+]
+`;
+
+exports[`Pharmacy Magic Pill [unit] should never expires nor decreases in benefit 1`] = `
+Array [
+  Drug {
+    "benefit": 10,
+    "expiresIn": 1,
+    "name": "Magic Pill",
   },
 ]
 `;
