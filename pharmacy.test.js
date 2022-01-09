@@ -1,9 +1,10 @@
 import { Drug, Pharmacy } from "./pharmacy";
 
+const test = new Drug("test", 2, 3);
+const pharmacy = new Pharmacy([test]);
+
 describe("Pharmacy", () => {
-  it("should decrease the benefit and expiresIn", () => {
-    expect(new Pharmacy([new Drug("test", 2, 3)]).updateBenefitValue()).toEqual(
-      [new Drug("test", 1, 2)]
-    );
+  it("[unit] should decrease benefit & expiresIn", () => {
+    expect(pharmacy.updateBenefitValue()).toMatchSnapshot();
   });
 });
