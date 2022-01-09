@@ -5,3 +5,9 @@ parser: babel-eslint
 extends:
   - eslint:recommended
   - plugin:prettier/recommended
+'prettier/prettier': [
+  'error',
+  {
+    'endOfLine': 'auto',
+  }
+]
