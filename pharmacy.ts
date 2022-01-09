@@ -22,10 +22,10 @@ export class Pharmacy {
     this.drugs.forEach(drug => {
       if (drug.name != "Herbal Tea" && drug.name != "Fervex") {
         drug.benefit > 0 && drug.name != "Magic Pill" && (drug.benefit -= 1); // "Magic Pill" never decreases in Benefit
+        drug.name == "Dafalgan" && (drug.benefit -= 1); // "Dafalgan" degrades in Benefit twice as fast as normal drugs
       } else {
-        // "Fervex" & "Herbal Tea"
         if (drug.benefit < 50) {
-          drug.benefit += 1; // Benefit increases as its expiration date approaches
+          drug.benefit += 1; // "Fervex" & "Herbal Tea" - Benefit increases as its expiration date approaches
           if (drug.name == "Fervex") {
             drug.expiresIn < 11 && drug.benefit < 50 && (drug.benefit += 1); // "Fervex" - Benefit increases: by 2 when <= 10 days
             drug.expiresIn < 6 && drug.benefit < 50 && (drug.benefit += 1); // "Fervex" - Benefit increases: by 3 when <= 5 days
