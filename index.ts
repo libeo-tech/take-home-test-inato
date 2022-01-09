@@ -1,6 +1,6 @@
-import { Drug, Pharmacy } from "./pharmacy";
-
 import fs from "fs";
+
+import { Drug, Pharmacy } from "./pharmacy";
 
 const drugs = [
   new Drug("Doliprane", 20, 30),
@@ -8,20 +8,15 @@ const drugs = [
   new Drug("Fervex", 5, 40),
   new Drug("Magic Pill", 15, 40)
 ];
-const trial = new Pharmacy(drugs);
+const pharmacy = new Pharmacy(drugs);
 
-const log: string[] = [];
+const logs: string[] = [];
 
-for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(trial.updateBenefitValue()));
+for (var elapsedDays = 0; elapsedDays < 30; elapsedDays += 1) {
+  logs.push(JSON.stringify(pharmacy.updateBenefitValue()));
 }
 
-/* eslint-disable no-console */
-fs.writeFile("output.txt", log.toString(), err => {
-  if (err) {
-    console.log("error");
-  } else {
-    console.log("success");
-  }
-});
-/* eslint-enable no-console */
+fs.writeFile("output.txt", logs.toString(), err =>
+  // eslint-disable-next-line no-console
+  err ? console.log("error") : console.log("success")
+);
