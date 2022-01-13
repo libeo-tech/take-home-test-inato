@@ -56,11 +56,11 @@ describe('Pharmacy', () => {
   describe('Test Magic Pill', () => {
     it('When expiresIn > 0 ==> expiresIn does not change, benefit does not change', () => {
       testPhar('Magic Pill', 12, 33, 12, 33);
-    })
+    });
 
     it('When expiresIn == 0 ==> expiresIn does not change, benefit does not change', () => {
       testPhar('Magic Pill', 0, 33, 0, 33);
-    })
+    });
   });
 
   describe('Test Fervex', () => {
@@ -68,12 +68,12 @@ describe('Pharmacy', () => {
       describe('If expiresIn >= 11', () => {
         it('If benefit <= 49 ==> expiresIn -= 1, benefit += 1', () => {
           testPhar('Fervex', 15, 25, 14, 26);
-        })
+        });
 
         it('If benefit == 50 ==> expiresIn -= 1, benefit == 50', () => {
           testPhar('Fervex', 15, 50, 14, 50);
           testPhar('Fervex', 11, 50, 10, 50);
-        })
+        });
       });
 
       describe('If expiresIn ∈ [6, 10]', () => {
@@ -81,7 +81,7 @@ describe('Pharmacy', () => {
           testPhar('Fervex', 10, 15, 9, 17);
           testPhar('Fervex', 8, 15, 7, 17);
           testPhar('Fervex', 6, 15, 5, 17);
-        })
+        });
 
         it('If benefit ∈ [49, 50] ==> expiresIn -= 1, benefit == 50', () => {
           testPhar('Fervex', 10, 49, 9, 50);
@@ -91,7 +91,7 @@ describe('Pharmacy', () => {
           testPhar('Fervex', 10, 50, 9, 50);
           testPhar('Fervex', 8, 50, 7, 50);
           testPhar('Fervex', 6, 50, 5, 50);
-        })
+        });
       });
 
       describe('If expiresIn ∈ [1, 5]', () => {
@@ -99,7 +99,7 @@ describe('Pharmacy', () => {
           testPhar('Fervex', 5, 30, 4, 33);
           testPhar('Fervex', 3, 30, 2, 33);
           testPhar('Fervex', 1, 30, 0, 33);
-        })
+        });
 
         it('If benefit ∈ [48, 50] ==> expiresIn -= 1, benefit == 50', () => {
           testPhar('Fervex', 5, 48, 4, 50);
@@ -113,15 +113,39 @@ describe('Pharmacy', () => {
           testPhar('Fervex', 5, 50, 4, 50);
           testPhar('Fervex', 3, 50, 2, 50);
           testPhar('Fervex', 1, 50, 0, 50);
-        })
+        });
       });
-
-      
     });
 
     describe('When drug expired', () => {
       it('benefit should turn to 0', () => {
         testPhar('Fervex', 0, 33, -1, 0);
+      });
+    });
+  });
+
+  describe.skip('Test Dafalgan', () => {
+    describe('When drug not expired', () => {
+      it('If benefit >= 2 ==> expiresIn -= 1, benefit -= 2', () => {
+        testPhar('Dafalgan', 15, 20, 14, 18);
+      })
+
+      it('If benefit ∈ [0, 1] ==> expiresIn -= 1, benefit == 0', () => {
+        testPhar('Dafalgan', 15, 1, 14, 0);
+        testPhar('Dafalgan', 15, 0, 14, 0);
+      })
+    });
+
+    describe('When drug expired', () => {
+      it('If benefit >= 4 ==> expiresIn -= 1, benefit -= 4', () => {
+        testPhar('Dafalgan', 0, 30, -1, 26);
+      })
+
+      it('If benefit ∈ [0, 3] ==> expiresIn -= 1, benefit == 0', () => {
+        testPhar('Dafalgan', 0, 3, -1, 0);
+        testPhar('Dafalgan', 0, 2, -1, 0);
+        testPhar('Dafalgan', 0, 1, -1, 0);
+        testPhar('Dafalgan', 0, 0, -1, 0);
       })
     });
   })
