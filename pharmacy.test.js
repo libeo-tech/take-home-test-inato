@@ -23,7 +23,7 @@ describe('Pharmacy', () => {
         testPhar('Test', 0, 10, -1, 8);
       });
 
-      it('If beneft ∈ [0, 1] ==> expiresIn -= 1, benefit == 0', () => {
+      it('If benefit ∈ [0, 1] ==> expiresIn -= 1, benefit == 0', () => {
         testPhar('Test', 0, 1, -1, 0);
         testPhar('Test', 0, 0, -1, 0);
       });
@@ -124,7 +124,7 @@ describe('Pharmacy', () => {
     });
   });
 
-  describe.skip('Test Dafalgan', () => {
+  describe('Test Dafalgan', () => {
     describe('When drug not expired', () => {
       it('If benefit >= 2 ==> expiresIn -= 1, benefit -= 2', () => {
         testPhar('Dafalgan', 15, 20, 14, 18);
