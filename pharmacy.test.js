@@ -52,4 +52,14 @@ describe('Pharmacy', () => {
       });
     });
   });
+
+  describe('Test Magic Pill', () => {
+    it('When expiresIn > 0 ==> expiresIn does not change, benefit does not change', () => {
+      testPhar('Magic Pill', 12, 33, 12, 33);
+    })
+
+    it('When expiresIn == 0 ==> expiresIn does not change, benefit does not change', () => {
+      testPhar('Magic Pill', 0, 33, 0, 33);
+    })
+  });
 });
