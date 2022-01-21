@@ -17,6 +17,12 @@ export class Pharmacy {
     return newBenefit > 0 ? newBenefit : 0
   }
 
+  _dafalganUpdateBenefitValue(benefit, expiresIn) {
+    let newBenefit = benefit - 2
+    if (expiresIn <= 0) newBenefit -= 2
+    return newBenefit > 0 ? newBenefit : 0
+  }
+
   _herbalTeaUpdateBenefitValue(benefit, expiresIn) {
     let newBenefit = benefit + 1
     if (expiresIn <= 0) newBenefit += 1
@@ -44,6 +50,9 @@ export class Pharmacy {
           this.drugs[i].benefit = this._fervexUpdateBenefitValue(this.drugs[i].benefit, this.drugs[i].expiresIn)
           break
         case 'Magic Pill':
+          break
+        case 'Dafalgan':
+          this.drugs[i].benefit = this._dafalganUpdateBenefitValue(this.drugs[i].benefit, this.drugs[i].expiresIn)
           break
         default:
           this.drugs[i].benefit = this._defaultUpdateBenefitValue(this.drugs[i].benefit, this.drugs[i].expiresIn)
