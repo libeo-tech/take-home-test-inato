@@ -6,30 +6,14 @@ export class Drug {
   }
 }
 
-export class Pharmacy {
-  constructor(drugs = []) {
-    this.drugs = drugs;
-  }
-
-  _defaultUpdateBenefitValue(benefit, expiresIn) {
-    let newBenefit = benefit - 1
-    if (expiresIn <= 0) newBenefit -= 1
-    return newBenefit > 0 ? newBenefit : 0
-  }
-
-  _dafalganUpdateBenefitValue(benefit, expiresIn) {
-    let newBenefit = benefit - 2
-    if (expiresIn <= 0) newBenefit -= 2
-    return newBenefit > 0 ? newBenefit : 0
-  }
-
-  _herbalTeaUpdateBenefitValue(benefit, expiresIn) {
+const drugsEvolution = {
+  'Herbal Tea': (benefit, expiresIn) => {
     let newBenefit = benefit + 1
     if (expiresIn <= 0) newBenefit += 1
 
     return newBenefit > 50 ? 50 : newBenefit
-  }
-  _fervexUpdateBenefitValue(benefit, expiresIn) {
+  },
+  'Fervex': (benefit, expiresIn) => {
     let newBenefit = benefit + 1
 
     if (expiresIn <= 0) return 0
@@ -38,31 +22,36 @@ export class Pharmacy {
     if (expiresIn <= 5) newBenefit += 1
 
     return newBenefit > 50 ? 50 : newBenefit
+  },
+  'Magic Pill': (benefit, expiresIn) => benefit,
+  'Dafalgan': (benefit, expiresIn) => {
+    let newBenefit = benefit - 2
+    if (expiresIn <= 0) newBenefit -= 2
+    return newBenefit > 0 ? newBenefit : 0
   }
+}
 
+const drugsWithSpecialRule = Object.keys(drugsEvolution)
+
+export class Pharmacy {
+  constructor(drugs = []) {
+    this.drugs = drugs;
+  }
   updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      switch (this.drugs[i].name) {
-        case 'Herbal Tea':
-          this.drugs[i].benefit = this._herbalTeaUpdateBenefitValue(this.drugs[i].benefit, this.drugs[i].expiresIn)
-          break
-        case 'Fervex':
-          this.drugs[i].benefit = this._fervexUpdateBenefitValue(this.drugs[i].benefit, this.drugs[i].expiresIn)
-          break
-        case 'Magic Pill':
-          break
-        case 'Dafalgan':
-          this.drugs[i].benefit = this._dafalganUpdateBenefitValue(this.drugs[i].benefit, this.drugs[i].expiresIn)
-          break
-        default:
-          this.drugs[i].benefit = this._defaultUpdateBenefitValue(this.drugs[i].benefit, this.drugs[i].expiresIn)
-          break
+
+    for (const drug of this.drugs) {
+      if (drugsWithSpecialRule.includes(drug.name)) {
+        drug.benefit = drugsEvolution[drug.name](drug.benefit, drug.expiresIn)
+      } else {
+        drug.benefit -= 1
+        if (drug.expiresIn <= 0) drug.benefit -= 1
+        if (drug.benefit < 0) drug.benefit = 0
       }
 
-      if (this.drugs[i].name !== 'Magic Pill')
-        this.drugs[i].expiresIn -= 1
-    }
+      if (drug.name !== 'Magic Pill')
+        drug.expiresIn -= 1
 
+    }
     return this.drugs;
   }
 }
