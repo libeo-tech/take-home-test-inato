@@ -33,6 +33,13 @@ describe("Pharmacy", () => {
       drugsResult = pharma.updateBenefitValue();
       expect(drugsResult[0].benefit).toBe(12);
     });
+
+    it("should increases benefit by one when the expire equal 0", () => {
+      const drugToTest = new HerbalTea(1, 10);
+      const pharma = new Pharmacy([drugToTest]);
+      let drugsResult = pharma.updateBenefitValue();
+      expect(drugsResult[0].benefit).toBe(11);
+    });
   
     it("should increases benefit twice if expiration date had passed ", () => {
       const drugToTest = new HerbalTea(0, 10);

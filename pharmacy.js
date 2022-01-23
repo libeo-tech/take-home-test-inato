@@ -63,7 +63,7 @@ export class HerbalTea extends Drug {
   }
 
   increaseBenefit(factor = 1) {
-    const newBenefit = this.benefit + factor
+    const newBenefit = this.benefit + factor;
     if (newBenefit < this.maxBenefit) {
       this.benefit = newBenefit;
     } else {
@@ -72,7 +72,7 @@ export class HerbalTea extends Drug {
   }
 
   updateBenefitValue() {
-    if (this.expiresIn <= 0) {
+    if (this.expiresIn < 0) {
       this.increaseBenefit(2);
     } else {
       this.increaseBenefit();
