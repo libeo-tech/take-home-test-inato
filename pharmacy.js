@@ -4,12 +4,36 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+  decreaseExpiresIn() {
+    this.expiresIn--;
+  }
+
+  decreaseBenefit() {
+    if (this.benefit > 0) {
+      if (this.expiresIn < 0) {
+        this.benefit = this.benefit - 2;
+      } else {
+        this.benefit--;
+      }
+    }
+  }
 }
 
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+
+  updateBenefitValue() {
+    for (let i = 0; i < this.drugs.length; i++) {
+      this.drugs[i].decreaseExpiresIn();
+      this.drugs[i].decreaseBenefit();
+    }
+    return this.drugs;
+  }
+
+  /*
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       if (
@@ -63,4 +87,5 @@ export class Pharmacy {
 
     return this.drugs;
   }
+  */
 }
