@@ -48,6 +48,18 @@ export class HerbalTea extends Drug {
   }
 }
 
+export class MagicPill extends Drug {
+  constructor(expiresIn, benefit) {
+    super('Magic Pill', expiresIn, benefit);
+  }
+
+  decreaseExpiresIn() {
+  }
+
+  decreaseBenefit() {
+  }
+}
+
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
