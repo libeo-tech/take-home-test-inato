@@ -1,4 +1,4 @@
-import { Drug, Pharmacy } from "./pharmacy";
+import { Drug, HerbalTea, Pharmacy } from "./pharmacy";
 
 describe("Pharmacy", () => {
   it("should decrease the benefit and expiresIn", () => {
@@ -26,21 +26,23 @@ describe("Pharmacy", () => {
 
   describe('Herbal Tea', () => {
     it("should increases benefit the older it gets", () => {
-      const drugToTest = new Drug('Herbal Tea', 20, 10);
+      const drugToTest = new HerbalTea(20, 10);
       const pharma = new Pharmacy([drugToTest]);
-      const drugsResult = pharma.updateBenefitValue();
+      let drugsResult = pharma.updateBenefitValue();
       expect(drugsResult[0].benefit).toBe(11);
+      drugsResult = pharma.updateBenefitValue();
+      expect(drugsResult[0].benefit).toBe(12);
     });
   
     it("should increases benefit twice if expiration date had passed ", () => {
-      const drugToTest = new Drug('Herbal Tea', 0, 10);
+      const drugToTest = new HerbalTea(0, 10);
       const pharma = new Pharmacy([drugToTest]);
       const drugsResult = pharma.updateBenefitValue();
       expect(drugsResult[0].benefit).toBe(12);
     });
 
     it("should increases benefit twice if expiration date had passed but not more than 50", () => {
-      const drugToTest = new Drug('Herbal Tea', 0, 50);
+      const drugToTest = new HerbalTea(0, 50);
       const pharma = new Pharmacy([drugToTest]);
       const drugsResult = pharma.updateBenefitValue();
       expect(drugsResult[0].benefit).toBe(50);

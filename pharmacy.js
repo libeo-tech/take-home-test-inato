@@ -18,6 +18,34 @@ export class Drug {
       }
     }
   }
+
+  updateBenefitValue() {
+     this.decreaseBenefit();
+  }
+}
+
+export class HerbalTea extends Drug {
+  constructor(expiresIn, benefit, maxBenefit = 50) {
+    super('Herbal Tea', expiresIn, benefit);
+    this.maxBenefit = maxBenefit;
+  }
+
+  increaseBenefit(factor = 1) {
+    const newBenefit = this.benefit + factor
+    if (newBenefit < this.maxBenefit) {
+      this.benefit = newBenefit;
+    } else {
+      this.benefit =this.maxBenefit;
+    }
+  }
+
+  updateBenefitValue() {
+    if (this.expiresIn <= 0) {
+      this.increaseBenefit(2);
+    } else {
+      this.increaseBenefit();
+    }
+  }
 }
 
 export class Pharmacy {
@@ -28,7 +56,7 @@ export class Pharmacy {
   updateBenefitValue() {
     for (let i = 0; i < this.drugs.length; i++) {
       this.drugs[i].decreaseExpiresIn();
-      this.drugs[i].decreaseBenefit();
+      this.drugs[i].updateBenefitValue();
     }
     return this.drugs;
   }
