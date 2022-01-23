@@ -7,4 +7,4 @@ RUN yarn install
 
 COPY . /usr/src/
 
-CMD ["yarn", "start"]
+# CMD ["yarn", "start"]
