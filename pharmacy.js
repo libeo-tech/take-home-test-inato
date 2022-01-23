@@ -19,8 +19,40 @@ export class Drug {
     }
   }
 
+  increaseBenefit(factor = 1) {
+    this.benefit = this.benefit + factor
+  }
+
   updateBenefitValue() {
      this.decreaseBenefit();
+  }
+}
+
+export class Fervex extends Drug {
+  constructor(expiresIn, benefit) {
+    super('Fervex', expiresIn, benefit);
+  }
+
+  resetBenefit() {
+    this.benefit = 0
+  }
+
+  // I used return here to quick exit
+  updateBenefitValue() {
+
+    if (this.expiresIn <= 0) {
+      return this.resetBenefit();
+    }
+    
+    if (this.expiresIn <= 5) {
+      return this.increaseBenefit(3)
+    }
+    
+    if (this.expiresIn >= 6 && this.expiresIn <= 10) {
+      return this.increaseBenefit(2)
+    }
+    
+    this.increaseBenefit()
   }
 }
 

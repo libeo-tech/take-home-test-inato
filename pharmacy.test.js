@@ -1,4 +1,4 @@
-import { Drug, HerbalTea, MagicPill, Pharmacy } from "./pharmacy";
+import { Drug, HerbalTea, MagicPill, Fervex, Pharmacy } from "./pharmacy";
 
 describe("Pharmacy", () => {
   it("should decrease the benefit and expiresIn", () => {
@@ -58,19 +58,18 @@ describe("Pharmacy", () => {
     });
   });
 
-  /*
   describe('Fervex', () => {
     it("should increases benefit the older it gets", () => {
-      const drugToTest = new Drug('Fervex', 20, 10);
+      const drugToTest = new Fervex(20, 10);
       const pharma = new Pharmacy([drugToTest]);
       const drugsResult = pharma.updateBenefitValue();
       expect(drugsResult[0].benefit).toBe(11);
     });
   
-    it("should increases benefit twice if expiration date had  from 10 days to 6 days left ", () => {
+    it("should increases benefit twice if expiration date had from 10 days to 6 days left ", () => {
       const drugsToTest = []
-      for (let index = 6; index <= 10; index++) {
-        const drugToTest = new Drug('Fervex', index, 10);
+      for (let index = 7; index <= 11; index++) {
+        const drugToTest = new Fervex(index, 10);
         drugsToTest.push(drugToTest);
       }
       const pharma = new Pharmacy(drugsToTest);
@@ -83,8 +82,8 @@ describe("Pharmacy", () => {
 
     it("should increases benefit by 3 if expiration date had 5 days or less left ", () => {
       const drugsToTest = []
-      for (let index = 1; index <= 5; index++) {
-        const drugToTest = new Drug('Fervex', index, 10);
+      for (let index = 2; index <= 6; index++) {
+        const drugToTest = new Fervex(index, 10);
         drugsToTest.push(drugToTest);
       }
       const pharma = new Pharmacy(drugsToTest);
@@ -96,12 +95,10 @@ describe("Pharmacy", () => {
     });
 
     it("should drop benefit to 0 if expiration date had passed", () => {
-      const drugToTest = new Drug('Fervex', 0, 50);
+      const drugToTest = new Fervex(1, 50);
       const pharma = new Pharmacy([drugToTest]);
       const drugsResult = pharma.updateBenefitValue();
       expect(drugsResult[0].benefit).toBe(0);
     });
-
   });
-  */
 });
