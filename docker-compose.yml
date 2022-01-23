@@ -2,6 +2,16 @@ version: "3"
 services:
   inato:
     build: .
+    command: yarn start
+    volumes:
+      - ".:/usr/src"
+      - /usr/src/node_modules
+    depends_on:
+      inato-test:
+        condition: service_healthy
+  inato-test:
+    build: .
+    command: yarn test
     volumes:
       - ".:/usr/src"
       - /usr/src/node_modules

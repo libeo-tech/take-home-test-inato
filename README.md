@@ -46,5 +46,11 @@ yarn start
 ```
 
 ```sh
-docker-compose up
+docker-compose up inato
+```
+
+To run the test use:
+
+```sh
+docker-compose up inato-test
 ```
