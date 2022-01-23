@@ -51,7 +51,7 @@ export class Fervex extends Drug {
     if (this.expiresIn >= 6 && this.expiresIn <= 10) {
       return this.increaseBenefit(2)
     }
-    
+
     this.increaseBenefit()
   }
 }
@@ -92,6 +92,17 @@ export class MagicPill extends Drug {
   }
 }
 
+export class Dafalgan extends Drug {
+  constructor(expiresIn, benefit) {
+    super('Dafalgan', expiresIn, benefit);
+  }
+
+  decreaseBenefit() {
+    if (this.benefit > 0) {
+      this.benefit = this.benefit - 2;
+    }
+  }
+}
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;

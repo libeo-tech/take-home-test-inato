@@ -1,4 +1,4 @@
-import { Drug, HerbalTea, MagicPill, Fervex, Pharmacy } from "./pharmacy";
+import { Drug, HerbalTea, MagicPill, Fervex, Dafalgan, Pharmacy } from "./pharmacy";
 
 describe("Pharmacy", () => {
   it("should decrease the benefit and expiresIn", () => {
@@ -24,7 +24,7 @@ describe("Pharmacy", () => {
     expect(drugsResult[0].benefit).toBeGreaterThanOrEqual(0);
   });
 
-  describe('Herbal Tea', () => {
+  describe("Herbal Tea", () => {
     it("should increases benefit the older it gets", () => {
       const drugToTest = new HerbalTea(20, 10);
       const pharma = new Pharmacy([drugToTest]);
@@ -49,7 +49,7 @@ describe("Pharmacy", () => {
     });
   });
 
-  describe('Magic Pill', () => {
+  describe("Magic Pill", () => {
     it('should never expire or decrease', () => {
       const drugToTest = new MagicPill(5, 20);
       const pharma = new Pharmacy([drugToTest]);
@@ -58,7 +58,7 @@ describe("Pharmacy", () => {
     });
   });
 
-  describe('Fervex', () => {
+  describe("Fervex", () => {
     it("should increases benefit the older it gets", () => {
       const drugToTest = new Fervex(20, 10);
       const pharma = new Pharmacy([drugToTest]);
@@ -99,6 +99,16 @@ describe("Pharmacy", () => {
       const pharma = new Pharmacy([drugToTest]);
       const drugsResult = pharma.updateBenefitValue();
       expect(drugsResult[0].benefit).toBe(0);
+    });
+  });
+
+  describe("Dafalgan", () => {
+    it("should decrese the benefit twice the older it gets", () => {
+      const drugToTest = new Dafalgan(12, 20);
+      const drugExpected = new Dafalgan(11, 18);
+      const pharma = new Pharmacy([drugToTest]);
+      const drugsResult = pharma.updateBenefitValue();
+      expect(drugsResult).toEqual([drugExpected]);
     });
   });
 });
