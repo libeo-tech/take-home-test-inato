@@ -102,7 +102,7 @@ describe("Pharmacy", () => {
     });
 
     it("should drop benefit to 0 if expiration date had passed", () => {
-      const drugToTest = new Fervex(1, 50);
+      const drugToTest = new Fervex(0, 50);
       const pharma = new Pharmacy([drugToTest]);
       const drugsResult = pharma.updateBenefitValue();
       expect(drugsResult[0].benefit).toBe(0);

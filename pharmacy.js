@@ -40,7 +40,7 @@ export class Fervex extends Drug {
   // I used return here to quick exit
   updateBenefitValue() {
 
-    if (this.expiresIn <= 0) {
+    if (this.expiresIn < 0) {
       return this.resetBenefit();
     }
     
