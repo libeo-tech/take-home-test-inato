@@ -1,0 +1,57 @@
+{
+  "drugs": [
+    {
+      "name": "Doliprane",
+      "expiresIn": 20,
+      "benefit": 30,
+      "benefitEffect": "decrease",
+      "benefitMultiplier": 1,
+      "hasExpirationDate": true,
+      "hasBenefitAfterExpiration" : true,
+      "benefitMultipliersByRemainingDay": []
+    },
+    {
+      "name": "Herbal Tea",
+      "expiresIn": 10,
+      "benefit": 5,
+      "benefitEffect": "increase",
+      "benefitMultiplier": 1,
+      "hasExpirationDate": true,
+      "hasBenefitAfterExpiration" : true,
+      "benefitMultipliersByRemainingDay": []
+    },
+    {
+      "name": "Fervex",
+      "expiresIn": 5,
+      "benefit": 40,
+      "benefitEffect": "increase",
+      "benefitMultiplier": 1,
+      "hasExpirationDate": true,
+      "hasBenefitAfterExpiration" : false,
+      "benefitMultipliersByRemainingDay": [
+        { "expiresIn": 10, "benefitMultiplier": 2 },
+        { "expiresIn": 5, "benefitMultiplier": 3 }
+      ]
+    },
+    {
+      "name": "Magic Pill",
+      "expiresIn": 15,
+      "benefit": 40,
+      "benefitEffect": null,
+      "benefitMultiplier": 1,
+      "hasExpirationDate": false,
+      "hasBenefitAfterExpiration" : true,
+      "benefitMultipliersByRemainingDay": []
+    },
+    {
+      "name": "Dafalgan",
+      "expiresIn": 20,
+      "benefit": 30,
+      "benefitEffect": "decrease",
+      "benefitMultiplier": 2,
+      "hasExpirationDate": true,
+      "hasBenefitAfterExpiration" : true,
+      "benefitMultipliersByRemainingDay": []
+    }
+  ]
+}
