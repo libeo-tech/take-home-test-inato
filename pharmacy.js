@@ -1,8 +1,22 @@
 export class Drug {
-  constructor(name, expiresIn, benefit) {
+  constructor(
+    name,
+    expiresIn,
+    benefit,
+    benefitEffect = "decrease",
+    benefitMultiplier = 1,
+    hasExpirationDate = true,
+    hasBenefitAfterExpiration = true,
+    benefitMultipliersByRemainingDay = []
+  ) {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
+    this.benefitEffect = benefitEffect;
+    this.benefitMultiplier = benefitMultiplier;
+    this.hasExpirationDate = hasExpirationDate;
+    this.hasBenefitAfterExpiration = hasBenefitAfterExpiration;
+    this.benefitMultipliersByRemainingDay = benefitMultipliersByRemainingDay;
   }
 }
 
@@ -10,56 +24,58 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+
   updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
+    this.drugs.forEach(drug => {
+      if (0 < drug.benefit && drug.benefit <= 50) {
+        let benefitMultiplier = drug.benefitMultiplier;
+        let hasBenefitEnded = false;
+
+        if (drug.expiresIn <= 0) {
+          benefitMultiplier = 2;
+
+          if (!drug.hasBenefitAfterExpiration) {
+            drug.benefit = 0;
+            hasBenefitEnded = true;
           }
         }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name == "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
+
+        if (
+          drug.benefitMultipliersByRemainingDay.length > 0 &&
+          !hasBenefitEnded
+        ) {
+          drug.benefitMultipliersByRemainingDay
+            .sort((a, b) => {
+              return b.expiresIn - a.expiresIn;
+            })
+            .map(element => {
+              if (drug.expiresIn <= element.expiresIn) {
+                benefitMultiplier = element.benefitMultiplier;
               }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
+            });
         }
-      }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) {
-        if (this.drugs[i].name != "Herbal Tea") {
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-            }
+
+        if (drug.benefitEffect !== null && !hasBenefitEnded) {
+          let benefitValue = drug.benefit;
+
+          benefitValue =
+            benefitValue +
+            (drug.benefitEffect === "decrease" ? -1 : 1) * benefitMultiplier;
+
+          if (benefitValue < 0) {
+            drug.benefit = 0;
+          } else if (benefitValue > 50) {
+            drug.benefit = 50;
           } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
+            drug.benefit = benefitValue;
           }
         }
       }
-    }
+
+      if (drug.hasExpirationDate) {
+        drug.expiresIn--;
+      }
+    });
 
     return this.drugs;
   }
