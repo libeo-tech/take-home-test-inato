@@ -1,13 +1,23 @@
 import { Drug, Pharmacy } from "./pharmacy";
+import * as store from "./drugs.json";
 
 import fs from "fs";
 
-const drugs = [
-  new Drug("Doliprane", 20, 30),
-  new Drug("Herbal Tea", 10, 5),
-  new Drug("Fervex", 5, 40),
-  new Drug("Magic Pill", 15, 40)
-];
+const drugs = [];
+store.drugs.map(drug => {
+  drugs.push(
+    new Drug(
+      drug.name,
+      drug.expiresIn,
+      drug.benefit,
+      drug.benefitEffect,
+      drug.benefitMultiplier,
+      drug.hasExpirationDate,
+      drug.hasBenefitAfterExpiration,
+      drug.benefitMultipliersByRemainingDay
+    )
+  );
+});
 const trial = new Pharmacy(drugs);
 
 const log = [];
