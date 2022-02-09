@@ -1,4 +1,4 @@
-import { Drug, Pharmacy } from "./pharmacy";
+import { Drug, Pharmacy } from "./src/pharmacy";
 
 import fs from "fs";
 
@@ -17,7 +17,7 @@ for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
 }
 
 /* eslint-disable no-console */
-fs.writeFile("output.txt", log, err => {
+fs.writeFile("dir/output.txt", log, err => {
   if (err) {
     console.log("error");
   } else {
