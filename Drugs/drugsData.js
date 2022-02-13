@@ -23,6 +23,7 @@ const drugsData = [
   {
     name: "Fervex",
     base: 1,
+    hasToDrop: true,
     values: [
       {
         limit: 10,
@@ -33,6 +34,11 @@ const drugsData = [
         value: 3
       }
     ]
+  },
+  {
+    name: "Dafalgan",
+    base: -1,
+    values: [{ limit: 0, value: -2 }]
   }
 ];
 
