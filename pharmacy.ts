@@ -1,3 +1,9 @@
+type Drug = {
+  name: string;
+  expiresIn: number;
+  benefit: number;
+};
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
@@ -7,11 +13,14 @@ export class Drug {
 }
 
 export class Pharmacy {
-  constructor(drugs = []) {
+  private drugs: Drug[];
+
+  constructor(drugs: Drug[] = []) {
     this.drugs = drugs;
   }
+
   updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
+    for (let i = 0; i < this.drugs.length; i++) {
       if (
         this.drugs[i].name != "Herbal Tea" &&
         this.drugs[i].name != "Fervex"

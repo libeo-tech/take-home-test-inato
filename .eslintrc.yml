@@ -1,7 +1,14 @@
 env:
   jest: true
+  es2021: true,
   node: true
-parser: babel-eslint
+parser: "@typescript-eslint/parser"
 extends:
   - eslint:recommended
   - plugin:prettier/recommended
+  - plugin:@typescript-eslint/recommended
+parserOptions:
+  ecmaVersion: 13
+  sourceType: module
+plugins:
+  - '@typescript-eslint'
