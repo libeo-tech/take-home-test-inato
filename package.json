@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "test": "jest",
-    "start": "tsc && node dist/src/index.js"
+    "start": "tsc && node dist/index.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.3",
