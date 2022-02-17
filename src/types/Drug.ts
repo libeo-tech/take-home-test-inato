@@ -1,7 +1,12 @@
-const DRUG_MAX_BENEFIT = 50;
+import { HerbalTea } from "./Drugs/HerbalTea";
+import { MagicPill } from "./Drugs/MagicPill";
+import { Fervex } from "./Drugs/Fervex";
+import { Dafalgan } from "./Drugs/Dafalgan";
+import { CommonDrug } from "./Drugs/CommonDrug";
+import { DrugInstance } from "./Drugs/DrugInstance";
 
 export class Drug {
-  private name: string;
+  private readonly name: string;
   private expiresIn: number;
   private benefit: number;
 
@@ -11,65 +16,39 @@ export class Drug {
     this.benefit = benefit;
   }
 
-  private handleMaxBenefit() {
-    return this.benefit > DRUG_MAX_BENEFIT ? DRUG_MAX_BENEFIT : this.benefit;
+  getName() {
+    return this.name;
   }
 
-  private handleDegradationDafalgan() {
-    return this.benefit - 2;
+  getExpiresIn() {
+    return this.expiresIn;
   }
 
-  private handleDegradationFervex() {
-    if (this.expiresIn <= 0) {
-      return 0;
-    } else if (this.expiresIn <= 5) {
-      return this.benefit + 3;
-    } else if (this.expiresIn <= 10) {
-      return this.benefit + 2;
-    }
-    return this.benefit + 1;
-  }
-
-  private handleDegradationMagicPill() {
+  getBenefit() {
     return this.benefit;
   }
 
-  private handleDegradationHerbalTea() {
-    if (this.expiresIn > 0) {
-      return this.benefit + 1;
-    }
-    return this.benefit + 2;
-  }
-
-  private handleDegradationCommonDrugs() {
-    let benefit;
-
-    if (this.expiresIn > 0) {
-      benefit = this.benefit - 1;
-    } else {
-      benefit = this.benefit - 2;
-    }
-
-    return benefit > 0 ? benefit : 0;
-  }
-
-  updateBenefitAndExpiration() {
+  private drugFactory(drug: Drug): DrugInstance {
     if (this.name === "Herbal Tea") {
-      this.benefit = this.handleDegradationHerbalTea();
-      this.expiresIn--;
+      return new HerbalTea(drug);
     } else if (this.name === "Magic Pill") {
-      this.benefit = this.handleDegradationMagicPill();
+      return new MagicPill(drug);
     } else if (this.name === "Fervex") {
-      this.benefit = this.handleDegradationFervex();
-      this.expiresIn--;
+      return new Fervex(drug);
     } else if (this.name === "Dafalgan") {
-      this.benefit = this.handleDegradationDafalgan();
-      this.expiresIn--;
+      return new Dafalgan(drug);
     } else {
-      this.benefit = this.handleDegradationCommonDrugs();
-      this.expiresIn--;
+      return new CommonDrug(drug);
     }
+  }
 
-    this.benefit = this.handleMaxBenefit();
+  updateBenefitAndExpiration(): void {
+    const drugInstance = this.drugFactory(this);
+    drugInstance.updateDegradation();
+    drugInstance.updateExpiration();
+    drugInstance.handleMaxBenefit();
+
+    this.expiresIn = drugInstance.getExpiresIn();
+    this.benefit = drugInstance.getBenefit();
   }
 }
