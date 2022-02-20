@@ -99,6 +99,32 @@ describe("Pharmacy", () => {
     });
   });
 
+  describe("Tests Dafalgan", function() {
+    it("cas commun, perd 1 en expireIn, perd 2 en benefit", () => {
+      const drugs = new Pharmacy([new Drug('Dafalgan', 1, 3)]).updateBenefitValue();
+      assert.strictEqual(drugs[0].expiresIn, 0);
+      assert.strictEqual(drugs[0].benefit, 1);
+    });
+  
+    it("expireIn < 0, perd 1 en expireIn, perd 4 en benefit", () => {
+      const drugs = new Pharmacy([new Drug('Dafalgan', -1, 10)]).updateBenefitValue();
+      assert.strictEqual(drugs[0].expiresIn, -2);
+      assert.strictEqual(drugs[0].benefit, 6);
+    });
+
+    it("expireIn = 0, perd 1 en expireIn, perd 4 en benefit", () => {
+      const drugs = new Pharmacy([new Drug('Dafalgan', 0, 10)]).updateBenefitValue();
+      assert.strictEqual(drugs[0].expiresIn, -1);
+      assert.strictEqual(drugs[0].benefit, 6);
+    });
+
+    it("expireIn < 0 et benefit = 3, perd 1 en expireIn, benefit passe à 0 (minimum benefit = 0)", () => {
+      const drugs = new Pharmacy([new Drug('Dafalgan', -1, 1)]).updateBenefitValue();
+      assert.strictEqual(drugs[0].expiresIn, -2);
+      assert.strictEqual(drugs[0].benefit, 0);
+    });
+  });
+
   describe("Tests sur un medoc lambda", function() {
     it("cas commun, perd 1 en expireIn, perd 1 en benefit", () => {
       const drugs = new Pharmacy([new Drug('Doliprane', 1, 3)]).updateBenefitValue();
@@ -122,6 +148,27 @@ describe("Pharmacy", () => {
       const drugs = new Pharmacy([new Drug('Doliprane', -1, 1)]).updateBenefitValue();
       assert.strictEqual(drugs[0].expiresIn, -2);
       assert.strictEqual(drugs[0].benefit, 0);
+    });
+  });
+
+  describe("Tests globaux", function() {
+    it("drug.benefit > 50", () => {
+      try {
+        const drugs = new Pharmacy([new Drug('Test', 1, 51)]).updateBenefitValue();
+        assert.fail('Should not pass here');
+      } catch (error) {
+        assert.strictEqual(error.message, `Benefit value must be between 1 and 50 includes`);
+      }
+    });
+
+    it("drug.benefit < 0", () => {
+      try {
+        const drugs = new Pharmacy([new Drug('Test', 1, -1)]).updateBenefitValue();
+        assert.strictEqual(drugs[0].expiresIn, 0);
+        assert.strictEqual(drugs[0].benefit, 2);
+      } catch (error) {
+        assert.strictEqual(error.message, `Benefit value must be between 1 and 50 includes`);
+      }
     });
   });
 
