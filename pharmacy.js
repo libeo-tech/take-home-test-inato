@@ -14,6 +14,8 @@ export class Pharmacy {
     this.drugs = drugs;
   }
 
+  // ----------- METHODS FOR UPDATING INDIVIDUAL DRUGS ------------ //
+
   updateHerbalTea(i) {
 
     if (this.drugs[i].name != "Herbal Tea") throw new Error('Not the correct Drug update!');
@@ -58,6 +60,8 @@ export class Pharmacy {
     }
   }
 
+  // ----------- METHOD FOR UPDATING REGULAR DRUGS ------------ //
+
   updateRegularDrug(i) {
 
     this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
@@ -72,6 +76,8 @@ export class Pharmacy {
       this.drugs[i].benefit = 0;
     }
   }
+
+  // ----------- METHOD FOR UPDATING THE FARMACY´S DRUGS ------------ //
 
   updateBenefitValue() {
 
