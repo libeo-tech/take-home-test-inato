@@ -61,7 +61,7 @@ describe("Pharmacy", () => {
     );
 
     expect(new Pharmacy([new Drug("Dafalgan", -2, 5)]).updateBenefitValue()).toEqual(
-      [new Drug("test", -3, 1)]
+      [new Drug("Dafalgan", -3, 1)]
     );
   });
 });
