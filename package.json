@@ -7,7 +7,7 @@
   "private": true,
   "engines": {
     "yarn": ">=1.7.0",
-    "node": "=16.x"
+    "node": ">=16.x"
   },
   "scripts": {
     "lint": "eslint .",
@@ -17,7 +17,7 @@
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
-    "@babel/node": "^7.0.0",
+    "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.1.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
