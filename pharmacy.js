@@ -60,6 +60,21 @@ export class Pharmacy {
     }
   }
 
+  updateDafalgan(i) {
+
+    this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
+
+    this.drugs[i].benefit -= 2;
+
+    if(this.drugs[i].expiresIn < 0) {
+      this.drugs[i].benefit -= 2;
+    }
+
+    if(this.drugs[i].benefit < 0) {
+      this.drugs[i].benefit = 0;
+    }
+  }
+
   // ----------- METHOD FOR UPDATING REGULAR DRUGS ------------ //
 
   updateRegularDrug(i) {
@@ -95,6 +110,10 @@ export class Pharmacy {
         case "Magic Pill":
           break;
 
+        case "Dafalgan":
+          this.updateDafalgan(i);
+          break;
+        
         default:
           this.updateRegularDrug(i);
 
