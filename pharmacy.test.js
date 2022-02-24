@@ -4,6 +4,28 @@ describe("Pharmacy", () => {
   let pharmacy;
   let drug;
 
+  it.each(["Doliprane", "Herbal Tea", "Magic Pill", "Fervex", "Dafalgan"])(
+    "should not decrease benefit under 0",
+    (name) => {
+      drug = new Drug(name, 2, 0);
+      pharmacy = new Pharmacy([drug]);
+      let result = pharmacy.updateBenefitValue()[0];
+
+      expect(result.benefit).toBeGreaterThanOrEqual(0);
+    }
+  );
+
+  it.each(["Doliprane", "Herbal Tea", "Magic Pill", "Fervex", "Dafalgan"])(
+    "should not increase benefit more than 50",
+    (name) => {
+      drug = new Drug(name, 2, 50);
+      pharmacy = new Pharmacy([drug]);
+      let result = pharmacy.updateBenefitValue()[0];
+
+      expect(result.benefit).toBeLessThanOrEqual(50);
+    }
+  );
+
   describe("for all generic drugs", () => {
     beforeEach(() => {
       drug = new Drug("Doliprane", 2, 3);
