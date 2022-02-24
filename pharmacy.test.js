@@ -70,13 +70,13 @@ describe("Pharmacy", () => {
 
     describe("when expiration date is negative", () => {
       beforeEach(() => {
-        drug = new Drug("Herbal Tea", -1, 0);
+        drug = new Drug("Herbal Tea", 0, 0);
         pharmacy = new Pharmacy([drug]);
       });
 
       it("should increase benefit twice as fast", () => {
         expect(pharmacy.updateBenefitValue()).toEqual([
-          new Drug(drug.name, -2, 2),
+          new Drug(drug.name, -1, 2),
         ]);
       });
     });
