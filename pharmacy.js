@@ -1,11 +1,3 @@
-export class Drug {
-  constructor(name, expiresIn, benefit) {
-    this.name = name;
-    this.expiresIn = expiresIn;
-    this.benefit = benefit;
-  }
-}
-
 /**
  * Object that maps a drug's name to the corresponding function for updating his attributes.
  * The function takes as a parameter the drug instance of the drugs array (from the Pharmacy class).
@@ -38,6 +30,33 @@ const perDrugUpdateBenefitValue = {
   },
 };
 
+export class Drug {
+  constructor(name, expiresIn, benefit) {
+    this.name = name;
+    this.expiresIn = expiresIn;
+    this.benefit = benefit;
+  }
+
+  updateBenefitValue() {
+    if (Object.keys(perDrugUpdateBenefitValue).includes(this.name)) {
+      perDrugUpdateBenefitValue[this.name](this);
+    } else {
+      if (this.expiresIn <= 0) {
+        this.benefit -= 2;
+      } else {
+        this.benefit -= 1;
+      }
+      this.expiresIn -= 1;
+    }
+    if (this.benefit <= 0) {
+      this.benefit = 0;
+    }
+    if (this.benefit >= 50) {
+      this.benefit = 50;
+    }
+  }
+}
+
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
@@ -49,27 +68,9 @@ export class Pharmacy {
    * other drugs.
    */
   updateBenefitValue() {
-    for (let i = 0; i < this.drugs.length; i++) {
-      const drug = this.drugs[i];
-
-      if (Object.keys(perDrugUpdateBenefitValue).includes(drug.name)) {
-        perDrugUpdateBenefitValue[drug.name](drug);
-      } else {
-        if (drug.expiresIn <= 0) {
-          drug.benefit -= 2;
-        } else {
-          drug.benefit -= 1;
-        }
-        drug.expiresIn -= 1;
-      }
-      if (drug.benefit <= 0) {
-        drug.benefit = 0;
-      }
-      if (drug.benefit >= 50) {
-        drug.benefit = 50;
-      }
-    }
-
-    return this.drugs;
+    return this.drugs.map((drug) => {
+      drug.updateBenefitValue();
+      return drug;
+    });
   }
 }
