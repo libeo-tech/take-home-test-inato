@@ -5,7 +5,7 @@ describe("Pharmacy", () => {
   let drug;
 
   it.each(["Doliprane", "Herbal Tea", "Magic Pill", "Fervex", "Dafalgan"])(
-    "should not decrease benefit under 0",
+    "[%s] should not decrease benefit under 0",
     (name) => {
       drug = new Drug(name, 2, 0);
       pharmacy = new Pharmacy([drug]);
@@ -16,7 +16,7 @@ describe("Pharmacy", () => {
   );
 
   it.each(["Doliprane", "Herbal Tea", "Magic Pill", "Fervex", "Dafalgan"])(
-    "should not increase benefit more than 50",
+    "[%s] should not increase benefit more than 50",
     (name) => {
       drug = new Drug(name, 2, 50);
       pharmacy = new Pharmacy([drug]);
