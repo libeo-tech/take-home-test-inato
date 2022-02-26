@@ -28,11 +28,17 @@ export class Drug {
   }
 
   /**
-   * Decrease the drug's benefit by 1 and keep it over MIN_BENEFIT_VALUE
+   * Decrease the drug's benefit by a factor (DEFAULT 1) and keep it over MIN_BENEFIT_VALUE
+   *
+   * @param {Number} factor - The factor de decrease the value from DEFAULT 1
    */
-  decreaseBenefit() {
-    if (this.benefit > Drug.MIN_BENEFIT_VALUE) {
-      this.benefit--;
+  decreaseBenefit(factor = 1) {
+    if (this.benefit - factor >= Drug.MIN_BENEFIT_VALUE) {
+      this.benefit -= factor;
+    } else if (factor > 1) {
+      while (this.benefit > Drug.MIN_BENEFIT_VALUE) {
+        this.benefit--;
+      }
     }
   }
 }
@@ -57,10 +63,11 @@ export class Pharmacy {
    */
   updateBenefitValue() {
     for (let drug of this.drugs) {
+      // All drugs decrement the expiring date by 1 day
+      drug.expiresIn--;
+
       switch (drug.name) {
         case "Herbal Tea":
-          drug.expiresIn--;
-
           // "Herbal Tea" actually increases in Benefit the older it gets
           drug.increaseBenefit();
 
@@ -72,8 +79,6 @@ export class Pharmacy {
           break;
 
         case "Fervex":
-          drug.expiresIn--;
-
           // "Fervex", like Herbal Tea, increases in Benefit as its expiration date approaches
           drug.increaseBenefit();
 
@@ -96,11 +101,21 @@ export class Pharmacy {
 
         case "Magic Pill":
           // "Magic Pill" never expires nor decreases in Benefit
+          drug.expiresIn++;
+          break;
+
+        case "Dafalgan":
+          // "Dafalgan" degrades in Benefit twice as fast as normal drugs
+          drug.decreaseBenefit(2);
+
+          if (drug.expiresIn < 0) {
+            drug.decreaseBenefit(2);
+          }
+
           break;
 
         default:
           drug.decreaseBenefit();
-          drug.expiresIn--;
 
           // Once the expiration date has passed, Benefit degrades twice as fast
           if (drug.expiresIn < 0) {
