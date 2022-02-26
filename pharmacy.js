@@ -50,10 +50,17 @@ export class Pharmacy {
     this.drugs = drugs;
   }
 
+  /**
+   * Update the Pharmacy's drugs benefits / expire date and return the updated drugs
+   *
+   * @returns {Drug[]} The updated drugs
+   */
   updateBenefitValue() {
     for (let drug of this.drugs) {
       switch (drug.name) {
         case "Herbal Tea":
+          drug.expiresIn--;
+
           // "Herbal Tea" actually increases in Benefit the older it gets
           drug.increaseBenefit();
 
@@ -65,6 +72,8 @@ export class Pharmacy {
           break;
 
         case "Fervex":
+          drug.expiresIn--;
+
           // "Fervex", like Herbal Tea, increases in Benefit as its expiration date approaches
           drug.increaseBenefit();
 
@@ -87,7 +96,6 @@ export class Pharmacy {
 
         case "Magic Pill":
           // "Magic Pill" never expires nor decreases in Benefit
-          drug.increaseBenefit();
           break;
 
         default:
