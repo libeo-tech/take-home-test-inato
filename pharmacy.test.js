@@ -11,8 +11,8 @@ describe("Pharmacy", () => {
   });
 });
 
-describe("Pharmacy", () => {
-  it("should output.txt be equals to original output-original.txt", () => {
+describe("Pharmacy output.txt", () => {
+  it("should be equals to original output-original.txt", () => {
     const original = fs.readFileSync("./output-original.txt");
 
     // Make sure the command is successful
