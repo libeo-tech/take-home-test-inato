@@ -8,7 +8,7 @@ export class Drug {
   /**
    * Drug's constructor setting the drug's name, remaining expire days and benefit
    *
-   * @param {string} name - The drud's name
+   * @param {string} name - The drug's name
    * @param {number} expiresIn - The drug's expiration date in number of days
    * @param {number} benefit - The current benefit value of the drug
    */
@@ -30,7 +30,7 @@ export class Drug {
   /**
    * Decrease the drug's benefit by a factor (DEFAULT 1) and keep it over MIN_BENEFIT_VALUE
    *
-   * @param {Number} factor - The factor de decrease the value from DEFAULT 1
+   * @param {Number} factor - The factor to decrease the value from DEFAULT 1
    */
   decreaseBenefit(factor = 1) {
     if (this.benefit - factor >= Drug.MIN_BENEFIT_VALUE) {
@@ -57,7 +57,7 @@ export class Pharmacy {
   }
 
   /**
-   * Update the Pharmacy's drugs benefits / expire date and return the updated drugs
+   * Update the Pharmacy's drugs benefits / expiration date and return the updated drugs
    *
    * @returns {Drug[]} The updated drugs
    */
