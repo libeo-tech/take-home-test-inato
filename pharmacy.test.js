@@ -16,8 +16,11 @@ describe("Pharmacy output.txt", () => {
     const original = fs.readFileSync("./output-original.txt");
 
     // Make sure the command is successful
-    expect(execSync("docker-compose up").equals(Buffer.from("success")));
+    // @todo toContain on output is a weak check, maybe check command return code instead
+    expect(execSync("docker-compose up").toString()).toContain("success");
 
-    expect(fs.readFileSync("./output.txt").equals(original));
+    expect(fs.readFileSync("./output.txt").toString()).toEqual(
+      original.toString()
+    );
   });
 });
