@@ -13,11 +13,10 @@ describe("Pharmacy", () => {
     expect(result).toEqual([new Drug("test", 1, 0)]);
   });
 
-  // Disabled but make sure this case cannot appear
-  xit("shoud not result to a benefit > 50", () => {
+  it("shoud not result to a benefit > 50", () => {
     const result = new Pharmacy([new Drug("test", 2, 55)]).updateBenefitValue();
 
-    expect(result).toEqual([new Drug("test", 2, 50)]);
+    expect(result).toEqual([new Drug("test", 1, 50)]);
   });
 
   it("should decrease by 2 when expiration date has passed", () => {
