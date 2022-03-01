@@ -26,10 +26,20 @@ export class Pharmacy {
     });
   }
 
+  /**
+   *
+   * @param {Drug} drug
+   * @returns {int} The new expiresIn value
+   */
   computeExpirationDate(drug) {
     return drug.name === "Magic Pill" ? drug.expiresIn : drug.expiresIn - 1;
   }
 
+  /**
+   *
+   * @param {Drug} drug
+   * @returns {int} The value to impact on drug's benefit
+   */
   computeBenefit(drug) {
     let impactValue;
 
@@ -56,6 +66,11 @@ export class Pharmacy {
     return impactValue;
   }
 
+  /**
+   * Normalize a benefit value so that it is not out of range
+   * @param {int} benefit Then benefit to check
+   * @returns {int} the computed value in range [0-50]
+   */
   checkBenefitRange(benefit) {
     return Math.min(Math.max(0, benefit), 50);
   }
