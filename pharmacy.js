@@ -12,45 +12,15 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     return this.drugs.map(drug => {
-      if (["Herbal Tea", "Fervex"].includes(drug.name)) {
-        if (drug.benefit < 50) {
-          drug.benefit++;
-          if (drug.name == "Fervex") {
-            if (drug.expiresIn < 11) {
-              if (drug.benefit < 50) {
-                drug.benefit++;
-              }
-            }
-            if (drug.expiresIn < 6) {
-              if (drug.benefit < 50) {
-                drug.benefit++;
-              }
-            }
-          }
-        }
-      } else if (drug.benefit > 0 && drug.name != "Magic Pill") {
-        drug.benefit--;
+      if (drug.name === "Magic Pill") {
+        drug.benefit = this.checkBenefitRange(drug.benefit);
+        return drug;
       }
 
       drug.expiresIn = this.computeExpirationDate(drug);
+      drug.benefit += this.computeBenefit(drug);
 
-      if (drug.expiresIn < 0) {
-        if (drug.name != "Herbal Tea") {
-          if (drug.name != "Fervex") {
-            if (drug.benefit > 0) {
-              if (drug.name != "Magic Pill") {
-                drug.benefit--;
-              }
-            }
-          } else {
-            drug.benefit -= drug.benefit;
-          }
-        } else {
-          if (drug.benefit < 50) {
-            drug.benefit++;
-          }
-        }
-      }
+      drug.benefit = this.checkBenefitRange(drug.benefit);
 
       return drug;
     });
@@ -58,5 +28,35 @@ export class Pharmacy {
 
   computeExpirationDate(drug) {
     return drug.name === "Magic Pill" ? drug.expiresIn : drug.expiresIn - 1;
+  }
+
+  computeBenefit(drug) {
+    let impactValue;
+
+    switch (drug.name) {
+      case "Herbal Tea":
+        impactValue = drug.expiresIn > 0 ? 1 : 2;
+        break;
+      case "Fervex":
+        if (drug.expiresIn <= 0) {
+          // Drops to 0 when expired
+          impactValue = -Math.abs(drug.benefit);
+        } else if (drug.expiresIn <= 5) {
+          impactValue = 3;
+        } else if (drug.expiresIn <= 10) {
+          impactValue = 2;
+        } else {
+          impactValue = 1;
+        }
+        break;
+      default:
+        impactValue = drug.expiresIn > 0 ? -1 : -2;
+        break;
+    }
+    return impactValue;
+  }
+
+  checkBenefitRange(benefit) {
+    return Math.min(Math.max(0, benefit), 50);
   }
 }
