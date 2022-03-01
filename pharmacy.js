@@ -10,6 +10,18 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+  endOfDay(drug, num, sign) {
+    switch (sign) {
+      case "+":
+        drug.benefit = drug.benefit + num > 50 ? 50 : drug.benefit + num;
+        break;
+      case "-":
+        drug.benefit = drug.benefit - num < 0 ? 0 : drug.benefit - num;
+        break;
+      default:
+        return;
+    }
+  }
   increaseBenefit(drug, num) {
     drug.benefit = drug.benefit + num > 50 ? 50 : drug.benefit + num;
     return drug;
@@ -25,9 +37,9 @@ export class Pharmacy {
         //HERBAL TEA
         if (this.drugs[i].name === "Herbal Tea") {
           if (this.drugs[i].expiresIn <= 0) {
-            this.increaseBenefit(this.drugs[i], 2);
+            this.endOfDay(this.drugs[i], 2, "+");
           } else {
-            this.increaseBenefit(this.drugs[i], 1);
+            this.endOfDay(this.drugs[i], 1, "+");
           }
           //FERVEX
         } else if (this.drugs[i].name === "Fervex") {
