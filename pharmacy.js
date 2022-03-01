@@ -1,8 +1,118 @@
-export class Drug {
+const DrugName = {
+  HerbalTea: "Herbal Tea",
+  MagicPill: "Magic Pill",
+  Fervex: "Fervex",
+};
+
+export class GenericDrug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
+  }
+
+  #maxBenefit = 50;
+  #minBenefit = 0;
+
+  get isExpired() {
+    return this.expiresIn < 0;
+  }
+  get canUpdateBenefit() {
+    return this.benefit < this.#maxBenefit && this.benefit > this.#minBenefit;
+  }
+  get canUpdateExpiresIn() {
+    return true;
+  }
+  get benefitStep() {
+    return this.isExpired ? -2 : -1;
+  }
+
+  #updateBenefit() {
+    if (!this.canUpdateBenefit) {
+      return;
+    }
+
+    this.benefit += this.benefitStep;
+  }
+
+  #updateExpiresIn() {
+    if (!this.canUpdateExpiresIn) {
+      return;
+    }
+
+    this.expiresIn--;
+  }
+
+  updateBenefitValue() {
+    this.#updateBenefit();
+    this.#updateExpiresIn();
+  }
+}
+class HerbalTea extends GenericDrug {
+  constructor(name, expiresIn, benefit) {
+    super(DrugName.HerbalTea, expiresIn, benefit);
+  }
+
+  get benefitStep() {
+    return this.isExpired ? 2 : 1;
+  }
+}
+
+class MagicPill extends GenericDrug {
+  constructor(name, expiresIn, benefit) {
+    super(DrugName.MagicPill, expiresIn, benefit);
+  }
+
+  get canUpdateBenefit() {
+    return false;
+  }
+  get canUpdateExpiresIn() {
+    return false;
+  }
+}
+
+class Fervex extends GenericDrug {
+  constructor(name, expiresIn, benefit) {
+    super(DrugName.Fervex, expiresIn, benefit);
+  }
+
+  get benefitStep() {
+    if (this.expiresIn <= 5) {
+      return 3;
+    } else if (this.expiresIn <= 10) {
+      return 2;
+    }
+
+    return 1;
+  }
+
+  updateBenefitValue() {
+    super.updateBenefitValue();
+
+    if (this.isExpired) {
+      this.benefit = 0;
+    }
+  }
+}
+
+const drugs = {
+  [DrugName.HerbalTea]: HerbalTea,
+  [DrugName.MagicPill]: MagicPill,
+  [DrugName.Fervex]: Fervex,
+};
+
+function getDrugByName(name) {
+  return drugs[name] ?? GenericDrug;
+}
+
+export class Drug {
+  constructor(name, expiresIn, benefit) {
+    const _Drug = getDrugByName(name);
+    this.drug = new _Drug(name, expiresIn, benefit);
+  }
+
+  updateBenefitValue() {
+    this.drug.updateBenefitValue();
   }
 }
 
@@ -11,54 +121,8 @@ export class Pharmacy {
     this.drugs = drugs;
   }
   updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
-          }
-        }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name == "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) {
-        if (this.drugs[i].name != "Herbal Tea") {
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-            }
-          } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          }
-        }
-      }
+    for (const drug of this.drugs) {
+      drug.updateBenefitValue();
     }
 
     return this.drugs;
