@@ -65,4 +65,9 @@ describe("Pharmacy", () => {
       new Pharmacy([new Drug("Fervex", 0, 10)]).updateBenefitValue()
     ).toEqual([new Drug("Fervex", -1, 0)]);
   });
+  it("should decrease benefit twice as fast as normal drugs when the drug is Dafalgan", () => {
+    expect(
+      new Pharmacy([new Drug("Dafalgan", 5, 10)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", 4, 8)]);
+  });
 });
