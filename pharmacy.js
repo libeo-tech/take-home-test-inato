@@ -44,6 +44,9 @@ export class Pharmacy {
     let impactValue;
 
     switch (drug.name) {
+      case "Dafalgan":
+        impactValue = drug.expiresIn > 0 ? -2 : -4;
+        break;
       case "Herbal Tea":
         impactValue = drug.expiresIn > 0 ? 1 : 2;
         break;
