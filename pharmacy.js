@@ -2,6 +2,7 @@ const DrugName = {
   HerbalTea: "Herbal Tea",
   MagicPill: "Magic Pill",
   Fervex: "Fervex",
+  Dafalgan: "Dafalgan",
 };
 
 export class GenericDrug {
@@ -95,10 +96,21 @@ class Fervex extends GenericDrug {
   }
 }
 
+class Dafalgan extends GenericDrug {
+  constructor(name, expiresIn, benefit) {
+    super(DrugName.Dafalgan, expiresIn, benefit);
+  }
+
+  get benefitStep() {
+    return super.benefitStep * 2;
+  }
+}
+
 const drugs = {
   [DrugName.HerbalTea]: HerbalTea,
   [DrugName.MagicPill]: MagicPill,
   [DrugName.Fervex]: Fervex,
+  [DrugName.Dafalgan]: Dafalgan,
 };
 
 function getDrugByName(name) {
