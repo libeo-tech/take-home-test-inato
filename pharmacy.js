@@ -45,13 +45,13 @@ export class Pharmacy {
 
     switch (drug.name) {
       case "Dafalgan":
-        impactValue = drug.expiresIn > 0 ? -2 : -4;
+        impactValue = drug.expiresIn >= 0 ? -2 : -4;
         break;
       case "Herbal Tea":
-        impactValue = drug.expiresIn > 0 ? 1 : 2;
+        impactValue = drug.expiresIn >= 0 ? 1 : 2;
         break;
       case "Fervex":
-        if (drug.expiresIn <= 0) {
+        if (drug.expiresIn < 0) {
           // Drops to 0 when expired
           impactValue = -Math.abs(drug.benefit);
         } else if (drug.expiresIn <= 5) {
@@ -63,7 +63,7 @@ export class Pharmacy {
         }
         break;
       default:
-        impactValue = drug.expiresIn > 0 ? -1 : -2;
+        impactValue = drug.expiresIn >= 0 ? -1 : -2;
         break;
     }
     return impactValue;
