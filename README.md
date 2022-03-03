@@ -3,6 +3,10 @@
 You are a new developer in the Inato team, and your first job is to add a feature to an old existing piece of code.
 We recommend spending between 1 hour and 2 hours on the exercise. (Do more if you like 😇, do less if you think you've shown what you want😎)
 
+# Requirements (if you don't want to use Docker)
+
+* node v16, if you have [nvm](https://github.com/nvm-sh/nvm#installing-and-updating), you can use `nvm install && nvm use` to have the proper version
+
 ## System specifications
 
 Hi and welcome to the team. We are in the future, and Inato has extended its activities by opening a pharmacy. Your task is to add a new feature to our system so that we can begin distributing a new drug. First an introduction to our system:
@@ -39,7 +43,7 @@ Please commit as frequently as possible to make the review easier.
 
 ## Test
 
-To make sure that you will not break anything in the existing code, we added a log of the simulation in the _output.txt_ file. Make sure that your code is able to generate the same file. You can generate a new file by running one of the following commands:
+To make sure that you will not break anything in the existing code, we added a log of the simulation in the _original-output.txt_ file. Make sure that your code is able to generate the same file. You can generate a new file by running one of the following commands:
 
 ```sh
 yarn start
@@ -48,3 +52,9 @@ yarn start
 ```sh
 docker-compose up
 ```
+
+### Comparing with the original output
+
+The command below will execute the script, write an output file and compare it with the _original-output.txt_ file.
+
+`yarn compare`
