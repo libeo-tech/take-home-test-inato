@@ -1,45 +1,29 @@
-/**
- * @updateDrugs
- * Drug types has their own individual module. Decouples nested if-else's, improves maintenance and future development of new features.
- */
+  function updateBenefit(drug) {
+      if (drug.name === "Herbal Tea") {
+          drug.benefit += drug.expiresIn < 0 ? 2 : 1;
+      } else if (drug.name === "Fervex") {
+          switch (true) {
+              case drug.expiresIn <= 10 && drug.expiresIn > 5:
+                  drug.benefit += 2;
+                  break;
+              case drug.expiresIn <= 5 && drug.expiresIn > 0:
+                  drug.benefit += 3;
+                  break;
+              case drug.expiresIn <= 0:
+                  drug.benefit = 0;
+                  break;
+              default:
+                  drug.benefit += 1;
+                  break;
+          }
+      } else if (drug.name === "Dafalgan") {
+          drug.benefit -= drug.expiresIn < 0 ? 4 : 2;
+      } else {
+          drug.benefit -= drug.expiresIn < 0 ? 2 : 1;
+      }
+      return drug;
+  }
 
- function updateHerbalTeaBenefit(herbalTea) {
-    herbalTea.benefit += herbalTea.expiresIn < 0 ? 2 : 1;
-    return herbalTea;
-  }
-  
-  function updateFervexBenefit(fervex) {
-    switch (true) {
-      case fervex.expiresIn <= 10 && fervex.expiresIn > 5:
-        fervex.benefit += 2;
-        break;
-      case fervex.expiresIn <= 5 && fervex.expiresIn > 0:
-        fervex.benefit += 3;
-        break;
-      case fervex.expiresIn <= 0:
-        fervex.benefit = 0;
-        break;
-      default:
-        fervex.benefit += 1;
-        break;
-    }
-    return fervex;
-  }
-  
-  function updateDafalganBenefit(dafalgan) {
-    dafalgan.benefit -= dafalgan.expiresIn < 0 ? 4 : 2;
-    return dafalgan;
-  }
-  
-  function updateCommonBenefit(drug) {
-    drug.benefit -= drug.expiresIn < 0 ? 2 : 1;
-    return drug;
-  }
-  
   module.exports = {
-    updateCommonBenefit,
-    updateFervexBenefit,
-    updateDafalganBenefit,
-    updateHerbalTeaBenefit
+      updateBenefit
   };
-  
