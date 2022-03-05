@@ -10,9 +10,8 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
-  degrade(decreaseFactor = 1, direction = -1) {
-    this.expiresIn -= 1;
-    this.benefit += decreaseFactor * direction;
+  degrade(decreaseFactor = -1) {
+    this.benefit += decreaseFactor;
 
     if (this.benefit <= 0) {
       this.benefit = 0 // benefit cannot be negative
@@ -22,22 +21,31 @@ export class Drug {
   }
 
   update() {
-  
     if (this.name == MagicPill) {
       this.expiresIn = this.expiresIn;
       this.benefit = this.benefit;
-    } else if (this.name == Fervex || this.name == HerbalTea) {
+      return this;
+    }
+    this.expiresIn -= 1;
+    let factor = this.expiresIn < 0 ? 2 : 1;
+    if (this.name === HerbalTea) {
+      this.degrade(-factor) 
+    }
+    else if (this.name == Fervex) {
       if (this.expiresIn < 11 && this.expiresIn < 6) {
-        this.degrade(2, 1)
+        this.degrade(2)
       } else if (this.expiresIn <= 5 && this.expiresIn >= 0) {
-        degrade(3, 1)
+        degrade(3)
       } else {
-        this.degrade(0, 1);
+        this.degrade(-1);
       }
-    } else {
+    } else if (this.name === Dafalgan) {
+      this.degrade(-2)
+    }
+    
+    else {
       // Catch every other drugs
-      let factor = this.expiresIn < 0 ? 2 : 1;
-      this.degrade(factor)
+      this.degrade(-factor)
     }
     
     return this;
