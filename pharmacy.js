@@ -59,6 +59,9 @@ export class Pharmacy {
           }
         }
       }
+      if(this.drugs[i].benefit > 50){
+        this.drugs[i].benefit = 50;
+      }
     }
 
     return this.drugs;
