@@ -25,6 +25,11 @@ export class Drug {
     this.expiresIn = days;
   }
 
+  /* METHOD */
+  isDafalgan() {
+    return this.getName() === "Dafalgan";
+  }
+
   isFervex() {
     return this.getName() === "Fervex";
   }
@@ -83,7 +88,7 @@ export class Pharmacy {
   checkBenefit(drug) {
     if (drug.isPositiveBenefit()) {
       if (drug.notHerbalAndFervex() && !drug.isMagicPill()) {
-        drug.updateBenefit(1, true);
+        drug.updateBenefit(drug.isDafalgan() ? 2 : 1, true);
       } else {
         this.addBenefitToOtherDrugOrFervexAreNotExpire(drug);
       }
@@ -127,7 +132,7 @@ export class Pharmacy {
 
   otherDrugExpireWithBenefit(drug) {
     if (drug.isPositiveBenefit() && !drug.isMagicPill()) {
-      drug.updateBenefit(1, true);
+      drug.updateBenefit(drug.isDafalgan() ? 2 : 1, true);
     }
   }
 
