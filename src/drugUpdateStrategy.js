@@ -33,7 +33,14 @@ export class DrugUpdateStrategy {
   }
 }
 
-const STRATEGIES = DRUG_UPDATE_CONFIG.map(drugConfig => new DrugUpdateStrategy(drugConfig.drugNamePattern, drugConfig.updateBenefit, drugConfig.updateExpireIn))
+const STRATEGIES = DRUG_UPDATE_CONFIG.map(
+  drugConfig =>
+    new DrugUpdateStrategy(
+      drugConfig.drugNamePattern,
+      drugConfig.updateBenefit,
+      drugConfig.updateExpireIn
+    )
+);
 
 export function getUpdateStrategy(drugName) {
   for (let i = 0; i < STRATEGIES.length; i++) {
@@ -44,8 +51,8 @@ export function getUpdateStrategy(drugName) {
   }
   console.error(
     "No suitable update strategy for drug: " +
-    drugName +
-    " ,please set a default fallback strategy ?"
+      drugName +
+      " ,please set a default fallback strategy ?"
   );
   return null;
 }
