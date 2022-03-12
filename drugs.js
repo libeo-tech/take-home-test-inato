@@ -24,6 +24,12 @@ export class Drug {
   updateExpiresIn() {
     this.expiresIn -= 1;
   }
+
+  updateDrug() {
+    this.updateBenefit();
+    this.updateExpiresIn();
+  }
+
 }
 
 export class HerbalTea extends Drug {
@@ -63,8 +69,8 @@ export class Fervex extends Drug {
 
   updateBenefit() {
     if (this.expiresIn <= 10 && this.expiresIn >= 6) this.benefit += 2;
-    if (this.expiresIn <= 5 && this.expiresIn > 0) this.benefit += 3;
-    if (this.expiresIn <= 0) this.benefit = 0;
+    if (this.expiresIn <= 5 && this.expiresIn >= 0) this.benefit += 3;
+    if (this.expiresIn < 0) this.benefit = 0;
     this.checkOverMaxBenefit();
   }
 
