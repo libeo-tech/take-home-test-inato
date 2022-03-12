@@ -28,5 +28,8 @@
     "jest": "24.8.0",
     "prettier": "^1.14.3",
     "regenerator-runtime": "^0.12.1"
+  },
+  "dependencies": {
+    "babel-node": "^0.0.1-security"
   }
 }
