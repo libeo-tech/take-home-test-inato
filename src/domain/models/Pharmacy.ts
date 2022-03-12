@@ -14,16 +14,10 @@ export class Pharmacy {
   }
 
   updatePharmacyStocksInfo(targetDate: Date): StockInfo[] {
-    const stockInfoList: StockInfo[] = [];
-
-    for (let drug of this.drugs) {
-      stockInfoList.push({
-        name: drug.getName(),
-        benefit: drug.getBenefitAt(targetDate),
-        expiresIn: drug.getExpiresInAt(targetDate)
-      })
-    }
-
-    return stockInfoList;
+    return this.drugs.map((drug) => ({
+      name: drug.getName(),
+      benefit: drug.getBenefitAt(targetDate),
+      expiresIn: drug.getExpiresInAt(targetDate),
+    }));
   }
 }

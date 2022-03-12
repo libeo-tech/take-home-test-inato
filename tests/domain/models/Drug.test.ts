@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import { addDays } from 'date-fns';
 import {
   Drug,
-  Fervex
 } from '../../../src/domain/models/Drug';
+import { Fervex } from '../../../src/domain/models/Fervex';
 
 describe('Drug', () => {
   let defaultOriginalBenefit: number;
@@ -43,7 +43,7 @@ describe('Drug', () => {
     expect(drug.getOriginalBenefit()).to.eql(16);
   });
 
-  it ('Should have a date of "creation"', () => {
+  it('Should have a date of "creation"', () => {
     const createdAt = new Date('2022-03-02T10:00:00+01:00');
     const drug = new Drug({
       name: dummyName,

@@ -2,15 +2,14 @@ import { addDays } from 'date-fns';
 import { writeFile } from 'fs/promises';
 import {
   Drug,
-  Fervex
-} from './src/domain/models/Drug';
-import { Pharmacy } from './src/domain/models/Pharmacy';
+} from './domain/models/Drug';
+import { Fervex } from './domain/models/Fervex';
+import { Pharmacy } from './domain/models/Pharmacy';
 
 const now = new Date('2022-03-12T10:00:00+01:00');
 
-(async() => {
+(async () => {
   try {
-
     const drugs = [
       new Drug({
         createdAt: now,

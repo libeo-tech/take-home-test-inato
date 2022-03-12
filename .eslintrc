@@ -1,0 +1,25 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "airbnb",
+    "airbnb-typescript/base"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.lint.json"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "import/prefer-default-export": "off",
+        "class-methods-use-this": "off",
+        "no-promise-executor-return": "off",
+        "no-plusplus": "off"
+      }
+    }
+  ]
+}
