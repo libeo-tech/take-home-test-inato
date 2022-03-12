@@ -1,3 +1,5 @@
 node_modules
 # jetbrains config folder
 .idea
+# generated file, not worth versioning
+output.txt
