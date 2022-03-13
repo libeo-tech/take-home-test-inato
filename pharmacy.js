@@ -3,7 +3,7 @@ export class Pharmacy {
     this.drugs = drugs;
   }
 
-  updateDrugsValues() {
+  updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       this.drugs[i].updateDrug();
     }
