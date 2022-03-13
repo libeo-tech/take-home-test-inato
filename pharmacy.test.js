@@ -36,7 +36,9 @@ describe("HerbalTea", () => {
 
   it("Benefit can not be > 50 ", () => {
     expect(
-      new Pharmacy([new medicine.HerbalTea("test", -1, 49)]).updateBenefitValue()
+      new Pharmacy([
+        new medicine.HerbalTea("test", -1, 49)
+      ]).updateBenefitValue()
     ).toEqual([new medicine.HerbalTea("test", -2, 50)]);
   });
 });
@@ -44,7 +46,9 @@ describe("HerbalTea", () => {
 describe("MagicPill", () => {
   it("Benefit and ExpiresIn do not change", () => {
     expect(
-      new Pharmacy([new medicine.MagicPill("test", -1, 49)]).updateBenefitValue()
+      new Pharmacy([
+        new medicine.MagicPill("test", -1, 49)
+      ]).updateBenefitValue()
     ).toEqual([new medicine.MagicPill("test", -1, 49)]);
   });
 });
