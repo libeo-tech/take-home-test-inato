@@ -1,5 +1,3 @@
-
-
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
@@ -8,15 +6,15 @@ export class Drug {
   }
 
   checkOverMaxBenefit() {
-    this.benefit > 50 ? (this.benefit = 50) : (this.benefit += 0);
+    this.benefit = this.benefit > 50 ? 50 : this.benefit;
   }
 
   checkUnderMinBenefit() {
-    this.benefit < 0 ? (this.benefit = 0) : (this.benefit += 0);
+    this.benefit = this.benefit < 0 ? 0 : this.benefit;
   }
 
   updateBenefit() {
-    this.expiresIn > 0 ? (this.benefit -= 1) : (this.benefit -= 2);
+    this.benefit -= this.expiresIn > 0 ? 1 : 2;
     this.checkOverMaxBenefit();
     this.checkUnderMinBenefit();
   }
@@ -29,7 +27,6 @@ export class Drug {
     this.updateBenefit();
     this.updateExpiresIn();
   }
-
 }
 
 export class HerbalTea extends Drug {
@@ -38,7 +35,7 @@ export class HerbalTea extends Drug {
   }
 
   updateBenefit() {
-    this.expiresIn > 0 ? (this.benefit += 1) : (this.benefit += 2);
+    this.benefit += this.expiresIn > 0 ? 1 : 2;
     this.checkOverMaxBenefit();
   }
 
