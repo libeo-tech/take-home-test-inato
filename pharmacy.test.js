@@ -67,8 +67,8 @@ describe("Fervex", () => {
 
   it("Benefit = 0 after expiration date", () => {
     expect(
-      new Pharmacy([new medicine.Fervex("test", 1, 33)]).updateBenefitValue()
-    ).toEqual([new medicine.Fervex("test", 0, 36)]);
+      new Pharmacy([new medicine.Fervex("test", 0, 33)]).updateBenefitValue()
+    ).toEqual([new medicine.Fervex("test", -1, 0)]);
   });
 });
 

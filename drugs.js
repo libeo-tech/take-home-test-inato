@@ -55,7 +55,7 @@ export class MagicPill extends Drug {
   }
 
   updateExpiresIn() {
-    this.expiresIn += 0;
+    //this.expiresIn += 0;
   }
 }
 
@@ -66,8 +66,8 @@ export class Fervex extends Drug {
 
   updateBenefit() {
     if (this.expiresIn <= 10 && this.expiresIn >= 6) this.benefit += 2;
-    if (this.expiresIn <= 5 && this.expiresIn >= 0) this.benefit += 3;
-    if (this.expiresIn < 0) this.benefit = 0;
+    if (this.expiresIn <= 5 && this.expiresIn > 0) this.benefit += 3;
+    if (this.expiresIn <= 0) this.benefit = 0;
     this.checkOverMaxBenefit();
   }
 
