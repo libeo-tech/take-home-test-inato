@@ -1,50 +1,21 @@
 # Inato Take-Home Test Specification
 
-You are a new developer in the Inato team, and your first job is to add a feature to an old existing piece of code.
-We recommend spending between 1 hour and 2 hours on the exercise. (Do more if you like 😇, do less if you think you've shown what you want😎)
+## Description / Before reading the PR
 
-## System specifications
+This is my repo for the test project that you sent me. I spent 1h45 on this project.
 
-Hi and welcome to the team. We are in the future, and Inato has extended its activities by opening a pharmacy. Your task is to add a new feature to our system so that we can begin distributing a new drug. First an introduction to our system:
+I must precise that there has been an issue with what I did : I did my commit on a new branch under the main repository. When I tried to add them to this repo, I did a few bad moves and lost my commits.. I am sorry for this, and as a substitute, I will explain here what I did and the order in which I did it.
 
-- All drugs have an `expiresIn` value which denotes the number of days we have until the item expires.
-- All drugs have a `benefit` value which denotes how powerful the drug is.
-- At the end of each day our system lowers both values for every drug
+## Methodology
 
-But there is more:
+1. I added a .prettierrc to stop having conflitcs on my IDE
+2. I wrote more tests, at least one for each marginal case. I did it drug by drug in order to get a better understanding of what is happening
+3. I started refactoring the `updateBenefitValue`. I always kept the previous one, as deprecated, in case I wanted to go back.
 
-- Once the expiration date has passed, Benefit degrades twice as fast.
-- The Benefit of an item is never negative.
-- "Herbal Tea" actually increases in Benefit the older it gets. Benefit increases twice as fast after the expiration date.
-- The Benefit of an item is never more than 50.
-- "Magic Pill" never expires nor decreases in Benefit.
-- "Fervex", like Herbal Tea, increases in Benefit as its expiration date approaches. Benefit increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Benefit drops to 0 after the expiration date.
-
-We have recently signed a supplier of "Dafalgan". This requires an update to our system:
-
-- "Dafalgan" degrades in Benefit twice as fast as normal drugs.
-
-## Instructions
-
-- [ ] Fork this repository
-- [ ] Implement the required feature
-- [ ] Publish it on GitHub as a pull-request
-- [ ] Send us the link and tell us approximatively how much time you spent on this assignment
-
-You are encouraged to refactor the existing code before adding your own, as you would do if this was a real task in real life. We strongly recommend that you write tests to help you during this process.
-
-Feel free to make any changes to the `updateBenefitValue` method implementation and add any new code as long as everything still works correctly. However, do not break the public API of the `Drug` and `Pharmacy` classes, as those are used by other pieces of the software (you can add new methods though).
-
-Please commit as frequently as possible to make the review easier.
-
-## Test
-
-To make sure that you will not break anything in the existing code, we added a log of the simulation in the _output.txt_ file. Make sure that your code is able to generate the same file. You can generate a new file by running one of the following commands:
-
-```sh
-yarn start
-```
-
-```sh
-docker-compose up
-```
+- I implemented a config reader that sends a default config, and then started to work my way through repairing the tests
+- I implemented the config for Herbal Tea drug via the `name` and `benefitMultipliersByExpiresIn` properties of the config
+- I implemented the 'Magic Pill' config and added the `expires` property that I saw I needed.
+- I implemented the 'Fervex' drug config and added the `benefitAfterExpired` that I saw I needed
+- I added a configuration and test for the 'Dafalgan' drug
+- I finished cleaning my code and commented where it was needed
+- I lost my commits and wrote this README
