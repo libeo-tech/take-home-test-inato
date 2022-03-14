@@ -6,7 +6,7 @@ const drugs = [
   new Drug("Herbal Tea", 10, 5),
   new Drug("Fervex", 5, 40),
   new Drug("Magic Pill", 15, 40),
-  // new Drug("Dafalgan", 15, 20),
+  new Drug("Dafalgan", 15, 20),
 ];
 
 const EXPIRY_PARAMS = {
@@ -23,10 +23,10 @@ const EXPIRY_PARAMS = {
   "Magic Pill": [
     [0, [-Infinity, Infinity]]
   ],
-  // "Dafalgan": [
-  //   [-1, [0, Infinity]],
-  //   [-2, [-Infinity, 0]]
-  // ]
+  "Dafalgan": [
+    [-1, [0, Infinity]],
+    [-2, [-Infinity, 0]]
+  ]
 }
 const trial = new Pharmacy(drugs);
 trial.setDrugsExpiryParams(EXPIRY_PARAMS)
