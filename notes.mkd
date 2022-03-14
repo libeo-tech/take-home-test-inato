@@ -1,0 +1,51 @@
+# logic vs Data
+
+- Data : expiry parameters 
+  - benefit increment values
+  - expiresIn values range
+  - default values :
+    - expiresIn range [+inf, 0] >> benefit -1
+    - expiresIn range [0, -inf] >> benefit -2
+
+- Logic 
+  - given a value for expiresIn, match the correct increment, benefit +- increment
+  - benefit can be constant for a givent range
+    - calculation increment is number 
+    - "hardcoded benefit" is string 
+  - benefit can never change
+    - incr === 0
+  - expiresIn can never be decreased (never expires)
+    - if range === [-inf, +inf]
+    - NOTE: we're forgetting data ... no great
+  - boundary for expiry: >= 0 is not expired
+  - boundary for expiry: < 0  is expired
+
+- Herbal tea
+```
+[
+    [ +1, [0, +inf] ],
+    [ +2, [-inf, 0] ],
+]
+```
+- magic pill
+```
+[
+    [ 0, [-inf, +inf] ]
+]
+```
+- fervex
+```
+[
+    [ +1, [ 10, +inf] ],
+    [ +2, [ 5, 10] ],
+    [ +3, [ 0, 5] ],
+    [ "0", [ -inf, 0 ] ],
+]
+```
+- Dafalgan
+```
+[
+    [ -1, [ 0, +inf] ],
+    [ -2, [ -inf, 0 ] ]
+]
+```

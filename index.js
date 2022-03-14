@@ -5,9 +5,31 @@ const drugs = [
   new Drug("Doliprane", 20, 30),
   new Drug("Herbal Tea", 10, 5),
   new Drug("Fervex", 5, 40),
-  new Drug("Magic Pill", 15, 40)
+  new Drug("Magic Pill", 15, 40),
+  new Drug("Dafalgan", 15, 20),
 ];
+
+const EXPIRY_PARAMS = {
+  "Herbal Tea": [
+    [1, [0, Infinity]],
+    [2, [-Infinity, 0]]
+  ],
+  "Fervex": [
+    [1, [10, Infinity]],
+    [2, [5, 10]],
+    [3, [0, 5]],
+    ["0", [-Infinity, 0]],
+  ],
+  "Magic Pill": [
+    [0, [-Infinity, Infinity]]
+  ],
+  "Dafalgan": [
+    [-1, [0, Infinity]],
+    [-2, [-Infinity, 0]]
+  ]
+}
 const trial = new Pharmacy(drugs);
+trial.setDrugsExpiryParams(EXPIRY_PARAMS)
 
 const log = [];
 

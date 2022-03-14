@@ -4,13 +4,74 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+  
+  /**
+   * @Dev call this to update the benefit value for this drug. This may decrease expiresIn by 1. 
+   * It finds the correct increment of benefit to apply by finding withing which of the given ranges this.expiresIn falls into.
+   * @param {tickParams[n]} expiryParams : an array of tickParams. A tickParam contains the increment to apply to benefit and a range.
+   * i.e: tickParams = [ 
+   *  increment: number, 
+   *  [
+   *    expiresInLowerBound: number|+/-Infinity,
+   *    expiresInUpperBound: number|+/-Infinity
+   *  ] 
+   * ]
+   */
+  updateBenefitValue(expiryParams = [ [-1, [0, Infinity ] ], [-2, [-Infinity, 0] ] ]) {
+    try {
+      // when no expiry date, do not decrease this.expiresIn
+      // (NOTE: I don't like that ... we're not tracking the passing of days at all...)
+      if(!(expiryParams.length === 1 && expiryParams[0][1].toString() === ([-Infinity, Infinity]).toString())){
+        this.expiresIn -= 1
+      }
+      let _incr = ( expiryParams.find( param => this.expiresIn >= param[1][0] && this.expiresIn < param[1][1]) )[0]
+      
+      // when _incr is a string, it is not an increment but the actual value for benefit (hardcoded)
+      let _calculatedBenefit = typeof _incr === 'string'
+        ? Math.min(50, Number(_incr))
+        : Math.min(50, this.benefit + _incr)
+
+      this.benefit = Math.max(0, _calculatedBenefit);
+
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  }
 }
 
 export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
+    this.drugsExpiryParams = {}
   }
+  setDrugsExpiryParams(expiryParams) {
+    try {
+      if(!expiryParams) { throw new Error('INATO: expiryParams must be provided') }
+      this.drugsExpiryParams = expiryParams
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  }
+  
   updateBenefitValue() {
+    try {
+      for (var i = 0; i < this.drugs.length; i++) {
+        this.drugs[i].updateBenefitValue(this.drugsExpiryParams[this.drugs[i].name])
+      }
+
+      return this.drugs;
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  }
+}
+
+
+/**
+ * updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       if (
         this.drugs[i].name != "Herbal Tea" &&
@@ -63,4 +124,4 @@ export class Pharmacy {
 
     return this.drugs;
   }
-}
+ */

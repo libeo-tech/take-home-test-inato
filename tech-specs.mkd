@@ -1,0 +1,44 @@
+# Goals 
+
+- [ ] refactor code: being able to simply add new drugs
+
+# Requirements
+- [ ] All drugs have an `expiresIn` value which denotes the number of days we have until the item expires.
+- [ ] All drugs have a `benefit` value which denotes how powerful the drug is.
+- [ ] batch : lowers both values for every drug
+  
+  - [ ] expiresIn - 1
+
+  - [ ] benefit >= 0 >> x  
+  - [ ] benefit < 0 >> 2x  
+  
+  - [ ] benefit <= 50
+  - [ ] benefit >= 0
+
+# Constraints
+- [ ] no breaking changes to public API
+  - I won't change the public API at all to avoid headeaches ..
+
+# Migrate
+- [ ] Herbal Tea
+- [ ] Magic Pill
+- [ ] Fervex
+- [ ] Doliprane
+
+# Add 
+- [ ] Dafalgan
+
+# Approach
+> to make the code maintainable we'll nicely separate data from logic:  
+> Data is the expiry parameters for a given drug
+> Logic is taking the expiry parameters and calculating the Drug benefit
+> 
+
+# Test 
+
+## functional
+simply use the provded expected output
+
+## unit
+-  [ ] benefit boundaries
+-  [ ] add drug expiry params
