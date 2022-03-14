@@ -1,6 +1,6 @@
 # Goals 
 
-- [ ] refactor code: being able to add new drugs
+- [ ] refactor code: being able to simply add new drugs
 
 # Requirements
 - [ ] All drugs have an `expiresIn` value which denotes the number of days we have until the item expires.
@@ -32,6 +32,7 @@
 > to make the code maintainable we'll nicely separate data from logic:  
 > Data is the expiry parameters for a given drug
 > Logic is taking the expiry parameters and calculating the Drug benefit
+> 
 
 # Test 
 
@@ -40,4 +41,4 @@ simply use the provded expected output
 
 ## unit
 -  [ ] benefit boundaries
--  [ ] add drug expiry parameters
+-  [ ] add drug expiry params
