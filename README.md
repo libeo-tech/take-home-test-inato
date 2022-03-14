@@ -4,7 +4,7 @@
 
 This is my repo for the test project that you sent me. I spent 1h45 on this project.
 
-I must precise that there has been an issue with what I did : I did my commit on a new branch under the main repository. When I tried to add them to this repo, I did a few bad moves and lost my commits.. I am sorry for this, and as a substitute, I will explain here what I did and the order in which I did it.
+I must precise that there has been an issue with what I did : I did all my commits on a new branch under the main repository. When I tried to add them to this repo, I did a few bad moves and lost my commits.. I am sorry for this, and as a substitute, I will explain here what I did and the order in which I did it.
 
 ## Methodology
 
