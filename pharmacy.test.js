@@ -6,10 +6,17 @@ describe("Pharmacy", () => {
    * Tests common drug behaviors
    */
 
-  it("should decrease the benefit and expiresIn of common drugs", () => {
-    expect(new Pharmacy([new Drug("test", 2, 3)]).updateBenefitValue()).toEqual(
-      [new Drug("test", 1, 2)]
-    );
+  it("should decrease the benefit of common drugs", () => {
+    expect(new Pharmacy([new Drug("test", 2, 3)]).updateBenefitValue().map(drug => drug.benefit)).toEqual([2]);
+  });
+
+  it("should decrease the expiresIn of common drugs", () => {
+    expect(new Pharmacy([
+      new Drug("test", 2, 3),
+      new Drug("Herbal Tea", 2, 3),
+      new Drug("Fervex", 2, 3),
+      new Drug("Dafalgan", 2, 3)
+      ]).updateBenefitValue().map(drug => drug.expiresIn)).toEqual([1, 1, 1, 1]);
   });
 
   it("should decrease benefit of common drugs", () => {
@@ -90,5 +97,19 @@ describe("Pharmacy", () => {
 
   it("should drop benefit of Fervex to zero after the expiration date", () => {
     expect(new Pharmacy([new Drug("Fervex", 0, 3)]).updateBenefitValue().map(drug => drug.benefit)).toEqual([0]);
+  });
+
+  /**
+   * Tests Dafalgan specific behaviors
+   */
+
+  it("should decrease the benefit of Dafalgan twice as fast as common drugs", () => {
+    expect(new Pharmacy([
+      new Drug("Dafalgan", 10, 5),
+      new Drug("Dafalgan", 0, 5),
+    ]).updateBenefitValue()).toEqual([
+      new Drug("Dafalgan", 9, 3),
+      new Drug("Dafalgan", -1, 1)
+    ]);
   });
 });
