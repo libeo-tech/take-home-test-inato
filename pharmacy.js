@@ -52,5 +52,12 @@ const SPECIFIC_DRUGS_BEHAVIORS = Object.freeze({
   // Do nothing
   MAGIC_PILL: function(magic_pill) {
 
+  },
+
+  // Decrease benefit twice as fast as common drugs
+  DAFALGAN: function(dagalgan) {
+    const benefitLoss = 2 + (dagalgan.expiresIn <= 0 ? 2 : 0);
+    dagalgan.benefit = Math.max(0, dagalgan.benefit - benefitLoss);
+    dagalgan.expiresIn -= 1;
   }
 });
