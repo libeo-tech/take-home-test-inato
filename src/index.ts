@@ -1,19 +1,25 @@
 import fs from 'fs';
 
 import { Pharmacy } from './pharmacy/Pharmacy';
-import { Drug } from './drugs/Drug';
+import { Doliprane } from './drugs/Doliprane';
+import { HerbalTea } from './drugs/HerbalTea';
+import { Fervex } from './drugs/Fervex';
+import { MagicPill } from './drugs/MagicPill';
+// import { Dafalgan } from './drugs/Dafalgan';
+
 import { getNewInventory } from './tools/getNewInventory';
 
 const drugs = [
-  new Drug('Doliprane', 20, 30),
-  new Drug('Herbal Tea', 10, 5),
-  new Drug('Fervex', 5, 40),
-  new Drug('Magic Pill', 15, 40)
+  new Doliprane(20, 30),
+  new HerbalTea(10, 5),
+  new Fervex(5, 40),
+  new MagicPill(15, 40)
+  //  new Dafalgan(15, 40)    Uncomment to test new Dafalgan Feature.
 ];
 const trial = new Pharmacy(drugs);
 
 /* eslint-disable no-console */
-fs.writeFile('output2.txt', getNewInventory(trial, 30), (err) => {
+fs.writeFile('output.txt', getNewInventory(trial, 30), (err) => {
   if (err) {
     console.log('error');
   } else {

@@ -1,19 +1,21 @@
-
-import { Drug } from '../src/drugs/Drug';
 import { Pharmacy } from '../src/pharmacy/Pharmacy';
+import { Doliprane } from '../src/drugs/Doliprane';
+import { HerbalTea } from '../src/drugs/HerbalTea';
+import { Fervex } from '../src/drugs/Fervex';
+import { MagicPill } from '../src/drugs/MagicPill';
 import { getNewInventory } from '../src/tools/getNewInventory';
 
 
 describe('getNewInventory', () => {
 
     // Test with initial output.txt
-    it('should return the same string as output.txt for 30 days.', () => {
+    test('should return the same string as output.txt for 30 days.', () => {
 
         const drugs = [
-          new Drug("Doliprane", 20, 30),
-          new Drug("Herbal Tea", 10, 5),
-          new Drug("Fervex", 5, 40),
-          new Drug("Magic Pill", 15, 40)
+          new Doliprane(20, 30),
+          new HerbalTea(10, 5),
+          new Fervex(5, 40),
+          new MagicPill(15, 40)
         ];
       
         const pharmacyInstance =  new Pharmacy(drugs);
