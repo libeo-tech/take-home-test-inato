@@ -2,7 +2,6 @@ import { Pharmacy } from "../pharmacy";
 import { Drug } from "../drug";
 
 const applyUpdate = (expiringDaysCounter, drugs) => {
-  //console.log(drugs);
   if (expiringDaysCounter === 1) {
     return new Pharmacy(drugs).updateBenefitValue();
   }
@@ -111,6 +110,12 @@ describe("Pharmacy", () => {
         const days = 5;
         const result = applyUpdate(days, [targetDrug(0, 3)]);
         expect(result).toEqual([targetDrug(0 - days, 3 + 2 * days)]);
+      });
+
+      it("Should not pass above 50", () => {
+        const days = 5;
+        const result = applyUpdate(days, [targetDrug(2, 48)]);
+        expect(result).toEqual([targetDrug(2 - days, 50)]);
       });
     });
 

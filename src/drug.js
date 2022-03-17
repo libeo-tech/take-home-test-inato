@@ -53,7 +53,10 @@ export class Drug {
     const degradation = this.getDegradation();
     const benefitNullifier = this.getBenefitNullifyingFactor();
 
-    this.benefit = benefitNullifier * (this.benefit + degradation * factor);
+    const newBenefit = benefitNullifier * (this.benefit + degradation * factor);
+    if (newBenefit > 50) this.benefit = 50;
+    else
+      this.benefit = benefitNullifier * (this.benefit + degradation * factor);
   }
 
   decreaseExpiresIn() {
