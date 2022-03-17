@@ -11,56 +11,70 @@ export class Pharmacy {
     this.drugs = drugs;
   }
   updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
-          }
-        }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name == "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
-        }
+    return this.drugs.map(drug => {
+      if (drug.name === "Magic Pill") {
+        drug.benefit = this.checkBenefitRange(drug.benefit);
+        return drug;
       }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) {
-        if (this.drugs[i].name != "Herbal Tea") {
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-            }
-          } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          }
-        }
-      }
-    }
 
-    return this.drugs;
+      drug.expiresIn = this.computeExpirationDate(drug);
+      drug.benefit += this.computeBenefit(drug);
+
+      drug.benefit = this.checkBenefitRange(drug.benefit);
+
+      return drug;
+    });
+  }
+
+  /**
+   *
+   * @param {Drug} drug
+   * @returns {int} The new expiresIn value
+   */
+  computeExpirationDate(drug) {
+    return drug.name === "Magic Pill" ? drug.expiresIn : drug.expiresIn - 1;
+  }
+
+  /**
+   *
+   * @param {Drug} drug
+   * @returns {int} The value to impact on drug's benefit
+   */
+  computeBenefit(drug) {
+    let impactValue;
+
+    switch (drug.name) {
+      case "Dafalgan":
+        impactValue = drug.expiresIn >= 0 ? -2 : -4;
+        break;
+      case "Herbal Tea":
+        impactValue = drug.expiresIn >= 0 ? 1 : 2;
+        break;
+      case "Fervex":
+        if (drug.expiresIn < 0) {
+          // Drops to 0 when expired
+          impactValue = -Math.abs(drug.benefit);
+        } else if (drug.expiresIn <= 5) {
+          impactValue = 3;
+        } else if (drug.expiresIn <= 10) {
+          impactValue = 2;
+        } else {
+          impactValue = 1;
+        }
+        break;
+      default:
+        impactValue = drug.expiresIn >= 0 ? -1 : -2;
+        break;
+    }
+    return impactValue;
+  }
+
+  /**
+   * Normalize a benefit value so that it is not out of range
+   * @param {int} benefit Then benefit to check
+   * @returns {int} the computed value in range [0-50]
+   */
+  checkBenefitRange(benefit) {
+    return Math.min(Math.max(0, benefit), 50);
   }
 }
