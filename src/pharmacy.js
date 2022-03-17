@@ -9,7 +9,6 @@ export class Pharmacy {
       const type = name in drugRules ? name : 'default';
       return drugRules[type]({ name, benefit, expiresIn });
     });
-    console.log(this.drugs);
     return this.drugs;
   }
 }
