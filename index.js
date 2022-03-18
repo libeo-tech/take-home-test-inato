@@ -7,6 +7,7 @@ const drugs = [
   new Drug("Fervex", 5, 40),
   new Drug("Magic Pill", 15, 40)
 ];
+
 const trial = new Pharmacy(drugs);
 
 const log = [];
@@ -23,4 +24,3 @@ fs.writeFile("output.txt", log.toString(), err => {
     console.log("success");
   }
 });
-/* eslint-enable no-console */
