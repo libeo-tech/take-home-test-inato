@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import Dafalgan from './src/dafalgan';
 import Drug from './src/drug';
 import Fervex from './src/fervex';
 import HerbalTea from './src/herbal-tea';
@@ -10,6 +11,7 @@ const drugs = [
     new HerbalTea(10, 5),
     new Fervex(5, 40),
     new MagicPill(40),
+    new Dafalgan(12, 40)
 ];
 const trial = new Pharmacy(drugs);
 
