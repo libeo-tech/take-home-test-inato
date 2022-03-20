@@ -1,5 +1,5 @@
-import {Fervex, Pharmacy} from './pharmacy';
-
+import Fervex from './fervex';
+import Pharmacy from './pharmacy';
 describe('Pharmacy expiration for Fervex', () => {
     it('should increase the benefit for Fervex with benefit lower than 50 and expired after 10 days', () => {
         expect(

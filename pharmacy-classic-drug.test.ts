@@ -1,4 +1,5 @@
-import { Drug, Pharmacy } from './pharmacy';
+import Drug from './drug';
+import Pharmacy from './pharmacy';
 
 describe('Pharmacy expiration for classic drug', () => {
     it('should decrease the benefit for classic drug with benefit lower than 50 and not expired', () => {

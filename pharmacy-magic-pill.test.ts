@@ -1,4 +1,5 @@
-import {MagicPill, Pharmacy} from './pharmacy';
+import MagicPill from './magic-pill';
+import Pharmacy from './pharmacy';
 
 describe('Pharmacy expiration for Magic Pill', () => {
     it('should keep the benefit for Magic Pill not expired', () => {
