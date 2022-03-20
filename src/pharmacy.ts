@@ -5,7 +5,7 @@ export default class Pharmacy {
         this.drugs = drugs;
     }
 
-    processEndOfDay() {
+    updateBenefitValue() {
         for (const drug of this.drugs) {
             drug.updateExpiration()
                 .updateBenefitValue();
