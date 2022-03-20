@@ -1,4 +1,4 @@
-import Drug from "./drug";
+import Drug, {DRUG_EXPIRATION_LIMIT, DRUG_MAX_BENEFIT_VALUE} from "./drug";
 
 export default class HerbalTea extends Drug {
     constructor(expiresIn: number, benefit: number) {
@@ -6,14 +6,15 @@ export default class HerbalTea extends Drug {
     }
 
     public updateBenefitValue(): Drug {
-        if (this.benefit < 50) {
-            this.benefit = this.benefit + 1;
-        }
+        // Current Benefit increase if benefit is lower than DRUG_MAX_BENEFIT_VALUE.
+        this.benefit = this.benefit < DRUG_MAX_BENEFIT_VALUE ?
+            this.benefit + 1
+            : this.benefit;
 
-        this.expiresIn = this.expiresIn - 1;
-        if (this.expiresIn < 0 && this.benefit < 50) {
-            this.benefit = this.benefit + 1;
-        }
+        // Benefit increase twice if benefit is lower than DRUG_MAX_BENEFIT_VALUE.
+        this.benefit = this.expiresIn < DRUG_EXPIRATION_LIMIT && this.benefit < DRUG_MAX_BENEFIT_VALUE ?
+            this.benefit + 1
+            : this.benefit;
 
         return this;
     }
