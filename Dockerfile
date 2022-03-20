@@ -3,7 +3,7 @@ FROM node:16-alpine
 WORKDIR /usr/src
 
 COPY package.json /usr/src/package.json
-RUN yarn install && yarn global add typescript
+RUN yarn install
 
 COPY . /usr/src/
 

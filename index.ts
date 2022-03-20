@@ -1,9 +1,9 @@
 import * as fs from 'fs';
-import Drug from './drug';
-import Fervex from './fervex';
-import HerbalTea from './herbal-tea';
-import MagicPill from './magic-pill';
-import Pharmacy from './pharmacy';
+import Drug from './src/drug';
+import Fervex from './src/fervex';
+import HerbalTea from './src/herbal-tea';
+import MagicPill from './src/magic-pill';
+import Pharmacy from './src/pharmacy';
 
 const drugs = [
     new Drug('Doliprane', 20, 30),

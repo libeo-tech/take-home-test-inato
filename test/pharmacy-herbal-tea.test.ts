@@ -1,5 +1,5 @@
-import HerbalTea from './herbal-tea';
-import Pharmacy from './pharmacy';
+import HerbalTea from '../src/herbal-tea';
+import Pharmacy from '../src/pharmacy';
 
 describe('Pharmacy expiration for Herbal Tea', () => {
     it('should increase the benefit for Herbal Tea with benefit lower than 50 and not expired', () => {

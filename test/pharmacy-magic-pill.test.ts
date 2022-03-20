@@ -1,5 +1,5 @@
-import MagicPill from './magic-pill';
-import Pharmacy from './pharmacy';
+import MagicPill from '../src/magic-pill';
+import Pharmacy from '../src/pharmacy';
 
 describe('Pharmacy expiration for Magic Pill', () => {
     it('should keep the benefit for Magic Pill not expired', () => {

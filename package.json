@@ -11,7 +11,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "tsc && jest",
+    "test": "rm -rf dist/test && tsc && jest",
     "start": "tsc && node ./dist/index.js"
   },
   "devDependencies": {

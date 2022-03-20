@@ -6,6 +6,6 @@
     "strict": true,
     "moduleResolution": "Node"
   },
-  "include": ["./*"],
+  "include": ["./*", "./src/*", "./test/*"],
   "exclude": ["node_modules"]
 }
