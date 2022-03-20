@@ -6,7 +6,7 @@ export class Drug {
     ) {
     }
 
-    public updateBenefitValue() {
+    public updateBenefitValue(): Drug {
         if (
             this.name != 'Herbal Tea' && this.name != 'Fervex'
         ) {
@@ -58,6 +58,24 @@ export class Drug {
         }
 
         return this;
+    }
+}
+
+export class HerbalTea extends Drug {
+    constructor(expiresIn: number, benefit: number) {
+        super('Herbal Tea', expiresIn, benefit);
+    }
+}
+
+export class MagicPill extends Drug {
+    constructor(expiresIn: number, benefit: number) {
+        super('Magic Pill', expiresIn, benefit);
+    }
+}
+
+export class Fervex extends Drug {
+    constructor(expiresIn: number, benefit: number) {
+        super('Fervex', expiresIn, benefit);
     }
 }
 
