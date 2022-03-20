@@ -7,54 +7,15 @@ export class Drug {
     }
 
     public updateBenefitValue(): Drug {
-        if (
-            this.name != 'Herbal Tea' && this.name != 'Fervex'
-        ) {
-            if (this.benefit > 0) {
-                if (this.name != 'Magic Pill') {
-                    this.benefit = this.benefit - 1;
-                }
-            }
-        } else {
-            if (this.benefit < 50) {
-                this.benefit = this.benefit + 1;
-                if (this.name == 'Fervex') {
-                    if (this.expiresIn < 11) {
-                        if (this.benefit < 50) {
-                            this.benefit =
-                                this.benefit + 1;
-                        }
-                    }
-                    if (this.expiresIn < 6) {
-                        if (this.benefit < 50) {
-                            this.benefit =
-                                this.benefit + 1;
-                        }
-                    }
-                }
-            }
+        if (this.benefit > 0) {
+            this.benefit = this.benefit - 1;
         }
-        if (this.name != 'Magic Pill') {
-            this.expiresIn = this.expiresIn - 1;
-        }
-        if (this.expiresIn < 0) {
-            if (this.name != 'Herbal Tea') {
-                if (this.name != 'Fervex') {
-                    if (this.benefit > 0) {
-                        if (this.name != 'Magic Pill') {
-                            this.benefit =
-                                this.benefit - 1;
-                        }
-                    }
-                } else {
-                    this.benefit =
-                        this.benefit - this.benefit;
-                }
-            } else {
-                if (this.benefit < 50) {
-                    this.benefit = this.benefit + 1;
-                }
-            }
+
+        this.expiresIn = this.expiresIn - 1;
+
+        if (this.expiresIn < 0 && this.benefit > 0) {
+            this.benefit =
+                this.benefit - 1;
         }
 
         return this;
@@ -65,17 +26,59 @@ export class HerbalTea extends Drug {
     constructor(expiresIn: number, benefit: number) {
         super('Herbal Tea', expiresIn, benefit);
     }
+
+    public updateBenefitValue(): Drug {
+        if (this.benefit < 50) {
+            this.benefit = this.benefit + 1;
+        }
+
+        this.expiresIn = this.expiresIn - 1;
+        if (this.expiresIn < 0 && this.benefit < 50) {
+            this.benefit = this.benefit + 1;
+        }
+
+        return this;
+    }
 }
 
 export class MagicPill extends Drug {
     constructor(expiresIn: number, benefit: number) {
         super('Magic Pill', expiresIn, benefit);
     }
+
+    public updateBenefitValue(): Drug {
+        return this;
+    }
 }
 
 export class Fervex extends Drug {
     constructor(expiresIn: number, benefit: number) {
         super('Fervex', expiresIn, benefit);
+    }
+
+    public updateBenefitValue(): Drug {
+        if (this.benefit < 50) {
+            this.benefit = this.benefit + 1;
+            if (this.expiresIn < 11) {
+                if (this.benefit < 50) {
+                    this.benefit =
+                        this.benefit + 1;
+                }
+            }
+            if (this.expiresIn < 6) {
+                if (this.benefit < 50) {
+                    this.benefit =
+                        this.benefit + 1;
+                }
+            }
+        }
+        this.expiresIn = this.expiresIn - 1;
+        if (this.expiresIn < 0) {
+            this.benefit =
+                this.benefit - this.benefit;
+        }
+
+        return this;
     }
 }
 
