@@ -1,8 +1,59 @@
+/**
+ * Object that maps a drug's name to the corresponding function for updating his attributes.
+ * The function takes as a parameter the drug instance of the drugs array (from the Pharmacy class).
+ */
+const perDrugUpdateBenefitValue = {
+  "Herbal Tea": (drug) => {
+    if (drug.expiresIn > 0) {
+      drug.benefit += 1;
+    } else {
+      drug.benefit += 2;
+    }
+    drug.expiresIn -= 1;
+  },
+  "Magic Pill": (drug) => {},
+  Fervex: (drug) => {
+    if (drug.expiresIn > 10) {
+      drug.benefit += 1;
+    } else if (drug.expiresIn > 5) {
+      drug.benefit += 2;
+    } else if (drug.expiresIn > 0) {
+      drug.benefit += 3;
+    } else {
+      drug.benefit = 0;
+    }
+    drug.expiresIn -= 1;
+  },
+  Dafalgan: (drug) => {
+    drug.benefit -= 2;
+    drug.expiresIn -= 1;
+  },
+};
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
+  }
+
+  updateBenefitValue() {
+    if (Object.keys(perDrugUpdateBenefitValue).includes(this.name)) {
+      perDrugUpdateBenefitValue[this.name](this);
+    } else {
+      if (this.expiresIn <= 0) {
+        this.benefit -= 2;
+      } else {
+        this.benefit -= 1;
+      }
+      this.expiresIn -= 1;
+    }
+    if (this.benefit <= 0) {
+      this.benefit = 0;
+    }
+    if (this.benefit >= 50) {
+      this.benefit = 50;
+    }
   }
 }
 
@@ -10,57 +61,16 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+  /**
+   * In order to update the benefit value each day, we check for each drug in `this.drugs`
+   * if the name of the drug is in our map `perDrugUpdateBenefitValue`. We then run the function
+   * with the drug instance as a parameter. If not, we execute generic instructions for every
+   * other drugs.
+   */
   updateBenefitValue() {
-    for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
-          }
-        }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name == "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) {
-        if (this.drugs[i].name != "Herbal Tea") {
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-            }
-          } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          }
-        }
-      }
-    }
-
-    return this.drugs;
+    return this.drugs.map((drug) => {
+      drug.updateBenefitValue();
+      return drug;
+    });
   }
 }
