@@ -1,11 +1,11 @@
-# Inato Take-Home Test Specification
+# Libeo Take-Home Test Specification
 
-You are a new developer in the Inato team, and your first job is to add a feature to an old existing piece of code.
-We recommend spending between 1 hour and 2 hours on the exercise. (Do more if you like 😇, do less if you think you've shown what you want😎)
+You are a new developer in the Libeo team, and your first job is to add a feature to an old existing piece of code.
+We recommend spending between 1 hour and 2 hours on the exercise. (Do more if you like 😇, do less if you think you've shown what you want 😎)
 
 ## System specifications
 
-Hi and welcome to the team. We are in the future, and Inato has extended its activities by opening a pharmacy. Your task is to add a new feature to our system so that we can begin distributing a new drug. First an introduction to our system:
+Hi and welcome to the team. We are in the future, and Libeo has extended its activities by opening a pharmacy. Your task is to add a new feature to our system so that we can begin distributing a new drug. First an introduction to our system:
 
 - All drugs have an `expiresIn` value which denotes the number of days we have until the item expires.
 - All drugs have a `benefit` value which denotes how powerful the drug is.
